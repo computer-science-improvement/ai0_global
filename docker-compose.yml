@@ -62,6 +62,8 @@ services:
       postgres:
         condition: service_healthy
     volumes:
+      # Mount .env so node --env-file=../../.env works from /repo/apps/pipeline
+      - ./.env:/repo/.env:ro
       # Mount data dirs so parsed JSON is accessible on host (WORKDIR is /repo/apps/pipeline)
       - ./apps/pipeline/src/data:/repo/apps/pipeline/src/data
       - ./apps/pipeline/src/tools/additional-data:/repo/apps/pipeline/src/tools/additional-data
