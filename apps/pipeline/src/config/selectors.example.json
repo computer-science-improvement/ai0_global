@@ -1,0 +1,15 @@
+{
+  "sources": [
+    {
+      "id": "example",
+      "name": "Example Source",
+      "url": "https://example.com",
+      "selectors": {
+        "items": "article.item",
+        "title": "h2",
+        "link": "a[href]",
+        "description": ".description"
+      }
+    }
+  ]
+}

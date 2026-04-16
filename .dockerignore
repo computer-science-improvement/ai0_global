@@ -1,0 +1,8 @@
+node_modules
+**/node_modules
+.git
+.env
+*.md
+.DS_Store
+apps/pipeline/src/data
+apps/pipeline/src/tools/additional-data

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Калькулятор контенту</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>Калькулятор контенту</h1>
+    <p class="lead">Обери джерело та категорію з бази, вкажи скільки постів на день — побачиш, на скільки днів вистачить записів.</p>
+
+    <div id="err" class="err hidden" role="alert"></div>
+
+    <label class="field">
+      <span>Тип контенту</span>
+      <select id="slice" disabled>
+        <option value="">Завантаження…</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Постів на день</span>
+      <input type="number" id="perDay" min="1" step="1" value="3" />
+    </label>
+
+    <section class="result" id="result" aria-live="polite">
+      <p class="muted">Обери варіант вище — результат оновиться автоматично.</p>
+    </section>
+  </main>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

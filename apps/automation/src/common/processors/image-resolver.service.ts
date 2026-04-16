@@ -1,0 +1,117 @@
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import axios, { AxiosRequestConfig } from 'axios';
+import { RawItem } from '../types';
+
+const MICROLINK_URL = 'https://api.microlink.io';
+
+@Injectable()
+export class ImageResolverService implements OnModuleInit {
+  private readonly logger = new Logger(ImageResolverService.name);
+  private proxies: string[] = [];
+  private proxyIndex = 0;
+
+  onModuleInit() {
+    try {
+      const path = join(__dirname, '..', '..', '..', 'config', 'proxies.json');
+      const cfg  = JSON.parse(readFileSync(path, 'utf-8'));
+      this.proxies = Array.isArray(cfg.list) ? cfg.list.filter(Boolean) : [];
+      this.logger.log(`Loaded ${this.proxies.length} microlink proxy(s)`);
+    } catch {
+      this.logger.log('No proxies.json found — microlink will run without proxy');
+    }
+  }
+
+  /** Resolve image: use item image if present, else try microlink */
+  async resolve(item: RawItem): Promise<RawItem> {
+    if (item.image) return item;
+
+    const imageUrl = await this.fetchFromMicrolink(item.source);
+    return { ...item, image: imageUrl };
+  }
+
+  /** Download image as buffer */
+  async download(url: string): Promise<Buffer | null> {
+    try {
+      const res = await axios.get(url, {
+        responseType: 'arraybuffer',
+        timeout: 15000,
+        headers: { 'User-Agent': 'Mozilla/5.0' },
+      });
+      return Buffer.from(res.data);
+    } catch (err) {
+      this.logger.warn(`Image download failed ${url}: ${err.message}`);
+      return null;
+    }
+  }
+
+  private async fetchFromMicrolink(sourceUrl: string): Promise<string | null> {
+    // Try direct first, then each proxy on 429
+    const attempts = [null, ...this.proxies]; // null = no proxy
+
+    for (const proxy of attempts) {
+      try {
+        const config = this.buildConfig(proxy);
+        const res    = await axios.get(MICROLINK_URL, {
+          ...config,
+          params:  { url: sourceUrl, palette: true },
+          timeout: 10_000,
+        });
+        if (proxy) this.logger.debug(`microlink via proxy: ${proxy}`);
+        return res.data?.data?.image?.url ?? null;
+      } catch (err) {
+        const status = err.response?.status;
+
+        if (status === 429) {
+          const via = proxy ?? 'direct';
+          this.logger.warn(`microlink rate limit (${via}) for ${sourceUrl} — trying next`);
+          continue;
+        }
+
+        this.logger.warn(`microlink failed for ${sourceUrl}: ${err.message}`);
+        return null;
+      }
+    }
+
+    this.logger.warn(`microlink exhausted all options for ${sourceUrl}`);
+    return null;
+  }
+
+  private buildConfig(proxyUrl: string | null): AxiosRequestConfig {
+    const headers = {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    };
+
+    if (!proxyUrl) return { headers };
+
+    try {
+      // Supports two formats:
+      //   ip:port:user:pass
+      //   http://user:pass@ip:port
+      let host: string, port: number, username: string, password: string;
+
+      if (proxyUrl.startsWith('http')) {
+        const url = new URL(proxyUrl);
+        host     = url.hostname;
+        port     = parseInt(url.port, 10);
+        username = decodeURIComponent(url.username);
+        password = decodeURIComponent(url.password);
+      } else {
+        const [h, p, u, pw] = proxyUrl.split(':');
+        host     = h;
+        port     = parseInt(p, 10);
+        username = u;
+        password = pw;
+      }
+
+      return {
+        headers,
+        proxy: { protocol: 'http', host, port, auth: { username, password } },
+      };
+    } catch {
+      this.logger.warn(`Invalid proxy format: ${proxyUrl}`);
+      return { headers };
+    }
+  }
+}

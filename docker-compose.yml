@@ -1,0 +1,70 @@
+services:
+
+  # ─── Database ───────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       ${POSTGRES_DB:-ai0global}
+      POSTGRES_USER:     ${POSTGRES_USER:-ai0}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    ports:
+      # 5433 on host to avoid conflict with a local postgres
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ai0} -d ${POSTGRES_DB:-ai0global}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ─── Automation (long-running Nest.js service) ───────────────────────────────
+  # Production only: docker compose --profile prod up -d
+  # Dev: pnpm run dev:automation  (runs outside Docker)
+  automation:
+    profiles: ["prod"]
+    build:
+      context: .
+      dockerfile: apps/automation/Dockerfile
+    restart: unless-stopped
+    ports:
+      # 3001 на хості, якщо локально вже зайнятий 3000
+      - "${AUTOMATION_PORT:-3001}:3000"
+    environment:
+      NODE_ENV:          production
+      PORT:              3000
+      POSTGRES_HOST:     postgres
+      POSTGRES_PORT:     5432
+      POSTGRES_DB:       ${POSTGRES_DB:-ai0global}
+      POSTGRES_USER:     ${POSTGRES_USER:-ai0}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ─── Pipeline (job — run on demand or via cron) ──────────────────────────────
+  pipeline:
+    build:
+      context: .
+      dockerfile: apps/pipeline/Dockerfile
+    profiles: ["pipeline"]
+    environment:
+      POSTGRES_HOST:     postgres
+      POSTGRES_PORT:     5432
+      POSTGRES_DB:       ${POSTGRES_DB:-ai0global}
+      POSTGRES_USER:     ${POSTGRES_USER:-ai0}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      # Mount data dirs so parsed JSON is accessible on host (WORKDIR is /repo/apps/pipeline)
+      - ./apps/pipeline/src/data:/repo/apps/pipeline/src/data
+      - ./apps/pipeline/src/tools/additional-data:/repo/apps/pipeline/src/tools/additional-data
+
+volumes:
+  pgdata:

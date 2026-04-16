@@ -1,0 +1,42 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "Channel automation service: Telegram, Instagram, Threads, Facebook",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "start": "NODE_ENV=production node dist/main",
+    "start:dev": "NODE_ENV=development nest start --watch",
+    "start:debug": "NODE_ENV=development nest start --debug --watch",
+    "lint": "eslint \"{src,test}/**/*.ts\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "@nestjs/common": "^10.3.0",
+    "@nestjs/config": "^3.2.0",
+    "@nestjs/core": "^10.3.0",
+    "@nestjs/platform-express": "^10.3.0",
+    "@nestjs/schedule": "^4.0.0",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cron": "^3.1.3",
+    "form-data": "^4.0.0",
+    "nest-winston": "^1.10.2",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "rss-parser": "^3.13.0",
+    "rxjs": "^7.8.1",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@nestjs/cli": "^10.3.2",
+    "@types/node": "^20.11.5",
+    "@types/pg": "^8.11.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.1",
+    "@typescript-eslint/parser": "^8.58.1",
+    "eslint": "^10.2.0",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.58.1"
+  }
+}

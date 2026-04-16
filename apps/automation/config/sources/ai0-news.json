@@ -1,0 +1,12 @@
+{
+  "sources": [
+    { "type": "rss", "url": "https://www.theverge.com/rss/health/index.xml", "tags": ["health"] },
+    { "type": "rss", "url": "https://www.theverge.com/rss/tech/index.xml",   "tags": ["tech"]   },
+    {
+      "type": "http",
+      "url":  "https://mms.gov.ua/api/timeline?&type=posts&page=1&lang=uk",
+      "tags": ["sport"],
+      "auth": { "type": "csrf", "tokenUrl": "https://mms.gov.ua/csrf-token" }
+    }
+  ]
+}

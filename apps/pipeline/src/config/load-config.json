@@ -1,0 +1,11 @@
+{
+  "tableMap": {
+    "academy-openai": "assets",
+    "academy-openai-resources": "assets",
+    "prompts-md": "assets",
+    "mcpservers": "assets"
+  },
+  "options": {
+    "assets": { "upsert": false }
+  }
+}

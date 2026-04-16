@@ -1,0 +1,534 @@
+{
+  "source": "academy-openai-resources",
+  "count": 24,
+  "items": [
+    {
+      "title": "Gives you a data-driven briefing in minutes instead of days.",
+      "description": "Summarize the last five quarterly performance reports for the [program name] initiative. Highlight trends in cost, schedule, and outcomes in a one-page brief for the senior leadership meeting.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload reports (PDFs, spreadsheets, etc.)",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Speeds prep for meetings and improves internal alignment.",
+      "description": "Summarize key findings from our last [performance audit or evaluation] and prepare a talking-point brief for leadership.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload audit or evaluation file",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Reconstructs a high-level project history for briefings.",
+      "description": "Create a timeline of major decisions and milestones for the [initiative name] over the last three years, based on these planning documents.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload project plans, memos, or past summaries",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Increases accessibility and meets plain-language standards.",
+      "description": "Rewrite this draft regulation on [topic] in plain language for public consultation.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload regulation draft",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Helps avoid duplication or contradiction early in the process.",
+      "description": "Identify potential conflicts between the proposed [draft policy] and existing statutes. Present findings in a comparative table listing the policy section, conflicting statute, and nature of the conflict.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload draft policy",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Speeds analysis of open consultation & survey responses.",
+      "description": "Summarize common public feedback themes from these consultation submissions on [topic]. Format the summary as bullet points grouped by theme, and include the frequency or volume of comments per theme.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload public comments or submissions",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Supports multilingual access and inclusive messaging.",
+      "description": "Compose a 250-word public announcement about new [grant or service] eligibility, and translate into Spanish and Korean.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload existing announcement or program info",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Makes technical materials digestible for the public.",
+      "description": "Turn this 10-page program manual into a 2-minute speech for a public meeting.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload program guide",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Builds consistent, accurate constituent messaging.",
+      "description": "Draft responses to frequently asked questions about the new [zoning policy / tax rule / health ordinance]. Format as a bulleted FAQ with clear, concise answers appropriate for public website use. Use plain language.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload background policy or rule",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Pinpoints cost anomalies quickly.",
+      "description": "Analyze spending over the last three years and identify accounts with more than 15% variance from budget. Present results in a table with account name, year, budgeted vs. actual spending, variance %, and notes for follow-up review.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload budget reports or spreadsheets",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Equips leaders to clearly communicate the impact of budget decisions.",
+      "description": "Analyze this budget and break it down by subject area with associated justifications and impact statements if the funding is not provided. Format as a spreadsheet-style table with columns for subject area, budget request, rationale, and potential impacts of underfunding.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload budget",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Connects high-level planning to actual allocations.",
+      "description": "Draft a summary of upcoming fiscal priorities based on our latest strategic plan. Write it as a one-page executive brief for senior leadership, using bullet points and short paragraphs organized by strategic goal.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload strategic plan or policy goals",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Streamlines job postings, helping attract suitable candidates with clarity and precision.",
+      "description": "Draft a clear and detailed job description for a new [role], highlighting essential duties, qualifications, and competencies required for a successful candidate.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload similar job descriptions, organizational charts, or role outlines",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Generates tailored, formal letters that highlight strengths and accomplishments.",
+      "description": "Write a formal, detailed letter of recommendation (approx. 300–400 words) for an employee applying to a senior leadership program. Highlight leadership potential, performance record, and alignment with program goals. Use a professional, supportive tone suitable for external review.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload résumé, achievements, or prior memos",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Provides smooth and comprehensive onboarding experiences for new employees, promoting productivity and engagement from day one.",
+      "description": "Prepare a structured onboarding checklist for new hires in [department], including necessary training, documentation, and initial orientation activities.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload department guidelines, existing onboarding documents, or relevant policy materials",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Adds structure to early-stage planning and accountability.",
+      "description": "Create a risk register for our upcoming [project], aligned with [compliance framework] categories. Include columns for risk description, likelihood, impact, mitigation strategy, responsible party, and status.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload project proposal or scoping document",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Prepares leaders to speak confidently on governance.",
+      "description": "Summarize how our new data-sharing agreement aligns with current oversight guidance. Draft talking points for stakeholder briefings.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload the agreement",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Helps legal teams keep up with changing legal frameworks.",
+      "description": "Highlight areas in this compliance checklist that may need revision based on new legislation. Return an annotated list with checklist item references, the reason for revision, and a brief suggested update.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload checklist and recent law",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Helps provide fast, unified, and accessible public messaging.",
+      "description": "Draft a press release, SMS, and social media post about [severe weather / cyber event], using emergency communication best practices.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload incident info or previous alert text",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Supports consistent crisis decision-making.",
+      "description": "Create an emergency response checklist for [event type] specific to our jurisdiction. Organize it by response phase (e.g., preparation, active response, recovery), and include responsible parties, timelines, and references to best practices used in other jurisdictions..",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "Optional - Upload existing SOPs or response plans",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Provides an objective, consolidated narrative.",
+      "description": "Summarize response actions from the last major emergency to support an after-action debrief. Present in a table with columns for action taken, responsible entity, timeline, outcome, and lessons learned.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload after-action reports",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Promotes alignment and shared accountability.",
+      "description": "Identify overlapping objectives in [Agency A] and [Agency B] strategies. Propose three shared indicators.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload both strategic plans",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Clarifies roles, reduces duplication, improves coordination.",
+      "description": "Summarize intergovernmental responsibilities in [infrastructure / health / education] programs across national, regional, and local levels.",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload relevant program guidelines",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    },
+    {
+      "title": "Simplifies complex governance into shareable insights.",
+      "description": "Create a one-slide overview of roles, funding flows, and reporting requirements across departments involved in [program].",
+      "link": null,
+      "source": "https://academy.openai.com/public/resources/govt-prompt-pack-for-leaders",
+      "category": "OpenAI for Government",
+      "extra": {
+        "upload": "✅ Upload relevant memos or diagrams",
+        "tags": [
+          "OpenAI for Government",
+          "Prompt Packs",
+          "f3M",
+          "Small business",
+          "Nonprofits",
+          "Government",
+          "News organizations",
+          "Small Business Prompt Pack",
+          "Prompt Pack for Administrators",
+          "Prompt Pack for Faculty"
+        ]
+      }
+    }
+  ]
+}

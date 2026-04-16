@@ -1,0 +1,141 @@
+{
+  "bots": {
+    "ai0_global_test_bot": {
+      "platform": "telegram",
+      "tokenEnv": "TELEGRAM_BOT_TOKEN"
+    }
+  },
+
+  "channels": {
+    "@ai0_news_dev": {
+      "platform": "telegram",
+      "chatId": "@ai0_news_dev",
+      "botId": "ai0_global_test_bot"
+    },
+    "@ai0_prompts_dev": {
+      "platform": "telegram",
+      "chatId": "@ai0_prompts_dev",
+      "botId": "ai0_global_test_bot"
+    },
+    "@game_exchange_dev": {
+      "platform": "telegram",
+      "chatId": "@game_exchange_dev",
+      "botId": "ai0_global_test_bot"
+    },
+    "@pdr_dev_channel": {
+      "platform": "telegram",
+      "chatId": "@pdr_dev_channel",
+      "botId": "ai0_global_test_bot"
+    },
+    "@ai0_global": {
+      "platform": "telegram",
+      "chatId": "@ai0_global",
+      "botId": "ai0_global_test_bot"
+    }
+  },
+
+  "strategies": [
+
+    {
+      "id": "ai0-news:ai0_news_dev",
+      "type": "ai0-news",
+      "channelId": "@ai0_news_dev",
+      "schedule": "0 8,10,12,14,16,18,20,22 * * *"
+    },
+    {
+      "id": "on-this-day:ai0_news_dev",
+      "type": "on-this-day",
+      "channelId": "@ai0_news_dev",
+      "schedule": "30 8 * * *"
+    },
+
+    {
+      "id": "ai0-prompts:ai0_prompts_dev",
+      "type": "ai0-prompts",
+      "channelId": "@ai0_prompts_dev",
+      "schedule": "0 9,19 * * *"
+    },
+
+    {
+      "id": "game-channel:game_exchange_dev",
+      "type": "game-channel",
+      "channelId": "@game_exchange_dev",
+      "schedule": "0 11,17,21 * * *"
+    },
+
+    {
+      "id": "pdr-quiz:main",
+      "type": "pdr-quiz",
+      "channelId": "@pdr_dev_channel",
+      "schedule": "30 9,14,20 * * *"
+    },
+
+    {
+      "id": "ua-news:ai0_global_open_source",
+      "type": "ua-news",
+      "channelId": "@ai0_global",
+      "schedule": "0 11 * * *",
+      "params": {
+        "feedUrl": "https://www.artificialintelligence-news.com/categories/ai-and-us/open-source-democratised-ai/feed/",
+        "sourceName": "artificialintelligence-news.com",
+        "tags": ["open_source_AI"]
+      }
+    },
+    {
+      "id": "assets:academy-openai",
+      "type": "assets",
+      "channelId": "@ai0_global",
+      "schedule": "0 13 * * *",
+      "params": {
+        "dataSource": "academy-openai",
+        "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/prompt_openai_poster.jpg",
+        "tag": "#openai_academy"
+      }
+    },
+    {
+      "id": "assets:mcpservers",
+      "type": "assets",
+      "channelId": "@ai0_global",
+      "schedule": "30 13 * * *",
+      "params": {
+        "dataSource": "mcpservers",
+        "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/mcp_server_poster.png",
+        "tag": "#mcp"
+      }
+    },
+    {
+      "id": "assets:prompts-md",
+      "type": "assets",
+      "channelId": "@ai0_global",
+      "schedule": "0 15 * * *",
+      "params": {
+        "dataSource": "prompts-md",
+        "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/prompt_community_poster.jpg",
+        "tag": "#prompt"
+      }
+    },
+    {
+      "id": "ua-news:ai0_global_mcp",
+      "type": "ua-news",
+      "channelId": "@ai0_global",
+      "schedule": "30 15 * * *",
+      "params": {
+        "feedUrl": "https://www.marktechpost.com/category/model-context-protocol-mcp/feed/",
+        "sourceName": "marktechpost.com",
+        "tags": ["mcp_news"]
+      }
+    },
+    {
+      "id": "ua-news:ai0_global_ai_agents",
+      "type": "ua-news",
+      "channelId": "@ai0_global",
+      "schedule": "0 17 * * *",
+      "params": {
+        "feedUrl": "https://www.marktechpost.com/category/ai-agents/feed/",
+        "sourceName": "marktechpost.com",
+        "tags": ["ai_agents"]
+      }
+    }
+
+  ]
+}

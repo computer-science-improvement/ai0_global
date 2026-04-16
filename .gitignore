@@ -1,0 +1,28 @@
+# Env
+.env
+.env.local
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+**/dist/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Data files are versioned in repository
+
+# Orchestration temp artifacts (plan durable files stay in tasks/<slug>/README.md, MANIFEST.md, agents/)
+tasks/**/scratch/

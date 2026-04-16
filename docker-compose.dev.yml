@@ -1,0 +1,13 @@
+# Development overrides — use with:
+# docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# In dev mode only postgres runs in Docker.
+# Nest.js (automation) runs directly: pnpm run dev:automation
+
+services:
+  pipeline:
+    profiles: ["pipeline"]
+    volumes:
+      - ./apps/pipeline/src:/repo/apps/pipeline/src
+      - ./apps/pipeline/src/data:/repo/apps/pipeline/src/data
+      - ./apps/pipeline/src/tools/additional-data:/repo/apps/pipeline/src/tools/additional-data
