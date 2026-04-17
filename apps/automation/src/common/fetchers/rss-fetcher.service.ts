@@ -130,14 +130,35 @@ export class RssFetcherService implements OnModuleInit {
 
   /** Extract image URL from RSS entry */
   private extractImage(entry: Record<string, unknown>): string | null {
-    const encoded = entry['content:encoded'] as string | undefined;
-    if (encoded) {
-      const m = encoded.match(/src="([^"]+)"/);
-      if (m) return m[1].replace(/&#038;/g, '&');
-    }
+    // 1. Explicit image object in feed (most reliable)
     if (entry.image && typeof entry.image === 'object') {
       return (entry.image as { url?: string }).url ?? null;
     }
+
+    // 2. media:content or media:thumbnail
+    const media = (entry['media:content'] ?? entry['media:thumbnail']) as Record<string, unknown> | undefined;
+    if (media?.url && typeof media.url === 'string') return media.url;
+
+    // 3. enclosure (podcast-style feeds sometimes use this for images)
+    const enclosure = entry.enclosure as Record<string, unknown> | undefined;
+    if (enclosure?.url && typeof enclosure.url === 'string' && String(enclosure.type ?? '').startsWith('image/')) {
+      return enclosure.url as string;
+    }
+
+    // 4. content:encoded — find a large image (has explicit width >= 400)
+    const encoded = entry['content:encoded'] as string | undefined;
+    if (encoded) {
+      // Try to find an img tag that has a width attribute >= 400
+      const imgTags = [...encoded.matchAll(/<img[^>]+>/gi)];
+      for (const [tag] of imgTags) {
+        const widthMatch = tag.match(/width="(\d+)"/i);
+        if (widthMatch && parseInt(widthMatch[1], 10) >= 400) {
+          const srcMatch = tag.match(/src="([^"]+)"/i);
+          if (srcMatch) return srcMatch[1].replace(/&#038;/g, '&');
+        }
+      }
+    }
+
     return null;
   }
 }
