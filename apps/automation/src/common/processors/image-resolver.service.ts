@@ -25,10 +25,12 @@ export class ImageResolverService implements OnModuleInit {
 
   /** Resolve image: use item image if present, else try microlink */
   async resolve(item: RawItem): Promise<RawItem> {
-    if (item.image) return item;
+    // Always prefer Microlink (og:image) — it's the official article cover
+    const microlinkImage = await this.fetchFromMicrolink(item.source);
+    if (microlinkImage) return { ...item, image: microlinkImage };
 
-    const imageUrl = await this.fetchFromMicrolink(item.source);
-    return { ...item, image: imageUrl };
+    // Fallback: image extracted from RSS/HTML content
+    return item;
   }
 
   /** Download image as buffer */
