@@ -59,7 +59,19 @@ export class ImageResolverService implements OnModuleInit {
           timeout: 10_000,
         });
         if (proxy) this.logger.debug(`microlink via proxy: ${proxy}`);
-        return res.data?.data?.image?.url ?? null;
+
+        const img = res.data?.data?.image;
+        if (!img?.url) return null;
+
+        // Reject icons/logos — require a minimum size for article images
+        const MIN_W = 400;
+        const MIN_H = 200;
+        if (img.width && img.height && (img.width < MIN_W || img.height < MIN_H)) {
+          this.logger.debug(`microlink image too small (${img.width}×${img.height}) for ${sourceUrl} — skipping`);
+          return null;
+        }
+
+        return img.url;
       } catch (err) {
         const status = err.response?.status;
 
