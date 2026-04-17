@@ -168,12 +168,9 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
       .replace(/>/g, '&gt;')
       .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
 
-    const tags = item.tags
+    const allTags = item.tags
       .map(t => '#' + String(t).trim().replace(/[\s\-\.]+/g, '_').toLowerCase())
       .join(' ');
-
-    const sourceTag = '#' + sourceName.replace(/[\s\-\.]+/g, '_').toLowerCase();
-    const allTags = tags ? `${tags} ${sourceTag}` : sourceTag;
 
     const safeSource = item.source
       .replace(/&/g, '&amp;')
