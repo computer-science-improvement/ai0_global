@@ -35,8 +35,10 @@ export class RssFetcherService implements OnModuleInit {
       sources.map(async (src) => {
         try {
           const feed = await this.parseFeed(src.url);
-          const domain = this.getDomain(src.url);
+          const feedDomain = this.getDomain(src.url);
           for (const entry of feed.items ?? []) {
+            // Use feed domain + tag to allow multiple feeds from same publisher (e.g. theverge health vs tech)
+            const domain = `${feedDomain}:${(src.tags ?? []).join(',')}`;
             allItems.push({
               domain,
               title:   entry.title ?? '',

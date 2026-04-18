@@ -57,15 +57,17 @@ export class TelegramPublisher extends BasePublisher {
     const photo: Buffer | string | undefined = payload.imageBuffer ?? payload.imageUrl;
     const visibleLength = payload.text.replace(/<[^>]*>/g, '').length;
 
+    let messageId: string;
     if (photo && visibleLength <= 1024) {
-      return this.sendPhotoWithCaption(base, chatId, photo, payload.text);
-    }
-    if (photo) {
-      // Caption too long for photo — send photo first, then text as separate message
+      messageId = await this.sendPhotoWithCaption(base, chatId, photo, payload.text);
+    } else if (photo) {
       await this.sendPhoto(base, chatId, photo);
-      return this.sendMessage(base, chatId, payload.text);
+      messageId = await this.sendMessage(base, chatId, payload.text);
+    } else {
+      messageId = await this.sendMessage(base, chatId, payload.text);
     }
-    return this.sendMessage(base, chatId, payload.text);
+    this.throttle.recordPublish(target.id);
+    return messageId;
   }
 
   private async sendPhotoWithCaption(
@@ -88,7 +90,6 @@ export class TelegramPublisher extends BasePublisher {
       headers: form.getHeaders(),
       timeout: 30000,
     });
-    this.throttle.recordPublish();
     this.logger.log(`Photo+caption sent to ${chatId}, message_id: ${res.data.result.message_id}`);
     return String(res.data.result.message_id);
   }
@@ -126,7 +127,7 @@ export class TelegramPublisher extends BasePublisher {
       timeout: 30000,
     });
     const messageId = String(res.data.result.message_id);
-    this.throttle.recordPublish();
+    this.throttle.recordPublish(target.id);
     this.logger.log(`Prompt photo sent to ${chatId}, message_id: ${messageId}`);
 
     if (payload.replyText) {
@@ -163,7 +164,6 @@ export class TelegramPublisher extends BasePublisher {
       },
       { timeout: 15000 },
     );
-    this.throttle.recordPublish();
     this.logger.log(`Message sent to ${chatId}, message_id: ${res.data.result.message_id}`);
     return String(res.data.result.message_id);
   }

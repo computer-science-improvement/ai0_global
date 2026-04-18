@@ -103,7 +103,7 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
   }
 
   private async processItem(item: RawItem, channelId: string, sourceName: string): Promise<void> {
-    const MIN_CONTENT_LENGTH = 200;
+    const MIN_CONTENT_LENGTH = 800;
 
     // Enrich short content via Perplexity
     let content = item.content;

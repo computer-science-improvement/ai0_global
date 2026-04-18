@@ -1,7 +1,9 @@
 {
   "sources": [
-    { "type": "rss", "url": "https://www.theverge.com/rss/health/index.xml", "tags": ["health"] },
-    { "type": "rss", "url": "https://www.theverge.com/rss/tech/index.xml",   "tags": ["tech"]   },
+    { "type": "rss", "url": "https://www.theverge.com/rss/health/index.xml",          "tags": ["health"] },
+    { "type": "rss", "url": "https://feeds.bbci.co.uk/news/health/rss.xml",           "tags": ["health"] },
+    { "type": "rss", "url": "https://www.theverge.com/rss/tech/index.xml",            "tags": ["tech"]   },
+    { "type": "rss", "url": "https://techcrunch.com/feed/",                           "tags": ["tech"]   },
     {
       "type": "http",
       "url":  "https://mms.gov.ua/api/timeline?&type=posts&page=1&lang=uk",

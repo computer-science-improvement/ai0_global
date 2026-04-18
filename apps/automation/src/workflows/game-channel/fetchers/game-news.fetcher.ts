@@ -4,7 +4,7 @@ import Parser from 'rss-parser';
 import { GameChannelItem } from '../types';
 
 const NEWS_FEEDS = [
-  { url: 'https://www.ign.com/articles?tags=gaming&filter=news&feed=news',   name: 'IGN'           },
+  { url: 'https://www.polygon.com/feed/',                                     name: 'Polygon'       },
   { url: 'https://www.eurogamer.net/?format=rss',                            name: 'Eurogamer'     },
   { url: 'https://www.pcgamer.com/rss/',                                     name: 'PC Gamer'      },
   { url: 'https://www.rockpapershotgun.com/feed/',                           name: 'RockPaperShotgun' },

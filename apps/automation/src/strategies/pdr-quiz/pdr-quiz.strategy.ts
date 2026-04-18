@@ -153,7 +153,7 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
       );
 
       const pollMessageId = String(pollRes.data.result.message_id);
-      this.throttle.recordPublish();
+      this.throttle.recordPublish(channelId);
       await this.db.markPosted(q.id, channelId);
       await this.notifier.notifyPublished(channelId, pollMessageId);
       this.logger.log(`PDR quiz sent: ticket ${q.ticket_number} q${q.question_num} → ${channelId} [${expanded ? 'expanded' : 'normal'}]`);

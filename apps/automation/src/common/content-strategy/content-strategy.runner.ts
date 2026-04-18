@@ -35,8 +35,8 @@ export class ContentStrategyRunner {
   ): Promise<void> {
     const tag = `[${strategyId}]`;
 
-    if (!this.throttle.canPublish()) {
-      this.throttle.logCooldown(strategyId);
+    if (!this.throttle.canPublish(channelId)) {
+      this.throttle.logCooldown(strategyId, channelId);
       return;
     }
 
