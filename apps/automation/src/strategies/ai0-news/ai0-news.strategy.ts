@@ -120,13 +120,24 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
   private async processItem(item: RawItem, channelId: string): Promise<void> {
     const MIN_CONTENT_LENGTH = 800;
 
-    // Enrich short content via Perplexity
+    // Enrich short content via Perplexity; fall back to direct HTTP fetch + Haiku extraction
     let content = item.content;
     if (!content || content.length < MIN_CONTENT_LENGTH) {
-      this.logger.debug(`Content too short (${content?.length ?? 0}), fetching via summarizer`);
-      const fetched = await this.summarizer.fetchByUrl(item.source);
-      if (!fetched || fetched.trim() === 'SKIP_POST') {
+      this.logger.debug(`Content too short (${content?.length ?? 0}), trying summarizer.fetchByUrl`);
+      const usable = (text: string | null) =>
+        text && text.trim() && text.trim() !== 'SKIP_POST' ? text : null;
+
+      let fetched = usable(await this.summarizer.fetchByUrl(item.source));
+
+      if (!fetched) {
+        this.logger.debug(`Perplexity bailed — falling back to fetchAndExtract for ${item.source}`);
+        fetched = usable(await this.summarizer.fetchAndExtract(item.source));
+      }
+
+      if (!fetched) {
         await this.botLogger.logError(item.source, channelId, 'SKIP_POST');
+        await this.dedup.markPosted(item.source, item.title, channelId);
+        this.logger.debug(`Skipped (all summarizers failed): ${item.source}`);
         return;
       }
       content = fetched;
