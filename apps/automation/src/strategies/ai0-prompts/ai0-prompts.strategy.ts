@@ -12,6 +12,7 @@ import {
 import { ContentStrategyRegistry }  from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
+import { PublicationsRepository }   from '../../stats/publications.repository';
 import { PromptsRepository }        from './prompts.repository';
 import { PromptHeroScraperService } from '../../workflows/ai0-prompts/prompthero-scraper.service';
 
@@ -28,6 +29,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly db:       PromptsRepository,
     private readonly scraper:  PromptHeroScraperService,
     private readonly notifier: TelegramNotifier,
+    private readonly publications: PublicationsRepository,
   ) {}
 
   onModuleInit() {
@@ -129,6 +131,13 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       );
       await this.db.markPosted(row.id);
       await this.notifier.notifyPublished(channelId, messageId);
+      await this.publications.insert({
+        channelId, messageId,
+        sourceUrl:    row.prompt_source,
+        title:        meta.prompt.slice(0, 200),
+        strategyType: this.type,
+        tags:         [category],
+      });
       this.logger.debug(`Published prompt to ${channelId}`);
     } catch (err) {
       this.logger.error('Publish failed: ' + err.message);

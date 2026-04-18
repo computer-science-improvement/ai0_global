@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ContentStrategyRegistry }          from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }                from '../../publishers/telegram.publisher';
 import { TelegramNotifier }                 from '../../publishers/telegram-notifier.service';
+import { PublicationsRepository }           from '../../stats/publications.repository';
 import { ClaudeAgent }                      from '../../common/ai/agents/claude.agent';
 import { ReviewAgent }                      from '../../common/ai/agents/review.agent';
 import { PostValidator }                    from '../../common/ai/validators/post.validator';
@@ -35,6 +36,7 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
     private readonly validator: PostValidator,
     private readonly telegram:  TelegramPublisher,
     private readonly notifier:  TelegramNotifier,
+    private readonly publications: PublicationsRepository,
   ) {}
 
   onModuleInit() {
@@ -99,6 +101,12 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
       );
       await this.db.markPosted(person.id, channelId);
       await this.notifier.notifyPublished(channelId, messageId);
+      await this.publications.insert({
+        channelId, messageId,
+        sourceUrl:    wiki.pageUrl,
+        title:        person.name,
+        strategyType: this.type,
+      });
       this.logger.log(`Biography published: "${person.name}" → ${channelId}`);
     } catch (err: any) {
       this.logger.error(`Publish failed: ${err.message}`);

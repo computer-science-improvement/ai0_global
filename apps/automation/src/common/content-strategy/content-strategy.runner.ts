@@ -5,6 +5,7 @@ import { ImageResolverService } from '../processors/image-resolver.service';
 import { TelegramPublisher }      from '../../publishers/telegram.publisher';
 import { TelegramNotifier }       from '../../publishers/telegram-notifier.service';
 import { PostingThrottleService } from '../../publishers/posting-throttle.service';
+import { PublicationsRepository } from '../../stats/publications.repository';
 import {
   ContentStrategy,
   StrategyParams,
@@ -21,6 +22,7 @@ export class ContentStrategyRunner {
     private readonly telegram:  TelegramPublisher,
     private readonly notifier:  TelegramNotifier,
     private readonly throttle:  PostingThrottleService,
+    private readonly publications: PublicationsRepository,
   ) {}
 
   /**
@@ -129,6 +131,14 @@ export class ContentStrategyRunner {
       );
       this.logger.log(`${tag} Published: ${post.title}`);
       await this.notifier.notifyPublished(channelId, messageId);
+      await this.publications.insert({
+        channelId,
+        messageId,
+        sourceUrl:    post.sourceUrl,
+        title:        post.title,
+        strategyType: strategy.type,
+        tags:         [post.contentType],
+      });
     } catch (err) {
       this.logger.error(`${tag} Publish failed: ${err.message}`);
       await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);

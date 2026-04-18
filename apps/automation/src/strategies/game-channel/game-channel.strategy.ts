@@ -21,6 +21,7 @@ import { ImageResolverService }     from '../../common/processors/image-resolver
 import { RawItem }                  from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
+import { PublicationsRepository }   from '../../stats/publications.repository';
 import { GamerPowerFetcher }        from '../../workflows/game-channel/fetchers/gamerpower.fetcher';
 import { EpicGamesFetcher }         from '../../workflows/game-channel/fetchers/epic-games.fetcher';
 import { SteamDealsFetcher }        from '../../workflows/game-channel/fetchers/steam-deals.fetcher';
@@ -46,6 +47,7 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
     private readonly steam:      SteamDealsFetcher,
     private readonly gameNews:   GameNewsFetcher,
     private readonly notifier:   TelegramNotifier,
+    private readonly publications: PublicationsRepository,
   ) {}
 
   onModuleInit() {
@@ -187,6 +189,13 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
       }
       await this.dedup.markPosted(item.source, item.title, channelId, item.type);
       await this.notifier.notifyPublished(channelId, messageId);
+      await this.publications.insert({
+        channelId, messageId,
+        sourceUrl:    item.source,
+        title:        item.title,
+        strategyType: this.type,
+        tags:         [item.type],
+      });
       this.logger.debug(`Published [${item.type}] to ${channelId}: ${item.title}`);
     } catch (err) {
       this.logger.error('Publish failed: ' + err.message);

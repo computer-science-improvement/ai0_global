@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
+import { PublicationsRepository }  from '../../stats/publications.repository';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
   ContentStrategy,
@@ -23,6 +24,7 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
     private readonly db:       FactsRepository,
     private readonly telegram: TelegramPublisher,
     private readonly notifier: TelegramNotifier,
+    private readonly publications: PublicationsRepository,
   ) {}
 
   onModuleInit() {
@@ -78,6 +80,13 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
       );
       await this.db.markPosted(fact.id, channelId);
       await this.notifier.notifyPublished(channelId, messageId);
+      await this.publications.insert({
+        channelId, messageId,
+        sourceUrl:    fact.article_url ?? fact.article_slug,
+        title:        fact.article_title,
+        strategyType: this.type,
+        tags:         ['цікавіфакти'],
+      });
       this.logger.debug(`Published fact "${fact.article_title}" to ${channelId}`);
     } catch (err: any) {
       this.logger.error(`Publish failed: ${err.message}`);

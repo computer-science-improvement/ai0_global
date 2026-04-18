@@ -4,6 +4,7 @@ import { ContentStrategyRegistry } from '../../common/content-strategy/content-s
 import { ChannelConfigService }    from '../../config/channel-config.service';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { PostingThrottleService }  from '../../publishers/posting-throttle.service';
+import { PublicationsRepository }  from '../../stats/publications.repository';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
   ContentStrategy,
@@ -42,6 +43,7 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
     private readonly channelConfig:  ChannelConfigService,
     private readonly notifier:       TelegramNotifier,
     private readonly throttle:       PostingThrottleService,
+    private readonly publications:   PublicationsRepository,
   ) {}
 
   onModuleInit() {
@@ -156,6 +158,13 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
       this.throttle.recordPublish(channelId);
       await this.db.markPosted(q.id, channelId);
       await this.notifier.notifyPublished(channelId, pollMessageId);
+      await this.publications.insert({
+        channelId, messageId: pollMessageId,
+        sourceUrl:    `pdr:${q.ticket_number}:q${q.question_num}`,
+        title:        `PDR ticket ${q.ticket_number} q${q.question_num}`,
+        strategyType: this.type,
+        tags:         ['pdr-quiz'],
+      });
       this.logger.log(`PDR quiz sent: ticket ${q.ticket_number} q${q.question_num} → ${channelId} [${expanded ? 'expanded' : 'normal'}]`);
     } catch (err: any) {
       const reason =

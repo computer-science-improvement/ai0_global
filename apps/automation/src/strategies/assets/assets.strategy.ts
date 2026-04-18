@@ -12,6 +12,7 @@ import {
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
+import { PublicationsRepository }  from '../../stats/publications.repository';
 import { AssetsRepository }        from './assets.repository';
 import {
   ACADEMY_SYSTEM_PROMPT,
@@ -50,6 +51,7 @@ export class AssetsStrategy implements ContentStrategy, OnModuleInit {
     private readonly telegram:  TelegramPublisher,
     private readonly notifier:  TelegramNotifier,
     private readonly db:        AssetsRepository,
+    private readonly publications: PublicationsRepository,
   ) {}
 
   onModuleInit() {
@@ -109,6 +111,13 @@ export class AssetsStrategy implements ContentStrategy, OnModuleInit {
       );
       await this.db.markPosted(row.id, channelId);
       await this.notifier.notifyPublished(channelId, messageId);
+      await this.publications.insert({
+        channelId, messageId,
+        sourceUrl:    row.link ?? row.id,
+        title:        row.title,
+        strategyType: this.type,
+        tags:         [dataSource],
+      });
       this.logger.debug(`Published ${dataSource} asset to ${channelId}: ${row.title}`);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);

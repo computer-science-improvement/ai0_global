@@ -2,6 +2,13 @@ import { Injectable, Inject, Optional, Logger } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../../database/database.module';
 import { TelegramNotifier } from '../../publishers/telegram-notifier.service';
+import { PublicationsRepository } from '../../stats/publications.repository';
+
+export interface LogSuccessMeta {
+  title?:        string | null;
+  strategyType?: string | null;
+  tags?:         string[] | null;
+}
 
 @Injectable()
 export class BotLoggerService {
@@ -10,6 +17,7 @@ export class BotLoggerService {
   constructor(
     @Inject(DB_POOL) private readonly pool: Pool,
     @Optional() private readonly notifier: TelegramNotifier,
+    @Optional() private readonly publications: PublicationsRepository,
   ) {}
 
   /**
@@ -25,10 +33,23 @@ export class BotLoggerService {
     return rows.length > 0;
   }
 
-  async logSuccess(sourceUrl: string, channelId: string, messageId: string): Promise<void> {
+  async logSuccess(
+    sourceUrl: string,
+    channelId: string,
+    messageId: string,
+    meta: LogSuccessMeta = {},
+  ): Promise<void> {
     await this.insert(sourceUrl, channelId, 'success', null);
     this.logger.log(`[${channelId}] published: ${sourceUrl}`);
     await this.notifier?.notifyPublished(channelId, messageId);
+    await this.publications?.insert({
+      channelId,
+      messageId,
+      sourceUrl,
+      title:        meta.title ?? null,
+      strategyType: meta.strategyType ?? null,
+      tags:         meta.tags ?? null,
+    });
   }
 
   async logError(sourceUrl: string, channelId: string, message: string): Promise<void> {

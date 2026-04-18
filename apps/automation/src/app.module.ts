@@ -21,6 +21,7 @@ import { FactsStrategyModule }       from './strategies/facts/facts-strategy.mod
 import { PdrQuizStrategyModule }              from './strategies/pdr-quiz/pdr-quiz-strategy.module';
 import { MotivationBiographyStrategyModule }  from './strategies/motivation-biography/motivation-biography-strategy.module';
 import { AssetsStrategyModule }              from './strategies/assets/assets-strategy.module';
+import { StatsModule }          from './stats/stats.module';
 import { DevController }        from './dev.controller';
 
 @Module({
@@ -31,6 +32,7 @@ import { DevController }        from './dev.controller';
     ChannelConfigModule,
     LoggingModule,
     CommonModule,
+    StatsModule,
     PublishersModule,
     SchedulerModule,
     OnThisDayStrategyModule,

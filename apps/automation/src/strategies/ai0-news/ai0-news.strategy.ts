@@ -176,7 +176,9 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
     try {
       const messageId = await this.telegram.publish(payload, { id: channelId });
       await this.dedup.markPosted(item.source, item.title, channelId);
-      await this.botLogger.logSuccess(item.source, channelId, messageId);
+      await this.botLogger.logSuccess(item.source, channelId, messageId, {
+        title: item.title, strategyType: this.type, tags: item.tags ?? null,
+      });
       this.logger.debug(`Published to ${channelId}: ${item.title}`);
     } catch (err) {
       await this.botLogger.logError(item.source, channelId, err.message);
