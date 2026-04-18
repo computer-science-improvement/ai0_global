@@ -133,17 +133,18 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
     }
 
     const formattedText = content
-      ? await this.formatter.formatRaw(content, 'telegram')
+      ? await this.formatter.formatNewsItem(item.title, content, item.source)
       : null;
 
     if (formattedText === 'SKIP_POST') {
-      await this.botLogger.logError(item.source, channelId, 'SKIP_POST');
+      // Content unformattable — remove from queue permanently via dedup
+      await this.dedup.markPosted(item.source, item.title, channelId);
+      this.logger.debug(`Skipped (unformattable): ${item.source}`);
       return;
     }
     if (!formattedText) return;
 
-    const reviewed = await this.reviewer.review(formattedText, [AI0_NEWS_CHANNEL_SKILL]);
-    const text = this.buildMessage(reviewed, item);
+    const text = this.buildMessage(formattedText, item);
 
     let imageBuffer: Buffer | undefined;
     if (item.image) {

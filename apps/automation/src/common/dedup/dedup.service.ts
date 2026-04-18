@@ -2,10 +2,14 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../../database/database.module';
 import { RawItem } from '../types';
+import { StructuredLoggerService } from '../logging/structured-logger.service';
 
 @Injectable()
 export class DedupService {
-  constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
+  constructor(
+    @Inject(DB_POOL) private readonly pool: Pool,
+    private readonly structured: StructuredLoggerService,
+  ) {}
 
   /** Filter out items already posted to this channel */
   async filterUnposted(items: RawItem[], channelId: string): Promise<RawItem[]> {
@@ -17,7 +21,13 @@ export class DedupService {
       [urls, channelId],
     );
     const posted = new Set(rows.map((r) => r.source_url));
-    return items.filter((i) => !posted.has(i.source));
+    const unposted = items.filter((i) => !posted.has(i.source));
+    this.structured.db({
+      op: 'filterUnposted', table: 'posted_news', channelId,
+      rowCount: unposted.length,
+      detail: { input: items.length, alreadyPosted: posted.size, firstCandidate: unposted[0]?.source },
+    });
+    return unposted;
   }
 
   /** Mark an article as posted to a channel */
@@ -28,6 +38,10 @@ export class DedupService {
        ON CONFLICT (source_url, channel_id) DO NOTHING`,
       [sourceUrl, title, channelId, contentType ?? null],
     );
+    this.structured.db({
+      op: 'markPosted', table: 'posted_news', channelId,
+      detail: { sourceUrl, title, contentType },
+    });
   }
 
   /** Get the content_type of the most recently posted item to a channel */

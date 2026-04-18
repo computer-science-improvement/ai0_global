@@ -5,6 +5,7 @@ import { PostPayload } from '../common/types';
 import { BasePublisher, PublishTarget } from './base.publisher';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { PostingThrottleService } from './posting-throttle.service';
+import { StructuredLoggerService } from '../common/logging/structured-logger.service';
 
 export interface PromptPayload {
   imageBuffer: Buffer;
@@ -31,6 +32,7 @@ export class TelegramPublisher extends BasePublisher {
   constructor(
     private readonly channelConfig: ChannelConfigService,
     private readonly throttle:      PostingThrottleService,
+    private readonly structured:    StructuredLoggerService,
   ) {
     super();
   }
@@ -50,7 +52,16 @@ export class TelegramPublisher extends BasePublisher {
   }
 
   async publish(payload: PostPayload, target: PublishTarget): Promise<string> {
-    this.guardText(payload.text);
+    try {
+      this.guardText(payload.text);
+    } catch (err: any) {
+      this.structured.publication({
+        channelId: target.id, source: payload.source, title: payload.title,
+        text: payload.text, imageUrl: payload.imageUrl ?? null,
+        status: 'blocked', error: err.message,
+      });
+      throw err;
+    }
     const { chatId, botToken } = this.channelConfig.resolveChannel(target.id);
     const base = `https://api.telegram.org/bot${botToken}`;
 
@@ -58,15 +69,29 @@ export class TelegramPublisher extends BasePublisher {
     const visibleLength = payload.text.replace(/<[^>]*>/g, '').length;
 
     let messageId: string;
-    if (photo && visibleLength <= 1024) {
-      messageId = await this.sendPhotoWithCaption(base, chatId, photo, payload.text);
-    } else if (photo) {
-      await this.sendPhoto(base, chatId, photo);
-      messageId = await this.sendMessage(base, chatId, payload.text);
-    } else {
-      messageId = await this.sendMessage(base, chatId, payload.text);
+    try {
+      if (photo && visibleLength <= 1024) {
+        messageId = await this.sendPhotoWithCaption(base, chatId, photo, payload.text);
+      } else if (photo) {
+        await this.sendPhoto(base, chatId, photo);
+        messageId = await this.sendMessage(base, chatId, payload.text);
+      } else {
+        messageId = await this.sendMessage(base, chatId, payload.text);
+      }
+    } catch (err: any) {
+      this.structured.publication({
+        channelId: target.id, source: payload.source, title: payload.title,
+        text: payload.text, imageUrl: payload.imageUrl ?? null,
+        status: 'failure', error: err.response?.data?.description ?? err.message,
+      });
+      throw err;
     }
     this.throttle.recordPublish(target.id);
+    this.structured.publication({
+      channelId: target.id, source: payload.source, title: payload.title,
+      text: payload.text, imageUrl: payload.imageUrl ?? null,
+      messageId, status: 'success',
+    });
     return messageId;
   }
 

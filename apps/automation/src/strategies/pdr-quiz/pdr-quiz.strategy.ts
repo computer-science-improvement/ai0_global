@@ -158,8 +158,18 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
       await this.notifier.notifyPublished(channelId, pollMessageId);
       this.logger.log(`PDR quiz sent: ticket ${q.ticket_number} q${q.question_num} → ${channelId} [${expanded ? 'expanded' : 'normal'}]`);
     } catch (err: any) {
-      this.logger.error(`sendPoll failed: ${err.response?.data?.description ?? err.message}`);
-      await this.notifier.notifyFailed(channelId, err.response?.data?.description ?? err.message, `ticket ${q.ticket_number} q${q.question_num}`);
+      const reason =
+        err.response?.data?.description ??
+        err.message ??
+        err.code ??
+        (typeof err === 'string' ? err : JSON.stringify(err).slice(0, 300)) ??
+        'unknown error';
+      this.logger.error(
+        `PDR publish failed for ticket ${q.ticket_number} q${q.question_num}: ${reason}` +
+        (err.response?.data ? ` | tg: ${JSON.stringify(err.response.data)}` : '') +
+        (err.stack ? `\n${err.stack.split('\n').slice(0, 3).join('\n')}` : ''),
+      );
+      await this.notifier.notifyFailed(channelId, reason, `ticket ${q.ticket_number} q${q.question_num}`);
     }
   }
 }

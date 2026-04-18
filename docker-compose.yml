@@ -41,6 +41,9 @@ services:
       POSTGRES_USER:     ${POSTGRES_USER:-ai0}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
     env_file: .env
+    volumes:
+      # Persist structured Winston logs across container restarts; read by LogAnalyzerAgent
+      - ./logs/automation:/repo/apps/automation/logs
     depends_on:
       postgres:
         condition: service_healthy

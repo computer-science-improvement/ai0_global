@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { DatabaseModule }      from './database/database.module';
 import { ChannelConfigModule }  from './config/config.module';
+import { LoggingModule }        from './common/logging/logging.module';
 import { CommonModule }         from './common/common.module';
 import { PublishersModule }     from './publishers/publishers.module';
 import { SchedulerModule }      from './scheduler/scheduler.module';
@@ -28,6 +29,7 @@ import { DevController }        from './dev.controller';
     ScheduleModule.forRoot(),
     DatabaseModule,
     ChannelConfigModule,
+    LoggingModule,
     CommonModule,
     PublishersModule,
     SchedulerModule,

@@ -4,6 +4,7 @@ import { join } from 'path';
 import Parser from 'rss-parser';
 import axios, { AxiosRequestConfig } from 'axios';
 import { RawItem, RssSource } from '../types';
+import { StructuredLoggerService } from '../logging/structured-logger.service';
 
 const RSS_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (compatible; RSS reader)',
@@ -16,6 +17,8 @@ const parser = new Parser({ timeout: 15000, headers: RSS_HEADERS });
 export class RssFetcherService implements OnModuleInit {
   private readonly logger = new Logger(RssFetcherService.name);
   private proxies: string[] = [];
+
+  constructor(private readonly structured: StructuredLoggerService) {}
 
   onModuleInit() {
     try {
@@ -36,7 +39,14 @@ export class RssFetcherService implements OnModuleInit {
         try {
           const feed = await this.parseFeed(src.url);
           const feedDomain = this.getDomain(src.url);
-          for (const entry of feed.items ?? []) {
+          const items = feed.items ?? [];
+          this.structured.rss({
+            source: src.url,
+            count:  items.length,
+            tags:   src.tags,
+            titles: items.slice(0, 10).map((i) => i.title ?? ''),
+          });
+          for (const entry of items) {
             // Use feed domain + tag to allow multiple feeds from same publisher (e.g. theverge health vs tech)
             const domain = `${feedDomain}:${(src.tags ?? []).join(',')}`;
             allItems.push({
@@ -51,6 +61,7 @@ export class RssFetcherService implements OnModuleInit {
           }
         } catch (err) {
           this.logger.warn(`Failed to fetch RSS ${src.url}: ${err.message}`);
+          this.structured.error(`RSS fetch failed: ${src.url}`, { source: src.url, error: err.message });
         }
       }),
     );

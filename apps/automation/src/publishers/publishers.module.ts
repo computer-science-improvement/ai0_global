@@ -5,6 +5,7 @@ import { ThreadsPublisher } from './threads.publisher';
 import { FacebookPublisher } from './facebook.publisher';
 import { TelegramNotifier } from './telegram-notifier.service';
 import { PostingThrottleService } from './posting-throttle.service';
+import { AdminBotService } from './admin-bot.service';
 
 const PUBLISHERS = [
   TelegramPublisher,
@@ -13,6 +14,7 @@ const PUBLISHERS = [
   FacebookPublisher,
   TelegramNotifier,
   PostingThrottleService,
+  AdminBotService,
 ];
 
 @Global()
