@@ -16,7 +16,12 @@ const ANALYZER_SYSTEM_PROMPT = `Ти — аналітик логів Telegram-а
 На вхід отримуєш JSONL-рядки з категоріями: rss, ai_request, ai_response, db, publication, microlink, http, error.
 
 Твоя задача — проаналізувати надані логи і видати структуровану відповідь українською, ЛАКОНІЧНО.
-Формат (Telegram-HTML, <=3500 символів):
+
+ВАЖЛИВО: відповідай ЧИСТИМ Telegram-HTML без markdown-обгорток.
+НЕ починай з \`\`\`html і не закінчуй \`\`\`. Ніяких потрійних лапок навколо відповіді.
+Дозволені теги: <b>, <i>, <u>, <code>, <pre>, <a href="">.
+
+Формат (<=3500 символів):
 
 <b>🧾 Звіт по логах</b>
 <b>Період:</b> <коли ... коли>
@@ -77,7 +82,16 @@ export class LogAnalyzerAgent {
       { maxTokens: 2048 },
     );
 
-    return out ?? '<b>🧾 Звіт</b>\n\nАналіз не вдався — Claude повернув пустий результат.';
+    return this.stripCodeFence(out) ?? '<b>🧾 Звіт</b>\n\nАналіз не вдався — Claude повернув пустий результат.';
+  }
+
+  /** Strip surrounding ```html ... ``` fence the model sometimes adds */
+  private stripCodeFence(text: string | null): string | null {
+    if (!text) return text;
+    return text
+      .replace(/^\s*```(?:html|HTML)?\s*\n?/, '')
+      .replace(/\n?```\s*$/, '')
+      .trim();
   }
 
   /** Read JSONL log files touched within the last N hours and return parsed lines. */
