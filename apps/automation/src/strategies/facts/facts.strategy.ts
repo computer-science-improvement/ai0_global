@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import axios from 'axios';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
+import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
   ContentStrategy,
@@ -21,6 +22,7 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
     private readonly registry: ContentStrategyRegistry,
     private readonly db:       FactsRepository,
     private readonly telegram: TelegramPublisher,
+    private readonly notifier: TelegramNotifier,
   ) {}
 
   onModuleInit() {
@@ -64,7 +66,7 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
     }
 
     try {
-      await this.telegram.publish(
+      const messageId = await this.telegram.publish(
         {
           text,
           imageBuffer,
@@ -75,6 +77,7 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
         { id: channelId },
       );
       await this.db.markPosted(fact.id, channelId);
+      await this.notifier.notifyPublished(channelId, messageId);
       this.logger.debug(`Published fact "${fact.article_title}" to ${channelId}`);
     } catch (err: any) {
       this.logger.error(`Publish failed: ${err.message}`);

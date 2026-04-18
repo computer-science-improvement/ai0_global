@@ -11,6 +11,7 @@ import {
 } from '../../common/content-strategy/content-strategy.interface';
 import { ContentStrategyRegistry }  from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
+import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { PromptsRepository }        from './prompts.repository';
 import { PromptHeroScraperService } from '../../workflows/ai0-prompts/prompthero-scraper.service';
 
@@ -26,6 +27,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly telegram: TelegramPublisher,
     private readonly db:       PromptsRepository,
     private readonly scraper:  PromptHeroScraperService,
+    private readonly notifier: TelegramNotifier,
   ) {}
 
   onModuleInit() {
@@ -117,7 +119,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
 
     // 7. Publish
     try {
-      await this.telegram.publishPrompt(
+      const messageId = await this.telegram.publishPrompt(
         {
           imageBuffer,
           caption: message.caption,
@@ -126,6 +128,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
         { id: channelId },
       );
       await this.db.markPosted(row.id);
+      await this.notifier.notifyPublished(channelId, messageId);
       this.logger.debug(`Published prompt to ${channelId}`);
     } catch (err) {
       this.logger.error('Publish failed: ' + err.message);

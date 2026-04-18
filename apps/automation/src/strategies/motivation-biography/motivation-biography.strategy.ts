@@ -1,6 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ContentStrategyRegistry }          from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }                from '../../publishers/telegram.publisher';
+import { TelegramNotifier }                 from '../../publishers/telegram-notifier.service';
 import { ClaudeAgent }                      from '../../common/ai/agents/claude.agent';
 import { ReviewAgent }                      from '../../common/ai/agents/review.agent';
 import { PostValidator }                    from '../../common/ai/validators/post.validator';
@@ -33,6 +34,7 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
     private readonly reviewer:  ReviewAgent,
     private readonly validator: PostValidator,
     private readonly telegram:  TelegramPublisher,
+    private readonly notifier:  TelegramNotifier,
   ) {}
 
   onModuleInit() {
@@ -85,7 +87,7 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
     const text = `${reviewed}\n\n#біографія\n\n<a href="https://t.me/${channelHandle}">Мотивація</a>`;
 
     try {
-      await this.telegram.publish(
+      const messageId = await this.telegram.publish(
         {
           text,
           imageUrl: wiki.imageUrl ?? undefined,
@@ -96,6 +98,7 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
         { id: channelId },
       );
       await this.db.markPosted(person.id, channelId);
+      await this.notifier.notifyPublished(channelId, messageId);
       this.logger.log(`Biography published: "${person.name}" → ${channelId}`);
     } catch (err: any) {
       this.logger.error(`Publish failed: ${err.message}`);

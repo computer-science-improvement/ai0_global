@@ -20,6 +20,7 @@ import { DedupService }             from '../../common/dedup/dedup.service';
 import { ImageResolverService }     from '../../common/processors/image-resolver.service';
 import { RawItem }                  from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
+import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { GamerPowerFetcher }        from '../../workflows/game-channel/fetchers/gamerpower.fetcher';
 import { EpicGamesFetcher }         from '../../workflows/game-channel/fetchers/epic-games.fetcher';
 import { SteamDealsFetcher }        from '../../workflows/game-channel/fetchers/steam-deals.fetcher';
@@ -44,6 +45,7 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
     private readonly epic:       EpicGamesFetcher,
     private readonly steam:      SteamDealsFetcher,
     private readonly gameNews:   GameNewsFetcher,
+    private readonly notifier:   TelegramNotifier,
   ) {}
 
   onModuleInit() {
@@ -164,13 +166,14 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
 
     // 7. Publish
     try {
+      let messageId: string;
       if (imageBuffer && text.length <= 1024) {
-        await this.telegram.publishPrompt(
+        messageId = await this.telegram.publishPrompt(
           { imageBuffer, caption: text },
           { id: channelId },
         );
       } else {
-        await this.telegram.publish(
+        messageId = await this.telegram.publish(
           {
             text,
             imageBuffer,
@@ -183,6 +186,7 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
         );
       }
       await this.dedup.markPosted(item.source, item.title, channelId, item.type);
+      await this.notifier.notifyPublished(channelId, messageId);
       this.logger.debug(`Published [${item.type}] to ${channelId}: ${item.title}`);
     } catch (err) {
       this.logger.error('Publish failed: ' + err.message);

@@ -1,6 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ContentStrategyRegistry }  from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
+import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { Skill }                    from '../../common/ai/skills/skill.interface';
 import {
   ContentStrategy,
@@ -20,6 +21,7 @@ export class QuotesStrategy implements ContentStrategy, OnModuleInit {
     private readonly registry:  ContentStrategyRegistry,
     private readonly db:        QuotesRepository,
     private readonly telegram:  TelegramPublisher,
+    private readonly notifier:  TelegramNotifier,
   ) {}
 
   onModuleInit() {
@@ -72,11 +74,12 @@ export class QuotesStrategy implements ContentStrategy, OnModuleInit {
       : `«${clean}»`;
 
     try {
-      await this.telegram.publish(
+      const messageId = await this.telegram.publish(
         { text, source: quote.url ?? '', tags: quote.category ? [quote.category] : [], title: quote.author ?? 'quote' },
         { id: channelId },
       );
       await this.db.markPosted(quote.id, channelId);
+      await this.notifier.notifyPublished(channelId, messageId);
       this.logger.debug(`Published quote to ${channelId}`);
     } catch (err) {
       this.logger.error(`Publish failed: ${err.message}`);
