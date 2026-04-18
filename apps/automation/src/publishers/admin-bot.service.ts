@@ -5,6 +5,10 @@ import { LogAnalyzerAgent } from '../common/logging/log-analyzer.agent';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { ContentStrategyRunner } from '../common/content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry } from '../common/content-strategy/content-strategy.registry';
+import { StructuredLoggerService } from '../common/logging/structured-logger.service';
+import { readdirSync, readFileSync } from 'fs';
+import { join } from 'path';
+import { PostingThrottleService } from './posting-throttle.service';
 
 interface InlineKeyboardButton {
   text: string;
@@ -55,6 +59,8 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
     private readonly channelConfig:    ChannelConfigService,
     private readonly strategyRunner:   ContentStrategyRunner,
     private readonly strategyRegistry: ContentStrategyRegistry,
+    private readonly structured:       StructuredLoggerService,
+    private readonly throttle:         PostingThrottleService,
   ) {}
 
   onModuleInit() {
@@ -122,14 +128,84 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
   }
 
   private async cmdAnalyze(chatId: number, args: string[]): Promise<void> {
-    const hours = parseInt(args[0] ?? '24', 10) || 24;
-    await this.sendText(chatId, `🔍 Аналізую логи за ${hours}г…`);
+    const parsed = this.parseAnalyzeArgs(args);
+    if ('error' in parsed) {
+      await this.sendText(
+        chatId,
+        `❌ ${parsed.error}\n\n` +
+        `Приклади:\n` +
+        `• <code>/analyze</code> — за 24 години\n` +
+        `• <code>/analyze 2</code> — за 2 години\n` +
+        `• <code>/analyze 14:15</code> — з 14:15 дотепер\n` +
+        `• <code>/analyze 14:15 15:30</code> — діапазон`,
+        'HTML',
+      );
+      return;
+    }
+    await this.sendText(chatId, `🔍 Аналізую логи: ${parsed.label}…`);
     try {
-      const report = await this.analyzer.analyze({ hours });
+      const report = await this.analyzer.analyze(parsed.opts);
       await this.sendText(chatId, report, 'HTML');
     } catch (err: any) {
       await this.sendText(chatId, `❌ Analyzer failed: ${err.message}`);
     }
+  }
+
+  /**
+   * Parse /analyze args into analyzer opts:
+   *   (no args)        → last 24h
+   *   "N"              → last N hours
+   *   "HH:MM"          → from today HH:MM until now (yesterday's if in future)
+   *   "HH:MM HH:MM"    → explicit range, today (swapped if second is tomorrow-ish)
+   */
+  private parseAnalyzeArgs(args: string[]):
+    | { opts: { hours?: number; sinceMs?: number; untilMs?: number }; label: string }
+    | { error: string }
+  {
+    const TIME_RE = /^(\d{1,2}):(\d{2})$/;
+
+    if (args.length === 0) {
+      return { opts: { hours: 24 }, label: 'за 24 години' };
+    }
+
+    // Single numeric arg → hours
+    if (args.length === 1 && /^\d+$/.test(args[0])) {
+      const hours = parseInt(args[0], 10);
+      if (hours < 1 || hours > 720) return { error: 'Години мають бути в діапазоні 1..720' };
+      return { opts: { hours }, label: `за ${hours}г` };
+    }
+
+    // Time-based args
+    const toEpoch = (hhmm: string): number | null => {
+      const m = hhmm.match(TIME_RE);
+      if (!m) return null;
+      const h = parseInt(m[1], 10);
+      const min = parseInt(m[2], 10);
+      if (h > 23 || min > 59) return null;
+      const d = new Date();
+      d.setHours(h, min, 0, 0);
+      // If the resulting time is in the future (e.g. user said 23:00 at 01:00) — treat as yesterday
+      if (d.getTime() > Date.now() + 60_000) d.setDate(d.getDate() - 1);
+      return d.getTime();
+    };
+
+    if (args.length === 1) {
+      const since = toEpoch(args[0]);
+      if (since == null) return { error: `Невірний час: "${args[0]}". Формат HH:MM.` };
+      return { opts: { sinceMs: since }, label: `з ${args[0]} дотепер` };
+    }
+
+    if (args.length === 2) {
+      const since = toEpoch(args[0]);
+      const until = toEpoch(args[1]);
+      if (since == null || until == null) {
+        return { error: `Невірний час: "${args.join(' ')}". Формат HH:MM HH:MM.` };
+      }
+      if (until <= since) return { error: 'Кінцевий час має бути пізніше початкового.' };
+      return { opts: { sinceMs: since, untilMs: until }, label: `${args[0]}–${args[1]}` };
+    }
+
+    return { error: 'Забагато аргументів.' };
   }
 
   private async cmdHelp(chatId: number): Promise<void> {
@@ -265,12 +341,106 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
       `▶️ Запускаю <code>${binding.id}</code>\n→ ${binding.channelId}`,
       [], 'HTML',
     );
+
+    // Pre-check throttle so we can warn the user explicitly (strategyRunner
+    // silently returns on cooldown which confused the admin).
+    const cooldownMs = this.throttle.remainingMs(binding.channelId);
+    const onCooldown = !this.throttle.canPublish(binding.channelId);
+
+    const startedAt = Date.now();
     try {
       await this.strategyRunner.run(strategy, binding.channelId, binding.params, binding.id);
-      await this.sendText(chatId, `✅ <code>${binding.id}</code> завершено`, 'HTML');
     } catch (err: any) {
       await this.sendText(chatId, `❌ <code>${binding.id}</code>: ${err.message}`, 'HTML');
+      return;
     }
+
+    // Inspect what actually happened during this run by reading the structured log
+    const events = this.readLogEventsSince(startedAt - 500, binding.channelId);
+    const summary = this.summarizeRun(events, { onCooldown, cooldownMs });
+
+    await this.sendText(
+      chatId,
+      `<b>${summary.icon} <code>${binding.id}</code></b>\n` +
+      `→ ${binding.channelId}\n` +
+      summary.text,
+      'HTML',
+    );
+  }
+
+  /** Read log lines written since `sinceMs` that relate to a given channel/run. */
+  private readLogEventsSince(sinceMs: number, channelId: string): Array<Record<string, any>> {
+    const dir = this.structured.logsDirectory;
+    let files: string[];
+    try {
+      files = readdirSync(dir)
+        .filter((f) => f.startsWith('combined-') && f.endsWith('.log'))
+        .map((f) => join(dir, f))
+        .sort()
+        .slice(-2); // today + yesterday is enough
+    } catch { return []; }
+
+    const out: Array<Record<string, any>> = [];
+    for (const file of files) {
+      let raw: string;
+      try { raw = readFileSync(file, 'utf-8'); } catch { continue; }
+      for (const line of raw.split('\n')) {
+        if (!line) continue;
+        let obj: Record<string, any>;
+        try { obj = JSON.parse(line); } catch { continue; }
+        const ts = obj.timestamp ? Date.parse(obj.timestamp) : 0;
+        if (ts < sinceMs) continue;
+        const ch = obj.channelId ?? obj.data?.channelId;
+        if (ch && ch !== channelId) continue;
+        out.push(obj);
+      }
+    }
+    return out;
+  }
+
+  private summarizeRun(
+    events: Array<Record<string, any>>,
+    ctx: { onCooldown: boolean; cooldownMs: number },
+  ): { icon: string; text: string } {
+    const publications = events.filter((e) => e.category === 'publication');
+    const success = publications.find((e) => e.data?.status === 'success');
+    const failure = publications.find((e) => e.data?.status === 'failure' || e.data?.status === 'blocked');
+    const errors  = events.filter((e) => e.category === 'error');
+    const rss     = events.filter((e) => e.category === 'rss').length;
+    const dbOps   = events.filter((e) => e.category === 'db');
+
+    if (success) {
+      const msgId = success.data?.messageId;
+      const title = success.data?.title ?? '';
+      const link = msgId ? `\n🔗 https://t.me/${String(success.channelId ?? '').replace(/^@/, '')}/${msgId}` : '';
+      return { icon: '✅', text: `опубліковано: ${this.escape(title)}${link}` };
+    }
+    if (failure) {
+      const err = failure.data?.error ?? 'unknown';
+      return { icon: '❌', text: `публікація заблокована/впала: <code>${this.escape(String(err))}</code>` };
+    }
+    if (ctx.onCooldown) {
+      const min = Math.ceil(ctx.cooldownMs / 60_000);
+      return { icon: '⏸', text: `канал на cooldown (~${min}хв). Публікація пропущена.` };
+    }
+    if (errors.length) {
+      const first = errors[0];
+      return { icon: '⚠️', text: `помилка: <code>${this.escape(first.message ?? 'unknown')}</code>` };
+    }
+    // Nothing published, no cooldown, no errors — likely dedup/SKIP or empty feed
+    const unposted = dbOps.find((e) => e.data?.op === 'filterUnposted');
+    if (unposted) {
+      const left = unposted.data?.rowCount ?? 0;
+      if (left === 0) return { icon: 'ℹ️', text: `нічого нового (всі кандидати вже опубліковані).` };
+    }
+    if (rss === 0 && events.length === 0) {
+      return { icon: 'ℹ️', text: 'виконано, але лог порожній — можливо стратегія без публікації цього разу.' };
+    }
+    return { icon: 'ℹ️', text: `завершено без публікації (RSS items: ${rss}).` };
+  }
+
+  private escape(text: string): string {
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 200);
   }
 
   // ─── Telegram API helpers ───────────────────────────────────────────────────

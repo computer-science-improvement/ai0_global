@@ -57,23 +57,29 @@ export class LogAnalyzerAgent {
 
   /**
    * Read recent log lines and ask Claude to analyze them.
-   * @param opts.hours  How far back to include (default 24h)
+   * @param opts.hours     Relative window in hours (default 24h). Ignored if sinceMs is set.
+   * @param opts.sinceMs   Absolute lower bound (epoch ms).
+   * @param opts.untilMs   Absolute upper bound (epoch ms, defaults to now).
    * @param opts.maxLines  Cap on how many lines to send to AI (keeps prompt size sane)
    */
-  async analyze(opts: { hours?: number; maxLines?: number } = {}): Promise<string> {
-    const hours    = opts.hours    ?? 24;
+  async analyze(opts: {
+    hours?: number; sinceMs?: number; untilMs?: number; maxLines?: number;
+  } = {}): Promise<string> {
     const maxLines = opts.maxLines ?? 1500;
+    const untilMs  = opts.untilMs  ?? Date.now();
+    const sinceMs  = opts.sinceMs  ?? untilMs - (opts.hours ?? 24) * 3600_000;
 
-    const lines = this.readRecentLines(hours, maxLines);
+    const windowDesc = this.describeWindow(sinceMs, untilMs);
+    const lines = this.readLinesInRange(sinceMs, untilMs, maxLines);
     if (!lines.length) {
-      return '<b>🧾 Звіт по логах</b>\n\nЗа останні ' + hours + 'г немає структурованих логів.';
+      return `<b>🧾 Звіт по логах</b>\n\nЗа період ${windowDesc} немає структурованих логів.`;
     }
 
     const summary = this.summarize(lines);
     const payload = lines.map((l) => JSON.stringify(l)).join('\n');
 
     const userMessage =
-      `Стат за ${hours}г:\n` +
+      `Період: ${windowDesc}\n` +
       `• Всього ліній: ${lines.length}\n` +
       `• По категоріях: ${JSON.stringify(summary.byCategory)}\n` +
       `• Публікації: success=${summary.pubSuccess}, failure=${summary.pubFailure}\n` +
@@ -101,8 +107,8 @@ export class LogAnalyzerAgent {
       .trim();
   }
 
-  /** Read JSONL log files touched within the last N hours and return parsed lines. */
-  private readRecentLines(hours: number, cap: number): LogLine[] {
+  /** Read JSONL log lines whose timestamp falls into [sinceMs, untilMs]. */
+  private readLinesInRange(sinceMs: number, untilMs: number, cap: number): LogLine[] {
     const dir = this.logs.logsDirectory;
     let files: string[];
     try {
@@ -110,8 +116,11 @@ export class LogAnalyzerAgent {
         .filter((f) => f.startsWith('combined-') && f.endsWith('.log'))
         .map((f) => join(dir, f))
         .filter((p) => {
-          try { return (Date.now() - statSync(p).mtimeMs) / 3600_000 <= hours + 24; }
-          catch { return false; }
+          try {
+            // Keep file if its mtime is inside or straddles the window
+            const mtime = statSync(p).mtimeMs;
+            return mtime >= sinceMs - 24 * 3600_000 && mtime >= sinceMs - 86400_000;
+          } catch { return false; }
         })
         .sort();
     } catch (err: any) {
@@ -119,9 +128,7 @@ export class LogAnalyzerAgent {
       return [];
     }
 
-    const cutoff = Date.now() - hours * 3600_000;
     const out: LogLine[] = [];
-
     for (const file of files) {
       let raw: string;
       try { raw = readFileSync(file, 'utf-8'); }
@@ -131,12 +138,25 @@ export class LogAnalyzerAgent {
         let obj: LogLine;
         try { obj = JSON.parse(line); } catch { continue; }
         const ts = obj.timestamp ? Date.parse(String(obj.timestamp)) : NaN;
-        if (isNaN(ts) || ts >= cutoff) out.push(obj);
+        if (isNaN(ts)) continue;
+        if (ts >= sinceMs && ts <= untilMs) out.push(obj);
       }
     }
 
-    // Keep the most recent `cap` lines
     return out.slice(-cap);
+  }
+
+  /** Human-readable label for a time window (Europe/Kyiv local time assumed from system). */
+  private describeWindow(sinceMs: number, untilMs: number): string {
+    const fmt = (ms: number) => {
+      const d = new Date(ms);
+      const hh = String(d.getHours()).padStart(2, '0');
+      const mm = String(d.getMinutes()).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const mon = String(d.getMonth() + 1).padStart(2, '0');
+      return `${day}.${mon} ${hh}:${mm}`;
+    };
+    return `${fmt(sinceMs)} – ${fmt(untilMs)}`;
   }
 
   private summarize(lines: LogLine[]) {
