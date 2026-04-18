@@ -175,8 +175,10 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
       return { opts: { hours }, label: `за ${hours}г` };
     }
 
-    // Time-based args
-    const toEpoch = (hhmm: string): number | null => {
+    // Time-based args. `rollbackIfFuture` controls per-arg "treat as yesterday"
+    // behaviour — disabled for 2-arg form so a range like 18:00 23:56 at 23:36
+    // doesn't get the second bound flipped to yesterday.
+    const toEpoch = (hhmm: string, rollbackIfFuture: boolean): number | null => {
       const m = hhmm.match(TIME_RE);
       if (!m) return null;
       const h = parseInt(m[1], 10);
@@ -184,23 +186,34 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
       if (h > 23 || min > 59) return null;
       const d = new Date();
       d.setHours(h, min, 0, 0);
-      // If the resulting time is in the future (e.g. user said 23:00 at 01:00) — treat as yesterday
-      if (d.getTime() > Date.now() + 60_000) d.setDate(d.getDate() - 1);
+      if (rollbackIfFuture && d.getTime() > Date.now() + 60_000) {
+        d.setDate(d.getDate() - 1);
+      }
       return d.getTime();
     };
 
     if (args.length === 1) {
-      const since = toEpoch(args[0]);
+      const since = toEpoch(args[0], true);
       if (since == null) return { error: `Невірний час: "${args[0]}". Формат HH:MM.` };
       return { opts: { sinceMs: since }, label: `з ${args[0]} дотепер` };
     }
 
     if (args.length === 2) {
-      const since = toEpoch(args[0]);
-      const until = toEpoch(args[1]);
+      let since = toEpoch(args[0], false);
+      let until = toEpoch(args[1], false);
       if (since == null || until == null) {
         return { error: `Невірний час: "${args.join(' ')}". Формат HH:MM HH:MM.` };
       }
+      // If the whole range is in the future → user meant the previous day.
+      const now = Date.now();
+      if (since > now + 60_000 && until > now + 60_000) {
+        since -= 86_400_000;
+        until -= 86_400_000;
+      }
+      // Range crosses midnight (e.g. 23:00 01:00) — advance `until` by 1 day.
+      if (until <= since) until += 86_400_000;
+      // Clamp upper bound to "now" so we never request future rows.
+      if (until > now) until = now;
       if (until <= since) return { error: 'Кінцевий час має бути пізніше початкового.' };
       return { opts: { sinceMs: since, untilMs: until }, label: `${args[0]}–${args[1]}` };
     }

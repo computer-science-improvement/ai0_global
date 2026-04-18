@@ -65,7 +65,11 @@ export class LogAnalyzerAgent {
   async analyze(opts: {
     hours?: number; sinceMs?: number; untilMs?: number; maxLines?: number;
   } = {}): Promise<string> {
-    const maxLines = opts.maxLines ?? 1500;
+    // Guardrails: keep prompt under ~200KB regardless of how big the raw logs
+    // are, so Claude doesn't 400 on context length.
+    const MAX_PER_LINE_CHARS = 1200;
+    const MAX_TOTAL_CHARS    = 180_000;
+    const maxLines = opts.maxLines ?? 800;
     const untilMs  = opts.untilMs  ?? Date.now();
     const sinceMs  = opts.sinceMs  ?? untilMs - (opts.hours ?? 24) * 3600_000;
 
@@ -76,26 +80,65 @@ export class LogAnalyzerAgent {
     }
 
     const summary = this.summarize(lines);
-    const payload = lines.map((l) => JSON.stringify(l)).join('\n');
+
+    // Render each line as compact JSON; cap per-line to avoid one fat
+    // ai_response payload wiping out the budget. Accumulate newest-first and
+    // stop when we hit the total cap.
+    const rendered: string[] = [];
+    let total = 0;
+    let dropped = 0;
+    for (let i = lines.length - 1; i >= 0; i--) {
+      let s = JSON.stringify(lines[i]);
+      if (s.length > MAX_PER_LINE_CHARS) {
+        s = s.slice(0, MAX_PER_LINE_CHARS) + '…(truncated)';
+      }
+      if (total + s.length + 1 > MAX_TOTAL_CHARS) { dropped = i + 1; break; }
+      rendered.push(s);
+      total += s.length + 1;
+    }
+    rendered.reverse();
+    const payload = rendered.join('\n');
 
     const userMessage =
       `Період: ${windowDesc}\n` +
-      `• Всього ліній: ${lines.length}\n` +
+      `• Всього ліній: ${lines.length}` +
+        (dropped ? ` (показано ${rendered.length}, обрізано перших ${dropped} через ліміт)` : '') + `\n` +
       `• По категоріях: ${JSON.stringify(summary.byCategory)}\n` +
       `• Публікації: success=${summary.pubSuccess}, failure=${summary.pubFailure}\n` +
       `• AI викликів: ${summary.aiCalls}, помилок: ${summary.aiErrors}\n\n` +
       `Сирі логи (JSONL, найсвіжіші знизу):\n\`\`\`\n${payload}\n\`\`\`\n\n` +
       `Проаналізуй і видай звіт у вказаному форматі.`;
 
-    const out = await this.claude.chat(
-      [
-        { role: 'system', content: ANALYZER_SYSTEM_PROMPT },
-        { role: 'user',   content: userMessage },
-      ],
-      { maxTokens: 4096 },
+    this.logger.log(
+      `analyze: ${lines.length} lines, ${rendered.length} sent, ${total} chars payload`,
     );
 
-    return this.stripCodeFence(out) ?? '<b>🧾 Звіт</b>\n\nАналіз не вдався — Claude повернув пустий результат.';
+    let out: string | null = null;
+    try {
+      out = await this.claude.chat(
+        [
+          { role: 'system', content: ANALYZER_SYSTEM_PROMPT },
+          { role: 'user',   content: userMessage },
+        ],
+        { maxTokens: 4096 },
+      );
+    } catch (err: any) {
+      return `<b>🧾 Звіт</b>\n\nАналіз не вдався — Claude викликав помилку: <code>${this.escape(err.message)}</code>`;
+    }
+
+    const stripped = this.stripCodeFence(out);
+    if (stripped && stripped.trim()) return stripped;
+
+    return (
+      `<b>🧾 Звіт</b>\n\n` +
+      `Claude повернув пустий результат (може бути rate-limit або overloaded).\n` +
+      `Линій у вікні: <b>${lines.length}</b>, відправлено в модель: <b>${rendered.length}</b>, payload ~${total} chars.\n` +
+      `Спробуй звузити діапазон: <code>/analyze 1</code> або <code>/analyze HH:MM HH:MM</code>.`
+    );
+  }
+
+  private escape(s: string): string {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
   /** Strip surrounding ```html ... ``` fence the model sometimes adds */
