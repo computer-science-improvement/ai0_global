@@ -52,6 +52,23 @@ export class StatsController {
     return { channelId, snapshots } as any;
   }
 
+  @Get('channels/:channelId/daily')
+  @ApiOperation({ summary: 'Daily subscribers (one point per day) for bar charts' })
+  @ApiQuery({ name: 'from', required: false, type: String, description: 'ISO date' })
+  @ApiQuery({ name: 'to',   required: false, type: String, description: 'ISO date' })
+  async channelDaily(
+    @Param('channelId') channelId: string,
+    @Query('from') from?: string,
+    @Query('to')   to?:   string,
+  ): Promise<{ channelId: string; points: { date: string; subscribers: number | null }[] }> {
+    const points = await this.stats.channelDailySubscribers(
+      channelId,
+      from ? new Date(from) : undefined,
+      to   ? new Date(to)   : undefined,
+    );
+    return { channelId, points };
+  }
+
   @Get('channels/:channelId/posts')
   @ApiOperation({ summary: 'Posts of a channel with latest metrics' })
   @ApiQuery({ name: 'limit',  required: false, type: Number })

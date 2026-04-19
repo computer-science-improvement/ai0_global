@@ -98,6 +98,34 @@ export class StatsService {
     }));
   }
 
+  /**
+   * One point per day: last snapshot of each calendar day (UTC).
+   * Use for bar charts "date → subscribers".
+   */
+  async channelDailySubscribers(
+    channelId: string,
+    from?: Date,
+    to?: Date,
+  ): Promise<{ date: string; subscribers: number | null }[]> {
+    const params: unknown[] = [channelId];
+    const where: string[]   = ['channel_id = $1'];
+    if (from) { params.push(from); where.push(`captured_at >= $${params.length}`); }
+    if (to)   { params.push(to);   where.push(`captured_at <= $${params.length}`); }
+    const { rows } = await this.pool.query(
+      `SELECT DISTINCT ON (date_trunc('day', captured_at))
+              to_char(date_trunc('day', captured_at), 'YYYY-MM-DD') AS date,
+              subscribers
+         FROM channel_stats_snapshots
+         WHERE ${where.join(' AND ')}
+         ORDER BY date_trunc('day', captured_at) ASC, captured_at DESC`,
+      params,
+    );
+    return rows.map((r: any) => ({
+      date:        r.date,
+      subscribers: r.subscribers,
+    }));
+  }
+
   async postsByChannel(channelId: string, limit: number, offset: number): Promise<PostWithLatest[]> {
     const { rows } = await this.pool.query(
       `SELECT p.id, p.channel_id, p.message_id, p.title, p.source_url,
