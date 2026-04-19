@@ -26,14 +26,24 @@ export class ImageResolverService implements OnModuleInit {
     }
   }
 
-  /** Resolve image: use item image if present, else try microlink */
+  /**
+   * Resolve article cover with a fallback chain so we stop publishing
+   * text-only when microlink throttles:
+   *   1. Microlink (clean og:image + dimensions)
+   *   2. Direct GET + parse <meta og:image> from article HTML
+   *   3. Image URL already in RawItem (from RSS/content)
+   *   4. null
+   */
   async resolve(item: RawItem): Promise<RawItem> {
-    // Always prefer Microlink (og:image) — it's the official article cover
     const microlinkImage = await this.fetchFromMicrolink(item.source);
     if (microlinkImage) return { ...item, image: microlinkImage };
 
-    // Fallback: image extracted from RSS/HTML content
-    return item;
+    const directImage = await this.fetchOgImageDirect(item.source);
+    if (directImage) return { ...item, image: directImage };
+
+    if (item.image) return item; // RSS fallback (original value stays untouched)
+
+    return { ...item, image: null };
   }
 
   /** Download image as buffer */
@@ -49,6 +59,61 @@ export class ImageResolverService implements OnModuleInit {
       this.logger.warn(`Image download failed ${url}: ${err.message}`);
       return null;
     }
+  }
+
+  /**
+   * Plain GET on the article page + regex-parse og:image / twitter:image.
+   * No proxies, no microlink — used as fallback when microlink is
+   * rate-limited or the page has og:image smaller than our threshold.
+   */
+  private async fetchOgImageDirect(sourceUrl: string): Promise<string | null> {
+    try {
+      const res = await axios.get<string>(sourceUrl, {
+        timeout: 10_000,
+        maxContentLength: 5 * 1024 * 1024, // 5MB cap on HTML
+        responseType: 'text',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+          'Accept':     'text/html,application/xhtml+xml',
+        },
+        validateStatus: (s) => s >= 200 && s < 400,
+      });
+      const html = typeof res.data === 'string' ? res.data : '';
+      const ogImage = this.extractOgImage(html, sourceUrl);
+      if (!ogImage) {
+        this.structured.microlink({ url: sourceUrl, proxy: null, status: 'direct_no_og' });
+        return null;
+      }
+      this.structured.microlink({
+        url: sourceUrl, proxy: null, status: 'direct_success', imageUrl: ogImage,
+      });
+      return ogImage;
+    } catch (err: any) {
+      this.logger.warn(`direct og:image fetch failed ${sourceUrl}: ${err.message}`);
+      this.structured.microlink({
+        url: sourceUrl, proxy: null, status: 'direct_error', error: err.message,
+      });
+      return null;
+    }
+  }
+
+  /** Extract og:image / og:image:url / twitter:image from raw HTML. */
+  private extractOgImage(html: string, baseUrl: string): string | null {
+    if (!html) return null;
+    const patterns = [
+      /<meta[^>]+property=["']og:image(?::url)?["'][^>]+content=["']([^"']+)["']/i,
+      /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image(?::url)?["']/i,
+      /<meta[^>]+name=["']twitter:image(?::src)?["'][^>]+content=["']([^"']+)["']/i,
+      /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image(?::src)?["']/i,
+    ];
+    for (const pat of patterns) {
+      const m = html.match(pat);
+      if (m?.[1]) {
+        try { return new URL(m[1], baseUrl).toString(); }
+        catch { return m[1]; }
+      }
+    }
+    return null;
   }
 
   private async fetchFromMicrolink(sourceUrl: string): Promise<string | null> {

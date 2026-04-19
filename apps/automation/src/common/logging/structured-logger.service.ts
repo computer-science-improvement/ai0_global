@@ -157,7 +157,9 @@ export class StructuredLoggerService implements OnModuleInit {
   }
 
   microlink(data: {
-    url: string; proxy: string | null; status: 'success' | 'rate_limit' | 'error' | 'too_small';
+    url: string; proxy: string | null;
+    status: 'success' | 'rate_limit' | 'error' | 'too_small'
+          | 'direct_success' | 'direct_no_og' | 'direct_error';
     imageUrl?: string | null; width?: number; height?: number; error?: string;
   }): void {
     this.log({
