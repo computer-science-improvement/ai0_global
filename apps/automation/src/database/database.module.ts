@@ -1,9 +1,10 @@
 import { Module, Global } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Pool } from 'pg';
+import { DB_POOL } from './database.tokens';
 import { MigrationRunnerService } from './migration-runner.service';
 
-export const DB_POOL = 'DB_POOL';
+export { DB_POOL };
 
 const poolProvider = {
   provide: DB_POOL,

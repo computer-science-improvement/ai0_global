@@ -2,7 +2,7 @@ import { Inject, Injectable, Logger, OnApplicationBootstrap } from '@nestjs/comm
 import { readdirSync, readFileSync } from 'fs';
 import { join }                      from 'path';
 import { Pool }                      from 'pg';
-import { DB_POOL }                   from './database.module';
+import { DB_POOL }                   from './database.tokens';
 
 /**
  * Applies pending SQL migrations from `database/migrations/*.sql` on boot.
