@@ -80,6 +80,18 @@ export class PublicationsRepository {
     return rows.map(this.mapRow);
   }
 
+  async listRecentHours(channelId: string, hours: number): Promise<PublicationRecord[]> {
+    const { rows } = await this.pool.query(
+      `SELECT id, channel_id, message_id, source_url, title, strategy_type, tags, posted_at
+       FROM published_posts
+       WHERE channel_id = $1
+         AND posted_at >= now() - ($2 || ' hours')::interval
+       ORDER BY posted_at DESC`,
+      [channelId, hours],
+    );
+    return rows.map(this.mapRow);
+  }
+
   async listByChannel(channelId: string, limit: number, offset: number): Promise<PublicationRecord[]> {
     const { rows } = await this.pool.query(
       `SELECT id, channel_id, message_id, source_url, title, strategy_type, tags, posted_at

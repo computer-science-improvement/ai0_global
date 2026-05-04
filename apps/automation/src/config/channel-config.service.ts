@@ -12,11 +12,31 @@ export interface BotConfig {
   tokenEnv: string;
 }
 
+export interface ForwardRoute {
+  /** Topic key the router returns to pick this route (lowercase, single word) */
+  topic:       string;
+  /** Target channel id from the `channels` map */
+  channelId:   string;
+  /** Human description of what content matches — fed to the router agent */
+  description: string;
+}
+
 export interface ChannelConfig {
   platform: string;
   chatId: string;
   /** Single bot id or array for round-robin rotation */
   botId: string | string[];
+  /**
+   * Semantic-dedup window in hours. Checks recent posts on this channel (across
+   * all strategies) for topical overlap before publishing. Omit to use default
+   * (8 hours). Set to 0 to disable semantic dedup entirely for this channel.
+   */
+  semanticDedupHours?: number;
+  /**
+   * After a successful publish, a router agent can forward the message to one
+   * matching topic-specific channel. Omit or leave empty to disable routing.
+   */
+  forwardRoutes?: ForwardRoute[];
 }
 
 interface ChannelsFile {
@@ -55,6 +75,7 @@ export class ChannelConfigService implements OnModuleInit {
 
   private static readonly DEFAULT_SCHEDULE       = '0 8-23/2 * * *';
   private static readonly DEFAULT_DELAY_MINUTES  = 30;
+  private static readonly DEFAULT_SEMANTIC_DEDUP_HOURS = 8;
 
   onModuleInit() {
     const isDev     = (process.env.NODE_ENV ?? 'development') === 'development';
@@ -102,6 +123,22 @@ export class ChannelConfigService implements OnModuleInit {
   // ── Helpers ──────────────────────────────────────────────────────────────
 
   listChannels(): string[] { return Object.keys(this.cfg.channels); }
+
+  /**
+   * Returns the semantic-dedup window for a channel in hours.
+   * Default: 8 hours. Returns 0 if the channel opts out.
+   */
+  getSemanticDedupHours(channelId: string): number {
+    const ch = this.cfg.channels[channelId];
+    if (!ch) return ChannelConfigService.DEFAULT_SEMANTIC_DEDUP_HOURS;
+    return ch.semanticDedupHours ?? ChannelConfigService.DEFAULT_SEMANTIC_DEDUP_HOURS;
+  }
+
+  /** Forward routes declared on a source channel. Empty array if none. */
+  getForwardRoutes(channelId: string): ForwardRoute[] {
+    const ch = this.cfg.channels[channelId];
+    return ch?.forwardRoutes ?? [];
+  }
 
   private pickBot(channelId: string, botId: string | string[]): string {
     if (typeof botId === 'string') return botId;

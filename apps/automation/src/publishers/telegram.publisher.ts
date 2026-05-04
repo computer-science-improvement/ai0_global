@@ -135,6 +135,55 @@ export class TelegramPublisher extends BasePublisher {
     this.logger.log(`Photo sent to ${chatId}, message_id: ${res.data.result.message_id}`);
   }
 
+  /**
+   * Forwards an already-published message from one channel to another using
+   * Telegram's native forwardMessage (keeps "Forwarded from @source" header).
+   * Uses the source channel's bot token (the bot must be admin in the target).
+   *
+   * IMPORTANT: forwards are intentionally NOT recorded in published_posts /
+   * bot_logs. Only original bot publications get indexed, so that:
+   *   - semantic-dedup on the target channel won't treat a forward as "already
+   *     covered" (the original story lives in the source channel, not here)
+   *   - the stats collector doesn't try to snapshot metrics for a copy
+   *   - topic-router never runs on a forwarded message (it's only invoked
+   *     after a successful publish in the strategy, and forward() isn't a
+   *     publish)
+   * If a user manually forwards a post into any channel, nothing in this
+   * codebase reads channel_post updates (see admin-bot.service.ts:88 —
+   * allowed_updates is ['message', 'callback_query']), so manual forwards
+   * cannot trigger any processing loop.
+   */
+  async forward(
+    sourceChannelId: string,
+    targetChannelId: string,
+    messageId: string | number,
+  ): Promise<string> {
+    if (sourceChannelId === targetChannelId) {
+      throw new Error(`forward(): source and target are the same channel (${sourceChannelId})`);
+    }
+
+    const source = this.channelConfig.resolveChannel(sourceChannelId);
+    const target = this.channelConfig.resolveChannel(targetChannelId);
+    const base   = `https://api.telegram.org/bot${source.botToken}`;
+
+    const res = await axios.post(
+      `${base}/forwardMessage`,
+      {
+        chat_id:              target.chatId,
+        from_chat_id:         source.chatId,
+        message_id:           Number(messageId),
+        disable_notification: true,
+      },
+      { timeout: 15000 },
+    );
+    const newMessageId = String(res.data.result.message_id);
+    this.throttle.recordPublish(targetChannelId);
+    this.logger.log(
+      `Forwarded ${sourceChannelId}/${messageId} → ${targetChannelId}/${newMessageId}`,
+    );
+    return newMessageId;
+  }
+
   async publishPrompt(payload: PromptPayload, target: PublishTarget): Promise<string> {
     this.guardText(payload.caption);
     const { chatId, botToken } = this.channelConfig.resolveChannel(target.id);
