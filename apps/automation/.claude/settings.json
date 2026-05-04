@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "WebFetch",
+      "WebSearch",
+      "Skill(*)",
+      "Agent(*)",
+      "Edit(*)",
+      "Write(*)"
+    ]
+  },
+  "autoApprove": true
+}

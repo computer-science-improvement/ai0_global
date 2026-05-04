@@ -4,21 +4,19 @@
   "private": true,
   "description": "AI content pipeline and channel automation monorepo",
   "scripts": {
-    "db:up":              "docker compose up postgres -d",
-    "db:down":            "docker compose stop postgres",
-    "migrate":            "pnpm --filter pipeline run init-db",
-
-    "dev:automation":     "pnpm --filter automation run start:dev",
-
-    "prod:up":            "docker compose --profile prod up -d",
-    "prod:down":          "docker compose --profile prod down",
-    "prod:logs":          "docker compose --profile prod logs -f automation",
-
-    "pipeline:sync":      "docker compose --profile pipeline run --rm pipeline pnpm run sync",
-    "pipeline:load":      "docker compose --profile pipeline run --rm pipeline pnpm run load:all",
-    "pipeline:parse":     "docker compose --profile pipeline run --rm pipeline pnpm run parse"
+    "db:up": "docker compose up postgres -d",
+    "db:down": "docker compose stop postgres",
+    "migrate": "pnpm --filter pipeline run init-db",
+    "dev:automation": "pnpm --filter automation run start:dev",
+    "prod:up": "docker compose --profile prod up -d",
+    "prod:down": "docker compose --profile prod down",
+    "prod:logs": "docker compose --profile prod logs -f automation",
+    "pipeline:sync": "docker compose --profile pipeline run --rm pipeline pnpm run sync",
+    "pipeline:load": "docker compose --profile pipeline run --rm pipeline pnpm run load:all",
+    "pipeline:parse": "docker compose --profile pipeline run --rm pipeline pnpm run parse"
   },
   "devDependencies": {
+    "tsx": "^4.21.0",
     "typescript": "^5.3.3"
   }
 }

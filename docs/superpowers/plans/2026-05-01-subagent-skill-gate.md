@@ -311,7 +311,7 @@ Run:
 npx tsx --test apps/automation/src/common/ai/post-generation.helpers.test.ts
 ```
 
-Expected: `# pass 15`, `# fail 0` (8 from Task 2 + 7 new).
+Expected: `# pass 18`, `# fail 0` (11 from Task 2 + fix + 7 new).
 
 - [ ] **Step 5: Commit**
 
@@ -441,7 +441,7 @@ Run:
 npx tsx --test apps/automation/src/common/ai/post-generation.helpers.test.ts
 ```
 
-Expected: `# pass 19`, `# fail 0`.
+Expected: `# pass 22`, `# fail 0`.
 
 - [ ] **Step 5: Commit**
 
@@ -1345,7 +1345,7 @@ Run from repo root:
 npx tsx --test apps/automation/src/common/ai/post-generation.helpers.test.ts
 ```
 
-Expected: `# pass 19`, `# fail 0`, exit 0.
+Expected: `# pass 22`, `# fail 0`, exit 0.
 
 - [ ] **Step 3: Smoke run — news mode (`ai0-news`)**
 

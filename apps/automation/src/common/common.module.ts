@@ -13,7 +13,10 @@ import { PerplexityAgent }      from './ai/agents/perplexity.agent';
 import { GrokAgent }            from './ai/agents/grok.agent';
 import { SummarizerService }    from './ai/summarizer.service';
 import { FormatterService }     from './ai/formatter.service';
+import { PostGenerationAgent }  from './ai/post-generation.agent';
 import { DedupService }              from './dedup/dedup.service';
+import { SemanticDedupService }      from './dedup/semantic-dedup.service';
+import { TopicRouterService }        from './routing/topic-router.service';
 import { BotLoggerService }          from './logger/bot-logger.service';
 import { ContentStrategyRunner }     from './content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry }   from './content-strategy/content-strategy.registry';
@@ -39,7 +42,10 @@ const SERVICES = [
   ImageResolverService,
   SummarizerService,
   FormatterService,
+  PostGenerationAgent,
   DedupService,
+  SemanticDedupService,
+  TopicRouterService,
   BotLoggerService,
   ContentStrategyRunner,
   ContentStrategyRegistry,

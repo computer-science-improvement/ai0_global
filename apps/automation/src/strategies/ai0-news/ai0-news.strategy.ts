@@ -1,12 +1,9 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { readFileSync }             from 'fs';
 import { join }                     from 'path';
-import { ClaudeAgent }              from '../../common/ai/agents/claude.agent';
-import { ReviewAgent }              from '../../common/ai/agents/review.agent';
-import { FormatterService }         from '../../common/ai/formatter.service';
-import { SummarizerService }        from '../../common/ai/summarizer.service';
-import { AI0_NEWS_CHANNEL_SKILL }   from '../../common/ai/skills/ai0-news-channel.skill';
+import { PostGenerationAgent }      from '../../common/ai/post-generation.agent';
 import { Skill }                    from '../../common/ai/skills/skill.interface';
+import { AI0_NEWS_CHANNEL_SKILL }   from '../../common/ai/skills/ai0-news-channel.skill';
 import {
   ContentStrategy,
   StrategyFetchResult,
@@ -15,6 +12,8 @@ import {
 } from '../../common/content-strategy/content-strategy.interface';
 import { ContentStrategyRegistry }  from '../../common/content-strategy/content-strategy.registry';
 import { DedupService }             from '../../common/dedup/dedup.service';
+import { SemanticDedupService }     from '../../common/dedup/semantic-dedup.service';
+import { TopicRouterService }       from '../../common/routing/topic-router.service';
 import { RssFetcherService }        from '../../common/fetchers/rss-fetcher.service';
 import { HttpFetcherService }       from '../../common/fetchers/http-fetcher.service';
 import { BotLoggerService }         from '../../common/logger/bot-logger.service';
@@ -32,15 +31,14 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
   private sources: SourceConfig[] = [];
 
   constructor(
-    private readonly claude:     ClaudeAgent,
     private readonly rss:        RssFetcherService,
     private readonly http:       HttpFetcherService,
     private readonly cleaner:    ContentCleanerService,
     private readonly images:     ImageResolverService,
-    private readonly formatter:  FormatterService,
-    private readonly summarizer: SummarizerService,
-    private readonly reviewer:   ReviewAgent,
+    private readonly postAgent:  PostGenerationAgent,
     private readonly dedup:      DedupService,
+    private readonly semanticDedup: SemanticDedupService,
+    private readonly topicRouter:   TopicRouterService,
     private readonly botLogger:  BotLoggerService,
     private readonly telegram:   TelegramPublisher,
     private readonly registry:   ContentStrategyRegistry,
@@ -119,43 +117,50 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
 
   private async processItem(item: RawItem, channelId: string): Promise<void> {
     const MIN_CONTENT_LENGTH = 800;
+    const shortContent = !item.content || item.content.length < MIN_CONTENT_LENGTH;
 
-    // Enrich short content via Perplexity; fall back to direct HTTP fetch + Haiku extraction
-    let content = item.content;
-    if (!content || content.length < MIN_CONTENT_LENGTH) {
-      this.logger.debug(`Content too short (${content?.length ?? 0}), trying summarizer.fetchByUrl`);
-      const usable = (text: string | null) =>
-        text && text.trim() && text.trim() !== 'SKIP_POST' ? text : null;
-
-      let fetched = usable(await this.summarizer.fetchByUrl(item.source));
-
-      if (!fetched) {
-        this.logger.debug(`Perplexity bailed — falling back to fetchAndExtract for ${item.source}`);
-        fetched = usable(await this.summarizer.fetchAndExtract(item.source));
-      }
-
-      if (!fetched) {
-        await this.botLogger.logError(item.source, channelId, 'SKIP_POST');
-        await this.dedup.markPosted(item.source, item.title, channelId);
-        this.logger.debug(`Skipped (all summarizers failed): ${item.source}`);
-        return;
-      }
-      content = fetched;
-    }
-
-    const formattedText = content
-      ? await this.formatter.formatNewsItem(item.title, content, item.source)
-      : null;
-
-    if (formattedText === 'SKIP_POST') {
-      // Content unformattable — remove from queue permanently via dedup
+    // Semantic dedup: cross-strategy check — another strategy on this channel
+    // may have already covered this story. Cheap haiku call before the heavier
+    // generation pipeline.
+    const verdict = await this.semanticDedup.check(channelId, {
+      title:   item.title,
+      content: item.content ?? '',
+    });
+    if (verdict !== 'NEW') {
       await this.dedup.markPosted(item.source, item.title, channelId);
-      this.logger.debug(`Skipped (unformattable): ${item.source}`);
+      this.logger.debug(`Skipped (${verdict}): ${item.source}`);
       return;
     }
-    if (!formattedText) return;
 
-    const text = this.buildMessage(formattedText, item);
+    // Delegate the full AI transformation (enrich if needed → write → clean)
+    // to PostGenerationAgent. NestJS keeps I/O, the agent owns prose.
+    const result = await this.postAgent.generate({
+      mode:            'news',
+      channelSkill:    'channel-ai0-news',
+      needsEnrichment: shortContent,
+      rawData: {
+        title:   item.title,
+        content: item.content ?? '',
+        source:  item.source,
+        tags:    item.tags,
+      },
+    });
+
+    if (result === 'SKIP_POST') {
+      await this.dedup.markPosted(item.source, item.title, channelId);
+      this.logger.debug(`Skipped (SKIP_POST): ${item.source}`);
+      return;
+    }
+    if (!result) {
+      // Null = transient/agent failure — leave dedup untouched so we retry next cron.
+      this.logger.warn(`Agent returned null for ${item.source} — will retry`);
+      return;
+    }
+
+    // Prefer the agent-supplied tag (when it later opts to generate one). Fall back to
+    // source-level tags otherwise.
+    const agentTags = result.tag ? [result.tag] : (item.tags ?? []);
+    const text = this.buildMessage(result.text, { ...item, tags: agentTags });
 
     let imageBuffer: Buffer | undefined;
     if (item.image) {
@@ -180,6 +185,17 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
         title: item.title, strategyType: this.type, tags: item.tags ?? null,
       });
       this.logger.debug(`Published to ${channelId}: ${item.title}`);
+
+      // Topic routing: forward to a sibling channel if the post matches one.
+      // Fire-and-forget — the main publication is already successful.
+      const targetChannel = await this.topicRouter.route(result.text, channelId);
+      if (targetChannel) {
+        try {
+          await this.telegram.forward(channelId, targetChannel, messageId);
+        } catch (fwdErr: any) {
+          this.logger.warn(`Forward to ${targetChannel} failed: ${fwdErr.message}`);
+        }
+      }
     } catch (err) {
       await this.botLogger.logError(item.source, channelId, err.message);
       this.logger.warn(`Publish failed for ${item.source}: ${err.message}`);
@@ -187,12 +203,36 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
   }
 
   private buildMessage(text: string, item: RawItem): string {
-    const clean = text
-      .replace(/\[\d+\]/g, '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+    // Defensive strip — duplicates of the cleanup `PostGenerationAgent` already
+    // runs via `cleanFinalText`. Kept here as a belt-and-braces guard against
+    // any future change that bypasses the helper.
+    const stripped = text
+      // Source attribution lines the AI sometimes adds
+      .replace(/^\s*(Джерело|Source)\s*[:：].*$/gim, '')
+      // Friendly preambles the AI adds despite "no preamble" rule —
+      // including markdown-bold and HTML-bold wrapped variants
+      .replace(
+        /^\s*(?:\*\*|__|<b>|<strong>)\s*(Ось\s+)?(готов(ий|ого)\s+)?пост\s*[:：]?\s*(?:\*\*|__|<\/b>|<\/strong>)\s*$/gim,
+        '',
+      )
+      .replace(/^\s*(Ось\s+)?(готов(ий|ого)\s+)?пост\s*[:：]\s*$/gim, '')
+      .replace(/^\s*final\s+post\s*[:：]\s*$/gim, '')
+      // Standalone separator lines ("---", "***", "===")
+      .replace(/^\s*[-*=]{3,}\s*$/gm, '')
+      // Trailing "Тег: ..." / "Tag: ..." meta-lines from broken JSON output
+      .replace(/^\s*(Тег|ТЕГ|Tag|tag)\s*[:：]\s*[`'"#\w-]*\s*$/gim, '')
+      // Markdown-style links [text](url) — don't render in Telegram HTML mode
+      .replace(/\[([^\]]+)\]\(https?:\/\/[^)]+\)/g, '$1')
+      // Inline hashtags anywhere (we append our own hashtag line below)
+      .replace(/(^|\s)#[\p{L}\p{N}_]+/gu, '$1')
+      // Markdown code fences left around the whole post
+      .replace(/^```(?:json|markdown|html|text)?\s*$/gim, '')
+      // Collapse extra blank lines left behind by the strips above
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+
+    const clean = stripped
+      .replace(/\[\d+\]/g, '');
 
     const tags = item.tags
       .map(t => '#' + String(t).trim().replace(/[\s\-\.]+/g, '_').toLowerCase())
