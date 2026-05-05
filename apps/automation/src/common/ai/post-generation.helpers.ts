@@ -1,18 +1,19 @@
 /**
- * Removes stray Markdown leaks the AI may emit despite explicit "no markdown"
- * instructions. Telegram is configured for HTML parse mode, so any `**bold**` or
- * `_italic_` would render literally.
- *
- * Conservative: only strips the markdown wrappers; keeps the inner text. Does not
- * touch HTML tags, URLs, or mid-word asterisks (rare but possible in code-style
- * tokens like `C*`).
+ * Converts stray Markdown emphasis to Telegram HTML so the visual
+ * hierarchy survives even when the AI emits Markdown despite the system
+ * prompt asking for HTML. Also strips horizontal rules and collapses
+ * excessive newlines.
  */
-export function stripStrayMarkdown(s: string): string {
+export function convertStrayMarkdown(s: string): string {
   return s
-    .replace(/\*\*([^*\n]+)\*\*/g, '$1')
-    .replace(/__([^_\n]+)__/g, '$1')
-    .replace(/(?<![*\w])\*([^*\n]+)\*(?![*\w])/g, '$1')
+    // Bold: **word** / __word__ → <b>word</b>
+    .replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>')
+    .replace(/__([^_\n]+)__/g, '<b>$1</b>')
+    // Italic: *word* (with non-word boundaries) → <i>word</i>
+    .replace(/(?<![*\w])\*([^*\n]+)\*(?![*\w])/g, '<i>$1</i>')
+    // Horizontal rules: drop the line entirely
     .replace(/^[ \t]*-{3,}[ \t]*$/gm, '')
+    // Collapse 3+ newlines to 2
     .replace(/\n{3,}/g, '\n\n');
 }
 
@@ -40,12 +41,12 @@ export function stripPreambles(raw: string): string {
 
 /**
  * Full final-text cleanup pipeline applied to the AI's response before publishing.
- * Combines preamble stripping + stray-markdown removal. Order matters: preambles
- * first (so their bold/HTML wrappers are removed before we try to strip standalone
- * bold), then markdown.
+ * Combines preamble stripping + stray-markdown conversion. Order matters: preambles
+ * first (so their bold/HTML wrappers are removed before we try to convert standalone
+ * bold), then markdown conversion.
  */
 export function cleanFinalText(raw: string): string {
   const noPreamble = stripPreambles(raw);
-  const noMarkdown = stripStrayMarkdown(noPreamble);
-  return noMarkdown.trim();
+  const converted = convertStrayMarkdown(noPreamble);
+  return converted.trim();
 }

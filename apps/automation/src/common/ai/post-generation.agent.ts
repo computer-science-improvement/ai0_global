@@ -127,6 +127,7 @@ export class PostGenerationAgent implements OnModuleInit {
     return [
       `# ROLE`,
       `You write a single Ukrainian-language Telegram post body. Output ONLY the post text — no preamble, no JSON, no markdown headers, no review notes, no "Фінальний текст" markers, nothing else.`,
+      `You MUST stay under 800 characters total in your output. Posts over 800 chars cause visual breakage in Telegram (image gets sent separately). Edit ruthlessly to fit.`,
       ``,
       `# CHANNEL RULES`,
       channelMd,
@@ -142,7 +143,8 @@ export class PostGenerationAgent implements OnModuleInit {
       ``,
       `# OUTPUT FORMAT`,
       `- Telegram HTML only: <b>, <i>, <a href="...">, <code>, <u>.`,
-      `- Max 850 characters total (Telegram caption limit minus our hashtag/source line). Birthday-story channel: 600–1100.`,
+      `- HARD MAX: 800 characters of post body. NestJS appends ~150 more for hashtags + source link, and Telegram caption limit is 1024 — so anything over 800 forces the image into a separate message bubble (visually broken). Birthday-story channel: 600–900.`,
+      `- Count characters as you draft. If your draft exceeds 800 chars, REWRITE shorter — drop secondary facts, tighten phrasing.`,
       `- No source links in the body — NestJS appends one separately.`,
       `- No hashtags in the body — NestJS appends one separately.`,
       `- No markdown bold (**), no markdown headers (##/###), no horizontal rules (---).`,
