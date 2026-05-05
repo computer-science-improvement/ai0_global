@@ -126,4 +126,29 @@ export class TelegramStatsClient implements OnModuleInit {
       return null;
     }
   }
+
+  /**
+   * Uploads a photo and sends it with a caption via the user account (MTProto).
+   * Requires Telegram Premium for captions up to 2048 chars (bot limit is 1024).
+   * Uses gramJS sendFile high-level helper which handles InputFile upload internally.
+   */
+  async sendPhotoWithCaption(
+    channelId: string,
+    photo:     Buffer,
+    caption:   string,
+  ): Promise<number> {
+    if (!this.client || !this.ready) throw new Error('TelegramStatsClient not connected');
+    const entity = await this.client.getEntity(channelId);
+    const sent = await this.client.sendFile(entity as any, {
+      file:          photo,
+      caption,
+      parseMode:     'html',
+      forceDocument: false,
+      silent:        false,
+    });
+    // sent is a Message object — extract its id
+    const messageId = (sent as any).id;
+    if (typeof messageId !== 'number') throw new Error('sendFile did not return numeric message id');
+    return messageId;
+  }
 }

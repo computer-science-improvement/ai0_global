@@ -6,6 +6,7 @@ import { BasePublisher, PublishTarget } from './base.publisher';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { PostingThrottleService } from './posting-throttle.service';
 import { StructuredLoggerService } from '../common/logging/structured-logger.service';
+import { TelegramStatsClient } from '../stats/telegram-stats.client';
 
 export interface PromptPayload {
   imageBuffer: Buffer;
@@ -33,6 +34,7 @@ export class TelegramPublisher extends BasePublisher {
     private readonly channelConfig: ChannelConfigService,
     private readonly throttle:      PostingThrottleService,
     private readonly structured:    StructuredLoggerService,
+    private readonly userClient:    TelegramStatsClient,
   ) {
     super();
   }
@@ -70,13 +72,18 @@ export class TelegramPublisher extends BasePublisher {
 
     let messageId: string;
     try {
-      if (photo && visibleLength <= 1024) {
+      if (!photo) {
+        // No image — plain text message (4096 limit applies in Bot API).
+        messageId = await this.sendMessage(base, chatId, payload.text);
+      } else if (visibleLength <= 1024) {
+        // Tier 1: bot API photo + caption.
         messageId = await this.sendPhotoWithCaption(base, chatId, photo, payload.text);
-      } else if (photo) {
-        await this.sendPhoto(base, chatId, photo);
-        messageId = await this.sendMessage(base, chatId, payload.text);
+      } else if (visibleLength <= 2048) {
+        // Tier 2: MTProto via user account (Premium → 2048 caption).
+        messageId = await this.publishViaUserOrFallback(base, chatId, target.id, photo, payload.text);
       } else {
-        messageId = await this.sendMessage(base, chatId, payload.text);
+        // Tier 3: photo (no caption) + reply with full text.
+        messageId = await this.publishPhotoThenReply(base, chatId, photo, payload.text);
       }
     } catch (err: any) {
       this.structured.publication({
@@ -119,7 +126,7 @@ export class TelegramPublisher extends BasePublisher {
     return String(res.data.result.message_id);
   }
 
-  private async sendPhoto(base: string, chatId: string, image: Buffer | string): Promise<void> {
+  private async sendPhoto(base: string, chatId: string, image: Buffer | string): Promise<string> {
     const form = new FormData();
     form.append('chat_id', chatId);
     if (typeof image === 'string') {
@@ -132,7 +139,57 @@ export class TelegramPublisher extends BasePublisher {
       headers: form.getHeaders(),
       timeout: 30000,
     });
-    this.logger.log(`Photo sent to ${chatId}, message_id: ${res.data.result.message_id}`);
+    const messageId = String(res.data.result.message_id);
+    this.logger.log(`Photo sent to ${chatId}, message_id: ${messageId}`);
+    return messageId;
+  }
+
+  /**
+   * Tier 2 publish: tries the user-account MTProto path first (up to 2048
+   * caption with Premium). Falls back to photo+reply on any error so the
+   * post still ships.
+   */
+  private async publishViaUserOrFallback(
+    base:       string,
+    chatId:     string,
+    channelId:  string,
+    photo:      Buffer | string,
+    caption:    string,
+  ): Promise<string> {
+    if (!this.userClient.isEnabled()) {
+      this.logger.warn(`User-account client disabled — falling back to photo+reply for ${chatId}`);
+      return this.publishPhotoThenReply(base, chatId, photo, caption);
+    }
+    if (typeof photo === 'string') {
+      // gramJS sendFile expects a Buffer; URLs aren't supported the same way.
+      this.logger.warn(`User-account path needs Buffer photo (got URL) — falling back to photo+reply`);
+      return this.publishPhotoThenReply(base, chatId, photo, caption);
+    }
+    try {
+      const messageId = await this.userClient.sendPhotoWithCaption(channelId, photo, caption);
+      this.logger.log(`Photo+caption sent via user-account to ${chatId}, message_id: ${messageId}`);
+      return String(messageId);
+    } catch (err: any) {
+      this.logger.warn(
+        `User-account publish failed for ${chatId}: ${err.message} — falling back to photo+reply`,
+      );
+      return this.publishPhotoThenReply(base, chatId, photo, caption);
+    }
+  }
+
+  /**
+   * Tier 3 publish (and fallback): photo without caption, then a sendMessage
+   * reply containing the full text. Returns the photo's message_id.
+   */
+  private async publishPhotoThenReply(
+    base:    string,
+    chatId:  string,
+    photo:   Buffer | string,
+    text:    string,
+  ): Promise<string> {
+    const photoMessageId = await this.sendPhoto(base, chatId, photo);
+    await this.sendReply(base, chatId, text, photoMessageId);
+    return photoMessageId;
   }
 
   /**

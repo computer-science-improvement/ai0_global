@@ -16,6 +16,6 @@ import { ApiKeyGuard }             from './api-key.guard';
     ApiKeyGuard,
   ],
   controllers: [StatsController],
-  exports: [PublicationsRepository],
+  exports: [PublicationsRepository, TelegramStatsClient],
 })
 export class StatsModule {}
