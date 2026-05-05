@@ -3,6 +3,9 @@ node_modules
 .git
 .env
 *.md
+# Exception: .claude/{skills,agents}/**/*.md are runtime content for
+# PostGenerationAgent (system-prompt composition) — must ship in the image.
+!apps/automation/.claude/**/*.md
 .DS_Store
 apps/pipeline/src/data
 apps/pipeline/src/tools/additional-data
