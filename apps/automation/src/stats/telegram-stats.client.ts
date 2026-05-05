@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
+import { CustomFile }          from 'telegram/client/uploads';
 
 export interface ChannelInfo {
   subscribers: number | null;
@@ -130,7 +131,10 @@ export class TelegramStatsClient implements OnModuleInit {
   /**
    * Uploads a photo and sends it with a caption via the user account (MTProto).
    * Requires Telegram Premium for captions up to 2048 chars (bot limit is 1024).
-   * Uses gramJS sendFile high-level helper which handles InputFile upload internally.
+   *
+   * Wraps the Buffer in a CustomFile with `image.jpg` name so gramJS detects
+   * image mime and ships as a real photo (with preview). Without the filename
+   * hint, sendFile defaults to "document" which renders as `unnamed 100KB`.
    */
   async sendPhotoWithCaption(
     channelId: string,
@@ -139,16 +143,20 @@ export class TelegramStatsClient implements OnModuleInit {
   ): Promise<number> {
     if (!this.client || !this.ready) throw new Error('TelegramStatsClient not connected');
     const entity = await this.client.getEntity(channelId);
+
+    const file = new CustomFile('image.jpg', photo.length, '', photo);
+
     const sent = await this.client.sendFile(entity as any, {
-      file:          photo,
+      file,
       caption,
       parseMode:     'html',
       forceDocument: false,
       silent:        false,
     });
-    // sent is a Message object — extract its id
     const messageId = (sent as any).id;
-    if (typeof messageId !== 'number') throw new Error('sendFile did not return numeric message id');
+    if (typeof messageId !== 'number') {
+      throw new Error('sendFile did not return numeric message id');
+    }
     return messageId;
   }
 }
