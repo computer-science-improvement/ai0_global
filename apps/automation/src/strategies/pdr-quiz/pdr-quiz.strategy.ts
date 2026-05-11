@@ -89,13 +89,33 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
       let lastMessageId: number | undefined;
 
       // 1. Image
-      if (q.image_url) {
-        const res = await axios.post(
-          `${base}/sendPhoto`,
-          { chat_id: chatId, photo: q.image_url },
-          { timeout: 15_000 },
+      // Telegram's sendPhoto accepts either an HTTP(S) URL or a cached file_id.
+      // If image_url is anything else (relative path, data: URL, empty after trim),
+      // Telegram tries to decode it as a base64 file_id and fails with
+      // "Wrong padding length". Validate first; skip image rather than crash.
+      const imageUrl = q.image_url?.trim();
+      const isValidImageUrl = imageUrl && /^https?:\/\/\S+\.\S+/i.test(imageUrl);
+
+      if (q.image_url && !isValidImageUrl) {
+        this.logger.warn(
+          `Q${q.question_id}: image_url is not a valid HTTP URL ("${q.image_url.slice(0, 80)}"), skipping image`,
         );
-        lastMessageId = res.data.result.message_id;
+      }
+
+      if (isValidImageUrl) {
+        try {
+          const res = await axios.post(
+            `${base}/sendPhoto`,
+            { chat_id: chatId, photo: imageUrl },
+            { timeout: 15_000 },
+          );
+          lastMessageId = res.data.result.message_id;
+        } catch (imgErr: any) {
+          // Don't fail the whole quiz post because of a bad image — just log
+          // and continue with the text/poll.
+          const tgDesc = imgErr.response?.data?.description ?? imgErr.message;
+          this.logger.warn(`Q${q.question_id}: sendPhoto failed (${tgDesc}); proceeding without image`);
+        }
       }
 
       // 2. Decide between normal and expanded mode

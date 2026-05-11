@@ -26,3 +26,7 @@ Thumbs.db
 
 # Orchestration temp artifacts (plan durable files stay in tasks/<slug>/README.md, MANIFEST.md, agents/)
 tasks/**/scratch/
+
+# MemPalace per-project files (issue #185)
+mempalace.yaml
+entities.json

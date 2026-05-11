@@ -69,13 +69,24 @@ export class RssFetcherService implements OnModuleInit {
     return this.pickLatestPerDomain(allItems);
   }
 
-  /** Fetch and parse RSS feed, retrying through proxies on 403 */
+  /** Fetch and parse RSS feed, retrying through proxies on 403 and sanitizing broken XML */
   private async parseFeed(url: string): Promise<Parser.Output<Record<string, unknown>>> {
-    // Try direct first
+    // Try direct first — fall back to sanitized parse on XML errors
     try {
       return await parser.parseURL(url);
     } catch (err) {
-      if (err.statusCode !== 403 && err.response?.status !== 403) throw err;
+      const is403 = err.statusCode === 403 || err.response?.status === 403;
+      const isXmlError = /Invalid character in entity name|Unencoded|Non-whitespace before first tag|Unexpected end/i.test(err.message ?? '');
+
+      if (isXmlError) {
+        this.logger.warn(`RSS XML error for ${url} — refetching and sanitizing`);
+        const res = await axios.get<string>(url, {
+          headers: RSS_HEADERS, timeout: 15_000, responseType: 'text',
+        });
+        return await parser.parseString(this.sanitizeXml(res.data as string));
+      }
+
+      if (!is403) throw err;
       this.logger.warn(`RSS 403 for ${url} — retrying via proxy`);
     }
 
@@ -89,7 +100,14 @@ export class RssFetcherService implements OnModuleInit {
           timeout: 15_000,
         });
         this.logger.debug(`RSS via proxy: ${url}`);
-        return await parser.parseString(res.data as string);
+        try {
+          return await parser.parseString(res.data as string);
+        } catch (parseErr: any) {
+          if (/Invalid character in entity name|Unencoded|Non-whitespace/i.test(parseErr.message ?? '')) {
+            return await parser.parseString(this.sanitizeXml(res.data as string));
+          }
+          throw parseErr;
+        }
       } catch (err) {
         const status = err.response?.status;
         if (status === 403) {
@@ -100,6 +118,16 @@ export class RssFetcherService implements OnModuleInit {
     }
 
     throw new Error(`All proxies unavailable for ${url}`);
+  }
+
+  /**
+   * Escape bare `&` that aren't already part of a valid XML/HTML entity.
+   * Some feeds (e.g. marktechpost) ship unescaped ampersands inside titles
+   * or descriptions, which kills the XML parser with "Invalid character in
+   * entity name". This regex preserves real entities like `&amp;` `&#38;` `&#xA0;`.
+   */
+  private sanitizeXml(xml: string): string {
+    return xml.replace(/&(?!(?:[a-zA-Z][a-zA-Z0-9]{0,10}|#[0-9]{1,7}|#x[0-9a-fA-F]{1,6});)/g, '&amp;');
   }
 
   private buildProxyConfig(proxyUrl: string): AxiosRequestConfig {

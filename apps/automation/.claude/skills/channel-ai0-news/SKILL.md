@@ -17,8 +17,26 @@ Ukrainian throughout. Proper nouns stay in original form.
 - Good: "Apple випустила iOS 18" / "Elon Musk заявив"
 - Bad: "Еппл", "Елон Маск"
 
-## Structure
-One clear fact per sentence. Short paragraphs. No filler.
+## Structure & length — HARD LIMIT
+**Maximum 500 characters total**, ideal 300–450. This is non-negotiable.
+
+Most Telegram readers skim — long posts get scrolled past. Target the **main thesis**
+of the article in 2–4 short sentences:
+
+1. **Lead** (1 sentence) — what happened: actor + action + key number/name/date.
+2. **Context** (1–2 sentences, optional) — only if it's essential for understanding
+   the lead. Skip if the lead is self-explanatory.
+3. **Outcome / impact** (1 sentence, optional) — only if the article actually states it.
+
+What to CUT:
+- Background paragraphs ("Раніше компанія…", "Слід нагадати, що…")
+- Lists of features / details / sub-points — keep one strongest example
+- Multiple quotes — keep at most one short one if it adds real info
+- Adjacent stories or "related news" the article mentioned
+- Anything that doesn't change the reader's understanding of the lead
+
+If the source article is 5000 chars, your post is still ≤500. One fact per sentence.
+No filler.
 
 ## Tag (single hashtag per post)
 Exactly ONE tag per post, chosen from the primary subject of the article — not adjacent context.

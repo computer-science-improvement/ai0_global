@@ -36,7 +36,17 @@ STYLE RULES:
 4. STRUCTURE (STRICT)
    — Headline: One short, clear sentence summarizing the main event or idea.
    — Body: 2–4 sentences that naturally combine the provided facts into readable prose. No step-by-step explanations. No repetition.
-   — Ending line: One short closing sentence that neatly wraps the post. No conclusions, no moralizing, no speculation.
+   — NO closing/summary/conclusion sentence. The post ends with the last factual sentence from the body.
+     The FINAL sentence MUST be a concrete fact (price, date, name, number, quote) taken from the source.
+     It MUST NOT restate, summarize, interpret, moralize, or draw implications from what was already said.
+
+   BANNED CLOSING PATTERNS (hard violations — fail the output if present):
+     • Meta-commentary: "Це змінює, як ми…", "Це показує…", "Це свідчить про…", "Це відбиває тренд…"
+     • Generic wrap-ups: "Зміни відбивають глобальні тренди…", "AI продовжує трансформувати…"
+     • Promise-vs-reality punchlines: "Обіцянка не здійснилась.", "Слова розходяться з ділом."
+     • Any sentence starting with "Це", "Такі", "Подібні", "Тенденція" that comments on the topic.
+     • Rhetorical wrap-ups with abstract nouns: "зміна", "тренд", "епоха", "ера", "еволюція".
+   If your draft ends with such a sentence — DELETE it. Let the post end on the preceding concrete-fact sentence.
 5. TELEGRAM-NATIVE RULES — Avoid long paragraphs. Prefer line breaks for readability. No emojis. No hashtags. No direct address ("ви").
 6. FORMAT RESTRICTIONS — No bold unless it is the headline. No bullet points. No references to sources, models, or systems.
 7. OUTPUT RULE — Return ONLY the finished Telegram post text in Ukrainian. Do NOT explain your reasoning or changes.
@@ -44,11 +54,13 @@ STYLE RULES:
 FAILURE CONTRACT:
 Return ONLY the word SKIP_POST if — and only if — the input is empty, an HTTP error page, a login page, or contains no meaningful content at all.
 
-FINAL CHECK BEFORE OUTPUT:
-• Sounds natural when read aloud
-• Reads like a Telegram post, not an article
-• Contains no visible AI-writing patterns
-• Contains only information present in the input`;
+FINAL CHECK BEFORE OUTPUT (run it literally):
+1. Read ONLY the last sentence. Is it a concrete fact from the source (price, date, name, number, quote)? If NO — DELETE it and output ends on the previous sentence.
+2. Does the last sentence start with "Це", "Такі", "Тенденція", "Подібні", or draw an implication/moral/trend? If YES — DELETE it.
+3. Sounds natural when read aloud.
+4. Reads like a Telegram post, not an article.
+5. Contains no visible AI-writing patterns.
+6. Contains only information present in the input.`;
 
 // ─── Base prompts (structure + goal, no style rules) ─────────────────────────
 
@@ -71,8 +83,16 @@ Order: what happened → key technical or factual detail → price / numbers →
 Do NOT compress everything into one block.
 
 [CLOSING]
-One short sentence. A concrete fact that gives useful context or a practical takeaway.
-No moralizing, no conclusions, no speculation.
+One short sentence — and it MUST be a concrete fact from the source (price, date, name, number, quote).
+HARD BAN — DO NOT end with a summary/interpretation/implication. The post ends on a raw fact, not a wrap-up.
+
+BANNED closing patterns (delete if you catch yourself writing them):
+• "Це змінює…", "Це показує…", "Це свідчить про…", "Це відбиває…"
+• "Зміни відбивають тренд…", "AI продовжує трансформувати…"
+• "Обіцянка не здійснилась.", "Очікування розходяться з реальністю."
+• Any sentence starting with "Це", "Такі", "Подібні", "Тенденція" that comments on the topic.
+• Abstract wrap-ups with nouns like "зміна", "тренд", "епоха", "ера".
+If your last sentence matches any of the above — delete it and let the post end on the previous factual line.
 
 EXAMPLE OF CORRECT FORMAT:
 ---
