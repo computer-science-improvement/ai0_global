@@ -65,6 +65,19 @@ services:
       redis:
         condition: service_healthy
 
+  # ─── Dashboard (React SPA serving Phase 1 tracking data) ──────────────────────
+  dashboard:
+    profiles: ["prod"]
+    build:
+      context: .
+      dockerfile: apps/dashboard/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${DASHBOARD_PORT:-8080}:80"
+    depends_on:
+      automation:
+        condition: service_started
+
   # ─── Pipeline (job — run on demand or via cron) ──────────────────────────────
   pipeline:
     build:
