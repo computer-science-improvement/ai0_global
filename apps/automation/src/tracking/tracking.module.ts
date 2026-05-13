@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from '../auth/auth.module';
 import { RedisProvider } from './redis.provider';
 import { TrackingQueueService } from './tracking-queue.service';
 import { TrackingMtprotoClient } from './mtproto/tracking-mtproto.client';
@@ -16,7 +17,7 @@ import { TrackingController } from './api/tracking.controller';
 import { TrackingAuthGuard } from './api/tracking-auth.guard';
 
 @Module({
-  imports: [ConfigModule],
+  imports: [ConfigModule, AuthModule],
   controllers: [TrackingController],
   providers: [
     RedisProvider,

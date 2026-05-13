@@ -2,6 +2,7 @@ import { NestFactory }             from '@nestjs/core';
 import { WinstonModule }           from 'nest-winston';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as winston                from 'winston';
+import cookieParser                from 'cookie-parser';
 import { AppModule }               from './app.module';
 
 const isDev = (process.env.NODE_ENV ?? 'development') !== 'production';
@@ -24,6 +25,9 @@ const logger = WinstonModule.createLogger({
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { logger });
+
+  app.use(cookieParser());
+  app.enableCors({ origin: ['http://localhost:5173'], credentials: true });
 
   const swaggerCfg = new DocumentBuilder()
     .setTitle('ai0_global automation API')

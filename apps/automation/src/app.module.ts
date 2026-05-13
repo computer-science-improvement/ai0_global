@@ -24,6 +24,7 @@ import { AssetsStrategyModule }              from './strategies/assets/assets-st
 import { StatsModule }          from './stats/stats.module';
 import { DevController }        from './dev.controller';
 import { TrackingModule }       from './tracking/tracking.module';
+import { AuthModule }           from './auth/auth.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { TrackingModule }       from './tracking/tracking.module';
     MotivationBiographyStrategyModule,
     AssetsStrategyModule,
     TrackingModule,
+    AuthModule,
   ],
   controllers: [DevController],
 })
