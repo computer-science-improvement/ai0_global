@@ -34,30 +34,54 @@ function ChannelsPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex rounded-lg bg-neutral-900 p-1 text-sm">
+      <div style={{ marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{
+            display: 'flex',
+            background: 'var(--color-surface-1)',
+            borderRadius: 'var(--radius-pill)',
+            padding: 4,
+            fontSize: 14,
+            gap: 2,
+          }}>
             {(['all', 'mine', 'external'] as const).map((f) => (
-              <button key={f} onClick={() => setSearch({ filter: f, page: 1 })}
-                className={`rounded px-3 py-1 ${filter === f ? 'bg-neutral-700' : 'hover:bg-neutral-800'}`}>
+              <button
+                key={f}
+                onClick={() => setSearch({ filter: f, page: 1 })}
+                style={{
+                  borderRadius: 'var(--radius-pill)',
+                  padding: '4px 14px',
+                  fontSize: 14,
+                  cursor: 'pointer',
+                  border: 'none',
+                  background: filter === f ? 'var(--color-surface-2)' : 'transparent',
+                  color: filter === f ? 'var(--color-ink)' : 'var(--color-ink-muted)',
+                  transition: 'background 0.15s, color 0.15s',
+                }}
+              >
                 {f}
               </button>
             ))}
           </div>
-          <input value={q} onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
+          <input
+            value={q}
+            onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
             placeholder="Search…"
-            className="rounded-lg bg-neutral-900 px-3 py-1 text-sm outline-none ring-1 ring-neutral-800 focus:ring-neutral-600" />
+            className="input-field"
+          />
         </div>
-        <button onClick={() => setModalOpen(true)} className="rounded-lg bg-emerald-600 px-4 py-2 text-sm hover:bg-emerald-500">
+        <button onClick={() => setModalOpen(true)} className="btn-primary">
           + Add channel
         </button>
       </div>
 
-      {isLoading && <p className="text-neutral-400">Loading…</p>}
-      {error && <p className="text-red-400">{(error as Error).message}</p>}
+      {isLoading && <p style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
+      {error && <p style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
       {data && (
         <>
-          <div className="space-y-1">{data.items.map((c) => <ChannelRow key={c.id} c={c} />)}</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {data.items.map((c) => <ChannelRow key={c.id} c={c} />)}
+          </div>
           <Pagination page={page} pageSize={PAGE_SIZE} total={data.total} onPage={(p) => setSearch({ page: p })} />
         </>
       )}

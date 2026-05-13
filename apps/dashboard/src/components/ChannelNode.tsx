@@ -4,15 +4,42 @@ import type { GraphNode } from '../api/types';
 
 export function ChannelNode({ data }: { data: GraphNode }) {
   return (
-    <div className="rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 text-xs shadow-md min-w-[140px]">
-      <Handle type="target" position={Position.Top} className="!bg-neutral-500" />
-      <div className="flex items-center gap-1.5">
-        <span className="font-semibold truncate max-w-[120px]">{data.title ?? data.username ?? data.id.slice(0, 6)}</span>
-        {data.isMine && <span className="rounded bg-emerald-700 px-1 text-[10px]">mine</span>}
+    <div style={{
+      borderRadius: 'var(--radius-md)',
+      border: '1px solid var(--color-hairline)',
+      background: 'var(--color-surface-1)',
+      padding: '8px 12px',
+      fontSize: 12,
+      boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+      minWidth: 140,
+    }}>
+      <Handle type="target" position={Position.Top} style={{ background: 'var(--color-hairline)' }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <span style={{ fontWeight: 600, color: 'var(--color-ink)' }} className="truncate max-w-[120px]">
+          {data.title ?? data.username ?? data.id.slice(0, 6)}
+        </span>
+        {data.isMine && (
+          <span style={{
+            background: 'rgba(34,197,94,0.18)',
+            color: 'var(--color-success)',
+            borderRadius: 'var(--radius-pill)',
+            padding: '1px 6px',
+            fontSize: 10,
+            fontWeight: 600,
+          }}>
+            mine
+          </span>
+        )}
       </div>
-      {data.username && <div className="text-neutral-400 truncate">@{data.username}</div>}
-      <div className="mt-1 text-neutral-500">{fmtNumber(data.subs)} subs</div>
-      <Handle type="source" position={Position.Bottom} className="!bg-neutral-500" />
+      {data.username && (
+        <div style={{ color: 'var(--color-ink-muted)', marginTop: 2 }} className="truncate">
+          @{data.username}
+        </div>
+      )}
+      <div style={{ marginTop: 4, color: 'var(--color-ink-muted)' }} className="tabular-nums">
+        {fmtNumber(data.subs)} subs
+      </div>
+      <Handle type="source" position={Position.Bottom} style={{ background: 'var(--color-hairline)' }} />
     </div>
   );
 }

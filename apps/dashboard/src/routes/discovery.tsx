@@ -10,19 +10,41 @@ function DiscoveryPage() {
 
   return (
     <div>
-      <h1 className="mb-1 text-2xl font-bold">Discovery</h1>
-      <p className="mb-4 text-sm text-neutral-400">Channels seen in ads on tracked channels but not yet polled (closed or unresolved).</p>
-      {isLoading && <p className="text-neutral-400">Loading…</p>}
-      {data && data.items.length === 0 && <p className="text-neutral-500">Nothing in queue right now.</p>}
+      <h1 className="text-display-md" style={{ marginBottom: 4 }}>Discovery</h1>
+      <p style={{ marginBottom: 16, fontSize: 14, color: 'var(--color-ink-muted)' }}>
+        Channels seen in ads on tracked channels but not yet polled (closed or unresolved).
+      </p>
+      {isLoading && <p style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
+      {data && data.items.length === 0 && <p style={{ color: 'var(--color-ink-muted)' }}>Nothing in queue right now.</p>}
       {data && data.items.length > 0 && (
-        <div className="space-y-1">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           {data.items.map((it) => (
-            <div key={it.id} className="flex items-center justify-between rounded-lg bg-neutral-900 px-4 py-3 text-sm">
+            <div key={it.id} style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              background: 'var(--color-surface-1)',
+              borderRadius: 'var(--radius-lg)',
+              padding: '14px 18px',
+              fontSize: 14,
+            }}>
               <div>
-                <span className="font-medium">@{it.username ?? '(no username)'}</span>
-                {it.isClosed && <span className="ml-2 rounded bg-rose-800 px-2 py-0.5 text-xs">closed</span>}
+                <span style={{ fontWeight: 500, color: 'var(--color-ink)' }}>@{it.username ?? '(no username)'}</span>
+                {it.isClosed && (
+                  <span style={{
+                    marginLeft: 8,
+                    background: 'rgba(239,68,68,0.18)',
+                    color: 'var(--color-danger)',
+                    borderRadius: 'var(--radius-pill)',
+                    padding: '2px 8px',
+                    fontSize: 12,
+                    fontWeight: 500,
+                  }}>
+                    closed
+                  </span>
+                )}
               </div>
-              <span className="text-neutral-400">seen {fmtRelative(it.addedAt)}</span>
+              <span style={{ color: 'var(--color-ink-muted)' }}>seen {fmtRelative(it.addedAt)}</span>
             </div>
           ))}
         </div>

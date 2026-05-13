@@ -10,30 +10,65 @@ export function GraphFilters({ from, to, minWeight, kinds, includeMine, onChange
     onChange({ kinds: kinds.includes(k) ? kinds.filter((x) => x !== k) : [...kinds, k] });
   };
   return (
-    <div className="mb-3 flex flex-wrap items-center gap-3 text-sm">
-      <label className="flex items-center gap-2">From
-        <input type="date" value={from} onChange={(e) => onChange({ from: e.target.value })}
-          className="rounded bg-neutral-900 px-2 py-1 ring-1 ring-neutral-800" />
+    <div style={{ marginBottom: 12, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, fontSize: 14 }}>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)' }}>
+        From
+        <input
+          type="date"
+          value={from}
+          onChange={(e) => onChange({ from: e.target.value })}
+          className="input-field"
+        />
       </label>
-      <label className="flex items-center gap-2">To
-        <input type="date" value={to} onChange={(e) => onChange({ to: e.target.value })}
-          className="rounded bg-neutral-900 px-2 py-1 ring-1 ring-neutral-800" />
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)' }}>
+        To
+        <input
+          type="date"
+          value={to}
+          onChange={(e) => onChange({ to: e.target.value })}
+          className="input-field"
+        />
       </label>
-      <label className="flex items-center gap-2">Min weight
-        <input type="range" min={1} max={10} value={minWeight}
-          onChange={(e) => onChange({ minWeight: parseInt(e.target.value, 10) })} />
-        <span className="w-6 text-center">{minWeight}</span>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)' }}>
+        Min weight
+        <input
+          type="range"
+          min={1}
+          max={10}
+          value={minWeight}
+          onChange={(e) => onChange({ minWeight: parseInt(e.target.value, 10) })}
+        />
+        <span style={{ width: 24, textAlign: 'center', color: 'var(--color-ink)' }}>{minWeight}</span>
       </label>
-      <div className="flex gap-1">
-        {ALL_KINDS.map((k) => (
-          <button key={k} onClick={() => toggleKind(k)}
-            className={`rounded px-2 py-1 ${kinds.length === 0 || kinds.includes(k) ? 'bg-neutral-700' : 'bg-neutral-900 text-neutral-500'}`}>
-            {k}
-          </button>
-        ))}
+      <div style={{ display: 'flex', gap: 4 }}>
+        {ALL_KINDS.map((k) => {
+          const active = kinds.length === 0 || kinds.includes(k);
+          return (
+            <button
+              key={k}
+              onClick={() => toggleKind(k)}
+              style={{
+                borderRadius: 'var(--radius-pill)',
+                padding: '4px 12px',
+                fontSize: 13,
+                cursor: 'pointer',
+                border: active ? 'none' : '1px solid var(--color-hairline)',
+                background: active ? 'var(--color-surface-2)' : 'transparent',
+                color: active ? 'var(--color-ink)' : 'var(--color-ink-muted)',
+                transition: 'background 0.15s, color 0.15s',
+              }}
+            >
+              {k}
+            </button>
+          );
+        })}
       </div>
-      <label className="ml-auto flex items-center gap-2">
-        <input type="checkbox" checked={includeMine} onChange={(e) => onChange({ includeMine: e.target.checked })} />
+      <label style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)', cursor: 'pointer' }}>
+        <input
+          type="checkbox"
+          checked={includeMine}
+          onChange={(e) => onChange({ includeMine: e.target.checked })}
+        />
         Include mine
       </label>
     </div>

@@ -36,13 +36,15 @@ function LoginPage() {
   }, [navigate, refresh]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="space-y-6 rounded-xl bg-neutral-900 p-8 shadow-xl">
-        <h1 className="text-2xl font-bold">Channel Tracker</h1>
-        <p className="text-sm text-neutral-400">Sign in with Telegram to continue.</p>
+    <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="card-featured" style={{ maxWidth: 400, width: '100%', padding: 32 }}>
+        <h1 className="text-display-md" style={{ marginBottom: 8 }}>Channel Tracker</h1>
+        <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
+          Sign in with Telegram to continue.
+        </p>
         <div ref={widgetRef} />
         {!TG_BOT_USERNAME && (
-          <p className="text-xs text-red-400">
+          <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-danger)' }}>
             VITE_TG_BOT_USERNAME not set — widget cannot render.
           </p>
         )}

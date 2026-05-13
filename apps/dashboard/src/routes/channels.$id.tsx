@@ -10,6 +10,15 @@ import { RoiPanel } from '../components/RoiPanel';
 
 export const Route = createFileRoute('/channels/$id')({ component: ChannelDetailPage });
 
+const sectionLabel: React.CSSProperties = {
+  marginBottom: 8,
+  fontSize: 11,
+  fontWeight: 600,
+  textTransform: 'uppercase',
+  letterSpacing: '0.08em',
+  color: 'var(--color-ink-muted)',
+};
+
 function ChannelDetailPage() {
   const { id } = Route.useParams();
 
@@ -18,60 +27,60 @@ function ChannelDetailPage() {
   const postsQ   = useQuery({ queryKey: ['posts', id],   queryFn: () => trackingApi.listPosts(id, 30) });
   const topQ     = useQuery({ queryKey: ['top', id],     queryFn: () => trackingApi.topPosts(id, 'views', 5) });
 
-  if (channelQ.isLoading) return <p className="text-neutral-400">Loading…</p>;
-  if (channelQ.error)     return <p className="text-red-400">{(channelQ.error as Error).message}</p>;
+  if (channelQ.isLoading) return <p style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
+  if (channelQ.error)     return <p style={{ color: 'var(--color-danger)' }}>{(channelQ.error as Error).message}</p>;
   if (!channelQ.data)     return null;
 
   const c = channelQ.data;
   return (
-    <div className="space-y-8">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
       <header>
-        <h1 className="text-2xl font-bold">{c.title ?? c.username ?? id}</h1>
-        <div className="mt-1 flex items-center gap-3 text-sm text-neutral-400">
+        <h1 className="text-display-md" style={{ margin: 0 }}>{c.title ?? c.username ?? id}</h1>
+        <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: 'var(--color-ink-muted)' }}>
           {c.username && <span>@{c.username}</span>}
           <span>·</span>
-          <span>{fmtNumber(c.subsCount)} subs</span>
+          <span className="tabular-nums">{fmtNumber(c.subsCount)} subs</span>
           <span>·</span>
           <span>tier: {c.pollTier}</span>
           <span>·</span>
           <span>added {fmtDate(c.addedAt)}</span>
         </div>
-        {c.about && <p className="mt-2 max-w-2xl text-sm text-neutral-300">{c.about}</p>}
+        {c.about && <p style={{ marginTop: 8, maxWidth: 640, fontSize: 14, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>{c.about}</p>}
       </header>
 
       <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">ROI estimate</h2>
+        <h2 style={sectionLabel}>ROI estimate</h2>
         <RoiPanel channelId={id} />
       </section>
 
       <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">Subscribers over time</h2>
+        <h2 style={sectionLabel}>Subscribers over time</h2>
         {subsQ.data && subsQ.data.points.length > 0
           ? <SubsHistoryChart points={subsQ.data.points} />
-          : <p className="text-sm text-neutral-500">No history yet — wait for the next poll cycle.</p>}
+          : <p style={{ fontSize: 14, color: 'var(--color-ink-muted)' }}>No history yet — wait for the next poll cycle.</p>}
       </section>
 
       <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">Views per post (last 30)</h2>
+        <h2 style={sectionLabel}>Views per post (last 30)</h2>
         {postsQ.data && postsQ.data.items.length > 0
           ? <ViewsBarChart posts={postsQ.data.items} />
-          : <p className="text-sm text-neutral-500">No posts yet.</p>}
+          : <p style={{ fontSize: 14, color: 'var(--color-ink-muted)' }}>No posts yet.</p>}
       </section>
 
       <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">Engagement rate</h2>
+        <h2 style={sectionLabel}>Engagement rate</h2>
         {postsQ.data && postsQ.data.items.length > 0
           ? <EngagementChart posts={postsQ.data.items} />
-          : <p className="text-sm text-neutral-500">No data.</p>}
+          : <p style={{ fontSize: 14, color: 'var(--color-ink-muted)' }}>No data.</p>}
       </section>
 
       <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">Top 5 posts by views</h2>
+        <h2 style={sectionLabel}>Top 5 posts by views</h2>
         {topQ.data && <PostsList posts={topQ.data.items} />}
       </section>
 
       <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">Recent posts</h2>
+        <h2 style={sectionLabel}>Recent posts</h2>
         {postsQ.data && <PostsList posts={postsQ.data.items} />}
       </section>
     </div>

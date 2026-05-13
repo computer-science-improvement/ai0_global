@@ -9,34 +9,61 @@ export function ChannelDialog({ channelId, onClose }: { channelId: string; onClo
   const subsQ    = useQuery({ queryKey: ['subs', channelId],    queryFn: () => trackingApi.subsHistory(channelId) });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={onClose}>
-      <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-neutral-950 p-6 ring-1 ring-neutral-800" onClick={(e) => e.stopPropagation()}>
+    <div
+      style={{ position: 'fixed', inset: 0, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.72)' }}
+      onClick={onClose}
+    >
+      <div
+        style={{
+          maxHeight: '90vh',
+          width: '100%',
+          maxWidth: 672,
+          overflowY: 'auto',
+          background: 'var(--color-surface-1)',
+          borderRadius: 'var(--radius-xl)',
+          padding: 28,
+          border: '1px solid var(--color-hairline)',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
         {channelQ.data && (
           <>
-            <div className="mb-4 flex items-start justify-between">
+            <div style={{ marginBottom: 16, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
               <div>
-                <h2 className="text-xl font-bold">{channelQ.data.title ?? channelQ.data.username}</h2>
+                <h2 className="text-headline" style={{ margin: 0 }}>
+                  {channelQ.data.title ?? channelQ.data.username}
+                </h2>
                 {channelQ.data.username && (
-                  <a href={`https://t.me/${channelQ.data.username}`} target="_blank" rel="noreferrer"
-                    className="text-sm text-blue-400 hover:underline">
+                  <a
+                    href={`https://t.me/${channelQ.data.username}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ fontSize: 14, color: 'var(--color-accent)', textDecoration: 'none' }}
+                  >
                     @{channelQ.data.username} ↗
                   </a>
                 )}
-                <div className="mt-1 text-sm text-neutral-400">
+                <div style={{ marginTop: 4, fontSize: 14, color: 'var(--color-ink-muted)' }}>
                   {fmtNumber(channelQ.data.subsCount)} subs · {channelQ.data.pollTier}
                 </div>
               </div>
-              <button onClick={onClose} className="rounded bg-neutral-800 px-3 py-1 text-sm hover:bg-neutral-700">Close</button>
+              <button onClick={onClose} className="btn-secondary">Close</button>
             </div>
-            <div className="space-y-4">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <RoiPanel channelId={channelId} />
               {subsQ.data && subsQ.data.points.length > 0 && (
                 <section>
-                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-400">Subscribers over time</h3>
+                  <h3 style={{ marginBottom: 8, fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-ink-muted)' }}>
+                    Subscribers over time
+                  </h3>
                   <SubsHistoryChart points={subsQ.data.points} />
                 </section>
               )}
-              <a href={`/channels/${channelId}`} className="block rounded bg-emerald-600 px-4 py-2 text-center text-sm hover:bg-emerald-500">
+              <a
+                href={`/channels/${channelId}`}
+                className="btn-primary"
+                style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
+              >
                 Open full channel page →
               </a>
             </div>

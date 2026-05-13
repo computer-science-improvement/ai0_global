@@ -30,13 +30,15 @@ function GraphPage() {
 
   return (
     <div>
-      <h1 className="mb-3 text-2xl font-bold">Channel graph</h1>
+      <h1 className="text-display-md" style={{ marginBottom: 12 }}>Channel graph</h1>
       <GraphFilters {...filters} onChange={(patch) => setFilters((f) => ({ ...f, ...patch }))} />
-      {q.isLoading && <p className="text-neutral-400">Loading graph…</p>}
-      {q.error && <p className="text-red-400">{(q.error as Error).message}</p>}
+      {q.isLoading && <p style={{ color: 'var(--color-ink-muted)' }}>Loading graph…</p>}
+      {q.error && <p style={{ color: 'var(--color-danger)' }}>{(q.error as Error).message}</p>}
       {q.data && (
         <>
-          <p className="mb-2 text-xs text-neutral-500">{q.data.nodes.length} nodes · {q.data.edges.length} edges</p>
+          <p style={{ marginBottom: 8, fontSize: 12, color: 'var(--color-ink-muted)' }}>
+            {q.data.nodes.length} nodes · {q.data.edges.length} edges
+          </p>
           <GraphCanvas
             data={q.data}
             onNodeClick={(id) => setOpenChannel(id)}

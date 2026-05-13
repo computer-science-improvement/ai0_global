@@ -3,14 +3,20 @@ import type { TrackedPost } from '../api/types';
 
 export function PostsList({ posts }: { posts: TrackedPost[] }) {
   return (
-    <div className="space-y-2">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       {posts.map((p) => (
-        <div key={p.id} className="rounded-lg bg-neutral-900 p-3">
-          <div className="flex items-center justify-between text-xs text-neutral-400">
+        <div key={p.id} style={{
+          background: 'var(--color-surface-1)',
+          borderRadius: 'var(--radius-md)',
+          padding: 14,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 12, color: 'var(--color-ink-muted)' }}>
             <span>{fmtRelative(p.postedAt)}</span>
-            <span>👁 {fmtNumber(p.views)} · 🔁 {fmtNumber(p.forwards)} · ❤ {fmtNumber(p.reactionsTotal)} · 💬 {fmtNumber(p.commentsCount)}</span>
+            <span className="tabular-nums">👁 {fmtNumber(p.views)} · 🔁 {fmtNumber(p.forwards)} · ❤ {fmtNumber(p.reactionsTotal)} · 💬 {fmtNumber(p.commentsCount)}</span>
           </div>
-          <p className="mt-2 line-clamp-3 text-sm">{p.text ?? <em className="text-neutral-500">(media only)</em>}</p>
+          <p style={{ marginTop: 8, fontSize: 14, color: 'var(--color-ink)', letterSpacing: '-0.14px', lineHeight: 1.5 }} className="line-clamp-3">
+            {p.text ?? <em style={{ color: 'var(--color-ink-muted)' }}>(media only)</em>}
+          </p>
         </div>
       ))}
     </div>
