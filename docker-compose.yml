@@ -20,6 +20,20 @@ services:
       timeout: 5s
       retries: 10
 
+  # ─── Redis ──────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
   # ─── Automation (long-running Nest.js service) ───────────────────────────────
   # Production only: docker compose --profile prod up -d
   # Dev: pnpm run dev:automation  (runs outside Docker)
@@ -40,12 +54,15 @@ services:
       POSTGRES_DB:       ${POSTGRES_DB:-ai0global}
       POSTGRES_USER:     ${POSTGRES_USER:-ai0}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      REDIS_URL:         redis://redis:6379
     env_file: .env
     volumes:
       # Persist structured Winston logs across container restarts; read by LogAnalyzerAgent
       - ./logs/automation:/repo/apps/automation/logs
     depends_on:
       postgres:
+        condition: service_healthy
+      redis:
         condition: service_healthy
 
   # ─── Pipeline (job — run on demand or via cron) ──────────────────────────────
@@ -73,3 +90,4 @@ services:
 
 volumes:
   pgdata:
+  redisdata:
