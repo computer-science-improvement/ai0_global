@@ -1,5 +1,5 @@
 import { api } from './client';
-import type { TrackedChannel, TrackedPost, SubsHistoryPoint, PageResp } from './types';
+import type { TrackedChannel, TrackedPost, SubsHistoryPoint, PageResp, GraphResponse, RoiResponse } from './types';
 
 export const trackingApi = {
   listChannels: (q: { filter?: string; q?: string; tier?: string; page?: number; pageSize?: number }) => {
@@ -20,4 +20,17 @@ export const trackingApi = {
   topPosts:      (id: string, metric = 'views', limit = 10) =>
     api<{ items: TrackedPost[] }>(`/tracking/channels/${id}/top-posts?metric=${metric}&limit=${limit}`),
   discovery:     () => api<{ items: Array<{ id: string; username: string; isClosed: boolean; addedAt: string }> }>(`/tracking/discovery`),
+  graph: (q: { from?: string; to?: string; min_edge_weight?: number; kind?: string[]; include_mine?: boolean }) => {
+    const params = new URLSearchParams();
+    if (q.from) params.set('from', q.from);
+    if (q.to)   params.set('to',   q.to);
+    if (q.min_edge_weight) params.set('min_edge_weight', String(q.min_edge_weight));
+    if (q.kind) q.kind.forEach((k) => params.append('kind', k));
+    if (q.include_mine === false) params.set('include_mine', 'false');
+    return api<GraphResponse>(`/tracking/graph?${params}`);
+  },
+  roi: (id: string, fresh = false) =>
+    api<RoiResponse>(`/tracking/roi/${id}${fresh ? '?fresh=true' : ''}`),
+  edgePosts: (sourceId: string, targetUsername: string) =>
+    api<{ items: TrackedPost[] }>(`/tracking/edges/${sourceId}/${encodeURIComponent(targetUsername)}/posts`),
 };
