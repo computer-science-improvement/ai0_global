@@ -14,6 +14,7 @@ export function Layout() {
             <Link to={'/channels' as any} className="text-lg font-bold">Channel Tracker</Link>
             <nav className="flex gap-4 text-sm text-neutral-300">
               <Link to={'/channels' as any} className="hover:text-white" activeProps={{ className: 'text-white' }}>Channels</Link>
+              <Link to={'/graph' as any} className="hover:text-white" activeProps={{ className: 'text-white' }}>Graph</Link>
               <Link to={'/discovery' as any} className="hover:text-white" activeProps={{ className: 'text-white' }}>Discovery</Link>
             </nav>
           </div>

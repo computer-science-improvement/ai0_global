@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as GraphRouteImport } from './routes/graph'
 import { Route as DiscoveryRouteImport } from './routes/discovery'
 import { Route as ChannelsRouteImport } from './routes/channels'
 import { Route as IndexRouteImport } from './routes/index'
@@ -18,6 +19,11 @@ import { Route as ChannelsIdRouteImport } from './routes/channels.$id'
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GraphRoute = GraphRouteImport.update({
+  id: '/graph',
+  path: '/graph',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoveryRoute = DiscoveryRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/channels': typeof ChannelsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
+  '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/channels': typeof ChannelsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
+  '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
@@ -60,21 +68,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/channels': typeof ChannelsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
+  '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/channels' | '/discovery' | '/login' | '/channels/$id'
+  fullPaths:
+    | '/'
+    | '/channels'
+    | '/discovery'
+    | '/graph'
+    | '/login'
+    | '/channels/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/channels' | '/discovery' | '/login' | '/channels/$id'
-  id: '__root__' | '/' | '/channels' | '/discovery' | '/login' | '/channels/$id'
+  to: '/' | '/channels' | '/discovery' | '/graph' | '/login' | '/channels/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/channels'
+    | '/discovery'
+    | '/graph'
+    | '/login'
+    | '/channels/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChannelsRoute: typeof ChannelsRouteWithChildren
   DiscoveryRoute: typeof DiscoveryRoute
+  GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
 }
 
@@ -85,6 +108,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/graph': {
+      id: '/graph'
+      path: '/graph'
+      fullPath: '/graph'
+      preLoaderRoute: typeof GraphRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discovery': {
@@ -134,6 +164,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChannelsRoute: ChannelsRouteWithChildren,
   DiscoveryRoute: DiscoveryRoute,
+  GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
