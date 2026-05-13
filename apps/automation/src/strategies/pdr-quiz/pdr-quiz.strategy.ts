@@ -187,18 +187,63 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
       });
       this.logger.log(`PDR quiz sent: ticket ${q.ticket_number} q${q.question_num} → ${channelId} [${expanded ? 'expanded' : 'normal'}]`);
     } catch (err: any) {
-      const reason =
-        err.response?.data?.description ??
-        err.message ??
-        err.code ??
-        (typeof err === 'string' ? err : JSON.stringify(err).slice(0, 300)) ??
-        'unknown error';
+      const reason = this.describeError(err);
       this.logger.error(
         `PDR publish failed for ticket ${q.ticket_number} q${q.question_num}: ${reason}` +
-        (err.response?.data ? ` | tg: ${JSON.stringify(err.response.data)}` : '') +
-        (err.stack ? `\n${err.stack.split('\n').slice(0, 3).join('\n')}` : ''),
+        (err?.response?.data ? ` | tg: ${JSON.stringify(err.response.data)}` : '') +
+        (err?.stack ? `\n${err.stack.split('\n').slice(0, 3).join('\n')}` : ''),
       );
       await this.notifier.notifyFailed(channelId, reason, `ticket ${q.ticket_number} q${q.question_num}`);
     }
+  }
+
+  /**
+   * Extracts a meaningful description from any thrown value. Handles:
+   * - Axios errors with Telegram description (HTTP 4xx/5xx from Bot API)
+   * - Plain Error with message
+   * - Validation libraries that throw arrays of errors
+   * - Objects without message (POJOs, validation results)
+   * - Anything else falling through — return a stringified preview.
+   *
+   * Critical: avoid returning empty strings / "[]" / "{}" which give zero
+   * signal to the notification recipient. Always return something actionable.
+   */
+  private describeError(err: unknown): string {
+    if (err == null) return 'unknown error (null/undefined)';
+    if (typeof err === 'string') return err || 'unknown error (empty string)';
+
+    const anyErr = err as any;
+
+    // 1. Axios → Telegram Bot API errors. Examples:
+    //    "Bad Request: chat not found", "Wrong padding length", "Too Many Requests"
+    const tgDesc = anyErr.response?.data?.description;
+    if (typeof tgDesc === 'string' && tgDesc.length > 0) {
+      const code = anyErr.response.data.error_code;
+      return code ? `tg ${code}: ${tgDesc}` : tgDesc;
+    }
+
+    // 2. Standard Error.message
+    if (typeof anyErr.message === 'string' && anyErr.message.length > 0) {
+      return anyErr.message;
+    }
+
+    // 3. Validation arrays (class-validator, joi, zod sometimes)
+    if (Array.isArray(err)) {
+      if (err.length === 0) return 'unknown error (empty array thrown)';
+      const messages = err
+        .map((e: any) => (typeof e === 'string' ? e : e?.message ?? JSON.stringify(e)))
+        .filter(Boolean);
+      return messages.join('; ').slice(0, 300) || 'validation error (no messages)';
+    }
+
+    // 4. Error code (network errors like ETIMEDOUT, ECONNREFUSED)
+    if (typeof anyErr.code === 'string') return `code=${anyErr.code}`;
+
+    // 5. Last-resort JSON dump — but reject empty {}
+    const dumped = JSON.stringify(err);
+    if (!dumped || dumped === '{}' || dumped === '[]') {
+      return `non-serializable error (${typeof err}, keys: ${Object.keys(anyErr).join(',') || 'none'})`;
+    }
+    return dumped.slice(0, 300);
   }
 }
