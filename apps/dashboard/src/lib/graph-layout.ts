@@ -1,24 +1,58 @@
-import { forceLink, forceManyBody, forceSimulation, forceCenter } from 'd3-force';
+import dagre from '@dagrejs/dagre';
 import type { Node, Edge } from 'reactflow';
 
-interface SimNode { id: string; x?: number; y?: number; fx?: number; fy?: number; }
-interface SimLink { source: string; target: string; }
+export type LayoutDirection = 'TB' | 'LR' | 'BT' | 'RL';
 
-/** One-shot d3-force layout. Returns the nodes with x/y positions. */
-export function layoutGraph(nodes: Node[], edges: Edge[]): Node[] {
-  const simNodes: SimNode[] = nodes.map((n) => ({ id: n.id }));
-  const simLinks: SimLink[] = edges
-    .filter((e) => e.target)
-    .map((e) => ({ source: e.source, target: e.target! }));
+/**
+ * Hierarchical tree-style layout via dagre. Better than force-directed for
+ * ad-relationship graphs because the source → target direction has actual
+ * semantic meaning (who advertises whom).
+ *
+ * Multiple incoming edges per node are fine — dagre handles DAGs, not just
+ * strict trees. Disconnected components are placed side-by-side.
+ *
+ * direction:
+ *   - TB (default) — top to bottom; sources at the top, targets below
+ *   - LR — left to right; useful for wide screens with many channels
+ *   - BT / RL — inverses
+ */
+export function layoutGraph(
+  nodes: Node[],
+  edges: Edge[],
+  direction: LayoutDirection = 'TB',
+): Node[] {
+  const g = new dagre.graphlib.Graph();
+  g.setGraph({
+    rankdir:   direction,
+    nodesep:   60,   // horizontal gap between siblings
+    ranksep:   90,   // vertical gap between layers
+    edgesep:   20,   // padding between parallel edges
+    marginx:   20,
+    marginy:   20,
+  });
+  g.setDefaultEdgeLabel(() => ({}));
 
-  const sim = forceSimulation(simNodes as any)
-    .force('charge', forceManyBody().strength(-200))
-    .force('link',   forceLink(simLinks).id((d: any) => d.id).distance(120))
-    .force('center', forceCenter(0, 0))
-    .stop();
+  // Approximate node sizes — must match the rendered ChannelNode chrome so
+  // dagre routes edges without overlapping cards.
+  const NODE_W = 160;
+  const NODE_H = 64;
 
-  for (let i = 0; i < 200; i++) sim.tick();
+  nodes.forEach((n) => g.setNode(n.id, { width: NODE_W, height: NODE_H }));
+  edges.forEach((e) => {
+    if (e.target) g.setEdge(e.source, e.target);
+  });
 
-  const pos = new Map(simNodes.map((n) => [n.id, { x: n.x ?? 0, y: n.y ?? 0 }]));
-  return nodes.map((n) => ({ ...n, position: pos.get(n.id) ?? { x: 0, y: 0 } }));
+  dagre.layout(g);
+
+  return nodes.map((n) => {
+    const pos = g.node(n.id);
+    return {
+      ...n,
+      // dagre centers nodes at (pos.x, pos.y); React Flow positions by top-left,
+      // so we offset by half-size.
+      position: pos
+        ? { x: pos.x - NODE_W / 2, y: pos.y - NODE_H / 2 }
+        : { x: 0, y: 0 },
+    };
+  });
 }
