@@ -4,22 +4,29 @@ import { TrackedChannelsRepository, TrackedChannel } from '../repositories/track
 import { TrackedPostsRepository } from '../repositories/tracked-posts.repository';
 import { TrackedEdgesRepository } from '../repositories/tracked-edges.repository';
 import { TrackingQueueService } from '../tracking-queue.service';
-import { estimateRoi } from '../processors/roi-heuristic';
+import { RoiAnalyzerService } from '../processors/roi-analyzer.service';
 import { TrackedChannelDto } from './dto/tracked-channel.dto';
 import { TrackedPostDto } from './dto/tracked-post.dto';
 import { GraphDto } from './dto/graph.dto';
 import { PollTier } from '../types';
+
+function edgeColorTier(count: number): 'green' | 'orange' | 'red' {
+  if (count >= 10) return 'red';
+  if (count >= 2)  return 'orange';
+  return 'green';
+}
 
 @Injectable()
 export class TrackingService {
   private readonly logger = new Logger(TrackingService.name);
 
   constructor(
-    private readonly config:   ConfigService,
-    private readonly channels: TrackedChannelsRepository,
-    private readonly posts:    TrackedPostsRepository,
-    private readonly edges:    TrackedEdgesRepository,
-    private readonly queue:    TrackingQueueService,
+    private readonly config:      ConfigService,
+    private readonly channels:    TrackedChannelsRepository,
+    private readonly posts:       TrackedPostsRepository,
+    private readonly edges:       TrackedEdgesRepository,
+    private readonly queue:       TrackingQueueService,
+    private readonly roiAnalyzer: RoiAnalyzerService,
   ) {}
 
   async listChannels(filter: 'mine' | 'all' | 'external', q: string | undefined,
@@ -73,39 +80,60 @@ export class TrackingService {
     return { items };
   }
 
-  async graph(from: Date | null, to: Date | null, minWeight: number): Promise<GraphDto> {
-    const edges = await this.edges.graph(from, to, minWeight);
+  async graph(opts: { from: Date | null; to: Date | null; minWeight: number;
+                      kinds?: string[]; includeMine?: boolean }): Promise<GraphDto> {
+    const edges = await this.edges.graph(opts.from, opts.to, opts.minWeight);
+    const kinds = opts.kinds && opts.kinds.length > 0 ? new Set(opts.kinds) : null;
+    const includeMine = opts.includeMine ?? true;
+
     const nodeIds = new Set<string>();
     edges.forEach((e) => { nodeIds.add(e.source_channel_id); if (e.target_channel_id) nodeIds.add(e.target_channel_id); });
 
-    const nodes = await Promise.all([...nodeIds].map(async (id) => {
-      const c = await this.channels.getById(id);
-      return c ? { id: c.id, username: c.username, title: c.title, subs: c.subsCount, isMine: c.isMine } : null;
-    }));
+    const nodeRows = await Promise.all([...nodeIds].map((id) => this.channels.getById(id)));
+    const nodeMap = new Map(nodeRows.filter((n) => n != null).map((n) => [n!.id, n!]));
+
+    const filteredEdges = edges.filter((e) => {
+      if (kinds && !kinds.has(e.target_kind)) return false;
+      if (!includeMine) {
+        const src = nodeMap.get(e.source_channel_id);
+        if (src?.isMine) return false;
+      }
+      return true;
+    });
+
+    const finalNodeIds = new Set<string>();
+    filteredEdges.forEach((e) => {
+      finalNodeIds.add(e.source_channel_id);
+      if (e.target_channel_id) finalNodeIds.add(e.target_channel_id);
+    });
+
+    const nodes = [...finalNodeIds].map((id) => {
+      const c = nodeMap.get(id);
+      return c ? { id: c.id, username: c.username, title: c.title,
+                   subs: c.subsCount, isMine: c.isMine, category: c.category ?? null } : null;
+    }).filter((n): n is NonNullable<typeof n> => n != null);
 
     return {
-      nodes: nodes.filter((n): n is NonNullable<typeof n> => n !== null),
-      edges: edges.map((e) => ({
-        source: e.source_channel_id,
-        target: e.target_channel_id,
+      nodes,
+      edges: filteredEdges.map((e) => ({
+        source:          e.source_channel_id,
+        target:          e.target_channel_id,
         target_username: e.target_username,
-        count: e.ad_post_count,
-        kind: e.target_kind,
-        last_seen: e.last_seen_at.toISOString(),
+        count:           e.ad_post_count,
+        kind:            e.target_kind,
+        colorTier:       edgeColorTier(e.ad_post_count),
+        last_seen:       e.last_seen_at.toISOString(),
       })),
     };
   }
 
-  async roi(channelId: string) {
-    const c = await this.channels.getById(channelId);
-    if (!c) throw new NotFoundException(`Channel ${channelId} not found`);
-    const stats = await this.posts.statsLast30Days(channelId);
-    const daysHistory = Math.floor((Date.now() - c.addedAt.getTime()) / 86_400_000);
-    return estimateRoi({
-      avgViews: stats.avgViews, subs: c.subsCount ?? 0,
-      engagementRate: stats.engagementRate, daysHistory, postsCount: stats.postsCount,
-      viewToSubRate: parseFloat(this.config.get<string>('TRACKING_VIEW_TO_SUB_RATE') ?? '0.02'),
-    });
+  async roi(channelId: string, fresh = false) {
+    return this.roiAnalyzer.analyze(channelId, fresh);
+  }
+
+  async edgePosts(sourceChannelId: string, targetUsername: string) {
+    const items = await this.posts.listByAdRefTarget(sourceChannelId, targetUsername.toLowerCase());
+    return { items };
   }
 
   async discovery() {

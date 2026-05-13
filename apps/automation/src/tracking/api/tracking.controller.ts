@@ -61,15 +61,31 @@ export class TrackingController {
   graph(
     @Query('from') from?: string, @Query('to') to?: string,
     @Query('min_edge_weight') minWeight = '1',
+    @Query('kind') kind?: string | string[],
+    @Query('include_mine') includeMine = 'true',
   ) {
-    return this.service.graph(
-      from ? new Date(from) : null, to ? new Date(to) : null,
-      parseInt(minWeight, 10),
-    );
+    const kinds = Array.isArray(kind) ? kind : (kind ? [kind] : undefined);
+    return this.service.graph({
+      from: from ? new Date(from) : null,
+      to:   to   ? new Date(to)   : null,
+      minWeight: parseInt(minWeight, 10),
+      kinds,
+      includeMine: includeMine !== 'false',
+    });
   }
 
   @Get('roi/:id')
-  roi(@Param('id', new ParseUUIDPipe()) id: string) { return this.service.roi(id); }
+  roi(@Param('id', new ParseUUIDPipe()) id: string, @Query('fresh') fresh?: string) {
+    return this.service.roi(id, fresh === 'true');
+  }
+
+  @Get('edges/:sourceId/:targetUsername/posts')
+  edgePosts(
+    @Param('sourceId', new ParseUUIDPipe()) sourceId: string,
+    @Param('targetUsername') targetUsername: string,
+  ) {
+    return this.service.edgePosts(sourceId, targetUsername);
+  }
 
   @Get('discovery')
   discovery() { return this.service.discovery(); }

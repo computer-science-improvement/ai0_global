@@ -146,6 +146,19 @@ export class TrackedPostsRepository {
     return { avgViews, engagementRate: rate, postsCount: row.posts ?? 0 };
   }
 
+  async listByAdRefTarget(channelId: string, targetUsername: string): Promise<TrackedPost[]> {
+    const r = await this.pool.query<any>(
+      `SELECT * FROM tracked_posts
+       WHERE channel_id = $1
+         AND ad_refs IS NOT NULL
+         AND ad_refs @> $2::jsonb
+       ORDER BY posted_at DESC
+       LIMIT 100`,
+      [channelId, JSON.stringify([{ username: targetUsername }])],
+    );
+    return r.rows.map((row: any) => this.toEntity(row));
+  }
+
   private toEntity(r: any): TrackedPost {
     return {
       id:             r.id,

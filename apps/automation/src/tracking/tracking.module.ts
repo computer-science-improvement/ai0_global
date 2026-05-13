@@ -7,6 +7,7 @@ import { TrackingMtprotoClient } from './mtproto/tracking-mtproto.client';
 import { TrackedChannelsRepository } from './repositories/tracked-channels.repository';
 import { TrackedPostsRepository } from './repositories/tracked-posts.repository';
 import { TrackedEdgesRepository } from './repositories/tracked-edges.repository';
+import { TrackedRoiCacheRepository } from './repositories/tracked-roi-cache.repository';
 import { PollMetaWorker } from './workers/poll-meta.worker';
 import { PollPostsWorker } from './workers/poll-posts.worker';
 import { RefreshMetricsWorker } from './workers/refresh-metrics.worker';
@@ -15,6 +16,7 @@ import { TrackingScheduler } from './tracking.scheduler';
 import { TrackingService } from './api/tracking.service';
 import { TrackingController } from './api/tracking.controller';
 import { TrackingAuthGuard } from './api/tracking-auth.guard';
+import { RoiAnalyzerService } from './processors/roi-analyzer.service';
 
 @Module({
   imports: [ConfigModule, AuthModule],
@@ -26,6 +28,7 @@ import { TrackingAuthGuard } from './api/tracking-auth.guard';
     TrackedChannelsRepository,
     TrackedPostsRepository,
     TrackedEdgesRepository,
+    TrackedRoiCacheRepository,
     PollMetaWorker,
     PollPostsWorker,
     RefreshMetricsWorker,
@@ -33,6 +36,7 @@ import { TrackingAuthGuard } from './api/tracking-auth.guard';
     TrackingScheduler,
     TrackingService,
     TrackingAuthGuard,
+    RoiAnalyzerService,
   ],
 })
 export class TrackingModule {}
