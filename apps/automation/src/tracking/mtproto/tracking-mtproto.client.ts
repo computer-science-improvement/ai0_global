@@ -46,15 +46,31 @@ export class TrackingMtprotoClient implements OnModuleInit {
   async onModuleInit(): Promise<void> {
     const apiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
     const apiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
-    const session = this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '';
+    const dedicated = this.config.get<string>('TELEGRAM_TRACKING_SESSION_STRING') ?? '';
+    const shared    = this.config.get<string>('TELEGRAM_TRACKING_SHARE_SESSION') === 'true'
+      ? (this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '')
+      : '';
+    const session = dedicated || shared;
+
     if (!apiId || !apiHash || !session) {
-      this.logger.warn('TrackingMtprotoClient disabled: missing credentials');
+      this.logger.warn(
+        'TrackingMtprotoClient disabled: set TELEGRAM_TRACKING_SESSION_STRING ' +
+        '(or TELEGRAM_TRACKING_SHARE_SESSION=true to reuse the stats session)',
+      );
       return;
     }
-    this.client = new TelegramClient(new StringSession(session), apiId, apiHash, { connectionRetries: 5 });
-    await this.client.connect();
-    this.ready = true;
-    this.logger.log('TrackingMtprotoClient ready');
+
+    this.client = new TelegramClient(new StringSession(session), apiId, apiHash, { connectionRetries: 2 });
+    try {
+      await this.client.connect();
+      this.ready = true;
+      this.logger.log('TrackingMtprotoClient ready');
+    } catch (err: any) {
+      this.ready = false;
+      this.logger.warn(`TrackingMtprotoClient connect failed: ${err.errorMessage ?? err.message ?? err}`);
+      try { await this.client.disconnect(); } catch { /* ignore */ }
+      this.client = null;
+    }
   }
 
   isEnabled(): boolean { return this.ready; }
