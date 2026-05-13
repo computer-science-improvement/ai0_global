@@ -6,6 +6,7 @@ import { ViewsBarChart } from '../components/ViewsBarChart';
 import { EngagementChart } from '../components/EngagementChart';
 import { PostsList } from '../components/PostsList';
 import { fmtNumber, fmtDate } from '../lib/format';
+import { RoiPanel } from '../components/RoiPanel';
 
 export const Route = createFileRoute('/channels/$id')({ component: ChannelDetailPage });
 
@@ -37,6 +38,11 @@ function ChannelDetailPage() {
         </div>
         {c.about && <p className="mt-2 max-w-2xl text-sm text-neutral-300">{c.about}</p>}
       </header>
+
+      <section>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">ROI estimate</h2>
+        <RoiPanel channelId={id} />
+      </section>
 
       <section>
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">Subscribers over time</h2>
