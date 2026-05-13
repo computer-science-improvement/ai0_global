@@ -23,6 +23,7 @@ import { MotivationBiographyStrategyModule }  from './strategies/motivation-biog
 import { AssetsStrategyModule }              from './strategies/assets/assets-strategy.module';
 import { StatsModule }          from './stats/stats.module';
 import { DevController }        from './dev.controller';
+import { TrackingModule }       from './tracking/tracking.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { DevController }        from './dev.controller';
     PdrQuizStrategyModule,
     MotivationBiographyStrategyModule,
     AssetsStrategyModule,
+    TrackingModule,
   ],
   controllers: [DevController],
 })
