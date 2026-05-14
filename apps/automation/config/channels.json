@@ -39,7 +39,7 @@
       "id": "ua-news:ai0_global_open_source",
       "type": "ua-news",
       "channelId": "@ai0_global",
-      "schedule": "0 */2 8-22 * * *",
+      "schedule": "0 8-22/2 * * *",
       "params": {
         "feedUrl": "https://www.artificialintelligence-news.com/categories/ai-and-us/open-source-democratised-ai/feed/",
         "sourceName": "artificialintelligence-news.com",

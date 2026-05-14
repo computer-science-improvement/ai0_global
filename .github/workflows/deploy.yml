@@ -24,9 +24,14 @@ jobs:
             # build` (TypeScript compile is the heaviest step). Strategy:
             # do NOT rebuild on every push. Config (channels.json, proxies,
             # sources) is volume-mounted so config-only changes go live on
-            # plain `up -d`. When code changes need to ship, run a manual
-            # build off-hours via `docker compose --profile prod build automation`
+            # restart. When code changes need to ship, run a manual rebuild
+            # off-hours via `docker compose --profile prod build automation`
             # over a swap-enabled session.
+            #
+            # `up -d` alone does NOT reload mounted JSON the running process
+            # already read into memory — we use `restart` so the Nest app
+            # re-reads channels.json from the volume on boot.
             docker compose --profile prod up -d automation
+            docker compose --profile prod restart automation
 
             docker image prune -f
