@@ -145,9 +145,15 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
 
     if (await this.botLogger.hasLog(item.source, channelId)) return;
 
+    // markPosted BEFORE telegram.publish — same reasoning as ai0-news.
+    // A process kill (deploy, OOM) between Telegram send and DB write
+    // would otherwise let the next cron re-publish. Trade-off: if publish
+    // fails afterwards, the article is marked as posted in DB but absent
+    // from Telegram (lost). Accepted to prevent duplicates.
+    await this.dedup.markPosted(item.source, item.title, channelId, sourceName);
+
     try {
       const messageId = await this.telegram.publish(payload, { id: channelId });
-      await this.dedup.markPosted(item.source, item.title, channelId, sourceName);
       await this.botLogger.logSuccess(item.source, channelId, messageId, {
         title: item.title, strategyType: this.type, tags: item.tags ?? null,
       });
@@ -164,7 +170,10 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
       }
     } catch (err) {
       await this.botLogger.logError(item.source, channelId, err.message);
-      this.logger.warn(`Publish failed for ${item.source}: ${err.message}`);
+      this.logger.warn(
+        `Publish failed for ${item.source}: ${err.message} — ` +
+        `posted_news already marked, article will NOT retry`,
+      );
     }
   }
 
