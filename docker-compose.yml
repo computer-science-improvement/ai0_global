@@ -23,11 +23,14 @@ services:
   # ─── Automation (long-running Nest.js service) ───────────────────────────────
   # Production only: docker compose --profile prod up -d
   # Dev: pnpm run dev:automation  (runs outside Docker)
+  #
+  # Image is pre-built in GitHub Actions and pushed to GHCR — the prod box
+  # has tight RAM and OOMs during a local TS compile. To rebuild locally
+  # (e.g. for dev testing), set AUTOMATION_IMAGE to an empty string and add
+  # back the `build:` block.
   automation:
     profiles: ["prod"]
-    build:
-      context: .
-      dockerfile: apps/automation/Dockerfile
+    image: ${AUTOMATION_IMAGE:-ghcr.io/computer-science-improvement/ai0_global-automation:latest}
     restart: unless-stopped
     ports:
       # 3001 на хості, якщо локально вже зайнятий 3000

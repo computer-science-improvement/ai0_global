@@ -4,8 +4,49 @@ on:
   push:
     branches: [main]
 
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/ai0_global-automation
+
 jobs:
+  # ─── Build the automation image in CI (lots of RAM, no swap issues) ───────
+  # and push it to GitHub Container Registry. The prod box only pulls it.
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set lowercased image name
+        id: image
+        run: echo "name=$(echo ${IMAGE_NAME} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/automation/Dockerfile
+          push: true
+          tags: |
+            ${{ steps.image.outputs.name }}:latest
+            ${{ steps.image.outputs.name }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ─── Server just pulls and restarts. No build → no OOM. ───────────────────
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to DigitalOcean
@@ -20,17 +61,15 @@ jobs:
 
             git pull origin main
 
-            # Production box has limited RAM and OOMs during `docker compose
-            # build` (TypeScript compile is the heaviest step). Strategy:
-            # do NOT rebuild on every push. Config (channels.json, proxies,
-            # sources) is volume-mounted so config-only changes go live on
-            # restart. When code changes need to ship, run a manual rebuild
-            # off-hours via `docker compose --profile prod build automation`
-            # over a swap-enabled session.
-            #
-            # `up -d` alone does NOT reload mounted JSON the running process
-            # already read into memory — we use `restart` so the Nest app
-            # re-reads channels.json from the volume on boot.
+            # Log in to GHCR so 'docker compose pull' can fetch the private
+            # image. The 'gh_pat' secret is a fine-grained PAT with
+            # packages:read on this repo.
+            echo "${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}" \
+              | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+            # Pre-built image lives in compose under x-automation-image
+            # (see docker-compose.yml). Pull then bring up — no build.
+            docker compose --profile prod pull automation
             docker compose --profile prod up -d automation
             docker compose --profile prod restart automation
 
