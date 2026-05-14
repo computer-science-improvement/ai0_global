@@ -21,14 +21,22 @@ export class BotLoggerService {
   ) {}
 
   /**
-   * Returns true if this item was successfully published to this channel.
+   * Returns true if this source URL was successfully published to ANY
+   * channel. Mirrors DedupService's global-scope policy: a source posted
+   * anywhere is treated as already published everywhere. The strategies
+   * call this as a belt-and-suspenders check right before publish to
+   * close the race window between filterUnposted and the actual send.
+   *
+   * channelId is kept in the signature for future per-channel logging
+   * but is no longer part of the SQL filter.
    */
   async hasLog(sourceUrl: string, channelId: string): Promise<boolean> {
+    void channelId; // intentionally unused — global dedup scope
     const { rows } = await this.pool.query(
       `SELECT 1 FROM bot_logs
-       WHERE source_url = $1 AND channel_id = $2 AND type = 'success'
+       WHERE source_url = $1 AND type = 'success'
        LIMIT 1`,
-      [sourceUrl, channelId],
+      [sourceUrl],
     );
     return rows.length > 0;
   }
