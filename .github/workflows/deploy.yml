@@ -15,7 +15,18 @@ jobs:
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
+            set -e
             cd /opt/ai0_global
+
             git pull origin main
-            docker compose --profile prod up -d --build
+
+            # Production box has limited RAM and OOMs during `docker compose
+            # build` (TypeScript compile is the heaviest step). Strategy:
+            # do NOT rebuild on every push. Config (channels.json, proxies,
+            # sources) is volume-mounted so config-only changes go live on
+            # plain `up -d`. When code changes need to ship, run a manual
+            # build off-hours via `docker compose --profile prod build automation`
+            # over a swap-enabled session.
+            docker compose --profile prod up -d automation
+
             docker image prune -f

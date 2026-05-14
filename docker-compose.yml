@@ -44,6 +44,9 @@ services:
     volumes:
       # Persist structured Winston logs across container restarts; read by LogAnalyzerAgent
       - ./logs/automation:/repo/apps/automation/logs
+      # Mount config so channels.json / proxies.json / sources/* changes go live
+      # on `docker compose up -d` WITHOUT a rebuild (prod box has tight RAM).
+      - ./apps/automation/config:/repo/apps/automation/config:ro
     depends_on:
       postgres:
         condition: service_healthy
