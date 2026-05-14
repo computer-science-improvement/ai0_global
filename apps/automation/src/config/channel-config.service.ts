@@ -78,13 +78,25 @@ export class ChannelConfigService implements OnModuleInit {
   private static readonly DEFAULT_SEMANTIC_DEDUP_HOURS = 8;
 
   onModuleInit() {
-    const isDev     = (process.env.NODE_ENV ?? 'development') === 'development';
-    const fileName  = isDev ? 'channels-dev.json' : 'channels.json';
-    const path      = join(__dirname, '..', '..', 'config', fileName);
+    // Strict resolution — refuses to silently fall back to dev config when
+    // NODE_ENV is missing. Prevents a production deploy from accidentally
+    // loading channels-dev.json with its */5 cadence (real-world bug we
+    // chased for hours).
+    const nodeEnv = process.env.NODE_ENV;
+    if (!nodeEnv) {
+      this.logger.warn(
+        'NODE_ENV is not set — defaulting to development config. ' +
+        'Set NODE_ENV=production explicitly in docker-compose.yml or .env.',
+      );
+    }
+    const isDev    = (nodeEnv ?? 'development') === 'development';
+    const fileName = isDev ? 'channels-dev.json' : 'channels.json';
+    const path     = join(__dirname, '..', '..', 'config', fileName);
     this.cfg = JSON.parse(readFileSync(path, 'utf-8'));
 
+    // Loud, unambiguous boot line — useful when triaging "wrong config" issues.
     this.logger.log(
-      `Config: ${fileName} | ` +
+      `Config: ${fileName} (NODE_ENV=${nodeEnv ?? 'unset'}) | ` +
       `${Object.keys(this.cfg.bots).length} bot(s), ` +
       `${Object.keys(this.cfg.channels).length} channel(s), ` +
       `${(this.cfg.strategies ?? []).length} strategy(ies)`,
