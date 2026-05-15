@@ -2,6 +2,12 @@
 .env
 .env.local
 
+# Local-development channels overlay — user-owned, gitignored so the laptop's
+# bot tokens / chat IDs never land in the repo. Used only when
+# NODE_ENV=local-development. See channels.local.example.json for structure.
+apps/automation/config/channels.local.json
+apps/automation/config/*.local.json
+
 # Dependencies
 node_modules/
 **/node_modules/

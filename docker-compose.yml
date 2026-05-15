@@ -36,7 +36,10 @@ services:
       # 3001 на хості, якщо локально вже зайнятий 3000
       - "${AUTOMATION_PORT:-3001}:3000"
     environment:
-      NODE_ENV:          production
+      # Host's .env decides which environment this container runs as.
+      # Valid values: production | dev-stage | local-development.
+      # Channel-config service refuses to boot on any other value.
+      NODE_ENV:          ${NODE_ENV:-production}
       PORT:              3000
       POSTGRES_HOST:     postgres
       POSTGRES_PORT:     5432
