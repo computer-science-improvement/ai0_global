@@ -1,8 +1,21 @@
 import { Injectable, OnModuleInit, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { StrategyConfigEntry, StrategyParams } from '../common/content-strategy/content-strategy.interface';
+
+/**
+ * Explicit three-state environment. `NODE_ENV` must be exactly one of these
+ * values — anything else (including the implicit empty default) fails boot.
+ * This prevents the historical bug where a missing NODE_ENV silently loaded
+ * dev config in prod (or vice versa).
+ */
+const VALID_ENVS = ['local-development', 'dev-stage', 'production'] as const;
+type AppEnv = (typeof VALID_ENVS)[number];
+
+function isAppEnv(v: string | undefined): v is AppEnv {
+  return !!v && (VALID_ENVS as readonly string[]).includes(v);
+}
 
 // ─── Config file types ────────────────────────────────────────────────────────
 
@@ -78,29 +91,63 @@ export class ChannelConfigService implements OnModuleInit {
   private static readonly DEFAULT_SEMANTIC_DEDUP_HOURS = 8;
 
   onModuleInit() {
-    // Strict resolution — refuses to silently fall back to dev config when
-    // NODE_ENV is missing. Prevents a production deploy from accidentally
-    // loading channels-dev.json with its */5 cadence (real-world bug we
-    // chased for hours).
+    // Strict three-state resolution — anything other than the validated set
+    // fails the boot loudly. Prevents two historical incidents:
+    //   1. NODE_ENV=development (implicit) silently loading dev config in prod.
+    //   2. Six rogue `pnpm dev:automation` watch processes on the user's
+    //      laptop sharing the prod .env, each posting into prod channels.
+    // Now: prod is `production`, dev-stage server is `dev-stage`, the user's
+    // laptop is `local-development` and may opt into `channels.local.json`.
     const nodeEnv = process.env.NODE_ENV;
-    if (!nodeEnv) {
-      this.logger.warn(
-        'NODE_ENV is not set — defaulting to development config. ' +
-        'Set NODE_ENV=production explicitly in docker-compose.yml or .env.',
+    if (!isAppEnv(nodeEnv)) {
+      const got = nodeEnv === undefined ? 'unset' : `"${nodeEnv}"`;
+      throw new Error(
+        `NODE_ENV is ${got}. Must be one of: ${VALID_ENVS.join(', ')}. ` +
+        `Set it in .env (laptop: local-development, dev-stage server: dev-stage, ` +
+        `prod server: production).`,
       );
     }
-    const isDev    = (nodeEnv ?? 'development') === 'development';
-    const fileName = isDev ? 'channels-dev.json' : 'channels.json';
-    const path     = join(__dirname, '..', '..', 'config', fileName);
+
+    const configDir = join(__dirname, '..', '..', 'config');
+    const fileName = this.resolveConfigFile(nodeEnv, configDir);
+    const path = join(configDir, fileName);
+
+    if (!existsSync(path)) {
+      throw new Error(
+        `Config file not found: ${path} (NODE_ENV=${nodeEnv}). ` +
+        `Each environment must have its own channels file present.`,
+      );
+    }
+
     this.cfg = JSON.parse(readFileSync(path, 'utf-8'));
 
     // Loud, unambiguous boot line — useful when triaging "wrong config" issues.
     this.logger.log(
-      `Config: ${fileName} (NODE_ENV=${nodeEnv ?? 'unset'}) | ` +
+      `Config: ${fileName} (NODE_ENV=${nodeEnv}) | ` +
       `${Object.keys(this.cfg.bots).length} bot(s), ` +
       `${Object.keys(this.cfg.channels).length} channel(s), ` +
       `${(this.cfg.strategies ?? []).length} strategy(ies)`,
     );
+  }
+
+  /**
+   * Decide which `channels*.json` file to load based on NODE_ENV.
+   * - `local-development`: prefer `channels.local.json` (gitignored, user-owned),
+   *   fall back to `channels-dev.json` if the local file isn't present.
+   * - `dev-stage`: `channels-dev.json` only. No fallback.
+   * - `production`: `channels.json` only. No fallback.
+   */
+  private resolveConfigFile(env: AppEnv, configDir: string): string {
+    if (env === 'local-development') {
+      const local = 'channels.local.json';
+      if (existsSync(join(configDir, local))) return local;
+      this.logger.log(
+        `${local} not found in config dir — falling back to channels-dev.json`,
+      );
+      return 'channels-dev.json';
+    }
+    if (env === 'dev-stage') return 'channels-dev.json';
+    return 'channels.json';
   }
 
   // ── Channel resolution ───────────────────────────────────────────────────
