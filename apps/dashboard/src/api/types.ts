@@ -49,3 +49,35 @@ export interface RoiResponse {
   computed_at: string;
   inputs: { avg_views: number; subs: number; engagement_rate: number };
 }
+
+// ─── Phase 4: Discovery / Recommendations ─────────────────────────────────
+
+export interface Theme {
+  slug:  string;
+  title: string;
+}
+
+export interface RecommendationItem {
+  id:                 string;
+  slug:               string;
+  link:               string;
+  title:              string;
+  description:        string | null;
+  themes:             string[];
+  matchedThemes:      string[];
+  score:              number;
+  estimatedSubsPerAd: number | null;
+  roiConfidence:      string | null;
+  priceMin:           number;
+  priceMax:           number | null;
+  sexRatio:           number | null;
+  avatarUrl:          string | null;
+  language:           string | null;
+  source:             string;
+}
+
+export interface RecommendResponse {
+  recommendations: RecommendationItem[];
+  targetThemes:    string[];
+  warning?:        string;
+}
