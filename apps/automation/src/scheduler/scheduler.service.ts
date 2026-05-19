@@ -9,6 +9,16 @@ import { ContentStrategyRegistry } from '../common/content-strategy/content-stra
 export class SchedulerService implements OnApplicationBootstrap {
   private readonly logger = new Logger(SchedulerService.name);
 
+  /**
+   * Per-strategy in-flight guard. Cron is dumb: it fires on schedule even if
+   * the previous tick of the SAME strategy is still running (AI generation
+   * can take 30-90s; if cron fires every 5 minutes and the strategy spans
+   * more than 5 minutes for any reason, two ticks would otherwise overlap
+   * and double-publish). Skipping the second tick is the right call —
+   * the strategy will fire again on its next scheduled minute.
+   */
+  private readonly inFlight = new Set<string>();
+
   constructor(
     private readonly registry:         SchedulerRegistry,
     private readonly channelConfig:    ChannelConfigService,
@@ -39,10 +49,21 @@ export class SchedulerService implements OnApplicationBootstrap {
 
   private scheduleCron(name: string, schedule: string, handler: () => Promise<void>): void {
     const job = new CronJob(schedule, async () => {
+      // Guard 1: previous tick of THIS strategy still running.
+      if (this.inFlight.has(name)) {
+        this.logger.warn(`Skipping ${name}: previous run still in flight`);
+        return;
+      }
+
+      this.inFlight.add(name);
       this.logger.log(`Cron trigger: ${name}`);
-      await handler().catch((err) =>
-        this.logger.error(`${name} failed: ${err.message}`),
-      );
+      try {
+        await handler();
+      } catch (err: any) {
+        this.logger.error(`${name} failed: ${err.message}`);
+      } finally {
+        this.inFlight.delete(name);
+      }
     });
 
     this.registry.addCronJob(name, job);

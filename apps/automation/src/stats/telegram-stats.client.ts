@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
 import { CustomFile }          from 'telegram/client/uploads';
+import { ChannelConfigService } from '../config/channel-config.service';
 
 export interface ChannelInfo {
   subscribers: number | null;
@@ -33,7 +34,27 @@ export class TelegramStatsClient implements OnModuleInit {
   private client: TelegramClient | null = null;
   private ready = false;
 
-  constructor(private readonly config: ConfigService) {}
+  constructor(
+    private readonly config:        ConfigService,
+    private readonly channelConfig: ChannelConfigService,
+  ) {}
+
+  /**
+   * Returns true when the channel's resolved chatId is a numeric private ID
+   * (`-100…`). MTProto can't resolve those by username, and the user account
+   * behind the session generally isn't a member of test/dev private channels.
+   * Used to silently skip stats lookups instead of spamming "No user has X as
+   * username" warnings.
+   */
+  private isPrivateChannel(channelKey: string): boolean {
+    try {
+      const { chatId } = this.channelConfig.resolveChannel(channelKey);
+      return chatId.startsWith('-');
+    } catch {
+      // Unknown channel — treat as private to be safe (no network call).
+      return true;
+    }
+  }
 
   async onModuleInit(): Promise<void> {
     const apiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
@@ -69,6 +90,10 @@ export class TelegramStatsClient implements OnModuleInit {
 
   async getChannelInfo(channelId: string): Promise<ChannelInfo | null> {
     if (!this.client || !this.ready) return null;
+    if (this.isPrivateChannel(channelId)) {
+      this.logger.debug(`getChannelInfo(${channelId}) skipped: private channel`);
+      return null;
+    }
     try {
       const entity = await this.client.getEntity(channelId);
       const full = await this.client.invoke(
@@ -94,6 +119,10 @@ export class TelegramStatsClient implements OnModuleInit {
 
   async getPostMetrics(channelId: string, messageId: number): Promise<PostMetrics | null> {
     if (!this.client || !this.ready) return null;
+    if (this.isPrivateChannel(channelId)) {
+      this.logger.debug(`getPostMetrics(${channelId}#${messageId}) skipped: private channel`);
+      return null;
+    }
     try {
       const entity = await this.client.getEntity(channelId);
       const result: any = await this.client.invoke(

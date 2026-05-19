@@ -16,6 +16,10 @@ export interface PostPayload {
   source: string;          // original article URL
   tags: string[];
   title?: string;
+  /** Optional URL to render as a large Telegram link preview when no image is
+   *  available (e.g. a YouTube video URL scraped from the article).
+   *  Only honored by the text-only `sendMessage` path. */
+  previewUrl?: string;
 }
 
 /** RSS source config */

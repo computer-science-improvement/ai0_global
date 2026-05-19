@@ -21,6 +21,7 @@ import { ContentCleanerService }    from '../../common/processors/content-cleane
 import { ImageResolverService }     from '../../common/processors/image-resolver.service';
 import { RawItem, PostPayload }     from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
+import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { SourceConfig }             from '../../common/types';
 
 @Injectable()
@@ -41,6 +42,7 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
     private readonly topicRouter:   TopicRouterService,
     private readonly botLogger:  BotLoggerService,
     private readonly telegram:   TelegramPublisher,
+    private readonly notifier:   TelegramNotifier,
     private readonly registry:   ContentStrategyRegistry,
   ) {}
 
@@ -85,6 +87,7 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
 
     if (!allItems.length) {
       this.logger.warn('No items fetched from any source');
+      await this.notifier.notifySkipped(channelId, 'no items fetched from any source');
       return;
     }
 
@@ -100,6 +103,7 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
     const unposted = await this.dedup.filterUnposted(cleaned, channelId);
     if (!unposted.length) {
       this.logger.debug('No unposted items after dedup');
+      await this.notifier.notifySkipped(channelId, `no new items (${cleaned.length} candidates all already posted)`);
       return;
     }
 
@@ -129,6 +133,7 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
     if (verdict !== 'NEW') {
       await this.dedup.markPosted(item.source, item.title, channelId);
       this.logger.debug(`Skipped (${verdict}): ${item.source}`);
+      await this.notifier.notifySkipped(channelId, `semantic dedup: ${verdict} — ${item.title.slice(0, 80)}`);
       return;
     }
 
@@ -149,6 +154,7 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
     if (result === 'SKIP_POST') {
       await this.dedup.markPosted(item.source, item.title, channelId);
       this.logger.debug(`Skipped (SKIP_POST): ${item.source}`);
+      await this.notifier.notifySkipped(channelId, `SKIP_POST from agent — ${item.title.slice(0, 80)}`);
       return;
     }
     if (!result) {
@@ -178,9 +184,16 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
 
     if (await this.botLogger.hasLog(item.source, channelId)) return;
 
+    // markPosted BEFORE telegram.publish. If the process is killed (deploy,
+    // OOM, crash) AFTER the Telegram send but BEFORE the DB write, the next
+    // cron tick would otherwise re-publish — exactly the SpaceXAI duplicate
+    // we hit on 2026-05-15. Trade-off: a publish failure now leaves a row
+    // in posted_news without a Telegram message — the article is lost. We
+    // accept that one-in-thousands loss to make duplicates impossible.
+    await this.dedup.markPosted(item.source, item.title, channelId);
+
     try {
       const messageId = await this.telegram.publish(payload, { id: channelId });
-      await this.dedup.markPosted(item.source, item.title, channelId);
       await this.botLogger.logSuccess(item.source, channelId, messageId, {
         title: item.title, strategyType: this.type, tags: item.tags ?? null,
       });
@@ -198,7 +211,10 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
       }
     } catch (err) {
       await this.botLogger.logError(item.source, channelId, err.message);
-      this.logger.warn(`Publish failed for ${item.source}: ${err.message}`);
+      this.logger.warn(
+        `Publish failed for ${item.source}: ${err.message} — ` +
+        `posted_news already marked, article will NOT retry`,
+      );
     }
   }
 

@@ -52,7 +52,7 @@ export class QuotesRepository {
   /** Mark quote as posted for this channel */
   async markPosted(id: string, channelId: string): Promise<void> {
     await this.pool.query(
-      `UPDATE quotes SET posted = posted || jsonb_build_object($2, NOW()) WHERE id = $1`,
+      `UPDATE quotes SET posted = posted || jsonb_build_object($2::text, NOW()) WHERE id = $1`,
       [id, channelId],
     );
   }

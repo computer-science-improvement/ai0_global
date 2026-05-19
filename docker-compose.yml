@@ -37,17 +37,23 @@ services:
   # ─── Automation (long-running Nest.js service) ───────────────────────────────
   # Production only: docker compose --profile prod up -d
   # Dev: pnpm run dev:automation  (runs outside Docker)
+  #
+  # Image is pre-built in GitHub Actions and pushed to GHCR — the prod box
+  # has tight RAM and OOMs during a local TS compile. To rebuild locally
+  # (e.g. for dev testing), set AUTOMATION_IMAGE to an empty string and add
+  # back the `build:` block.
   automation:
     profiles: ["prod"]
-    build:
-      context: .
-      dockerfile: apps/automation/Dockerfile
+    image: ${AUTOMATION_IMAGE:-ghcr.io/computer-science-improvement/ai0_global-automation:latest}
     restart: unless-stopped
     ports:
       # 3001 на хості, якщо локально вже зайнятий 3000
       - "${AUTOMATION_PORT:-3001}:3000"
     environment:
-      NODE_ENV:          production
+      # Host's .env decides which environment this container runs as.
+      # Valid values: production | dev-stage | local-development.
+      # Channel-config service refuses to boot on any other value.
+      NODE_ENV:          ${NODE_ENV:-production}
       PORT:              3000
       POSTGRES_HOST:     postgres
       POSTGRES_PORT:     5432
@@ -59,6 +65,9 @@ services:
     volumes:
       # Persist structured Winston logs across container restarts; read by LogAnalyzerAgent
       - ./logs/automation:/repo/apps/automation/logs
+      # Mount config so channels.json / proxies.json / sources/* changes go live
+      # on `docker compose up -d` WITHOUT a rebuild (prod box has tight RAM).
+      - ./apps/automation/config:/repo/apps/automation/config:ro
     depends_on:
       postgres:
         condition: service_healthy

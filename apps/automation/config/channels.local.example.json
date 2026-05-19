@@ -1,0 +1,38 @@
+{
+  "_comment": "Template for channels.local.json — copy this file to channels.local.json (gitignored) and replace placeholders. Active only when NODE_ENV=local-development. The service falls back to channels-dev.json if channels.local.json doesn't exist.",
+
+  "bots": {
+    "ai0_local_test_bot": {
+      "platform": "telegram",
+      "tokenEnv": "TELEGRAM_BOT_TOKEN"
+    }
+  },
+
+  "channels": {
+    "@your_local_news_channel": {
+      "platform": "telegram",
+      "chatId": "@your_local_news_channel",
+      "botId": "ai0_local_test_bot"
+    },
+    "@your_local_pdr_channel": {
+      "platform": "telegram",
+      "chatId": "@your_local_pdr_channel",
+      "botId": "ai0_local_test_bot"
+    }
+  },
+
+  "strategies": [
+    {
+      "id": "ai0-news:local",
+      "type": "ai0-news",
+      "channelId": "@your_local_news_channel",
+      "schedule": "*/30 8-22 * * *"
+    },
+    {
+      "id": "pdr-quiz:local",
+      "type": "pdr-quiz",
+      "channelId": "@your_local_pdr_channel",
+      "schedule": "*/30 8-22 * * *"
+    }
+  ]
+}

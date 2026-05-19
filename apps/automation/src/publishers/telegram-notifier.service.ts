@@ -1,6 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
+import { ChannelConfigService } from '../config/channel-config.service';
 
 /**
  * Sends admin notifications to the bot owner via Telegram.
@@ -13,7 +14,10 @@ export class TelegramNotifier implements OnModuleInit {
   private botToken: string | null = null;
   private ownerId:  string | null = null;
 
-  constructor(private readonly config: ConfigService) {}
+  constructor(
+    private readonly config:        ConfigService,
+    private readonly channelConfig: ChannelConfigService,
+  ) {}
 
   onModuleInit() {
     this.botToken = this.config.get<string>('TELEGRAM_BOT_TOKEN') ?? null;
@@ -46,12 +50,35 @@ export class TelegramNotifier implements OnModuleInit {
     await this.send(text);
   }
 
+  /**
+   * Notify that the strategy ran but intentionally produced no post
+   * (e.g. all candidates already posted, semantic dedup, empty feed).
+   * @param channelId  e.g. "@ai_news_local"
+   * @param reason     short human-readable reason
+   */
+  async notifySkipped(channelId: string, reason: string): Promise<void> {
+    const text = `ℹ️ ${channelId} skipped: ${reason}`;
+    await this.send(text);
+  }
+
   // ─── Helpers ───────────────────────────────────────────────────────────────
 
   private buildPostUrl(channelId: string, messageId: string): string {
-    // "@ai0_global" → "https://t.me/ai0_global/517"
-    const username = channelId.replace(/^@/, '');
-    return `https://t.me/${username}/${messageId}`;
+    // Resolve the channel key to its actual chatId.
+    // Public channels (chatId is `@username`) → https://t.me/<username>/<msgId>
+    // Private channels (chatId is `-100…` numeric) → https://t.me/c/<id-without-100>/<msgId>
+    let chatId: string;
+    try {
+      chatId = this.channelConfig.resolveChannel(channelId).chatId;
+    } catch {
+      chatId = channelId;
+    }
+    if (chatId.startsWith('@')) {
+      return `https://t.me/${chatId.slice(1)}/${messageId}`;
+    }
+    const m = chatId.match(/^-100(\d+)$/);
+    if (m) return `https://t.me/c/${m[1]}/${messageId}`;
+    return `https://t.me/${chatId.replace(/^-/, '')}/${messageId}`;
   }
 
   private async send(text: string): Promise<void> {

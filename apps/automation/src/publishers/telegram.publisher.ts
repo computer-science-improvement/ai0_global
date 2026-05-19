@@ -74,7 +74,9 @@ export class TelegramPublisher extends BasePublisher {
     try {
       if (!photo) {
         // No image — plain text message (4096 limit applies in Bot API).
-        messageId = await this.sendMessage(base, chatId, payload.text);
+        // Optional `previewUrl` enables a large link preview (e.g. a YouTube
+        // video scraped from the article when there's no hero image).
+        messageId = await this.sendMessage(base, chatId, payload.text, payload.previewUrl);
       } else if (visibleLength <= 1024) {
         // Tier 1: bot API photo + caption.
         messageId = await this.sendPhotoWithCaption(base, chatId, photo, payload.text);
@@ -283,7 +285,15 @@ export class TelegramPublisher extends BasePublisher {
     this.logger.log(`Reply sent to ${chatId} (reply_to: ${replyToMessageId})`);
   }
 
-  private async sendMessage(base: string, chatId: string, text: string): Promise<string> {
+  private async sendMessage(
+    base: string,
+    chatId: string,
+    text: string,
+    previewUrl?: string,
+  ): Promise<string> {
+    const link_preview_options = previewUrl
+      ? { url: previewUrl, prefer_large_media: true, show_above_text: true }
+      : { is_disabled: true };
     const res = await axios.post(
       `${base}/sendMessage`,
       {
@@ -291,7 +301,7 @@ export class TelegramPublisher extends BasePublisher {
         text,
         parse_mode: 'HTML',
         disable_notification: true,
-        link_preview_options: { is_disabled: true },
+        link_preview_options,
       },
       { timeout: 15000 },
     );

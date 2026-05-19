@@ -1,4 +1,5 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import axios from 'axios';
 import { ClaudeAgent }              from '../../common/ai/agents/claude.agent';
 import { PostValidator }            from '../../common/ai/validators/post.validator';
 import { ReviewAgent }              from '../../common/ai/agents/review.agent';
@@ -69,17 +70,27 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
     return null;
   }
 
-  async execute(channelId: string, _params: StrategyParams): Promise<void> {
+  async execute(channelId: string, params: StrategyParams): Promise<void> {
     const TYPE_PRIORITY: Record<string, number> = { giveaway: 0, deal: 1, news: 2 };
 
-    // 1. Fetch all sources
-    this.logger.debug('Fetching all game-channel sources');
+    // Source filter — when `params.sources` is set, fetch only the listed
+    // fetchers. Lets one strategy class be bound to multiple crons with
+    // different schedules (e.g. giveaways daily at 11:00, deals/news every
+    // 2 hours). Absent / empty → all sources (legacy behaviour).
+    const requested = Array.isArray((params as any)?.sources)
+      ? ((params as any).sources as string[])
+      : null;
+    const want = (s: string) => !requested || requested.length === 0 || requested.includes(s);
+
+    this.logger.debug(
+      `Fetching game-channel sources: ${requested?.join(',') ?? 'all'}`,
+    );
 
     const [giveaways, epicFree, deals, news] = await Promise.all([
-      this.gamerpower.fetch(),
-      this.epic.fetch(),
-      this.steam.fetch(),
-      this.gameNews.fetch(),
+      want('gamerpower') ? this.gamerpower.fetch() : Promise.resolve([]),
+      want('epic')       ? this.epic.fetch()       : Promise.resolve([]),
+      want('steam')      ? this.steam.fetch()      : Promise.resolve([]),
+      want('news')       ? this.gameNews.fetch()   : Promise.resolve([]),
     ]);
 
     const allItems: GameChannelItem[] = [...giveaways, ...epicFree, ...deals, ...news];
@@ -166,7 +177,24 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
       imageBuffer = (await this.images.download(item.imageUrl)) ?? undefined;
     }
 
+    // 6b. No image — try to find a YouTube video embedded in the article so
+    // Telegram can render a large video preview instead of a bare link.
+    let previewUrl: string | undefined;
+    if (!imageBuffer && !item.imageUrl && item.source) {
+      previewUrl = (await this.findYoutubeUrl(item.source)) ?? undefined;
+      if (previewUrl) {
+        text = `${text}\n\n${previewUrl}`;
+      }
+    }
+
     // 7. Publish
+    // markPosted BEFORE telegram.publish. Symmetric with ai0-news fix from
+    // 2026-05-15: if publish times out / crashes between Telegram-send and DB
+    // write, the next cron tick would otherwise re-select the same item. We
+    // accept the one-in-thousands loss-on-publish-failure trade-off to make
+    // duplicates impossible.
+    await this.dedup.markPosted(item.source, item.title, channelId, item.type);
+
     try {
       let messageId: string;
       if (imageBuffer && text.length <= 1024) {
@@ -183,11 +211,11 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
             source: item.source,
             tags: [item.type],
             title: item.title,
+            previewUrl,
           },
           { id: channelId },
         );
       }
-      await this.dedup.markPosted(item.source, item.title, channelId, item.type);
       await this.notifier.notifyPublished(channelId, messageId);
       await this.publications.insert({
         channelId, messageId,
@@ -205,5 +233,47 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
   private appendLink(text: string, item: GameChannelItem): string {
     if (!item.source) return text;
     return text + '\n\n<a href="' + item.source + '">Посилання</a>';
+  }
+
+  /**
+   * Fetch the article URL and return the first YouTube video URL found
+   * (iframe embed, og:video meta tag, or inline watch/youtu.be link),
+   * normalized to `https://www.youtube.com/watch?v=<ID>` so Telegram renders
+   * a video link preview reliably. Returns null if nothing is found or the
+   * fetch fails. Best-effort: never throws.
+   */
+  private async findYoutubeUrl(articleUrl: string): Promise<string | null> {
+    try {
+      const res = await axios.get<string>(articleUrl, {
+        timeout: 8000,
+        responseType: 'text',
+        maxContentLength: 5_000_000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; AI0Bot/1.0)',
+          Accept: 'text/html',
+        },
+      });
+      const html = res.data;
+      if (typeof html !== 'string') return null;
+
+      // Common video ID patterns. The first capture is the 11-char YouTube ID.
+      const patterns = [
+        /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/i,
+        /youtube\.com\/watch\?[^"'<>\s]*v=([A-Za-z0-9_-]{11})/i,
+        /youtu\.be\/([A-Za-z0-9_-]{11})/i,
+        /youtube-nocookie\.com\/embed\/([A-Za-z0-9_-]{11})/i,
+      ];
+
+      for (const re of patterns) {
+        const m = html.match(re);
+        if (m && m[1]) {
+          return `https://www.youtube.com/watch?v=${m[1]}`;
+        }
+      }
+      return null;
+    } catch (err: any) {
+      this.logger.debug(`findYoutubeUrl(${articleUrl}) failed: ${err.message}`);
+      return null;
+    }
   }
 }

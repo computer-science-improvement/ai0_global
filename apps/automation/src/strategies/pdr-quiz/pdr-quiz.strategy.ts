@@ -83,6 +83,15 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
       ? truncate(q.explanation, MAX_EXPL)
       : undefined;
 
+    // markPosted BEFORE any Telegram publish — same reasoning as ai0-news / ua-news.
+    // A process kill (deploy, OOM, crash) between sendPhoto/sendMessage/sendPoll
+    // and the DB write would otherwise let the next cron re-publish the same quiz
+    // on the next tick. Trade-off: if publish fails afterwards, the question is
+    // marked as posted in DB but absent from Telegram (lost). Accepted to prevent
+    // duplicates on @pdr_dev_channel — duplicates are far more user-visible than
+    // a single skipped question out of thousands in the bank.
+    await this.db.markPosted(q.id, channelId);
+
     try {
       const base = `https://api.telegram.org/bot${botToken}`;
 
@@ -176,7 +185,7 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
 
       const pollMessageId = String(pollRes.data.result.message_id);
       this.throttle.recordPublish(channelId);
-      await this.db.markPosted(q.id, channelId);
+      // db.markPosted already happened pre-publish (see above) — duplicate prevention
       await this.notifier.notifyPublished(channelId, pollMessageId);
       await this.publications.insert({
         channelId, messageId: pollMessageId,

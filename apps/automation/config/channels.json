@@ -46,7 +46,7 @@
       "id": "ai0-prompts:ai0_prompts_dev",
       "type": "ai0-prompts",
       "channelId": "@ai0_prompts_dev",
-      "schedule": "*/30 8-22 * * *"
+      "schedule": "0 8-22/2 * * *"
     },
 
     {
@@ -67,7 +67,7 @@
       "id": "ua-news:ai0_global_open_source",
       "type": "ua-news",
       "channelId": "@ai0_global",
-      "schedule": "0 8,10,12,14,16,18,20 * * *",
+      "schedule": "0,30 8,11,14,17,20 * * *",
       "params": {
         "feedUrl": "https://www.artificialintelligence-news.com/categories/ai-and-us/open-source-democratised-ai/feed/",
         "sourceName": "artificialintelligence-news.com",
@@ -78,7 +78,7 @@
       "id": "ua-news:ai0_global_mcp",
       "type": "ua-news",
       "channelId": "@ai0_global",
-      "schedule": "30 8,10,12,14,16,18,20 * * *",
+      "schedule": "0,30 9,12,15,18,21 * * *",
       "params": {
         "feedUrl": "https://www.marktechpost.com/category/model-context-protocol-mcp/feed/",
         "sourceName": "marktechpost.com",
@@ -89,7 +89,7 @@
       "id": "ua-news:ai0_global_ai_agents",
       "type": "ua-news",
       "channelId": "@ai0_global",
-      "schedule": "0 9,11,13,15,17,19,21 * * *",
+      "schedule": "0,30 10,13,16,19,22 * * *",
       "params": {
         "feedUrl": "https://www.marktechpost.com/category/ai-agents/feed/",
         "sourceName": "marktechpost.com",
@@ -100,7 +100,7 @@
       "id": "assets:academy-openai",
       "type": "assets",
       "channelId": "@ai0_global",
-      "schedule": "30 9 * * *",
+      "schedule": "15 8,14,20 * * *",
       "params": {
         "dataSource": "academy-openai",
         "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/prompt_openai_poster.jpg",
@@ -111,7 +111,7 @@
       "id": "assets:mcpservers",
       "type": "assets",
       "channelId": "@ai0_global",
-      "schedule": "30 11 * * *",
+      "schedule": "15 10,16,22 * * *",
       "params": {
         "dataSource": "mcpservers",
         "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/mcp_server_poster.png",
@@ -122,7 +122,7 @@
       "id": "assets:prompts-md",
       "type": "assets",
       "channelId": "@ai0_global",
-      "schedule": "30 13 * * *",
+      "schedule": "15 12,18 * * *",
       "params": {
         "dataSource": "prompts-md",
         "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/prompt_community_poster.jpg",

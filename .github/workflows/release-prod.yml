@@ -1,0 +1,115 @@
+name: Release -> production
+
+# Fires only on a semver tag pushed from a commit that is reachable from
+# `main`. This is the SOLE path that touches the prod box. Day-to-day pushes
+# to `main` (untagged) trigger snapshot-main.yml (build, no deploy).
+#
+# Manual usage (when ready to ship — out of scope of the multi-env implementation):
+#   git checkout main && git pull
+#   git tag v1.0.0
+#   git push origin v1.0.0
+#
+# Secrets required:
+#   DO_HOST, DO_USER, DO_SSH_KEY — same secrets the historical deploy.yml used
+#   GH_PAT — optional fine-grained PAT with packages:read (falls back to GITHUB_TOKEN)
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/ai0_global-automation
+
+jobs:
+  # Safety guard: refuse to ship if the tag points to a commit that isn't on
+  # main. Prevents accidentally tagging from develop / a feature branch and
+  # deploying unverified code to prod.
+  verify-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Tag must be reachable from main
+        run: |
+          git fetch origin main:refs/remotes/origin/main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::Tag ${GITHUB_REF#refs/tags/} (commit $GITHUB_SHA) is NOT reachable from main."
+            echo "Releases must be tagged from a commit that has been merged to main."
+            exit 1
+          fi
+          echo "OK — tagged commit is on main."
+
+  build:
+    needs: verify-tag
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract semver from tag
+        id: ver
+        run: |
+          # github.ref is "refs/tags/vX.Y.Z" — strip the prefix.
+          VERSION="${GITHUB_REF#refs/tags/}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Set lowercased image name
+        id: image
+        run: echo "name=$(echo ${IMAGE_NAME} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push (versioned tags)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/automation/Dockerfile
+          push: true
+          tags: |
+            ${{ steps.image.outputs.name }}:${{ steps.ver.outputs.version }}
+            ${{ steps.image.outputs.name }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to prod
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            set -e
+            cd /opt/ai0_global
+
+            git fetch --tags origin main
+            git checkout main
+            git reset --hard origin/main
+
+            echo "${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}" \
+              | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+            # Pre-built image lives in compose under AUTOMATION_IMAGE
+            # (prod .env sets it to :latest, which now moves only on tagged release).
+            docker compose --profile prod pull automation
+            docker compose --profile prod up -d automation
+            docker compose --profile prod restart automation
+
+            docker image prune -f

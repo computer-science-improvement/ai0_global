@@ -11,21 +11,36 @@ export class DedupService {
     private readonly structured: StructuredLoggerService,
   ) {}
 
-  /** Filter out items already posted to this channel */
+  /**
+   * Filter out items already posted to ANY channel. Global dedup by
+   * source URL: once a source has been posted anywhere, no other channel
+   * (or other strategy on the same channel) will publish it again. This
+   * is what users expect from a multi-channel pipeline that reads from
+   * overlapping RSS feeds — the same news item from two different feeds
+   * sharing a URL won't appear twice.
+   *
+   * channelId is kept in the signature for log attribution; the SQL no
+   * longer filters by it.
+   */
   async filterUnposted(items: RawItem[], channelId: string): Promise<RawItem[]> {
     if (!items.length) return [];
 
     const urls = items.map((i) => i.source);
     const { rows } = await this.pool.query(
-      `SELECT source_url FROM posted_news WHERE source_url = ANY($1) AND channel_id = $2`,
-      [urls, channelId],
+      `SELECT source_url FROM posted_news WHERE source_url = ANY($1)`,
+      [urls],
     );
     const posted = new Set(rows.map((r) => r.source_url));
     const unposted = items.filter((i) => !posted.has(i.source));
     this.structured.db({
       op: 'filterUnposted', table: 'posted_news', channelId,
       rowCount: unposted.length,
-      detail: { input: items.length, alreadyPosted: posted.size, firstCandidate: unposted[0]?.source },
+      detail: {
+        input: items.length,
+        alreadyPosted: posted.size,
+        firstCandidate: unposted[0]?.source,
+        scope: 'global',
+      },
     });
     return unposted;
   }

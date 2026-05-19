@@ -31,87 +31,65 @@
       "platform": "telegram",
       "chatId": "@ai0_global",
       "botId": "ai0_global_test_bot"
+    },
+    "@quotes_dev": {
+      "platform": "telegram",
+      "chatId": "@quotes_dev",
+      "botId": "ai0_global_test_bot"
     }
   },
 
   "strategies": [
 
     {
+      "_comment": "News channel — every 2 hours within 8-22 UTC = 8 posts/day.",
       "id": "ai0-news:ai0_news_dev",
       "type": "ai0-news",
       "channelId": "@ai0_news_dev",
-      "schedule": "*/5 * * * *"
+      "schedule": "0 8-22/2 * * *"
     },
     {
+      "_comment": "Prompts channel — exactly 2 posts/day at 09:00 and 17:00 UTC.",
       "id": "ai0-prompts:ai0_prompts_dev",
       "type": "ai0-prompts",
       "channelId": "@ai0_prompts_dev",
-      "schedule": "*/5 * * * *"
+      "schedule": "0 9,17 * * *"
     },
 
     {
-      "id": "game-channel:game_exchange_dev",
+      "_comment": "Giveaways slot — runs once a day at 11:00. Pulls only from GamerPower (key giveaways) and Epic (free-game-of-the-week). Type = giveaway dominates lots so it gets its own dedicated daily slot.",
+      "id": "game-channel:giveaways_dev",
       "type": "game-channel",
       "channelId": "@game_exchange_dev",
-      "schedule": "*/5 * * * *"
+      "schedule": "0 11 * * *",
+      "params": {
+        "sources": ["gamerpower", "epic"]
+      }
+    },
+    {
+      "_comment": "Deals + news rotation — every 2 hours within 12:00-22:00 (12,14,16,18,20,22). Constrained to the daytime window 11-22 alongside the 11:00 giveaway slot. Excludes giveaway fetchers.",
+      "id": "game-channel:rotation_dev",
+      "type": "game-channel",
+      "channelId": "@game_exchange_dev",
+      "schedule": "0 12-22/2 * * *",
+      "params": {
+        "sources": ["steam", "news"]
+      }
     },
 
     {
       "id": "pdr-quiz:main",
       "type": "pdr-quiz",
       "channelId": "@pdr_dev_channel",
-      "schedule": "*/5 * * * *"
+      "schedule": "*/30 8-22 * * *"
     },
 
     {
-      "id": "ua-news:ai0_global_open_source",
-      "type": "ua-news",
-      "channelId": "@ai0_global",
-      "schedule": "*/5 * * * *",
-      "params": {
-        "feedUrl": "https://www.artificialintelligence-news.com/categories/ai-and-us/open-source-democratised-ai/feed/",
-        "sourceName": "artificialintelligence-news.com",
-        "tags": ["news"]
-      }
-    },
-    {
-      "id": "ua-news:ai0_global_mcp",
-      "type": "ua-news",
-      "channelId": "@ai0_global",
-      "schedule": "*/5 * * * *",
-      "params": {
-        "feedUrl": "https://www.marktechpost.com/category/model-context-protocol-mcp/feed/",
-        "sourceName": "marktechpost.com",
-        "tags": ["mcp_news"]
-      }
-    },
-    {
-      "id": "ua-news:ai0_global_ai_agents",
-      "type": "ua-news",
-      "channelId": "@ai0_global",
-      "schedule": "*/5 * * * *",
-      "params": {
-        "feedUrl": "https://www.marktechpost.com/category/ai-agents/feed/",
-        "sourceName": "marktechpost.com",
-        "tags": ["ai_agents"]
-      }
-    },
-    {
-      "id": "assets:academy-openai",
-      "type": "assets",
-      "channelId": "@ai0_global",
-      "schedule": "*/5 * * * *",
-      "params": {
-        "dataSource": "academy-openai",
-        "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/prompt_openai_poster.jpg",
-        "tag": "#openai_academy"
-      }
-    },
-    {
+      "_comment": "AI Tech channel daily flow (UTC): 09:00 MCP asset → 09:30 prompt asset (20-min cooldown enforces the gap) → news every 4h at 10, 14, 18, 22. Two news feeds rotate so each fires twice per day.",
       "id": "assets:mcpservers",
       "type": "assets",
       "channelId": "@ai0_global",
-      "schedule": "*/5 * * * *",
+      "schedule": "0 9 * * *",
       "params": {
         "dataSource": "mcpservers",
         "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/mcp_server_poster.png",
@@ -122,11 +100,101 @@
       "id": "assets:prompts-md",
       "type": "assets",
       "channelId": "@ai0_global",
-      "schedule": "*/5 * * * *",
+      "schedule": "30 9 * * *",
       "params": {
         "dataSource": "prompts-md",
         "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/prompt_community_poster.jpg",
         "tag": "#prompt"
+      }
+    },
+    {
+      "id": "ua-news:ai0_global_open_source",
+      "type": "ua-news",
+      "channelId": "@ai0_global",
+      "schedule": "0 10,18 * * *",
+      "params": {
+        "feedUrl": "https://www.artificialintelligence-news.com/categories/ai-and-us/open-source-democratised-ai/feed/",
+        "sourceName": "artificialintelligence-news.com",
+        "tags": ["news"]
+      }
+    },
+    {
+      "id": "ua-news:ai0_global_ai_agents",
+      "type": "ua-news",
+      "channelId": "@ai0_global",
+      "schedule": "0 14,22 * * *",
+      "params": {
+        "feedUrl": "https://www.marktechpost.com/category/ai-agents/feed/",
+        "sourceName": "marktechpost.com",
+        "tags": ["ai_agents"]
+      }
+    },
+    {
+      "_comment": "Demoted to weekly — MCP topic already covered by the daily asset:mcpservers slot above. Keeps the binding available without competing for daily slots.",
+      "id": "ua-news:ai0_global_mcp",
+      "type": "ua-news",
+      "channelId": "@ai0_global",
+      "schedule": "0 22 * * 0",
+      "params": {
+        "feedUrl": "https://www.marktechpost.com/category/model-context-protocol-mcp/feed/",
+        "sourceName": "marktechpost.com",
+        "tags": ["mcp_news"]
+      }
+    },
+    {
+      "_comment": "Demoted to weekly Sunday — alternative prompt source. assets:prompts-md is the daily prompt slot.",
+      "id": "assets:academy-openai",
+      "type": "assets",
+      "channelId": "@ai0_global",
+      "schedule": "30 9 * * 0",
+      "params": {
+        "dataSource": "academy-openai",
+        "posterUrl": "https://velnkfahctctngbkopfm.supabase.co/storage/v1/object/public/ai0_global/prompt_openai_poster.jpg",
+        "tag": "#openai_academy"
+      }
+    },
+
+    {
+      "_comment": "Motivation channel rotation — birthday at 11:00, then quote/fact alternate every 4h: 15 quote, 19 fact, 23 quote, 03 fact, 07 quote. 1+3+2 = 6 posts/day.",
+      "id": "birthday-strategy:quotes_dev",
+      "type": "birthday-strategy",
+      "channelId": "@quotes_dev",
+      "schedule": "0 11 * * *"
+    },
+
+    {
+      "id": "quotes:quotes_dev",
+      "type": "quotes",
+      "channelId": "@quotes_dev",
+      "schedule": "0 7,15,23 * * *"
+    },
+
+    {
+      "_comment": "Curated motivation fact pool: philosophy (A), composers (C), psychology/brain (D), relationships (E), Olympics (F). 17 article titles, ~396 facts, no AI calls.",
+      "id": "facts:motivation_dev",
+      "type": "facts",
+      "channelId": "@quotes_dev",
+      "schedule": "0 3,19 * * *",
+      "params": {
+        "articleTitles": [
+          "35 цікавих фактів про Конфуція",
+          "30 цікавих фактів про Будду",
+          "25 цікавих фактів про Аристотеля",
+          "20 цікавих фактів про Сократа",
+          "15 цікавих фактів про Платона",
+          "30 цікавих фактів про Йоганна Себастьяна Баха",
+          "17 цікавих фактів про Моцарта",
+          "15 цікавих фактів з життя Чайковського",
+          "15 цікавих фактів про Бетховена",
+          "30 цікавих фактів про серце людини",
+          "27 цікавих фактів про стрес",
+          "25 цікавих фактів про органи почуттів",
+          "20 цікавих фактів про мозок",
+          "17 цікавих фактів про нервову систему людини",
+          "30 цікавих фактів про кохання",
+          "20 цікавих фактів про дружбу",
+          "25 цікавих фактів про Олімпійські ігри"
+        ]
       }
     }
 
