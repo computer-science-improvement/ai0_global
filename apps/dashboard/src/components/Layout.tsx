@@ -29,6 +29,11 @@ export function Layout() {
                 activeProps={{ style: { color: 'var(--color-ink)' } }}>
                 Discovery
               </Link>
+              <Link to={'/recommendations' as any}
+                className="transition-colors hover:text-white"
+                activeProps={{ style: { color: 'var(--color-ink)' } }}>
+                Recommendations
+              </Link>
             </nav>
           </div>
           {me && (

@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { ViewsBarChart } from '../components/ViewsBarChart';
@@ -7,6 +8,8 @@ import { EngagementChart } from '../components/EngagementChart';
 import { PostsList } from '../components/PostsList';
 import { fmtNumber, fmtDate } from '../lib/format';
 import { RoiPanel } from '../components/RoiPanel';
+import { EditThemesModal } from '../components/EditThemesModal';
+import { useChannelThemes } from '../api/discovery';
 
 export const Route = createFileRoute('/channels/$id')({ component: ChannelDetailPage });
 
@@ -21,11 +24,13 @@ const sectionLabel: React.CSSProperties = {
 
 function ChannelDetailPage() {
   const { id } = Route.useParams();
+  const [themesOpen, setThemesOpen] = useState(false);
 
   const channelQ = useQuery({ queryKey: ['channel', id], queryFn: () => trackingApi.getChannel(id) });
   const subsQ    = useQuery({ queryKey: ['subs', id],    queryFn: () => trackingApi.subsHistory(id) });
   const postsQ   = useQuery({ queryKey: ['posts', id],   queryFn: () => trackingApi.listPosts(id, 30) });
   const topQ     = useQuery({ queryKey: ['top', id],     queryFn: () => trackingApi.topPosts(id, 'views', 5) });
+  const themesQ  = useChannelThemes(id);
 
   if (channelQ.isLoading) return <p style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
   if (channelQ.error)     return <p style={{ color: 'var(--color-danger)' }}>{(channelQ.error as Error).message}</p>;
@@ -44,9 +49,26 @@ function ChannelDetailPage() {
           <span>tier: {c.pollTier}</span>
           <span>·</span>
           <span>added {fmtDate(c.addedAt)}</span>
+          <span>·</span>
+          <button
+            onClick={() => setThemesOpen(true)}
+            className="text-blue-600 hover:underline"
+            style={{ fontSize: 14 }}
+          >
+            Edit themes ({themesQ.data?.length ?? 0})
+          </button>
         </div>
         {c.about && <p style={{ marginTop: 8, maxWidth: 640, fontSize: 14, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>{c.about}</p>}
       </header>
+
+      {themesOpen && (
+        <EditThemesModal
+          channelId={id}
+          channelTitle={c.title ?? c.username ?? id}
+          open={themesOpen}
+          onClose={() => setThemesOpen(false)}
+        />
+      )}
 
       <section>
         <h2 style={sectionLabel}>ROI estimate</h2>

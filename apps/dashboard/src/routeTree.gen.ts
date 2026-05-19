@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RecommendationsRouteImport } from './routes/recommendations'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as GraphRouteImport } from './routes/graph'
 import { Route as DiscoveryRouteImport } from './routes/discovery'
@@ -16,6 +17,11 @@ import { Route as ChannelsRouteImport } from './routes/channels'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChannelsIdRouteImport } from './routes/channels.$id'
 
+const RecommendationsRoute = RecommendationsRouteImport.update({
+  id: '/recommendations',
+  path: '/recommendations',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
+  '/recommendations': typeof RecommendationsRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
+  '/recommendations': typeof RecommendationsRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
+  '/recommendations': typeof RecommendationsRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
 export interface FileRouteTypes {
@@ -80,9 +89,17 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/graph'
     | '/login'
+    | '/recommendations'
     | '/channels/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/channels' | '/discovery' | '/graph' | '/login' | '/channels/$id'
+  to:
+    | '/'
+    | '/channels'
+    | '/discovery'
+    | '/graph'
+    | '/login'
+    | '/recommendations'
+    | '/channels/$id'
   id:
     | '__root__'
     | '/'
@@ -90,6 +107,7 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/graph'
     | '/login'
+    | '/recommendations'
     | '/channels/$id'
   fileRoutesById: FileRoutesById
 }
@@ -99,10 +117,18 @@ export interface RootRouteChildren {
   DiscoveryRoute: typeof DiscoveryRoute
   GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
+  RecommendationsRoute: typeof RecommendationsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/recommendations': {
+      id: '/recommendations'
+      path: '/recommendations'
+      fullPath: '/recommendations'
+      preLoaderRoute: typeof RecommendationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -166,6 +192,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoveryRoute: DiscoveryRoute,
   GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
+  RecommendationsRoute: RecommendationsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
