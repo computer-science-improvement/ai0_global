@@ -50,3 +50,103 @@ test('scoreCandidate: handles missing themes property defensively', () => {
   assert.equal(scoreCandidate({}, { themes: ['a'] }), 0);
   assert.equal(scoreCandidate({ themes: ['a'] }, {}), 0);
 });
+
+// ─── Recommendations pipeline ─────────────────────────────────────────────
+import { RecommendationsService } from './recommendations.service';
+import type { CandidateChannelsRepository } from '../repositories/candidate-channels.repository';
+import type { ChannelThemesRepository } from '../repositories/channel-themes.repository';
+
+interface FakeRepos {
+  candidates: Pick<CandidateChannelsRepository, 'candidatesForBudgetAndThemes'>;
+  themes:     Pick<ChannelThemesRepository, 'getThemes' | 'listMyUsernames'>;
+}
+
+function makeRepos(opts: {
+  targetThemes:    string[] | null;
+  myUsernames?:    string[];
+  rows?:           any[];
+}): FakeRepos {
+  return {
+    candidates: {
+      candidatesForBudgetAndThemes: async () => opts.rows ?? [],
+    },
+    themes: {
+      getThemes:        async () => opts.targetThemes,
+      listMyUsernames:  async () => opts.myUsernames ?? [],
+    },
+  };
+}
+
+const C = (
+  id: string,
+  slug: string,
+  themes: string[],
+  price: number,
+  roi: number | null = null,
+) => ({
+  id, source: 'teleads', external_id: id, slug, link: `https://t.me/${slug}`,
+  title: slug, description: null, language: null, themes,
+  sex_ratio: null, price_min: price, price_max: price, avatar_url: null,
+  estimated_subs_per_ad: roi,
+  roi_confidence: roi ? 'medium' : null,
+});
+
+test('RecommendationsService: returns warning when target has no themes', async () => {
+  const r = makeRepos({ targetThemes: [] });
+  const svc = new RecommendationsService(r.candidates as any, r.themes as any);
+  const res = await svc.recommend({ targetChannelId: 'x', budget: 100_000 });
+  assert.equal(res.recommendations.length, 0);
+  assert.match(res.warning ?? '', /themes/i);
+});
+
+test('RecommendationsService: throws 404 when target not found', async () => {
+  const r = makeRepos({ targetThemes: null });
+  const svc = new RecommendationsService(r.candidates as any, r.themes as any);
+  await assert.rejects(
+    svc.recommend({ targetChannelId: 'missing', budget: 100 }),
+    /not found/i,
+  );
+});
+
+test('RecommendationsService: ranks by score desc, then ROI desc, then price asc', async () => {
+  const r = makeRepos({
+    targetThemes: ['a', 'b'],
+    rows: [
+      C('1', 'low_score',   ['a'],         50),
+      C('2', 'tied_no_roi', ['a', 'b'],    200),
+      C('3', 'tied_roi',    ['a', 'b'],    300, 42),
+      C('4', 'tied_cheap',  ['a', 'b'],    100),
+    ],
+  });
+  const svc = new RecommendationsService(r.candidates as any, r.themes as any);
+  const res = await svc.recommend({ targetChannelId: 'x', budget: 1_000_000 });
+
+  assert.deepEqual(
+    res.recommendations.map(x => x.slug),
+    ['tied_roi', 'tied_cheap', 'tied_no_roi', 'low_score'],
+  );
+});
+
+test('RecommendationsService: applies limit', async () => {
+  const r = makeRepos({
+    targetThemes: ['a'],
+    rows: [
+      C('1', 'a', ['a'], 10),
+      C('2', 'b', ['a'], 20),
+      C('3', 'c', ['a'], 30),
+    ],
+  });
+  const svc = new RecommendationsService(r.candidates as any, r.themes as any);
+  const res = await svc.recommend({ targetChannelId: 'x', budget: 1000, limit: 2 });
+  assert.equal(res.recommendations.length, 2);
+});
+
+test('RecommendationsService: exposes matched themes', async () => {
+  const r = makeRepos({
+    targetThemes: ['a', 'b'],
+    rows: [ C('1', 'x', ['a', 'b', 'c'], 100) ],
+  });
+  const svc = new RecommendationsService(r.candidates as any, r.themes as any);
+  const res = await svc.recommend({ targetChannelId: 'x', budget: 1000 });
+  assert.deepEqual(res.recommendations[0].matchedThemes, ['a', 'b']);
+});
