@@ -25,6 +25,7 @@ import { StatsModule }          from './stats/stats.module';
 import { DevController }        from './dev.controller';
 import { TrackingModule }       from './tracking/tracking.module';
 import { AuthModule }           from './auth/auth.module';
+import { DiscoveryModule }      from './discovery/discovery.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { AuthModule }           from './auth/auth.module';
     AssetsStrategyModule,
     TrackingModule,
     AuthModule,
+    DiscoveryModule,
   ],
   controllers: [DevController],
 })
