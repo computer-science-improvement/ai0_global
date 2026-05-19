@@ -29,10 +29,32 @@ export class FactsRepository {
     return rows[0] ?? null;
   }
 
+  /**
+   * Get a random unposted fact restricted to one of the given article titles.
+   * Used by curated bindings (e.g. motivation channel) that should only draw
+   * from a hand-picked subset of `article_title` values.
+   */
+  async getRandomByArticleTitles(
+    channelId: string,
+    articleTitles: string[],
+  ): Promise<FactRow | null> {
+    if (!articleTitles.length) return null;
+    const { rows } = await this.pool.query<FactRow>(
+      `SELECT id, article_slug, article_title, article_url, image_url, content, category
+       FROM facts
+       WHERE NOT (posted ? $1)
+         AND article_title = ANY($2::text[])
+       ORDER BY random()
+       LIMIT 1`,
+      [channelId, articleTitles],
+    );
+    return rows[0] ?? null;
+  }
+
   /** Mark fact as posted for this channel */
   async markPosted(id: string, channelId: string): Promise<void> {
     await this.pool.query(
-      `UPDATE facts SET posted = posted || jsonb_build_object($2, NOW()) WHERE id = $1`,
+      `UPDATE facts SET posted = posted || jsonb_build_object($2::text, NOW()) WHERE id = $1`,
       [id, channelId],
     );
   }

@@ -6,8 +6,8 @@
   "scripts": {
     "build": "nest build",
     "start": "NODE_ENV=production node dist/main",
-    "start:dev": "NODE_ENV=development nest start --watch",
-    "start:debug": "NODE_ENV=development nest start --debug --watch",
+    "start:dev": "NODE_ENV=local-development nest start --watch",
+    "start:debug": "NODE_ENV=local-development nest start --debug --watch",
     "lint": "eslint \"{src,test}/**/*.ts\""
   },
   "dependencies": {

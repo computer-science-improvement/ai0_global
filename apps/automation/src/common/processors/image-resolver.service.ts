@@ -136,9 +136,14 @@ export class ImageResolverService implements OnModuleInit {
           return null;
         }
 
-        // Reject icons/logos — require a minimum size for article images
-        const MIN_W = 400;
-        const MIN_H = 200;
+        // Reject icons, logos, and ad banners. The previous 400×200 floor
+        // let through IAB sidebar banners (notably PCGamer's 460×215 ad
+        // slot) which microlink picked instead of the article hero. Raising
+        // to 600×300 catches standard banners while keeping article images:
+        // og:image canonical is 1200×630, even legacy ones are usually
+        // ≥800×400.
+        const MIN_W = 600;
+        const MIN_H = 300;
         if (img.width && img.height && (img.width < MIN_W || img.height < MIN_H)) {
           this.logger.debug(`microlink image too small (${img.width}×${img.height}) for ${sourceUrl} — skipping`);
           this.structured.microlink({

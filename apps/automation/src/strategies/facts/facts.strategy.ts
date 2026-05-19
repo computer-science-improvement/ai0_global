@@ -46,8 +46,17 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
     return null;
   }
 
-  async execute(channelId: string, _params: StrategyParams): Promise<void> {
-    const fact = await this.db.getRandom(channelId);
+  async execute(channelId: string, params: StrategyParams): Promise<void> {
+    // Curated bindings (e.g. motivation channel) restrict to a hand-picked
+    // subset of article_title values via `params.articleTitles`. When absent
+    // or empty, fall back to the full random pool.
+    const articleTitles = Array.isArray((params as any)?.articleTitles)
+      ? ((params as any).articleTitles as string[])
+      : null;
+
+    const fact = articleTitles && articleTitles.length
+      ? await this.db.getRandomByArticleTitles(channelId, articleTitles)
+      : await this.db.getRandom(channelId);
 
     if (!fact) {
       this.logger.debug('No unposted facts available');
@@ -57,9 +66,7 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
     const text = [
       fact.content,
       '',
-      `— з добірки «${fact.article_title}»`,
-      '',
-      '#цікавіфакти',
+      '#факти',
     ].join('\n');
 
     let imageBuffer: Buffer | undefined;
@@ -67,25 +74,30 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
       imageBuffer = await this.downloadImage(fact.image_url);
     }
 
+    // markPosted BEFORE telegram.publish. Symmetric with ai0-news / game-channel
+    // fix: if publish fails between Telegram-send and DB write, the next cron
+    // tick would otherwise pick the same fact again. We accept the one-in-thousands
+    // loss-on-publish-failure trade-off to make duplicates impossible.
+    await this.db.markPosted(fact.id, channelId);
+
     try {
       const messageId = await this.telegram.publish(
         {
           text,
           imageBuffer,
           source: fact.article_url ?? fact.article_slug,
-          tags:   ['цікавіфакти'],
+          tags:   ['факти'],
           title:  fact.article_title,
         },
         { id: channelId },
       );
-      await this.db.markPosted(fact.id, channelId);
       await this.notifier.notifyPublished(channelId, messageId);
       await this.publications.insert({
         channelId, messageId,
         sourceUrl:    fact.article_url ?? fact.article_slug,
         title:        fact.article_title,
         strategyType: this.type,
-        tags:         ['цікавіфакти'],
+        tags:         ['факти'],
       });
       this.logger.debug(`Published fact "${fact.article_title}" to ${channelId}`);
     } catch (err: any) {

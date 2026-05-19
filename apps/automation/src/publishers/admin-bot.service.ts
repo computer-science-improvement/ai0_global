@@ -425,7 +425,7 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
     if (success) {
       const msgId = success.data?.messageId;
       const title = success.data?.title ?? '';
-      const link = msgId ? `\n🔗 https://t.me/${String(success.channelId ?? '').replace(/^@/, '')}/${msgId}` : '';
+      const link = msgId ? `\n🔗 ${this.buildPostLink(success.channelId, msgId)}` : '';
       return { icon: '✅', text: `опубліковано: ${this.escape(title)}${link}` };
     }
     if (failure) {
@@ -454,6 +454,28 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
 
   private escape(text: string): string {
     return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 200);
+  }
+
+  /**
+   * Resolve a post URL for the given channel key + message id.
+   * Public `@username` channels → `https://t.me/<username>/<msgId>`.
+   * Private channels (numeric `-100…` chatId) → `https://t.me/c/<id-without-100>/<msgId>`.
+   * Falls back to the raw channel key if resolution fails.
+   */
+  private buildPostLink(channelKey: string | undefined, msgId: number | string): string {
+    if (!channelKey) return '';
+    let chatId: string;
+    try {
+      chatId = this.channelConfig.resolveChannel(channelKey).chatId;
+    } catch {
+      chatId = channelKey;
+    }
+    if (chatId.startsWith('@')) {
+      return `https://t.me/${chatId.slice(1)}/${msgId}`;
+    }
+    const m = chatId.match(/^-100(\d+)$/);
+    if (m) return `https://t.me/c/${m[1]}/${msgId}`;
+    return `https://t.me/${chatId.replace(/^-/, '')}/${msgId}`;
   }
 
   // ─── Telegram API helpers ───────────────────────────────────────────────────
