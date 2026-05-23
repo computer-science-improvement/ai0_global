@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { fmtNumber, fmtRelative } from '../lib/format';
 import { Icon } from './Icon';
 import { EditChannelModal } from './EditChannelModal';
+import { ChannelAvatar } from './ChannelAvatar';
 import {
   POLL_TIER_HELP, CHANNEL_FLAG_HELP, STRATEGY_ROLE_HELP,
   STRATEGY_STATUS_HELP, describeStrategy,
@@ -31,6 +32,11 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--color-surface-1)'; }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+          <ChannelAvatar
+            name={c.title ?? c.username ?? c.channelKey}
+            src={null}
+            size={36}
+          />
           <div style={{ minWidth: 0, flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
               <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>

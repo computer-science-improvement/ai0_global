@@ -12,6 +12,7 @@ import { RoiPanel } from '../components/RoiPanel';
 import { EditThemesModal } from '../components/EditThemesModal';
 import { EditChannelModal } from '../components/EditChannelModal';
 import { ForwardRoutesPanel } from '../components/ForwardRoutesPanel';
+import { ChannelAvatar } from '../components/ChannelAvatar';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 import {
@@ -60,7 +61,14 @@ function ChannelDetailPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <header>
+      <header style={{ display: 'flex', alignItems: 'flex-start', gap: 18 }}>
+        <ChannelAvatar
+          name={c.title ?? c.username ?? c.channelKey}
+          src={null}
+          size={64}
+          title={c.title ?? c.username ?? id}
+        />
+        <div style={{ flex: 1, minWidth: 0 }}>
         <h1 className="text-display-md" style={{ margin: 0 }}>{c.title ?? c.username ?? id}</h1>
         <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
           {c.username && <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{c.username}</span>}
@@ -96,6 +104,7 @@ function ChannelDetailPage() {
             {c.about}
           </p>
         )}
+        </div>
       </header>
 
       {/* Hero stat strip — at-a-glance "what is this channel" before scrolling. */}
