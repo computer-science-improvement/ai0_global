@@ -77,12 +77,15 @@ export class MyBotsController {
   @Delete(':id')
   @HttpCode(204)
   async remove(@Param('id') id: string) {
-    const bound = await this.bots.countChannelsBound(id);
-    if (bound > 0) {
-      throw new ConflictException(`Bot still bound to ${bound} channel(s) — reassign first`);
+    // Atomic: count + delete happen under a row-level FOR UPDATE lock,
+    // so a concurrent rebind to this bot can't slip between the two queries.
+    const result = await this.bots.deleteIfUnbound(id);
+    if (!result.ok) {
+      throw new ConflictException(`Bot still bound to ${result.bound} channel(s) — reassign first`);
     }
-    const ok = await this.bots.delete(id);
-    if (!ok) throw new NotFoundException(`Bot ${id} not found`);
+    if (!result.deleted) {
+      throw new NotFoundException(`Bot ${id} not found`);
+    }
     await this.publisher.publish('bot', id);
   }
 }

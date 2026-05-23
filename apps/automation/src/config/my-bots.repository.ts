@@ -91,4 +91,49 @@ export class MyBotsRepository {
     );
     return parseInt(rows[0].count, 10);
   }
+
+  /**
+   * Atomically check-and-delete: locks the bot row with `FOR UPDATE`, counts
+   * bound channels under that lock, then deletes if the count is zero. Without
+   * this, a count→delete sequence has a race where a concurrent UPDATE on
+   * tracked_channels.bot_id slips in between the two queries — the FK uses
+   * ON DELETE SET NULL, so a "successful" delete silently orphans channels.
+   *
+   * Returns:
+   *   - { ok: true, deleted: true  } — deleted
+   *   - { ok: false, bound: N }     — N channels still reference this bot
+   *   - { ok: true, deleted: false } — bot did not exist
+   */
+  async deleteIfUnbound(id: string): Promise<
+    | { ok: true; deleted: boolean }
+    | { ok: false; bound: number }
+  > {
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      const { rows: lockRows } = await client.query<{ id: string }>(
+        `SELECT id FROM my_bots WHERE id = $1 FOR UPDATE`, [id],
+      );
+      if (lockRows.length === 0) {
+        await client.query('COMMIT');
+        return { ok: true, deleted: false };
+      }
+      const { rows: countRows } = await client.query<{ count: string }>(
+        `SELECT count(*)::text FROM tracked_channels WHERE bot_id = $1`, [id],
+      );
+      const bound = parseInt(countRows[0].count, 10);
+      if (bound > 0) {
+        await client.query('ROLLBACK');
+        return { ok: false, bound };
+      }
+      await client.query(`DELETE FROM my_bots WHERE id = $1`, [id]);
+      await client.query('COMMIT');
+      return { ok: true, deleted: true };
+    } catch (err) {
+      try { await client.query('ROLLBACK'); } catch { /* connection may be dead */ }
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
 }
