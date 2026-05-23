@@ -1,5 +1,5 @@
 // apps/automation/src/discovery/teleads/teleads.client.ts
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, Optional } from '@nestjs/common';
 import axios from 'axios';
 
 const BASE = 'https://teleads.com.ua/api/promo';
@@ -66,7 +66,7 @@ const defaultHttpGet: HttpGet = async (url, params) => {
 export class TeleAdsClient {
   private readonly logger = new Logger(TeleAdsClient.name);
 
-  constructor(private readonly httpGet: HttpGet = defaultHttpGet) {}
+  constructor(@Optional() private readonly httpGet: HttpGet = defaultHttpGet) {}
 
   async listProducts(opts: {
     page: number;
