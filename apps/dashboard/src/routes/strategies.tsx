@@ -7,6 +7,9 @@ import { EditStrategyModal } from '../components/EditStrategyModal';
 import {
   useStrategies, usePatchStrategy, useDeleteStrategy, useStrategyRuns, useStrategyPreview,
 } from '../api/strategies';
+import {
+  STRATEGY_STATUS_HELP, RUN_STATUS_HELP, STRATEGY_ROLE_HELP, describeStrategy, SOURCE_KIND_LABEL,
+} from '../lib/labels';
 import type { Strategy, StrategyRunSummary, PreviewItem } from '../api/types';
 
 export const Route = createFileRoute('/strategies')({ component: StrategiesPage });
@@ -113,7 +116,17 @@ function StrategyRow({ s, open, onToggleOpen, onEdit, onToggle, onDelete }: {
           style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.12s ease' }} />
       </td>
       <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }}>{s.ext_id}</td>
-      <td><span className="chip">{s.type}</span></td>
+      <td>
+        <span
+          className="chip"
+          title={(() => {
+            const m = describeStrategy(s.type);
+            return m ? `${m.title} (${SOURCE_KIND_LABEL[m.source]})\n\n${m.description}` : s.type;
+          })()}
+        >
+          {s.type}
+        </span>
+      </td>
       <td style={{ color: 'var(--color-ink-muted)' }}>
         {s.channel_key ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
       </td>
@@ -130,8 +143,10 @@ function StrategyRow({ s, open, onToggleOpen, onEdit, onToggle, onDelete }: {
       </td>
       <td>
         {s.enabled
-          ? <span className="chip chip-success"><Icon name="check" size={12} style={{ marginRight: 4 }} />enabled</span>
-          : <span className="chip">paused</span>}
+          ? <span className="chip chip-success" title={STRATEGY_STATUS_HELP.enabled}>
+              <Icon name="check" size={12} style={{ marginRight: 4 }} />enabled
+            </span>
+          : <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
       </td>
       <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
         <div style={{ display: 'inline-flex', gap: 6 }}>
@@ -155,9 +170,11 @@ function StrategyRow({ s, open, onToggleOpen, onEdit, onToggle, onDelete }: {
 }
 
 function LastRunCell({ last }: { last: StrategyRunSummary | null }) {
-  if (!last) return <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>never</span>;
+  if (!last) return <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="No execution recorded for this strategy yet.">never</span>;
   const ago = formatRelativePast(last.started_at);
   const meta = last.duration_ms ? `${(last.duration_ms / 1000).toFixed(1)}s` : null;
+  const help = RUN_STATUS_HELP[last.status] ?? last.status;
+  const tooltip = last.error ? `${help}\n\n${last.error}` : help;
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <span className={
@@ -165,7 +182,7 @@ function LastRunCell({ last }: { last: StrategyRunSummary | null }) {
         last.status === 'error'   ? 'chip chip-danger'  :
         last.status === 'skipped' ? 'chip chip-warning' :
         'chip'
-      } title={last.error ?? last.status}>
+      } title={tooltip}>
         {last.status === 'ok' && <Icon name="check"  size={12} style={{ marginRight: 4 }} />}
         {last.status === 'error' && <Icon name="warning" size={12} style={{ marginRight: 4 }} />}
         {last.status}
@@ -218,6 +235,7 @@ function ChannelsPanel({ strategy }: { strategy: Strategy }) {
             <span
               className={c.role === 'primary' ? 'chip chip-success' : 'chip'}
               style={{ minWidth: 64, justifyContent: 'center' }}
+              title={STRATEGY_ROLE_HELP[c.role]}
             >
               {c.role}
             </span>
@@ -353,12 +371,15 @@ function RunsPanel({ strategyId }: { strategyId: string }) {
               <span style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>
                 {formatRelativePast(r.started_at)}
               </span>
-              <span className={
-                r.status === 'ok'      ? 'chip chip-success' :
-                r.status === 'error'   ? 'chip chip-danger'  :
-                r.status === 'skipped' ? 'chip chip-warning' :
-                'chip'
-              }>
+              <span
+                className={
+                  r.status === 'ok'      ? 'chip chip-success' :
+                  r.status === 'error'   ? 'chip chip-danger'  :
+                  r.status === 'skipped' ? 'chip chip-warning' :
+                  'chip'
+                }
+                title={RUN_STATUS_HELP[r.status] ?? r.status}
+              >
                 {r.status}
               </span>
               <span style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>

@@ -14,6 +14,11 @@ import { EditChannelModal } from '../components/EditChannelModal';
 import { ForwardRoutesPanel } from '../components/ForwardRoutesPanel';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
+import {
+  POLL_TIER_HELP, CHANNEL_KIND_HELP, STRATEGY_STATUS_HELP,
+  STRATEGY_ROLE_HELP, RUN_STATUS_HELP, BOT_STATUS_HELP,
+  describeStrategy, SOURCE_KIND_LABEL,
+} from '../lib/labels';
 import type { Strategy, TrackedChannel } from '../api/types';
 
 export const Route = createFileRoute('/channels_/$id')({ component: ChannelDetailPage });
@@ -65,7 +70,10 @@ function ChannelDetailPage() {
             <span style={{ color: 'var(--color-ink-muted)' }}> subs</span>
           </span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
-          <span className={`chip ${c.pollTier === 'hot' ? 'chip-warning' : c.pollTier === 'cold' ? '' : 'chip-success'}`}>
+          <span
+            className={`chip ${c.pollTier === 'hot' ? 'chip-warning' : c.pollTier === 'cold' ? '' : 'chip-success'}`}
+            title={POLL_TIER_HELP[c.pollTier]}
+          >
             {c.pollTier}
           </span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
@@ -171,38 +179,42 @@ function StatStrip({
         gap: 12,
       }}
     >
-      <Stat label="Bot">
+      <Stat label="Bot" help="Telegram bot account that publishes content into this channel. Bound via channel config.">
         {channel.bot
-          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+          ? <span
+              className="text-body-sm"
+              style={{ color: 'var(--color-ink)' }}
+              title={`${channel.bot.bot_id}${channel.bot.username ? ` (@${channel.bot.username})` : ''}${!channel.bot.active ? ' — ' + BOT_STATUS_HELP.inactive : ''}`}
+            >
               <Icon name="bots" size={12} style={{ marginRight: 4, verticalAlign: 'middle' }} />
               {channel.bot.username ?? channel.bot.bot_id}
               {!channel.bot.active && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 6 }}>inactive</span>}
             </span>
           : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>— none</span>}
       </Stat>
-      <Stat label="Channel key">
+      <Stat label="Channel key" help="Address used to publish into this channel — '@username' for public, '-100…' numeric id for private.">
         <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
           {channel.channelKey ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
         </span>
       </Stat>
-      <Stat label="Kind">
+      <Stat label="Kind" help={channel.kind ? CHANNEL_KIND_HELP[channel.kind as 'public' | 'private'] : 'Whether the channel is public (@username) or private (numeric id).'}>
         <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
           {channel.kind ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
         </span>
       </Stat>
-      <Stat label="Strategies">
+      <Stat label="Strategies" help="Number of strategy bindings that publish content into this channel — primary bindings + forward-route inheritance.">
         <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
           {strategiesCount}
         </span>
       </Stat>
-      <Stat label="Next post">
+      <Stat label="Next post" help="Soonest scheduled fire across all enabled strategies bound to this channel. Computed server-side from cron expressions.">
         {nextRunAt
-          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
+          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }} title={new Date(nextRunAt).toLocaleString()}>
               {formatRelativeFuture(nextRunAt)}
             </span>
           : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>— paused</span>}
       </Stat>
-      <Stat label="Themes">
+      <Stat label="Themes" help="Tags assigned to this channel for the Phase 4 Recommendations matching. Edit via the Themes button.">
         <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
           {(channel.themes ?? []).length === 0
             ? <span style={{ color: 'var(--color-ink-dim)' }}>none</span>
@@ -213,10 +225,13 @@ function StatStrip({
   );
 }
 
-function Stat({ label, children }: { label: string; children: React.ReactNode }) {
+function Stat({ label, help, children }: { label: string; help?: string; children: React.ReactNode }) {
   return (
-    <div className="card" style={{ padding: '12px 14px' }}>
-      <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginBottom: 4 }}>{label}</div>
+    <div className="card" style={{ padding: '12px 14px' }} title={help}>
+      <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 4 }}>
+        {label}
+        {help && <Icon name="info" size={11} style={{ color: 'var(--color-ink-dim)', verticalAlign: 'middle' }} />}
+      </div>
       <div style={{ minHeight: 18 }}>{children}</div>
     </div>
   );
@@ -261,6 +276,10 @@ function StrategiesPanel({
 }
 
 function StrategyTableRow({ s, role }: { s: Strategy; role: 'primary' | 'forward' }) {
+  const meta = describeStrategy(s.type);
+  const typeTooltip = meta
+    ? `${meta.title} (${SOURCE_KIND_LABEL[meta.source]})\n\n${meta.description}`
+    : s.type;
   return (
     <tr>
       <td>
@@ -268,34 +287,40 @@ function StrategyTableRow({ s, role }: { s: Strategy; role: 'primary' | 'forward
           {s.ext_id}
         </Link>
         {role === 'forward' && (
-          <span className="chip" style={{ marginLeft: 8 }}>↩ forward</span>
+          <span className="chip" style={{ marginLeft: 8 }} title={STRATEGY_ROLE_HELP.forward}>↩ forward</span>
         )}
       </td>
-      <td><span className="chip">{s.type}</span></td>
-      <td style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>{s.schedule}</td>
+      <td><span className="chip" title={typeTooltip}>{s.type}</span></td>
+      <td style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }} title="Cron schedule. UTC unless TZ is configured.">{s.schedule}</td>
       <td>
         {s.enabled && s.next_run_at
-          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
+          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }} title={new Date(s.next_run_at).toLocaleString()}>
               {formatRelativeFuture(s.next_run_at)}
             </span>
           : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>—</span>}
       </td>
       <td>
         {s.last_run ? (
-          <span className={
-            s.last_run.status === 'ok'    ? 'chip chip-success'
-          : s.last_run.status === 'error' ? 'chip chip-danger'
-          : s.last_run.status === 'skipped' ? 'chip chip-warning'
-          : 'chip'
-          } title={s.last_run.error ?? s.last_run.status}>
+          <span
+            className={
+              s.last_run.status === 'ok'    ? 'chip chip-success'
+            : s.last_run.status === 'error' ? 'chip chip-danger'
+            : s.last_run.status === 'skipped' ? 'chip chip-warning'
+            : 'chip'
+            }
+            title={
+              (RUN_STATUS_HELP[s.last_run.status] ?? s.last_run.status)
+              + (s.last_run.error ? `\n\n${s.last_run.error}` : '')
+            }
+          >
             {s.last_run.status}
           </span>
-        ) : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>never</span>}
+        ) : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="No execution recorded yet.">never</span>}
       </td>
       <td>
         {s.enabled
-          ? <span className="chip chip-success"><Icon name="check" size={12} style={{ marginRight: 4 }} />enabled</span>
-          : <span className="chip">paused</span>}
+          ? <span className="chip chip-success" title={STRATEGY_STATUS_HELP.enabled}><Icon name="check" size={12} style={{ marginRight: 4 }} />enabled</span>
+          : <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
       </td>
     </tr>
   );

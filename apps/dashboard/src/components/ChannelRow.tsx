@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { fmtNumber, fmtRelative } from '../lib/format';
 import { Icon } from './Icon';
 import { EditChannelModal } from './EditChannelModal';
+import {
+  POLL_TIER_HELP, CHANNEL_FLAG_HELP, STRATEGY_ROLE_HELP,
+  STRATEGY_STATUS_HELP, describeStrategy,
+} from '../lib/labels';
 import type { TrackedChannel } from '../api/types';
 
 export function ChannelRow({ c }: { c: TrackedChannel }) {
@@ -32,12 +36,12 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
               <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
                 {c.title ?? c.username ?? c.channelKey ?? '(no title)'}
               </span>
-              {c.isMine   && <span className="chip chip-success">mine</span>}
-              {c.isClosed && <span className="chip">closed</span>}
+              {c.isMine   && <span className="chip chip-success" title={CHANNEL_FLAG_HELP.mine}>mine</span>}
+              {c.isClosed && <span className="chip" title={CHANNEL_FLAG_HELP.closed}>closed</span>}
               {c.bot && (
                 <span
                   className="chip"
-                  title={`Bot: ${c.bot.bot_id}${c.bot.username ? ` (@${c.bot.username})` : ''}${!c.bot.active ? ' · inactive' : ''}`}
+                  title={`Bot ${c.bot.bot_id}${c.bot.username ? ` (@${c.bot.username})` : ''}${!c.bot.active ? ' — inactive' : ''} — publishes into this channel`}
                   style={{ opacity: c.bot.active ? 1 : 0.6 }}
                 >
                   <Icon name="bots" size={11} style={{ marginRight: 4 }} />
@@ -77,17 +81,26 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
             display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
           }}>
             <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>strategies:</span>
-            {strategies.map(s => (
-              <span
-                key={s.id}
-                className={s.enabled ? 'chip is-active' : 'chip'}
-                title={`${s.ext_id} · ${s.role}${s.enabled ? '' : ' · paused'}`}
-                style={{ opacity: s.enabled ? 1 : 0.6 }}
-              >
-                {s.type}
-                {s.role === 'forward' && <span style={{ marginLeft: 4, color: 'var(--color-ink-dim)' }}>↩</span>}
-              </span>
-            ))}
+            {strategies.map(s => {
+              const meta = describeStrategy(s.type);
+              const tooltip = [
+                meta ? `${meta.title} — ${meta.description}` : s.type,
+                `Binding: ${s.ext_id}`,
+                `Role: ${s.role} (${STRATEGY_ROLE_HELP[s.role]})`,
+                `Status: ${s.enabled ? 'enabled' : 'paused'} — ${s.enabled ? STRATEGY_STATUS_HELP.enabled : STRATEGY_STATUS_HELP.paused}`,
+              ].join('\n\n');
+              return (
+                <span
+                  key={s.id}
+                  className={s.enabled ? 'chip is-active' : 'chip'}
+                  title={tooltip}
+                  style={{ opacity: s.enabled ? 1 : 0.6 }}
+                >
+                  {s.type}
+                  {s.role === 'forward' && <span style={{ marginLeft: 4, color: 'var(--color-ink-dim)' }}>↩</span>}
+                </span>
+              );
+            })}
           </div>
         )}
       </Link>
@@ -99,5 +112,5 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
 
 function PollTierChip({ tier }: { tier: TrackedChannel['pollTier'] }) {
   const cls = tier === 'hot' ? 'chip chip-warning' : tier === 'warm' ? 'chip chip-success' : 'chip';
-  return <span className={cls}>{tier}</span>;
+  return <span className={cls} title={POLL_TIER_HELP[tier]}>{tier}</span>;
 }

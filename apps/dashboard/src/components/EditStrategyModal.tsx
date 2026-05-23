@@ -10,6 +10,7 @@ import { trackingApi } from '../api/tracking';
 import { usePatchStrategy } from '../api/strategies';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
+import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL } from '../lib/labels';
 import type { Strategy } from '../api/types';
 
 const COMMON_SCHEDULES: Array<{ label: string; expr: string }> = [
@@ -99,7 +100,17 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
   return (
     <Modal open={open} onClose={onClose} title="Edit strategy" subtitle={strategy.ext_id} size="lg">
       <Field label="Type">
-        <input value={type} onChange={e => setType(e.target.value)} className="input-field" style={{ width: '100%' }} />
+        <input
+          value={type}
+          onChange={e => setType(e.target.value)}
+          list="strategy-type-suggestions"
+          className="input-field"
+          style={{ width: '100%' }}
+        />
+        <datalist id="strategy-type-suggestions">
+          {Object.keys(STRATEGY_DESCRIPTIONS).map(k => <option key={k} value={k} />)}
+        </datalist>
+        <TypeDescription type={type} />
       </Field>
 
       <Field label="Channel">
@@ -212,6 +223,31 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
         {hint && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{hint}</span>}
       </div>
       {children}
+    </div>
+  );
+}
+
+function TypeDescription({ type }: { type: string }) {
+  const meta = describeStrategy(type.trim());
+  if (!meta) return null;
+  return (
+    <div
+      style={{
+        marginTop: 8,
+        padding: '10px 12px',
+        background: 'var(--color-surface-1)',
+        borderRadius: 'var(--radius-md)',
+        borderLeft: '2px solid var(--color-accent)',
+      }}
+    >
+      <div className="text-body-sm" style={{ color: 'var(--color-ink)', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Icon name="sparkle" size={12} />
+        {meta.title}
+        <span className="chip" style={{ fontSize: 10 }}>{SOURCE_KIND_LABEL[meta.source]}</span>
+      </div>
+      <p className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: '6px 0 0', lineHeight: 1.5 }}>
+        {meta.description}
+      </p>
     </div>
   );
 }

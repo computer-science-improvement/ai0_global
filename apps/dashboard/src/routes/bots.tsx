@@ -5,6 +5,7 @@ import { Icon } from '../components/Icon';
 import {
   useBots, useDeleteBot, useToggleBotActive, useVerifyBot,
 } from '../api/bots';
+import { BOT_STATUS_HELP } from '../lib/labels';
 
 export const Route = createFileRoute('/bots')({ component: BotsPage });
 
@@ -67,17 +68,17 @@ function BotsPage() {
                   <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{b.token_env}</td>
                   <td>
                     {b.verify_error
-                      ? <span className="chip chip-danger" title={b.verify_error}>
+                      ? <span className="chip chip-danger" title={`${BOT_STATUS_HELP.error}\n\n${b.verify_error}`}>
                           <Icon name="warning" size={12} style={{ marginRight: 4 }} />
                           {b.verify_error.slice(0, 40)}
                         </span>
                       : b.username
-                        ? <span className="chip chip-success">
+                        ? <span className="chip chip-success" title={BOT_STATUS_HELP.verified}>
                             <Icon name="check" size={12} style={{ marginRight: 4 }} />
                             verified
                           </span>
-                        : <span className="chip">unverified</span>}
-                    {!b.active && <span className="chip" style={{ marginLeft: 6 }}>inactive</span>}
+                        : <span className="chip" title={BOT_STATUS_HELP.unverified}>unverified</span>}
+                    {!b.active && <span className="chip" title={BOT_STATUS_HELP.inactive} style={{ marginLeft: 6 }}>inactive</span>}
                   </td>
                   <td className="meta">
                     {b.last_verified_at ? new Date(b.last_verified_at).toLocaleString() : '—'}
