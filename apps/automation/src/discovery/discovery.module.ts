@@ -2,6 +2,7 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
 import { TrackingModule } from '../tracking/tracking.module';
+import { AuthModule } from '../auth/auth.module';
 import { TeleAdsClient } from './teleads/teleads.client';
 import { TeleAdsIngestionWorker } from './teleads/teleads-ingestion.worker';
 import { CandidateChannelsRepository } from './repositories/candidate-channels.repository';
@@ -10,7 +11,7 @@ import { RecommendationsService } from './recommendations/recommendations.servic
 import { DiscoveryController } from './api/discovery.controller';
 
 @Module({
-  imports: [DatabaseModule, TrackingModule],
+  imports: [DatabaseModule, TrackingModule, AuthModule],
   controllers: [DiscoveryController],
   providers: [
     TeleAdsClient,
