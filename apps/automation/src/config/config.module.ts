@@ -10,15 +10,17 @@ import { JsonImporterService } from './json-importer.service';
 import { MyBotsRepository } from './my-bots.repository';
 import { TrackedChannelsConfigRepository } from './tracked-channels.repository';
 import { StrategyBindingsRepository } from './strategy-bindings.repository';
+import { StrategyRunsRepository } from './strategy-runs.repository';
 import { ForwardRoutesRepository } from './forward-routes.repository';
 import { TelegramGetMeClient } from './telegram-getme.client';
 import { MyBotsController } from './api/my-bots.controller';
+import { StrategiesController } from './api/strategies.controller';
 import { AuthModule } from '../auth/auth.module';
 
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule],
-  controllers: [MyBotsController],
+  controllers: [MyBotsController, StrategiesController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
@@ -27,6 +29,7 @@ import { AuthModule } from '../auth/auth.module';
     MyBotsRepository,
     TrackedChannelsConfigRepository,
     StrategyBindingsRepository,
+    StrategyRunsRepository,
     ForwardRoutesRepository,
     TelegramGetMeClient,
   ],
@@ -37,6 +40,7 @@ import { AuthModule } from '../auth/auth.module';
     MyBotsRepository,
     TrackedChannelsConfigRepository,
     StrategyBindingsRepository,
+    StrategyRunsRepository,
     ForwardRoutesRepository,
   ],
 })

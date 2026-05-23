@@ -18,6 +18,8 @@ export interface ResolvedChannel {
 
 export interface ResolvedStrategyBinding {
   id:         string;
+  /** Internal UUID — used by run-logging to FK back into strategy_bindings. */
+  uuid:       string;
   type:       string;
   channelId:  string;
   schedule:   string;
@@ -99,6 +101,7 @@ export class ChannelConfigService implements OnApplicationBootstrap {
       const ch = this.cache.getChannelById(b.channel_id);
       return {
         id:        b.ext_id,
+        uuid:      b.id,
         type:      b.type,
         channelId: ch?.channel_key ?? b.channel_id,
         schedule:  b.schedule,
