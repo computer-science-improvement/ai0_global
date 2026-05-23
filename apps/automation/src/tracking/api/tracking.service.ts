@@ -105,6 +105,63 @@ export class TrackingService {
     return { id, status: 'queued' };
   }
 
+  /**
+   * Full-config channel creation. Used by AddChannelModal for private
+   * channels (where the operator supplies bot + chat id directly) and for
+   * any case where they want to set everything at once instead of letting
+   * the discovery poller figure it out.
+   *
+   * For public channels with only a username, prefer addChannel() — it
+   * triggers a poll that fills in the title/about/subs automatically.
+   */
+  async createFullChannel(input: {
+    kind:         'public' | 'private';
+    channelKey?:  string;
+    username?:    string;
+    tgChatId?:    string;
+    title?:       string;
+    botId?:       string | null;
+    isMine?:      boolean;
+    pollTier?:    PollTier;
+  }): Promise<TrackedChannelDto> {
+    // Derive missing pieces sensibly:
+    //  - public:  channelKey defaults to '@'+username if absent.
+    //  - private: tgChatId required.
+    if (input.kind === 'private' && !input.tgChatId) {
+      throw new NotFoundException('tgChatId is required for private channels');
+    }
+    const channelKey = input.channelKey
+      ?? (input.username ? `@${input.username.replace(/^@/, '')}` : null);
+
+    // Best-effort uniqueness check via username (the tracked_channels
+    // repo doesn't expose findByChannelKey; the unique index on channel_key
+    // catches dupes via 23505 anyway, but a clean 4xx is nicer).
+    if (input.username) {
+      const existing = await this.channels.getByUsername(input.username.replace(/^@/, ''));
+      if (existing) throw new NotFoundException(`Channel @${input.username} already exists`);
+    }
+
+    const id = await this.channels.createFull({
+      channelKey,
+      username:   input.username?.replace(/^@/, '') ?? null,
+      tgChatId:   input.tgChatId ?? null,
+      title:      input.title ?? null,
+      kind:       input.kind,
+      botId:      input.botId ?? null,
+      isMine:     input.isMine ?? true,
+      pollTier:   input.pollTier ?? 'warm',
+    });
+
+    // Public channels with a username: queue a poll to backfill title/subs.
+    if (input.kind === 'public' && input.username) {
+      await this.queue.addPollMeta({ channelId: id });
+      await this.queue.addPollPosts({ channelId: id });
+    }
+
+    await this.configEvents.publish('channel', id);
+    return this.getChannel(id);
+  }
+
   async deleteChannel(id: string): Promise<void> { await this.channels.softDelete(id); }
 
   async listPosts(channelId: string, from: Date | null, to: Date | null, limit: number, offset: number):
@@ -211,6 +268,7 @@ export class TrackingService {
       pollTier: c.pollTier, addedAt: c.addedAt.toISOString(),
       lastPolledAt: c.lastPolledAt ? c.lastPolledAt.toISOString() : null,
       channelKey:   c.channelKey,
+      tgChatId:     c.tgChatId,
       kind:         c.kind,
       botId:        c.botId,
       bot,

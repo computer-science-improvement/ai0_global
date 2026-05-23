@@ -165,9 +165,11 @@ export class TrackedChannelsRepository {
    * subs_count/last_polled_at) come from the poller, not the user.
    */
   async patch(id: string, patch: {
+    title?:      string | null;
     isMine?:     boolean;
     botId?:      string | null;
     channelKey?: string | null;
+    tgChatId?:   string | null;
     kind?:       string | null;
     pollTier?:   PollTier;
     themes?:     string[];
@@ -175,9 +177,11 @@ export class TrackedChannelsRepository {
     const sets: string[] = [];
     const args: unknown[] = [id];
     let i = 2;
+    if (patch.title      !== undefined) { sets.push(`title = $${i++}`);       args.push(patch.title); }
     if (patch.isMine     !== undefined) { sets.push(`is_mine = $${i++}`);     args.push(patch.isMine); }
     if (patch.botId      !== undefined) { sets.push(`bot_id = $${i++}`);      args.push(patch.botId); }
     if (patch.channelKey !== undefined) { sets.push(`channel_key = $${i++}`); args.push(patch.channelKey); }
+    if (patch.tgChatId   !== undefined) { sets.push(`tg_chat_id = $${i++}`);  args.push(patch.tgChatId); }
     if (patch.kind       !== undefined) { sets.push(`kind = $${i++}`);        args.push(patch.kind); }
     if (patch.pollTier   !== undefined) { sets.push(`poll_tier = $${i++}`);   args.push(patch.pollTier); }
     if (patch.themes     !== undefined) { sets.push(`themes = $${i++}::text[]`); args.push(patch.themes); }
@@ -187,6 +191,41 @@ export class TrackedChannelsRepository {
       args,
     );
     return (rowCount ?? 0) > 0;
+  }
+
+  /**
+   * Create a channel from a full config (private-channel path). The discovery
+   * flow uses upsertByUsername (which requires a username); this path is
+   * used by the dashboard's AddChannel modal when the operator already knows
+   * the chat id + bot binding.
+   */
+  async createFull(input: {
+    channelKey?: string | null;
+    username?:   string | null;
+    tgChatId?:   string | null;
+    title?:      string | null;
+    kind:        'public' | 'private';
+    botId?:      string | null;
+    isMine:      boolean;
+    pollTier:    PollTier;
+  }): Promise<string> {
+    const { rows } = await this.pool.query<{ id: string }>(
+      `INSERT INTO tracked_channels
+         (channel_key, username, tg_chat_id, title, kind, bot_id, is_mine, poll_tier)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+       RETURNING id`,
+      [
+        input.channelKey ?? null,
+        input.username ?? null,
+        input.tgChatId ?? null,
+        input.title ?? null,
+        input.kind,
+        input.botId ?? null,
+        input.isMine,
+        input.pollTier,
+      ],
+    );
+    return rows[0].id;
   }
 
   async subsHistory(channelId: string, from: Date | null, to: Date | null):

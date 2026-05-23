@@ -11,6 +11,8 @@ export interface TrackedChannelDto {
   lastPolledAt: string | null;
   /** Phase 5a config columns surfaced for the dashboard. */
   channelKey:   string | null;
+  /** Numeric Telegram chat id (-100…). Required for private channels. */
+  tgChatId:     string | null;
   kind:         string | null;
   botId:        string | null;
   /** Denormalized bot identity (joined via my_bots). null when no bot bound. */

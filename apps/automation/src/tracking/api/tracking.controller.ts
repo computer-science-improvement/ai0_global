@@ -8,12 +8,25 @@ import { AddChannelDto } from './dto/add-channel.dto';
 import { PollTier } from '../types';
 
 class PatchChannelDto {
-  @IsOptional() @IsBoolean()       isMine?:     boolean;
-  @IsOptional() @IsUUID()           botId?:      string | null;
-  @IsOptional() @IsString() @MaxLength(120) channelKey?: string | null;
-  @IsOptional() @IsIn(['public', 'private']) kind?: 'public' | 'private' | null;
-  @IsOptional() @IsIn(['hot', 'warm', 'cold']) pollTier?: PollTier;
+  @IsOptional() @IsString() @MaxLength(200)   title?:      string | null;
+  @IsOptional() @IsBoolean()                  isMine?:     boolean;
+  @IsOptional() @IsUUID()                     botId?:      string | null;
+  @IsOptional() @IsString() @MaxLength(120)   channelKey?: string | null;
+  @IsOptional() @IsString() @MaxLength(40)    tgChatId?:   string | null;
+  @IsOptional() @IsIn(['public', 'private'])  kind?: 'public' | 'private' | null;
+  @IsOptional() @IsIn(['hot', 'warm', 'cold']) pollTier?:  PollTier;
   @IsOptional() @IsArray() @IsString({ each: true }) themes?: string[];
+}
+
+class CreateFullChannelDto {
+  @IsString() @IsIn(['public', 'private'])    kind!:        'public' | 'private';
+  @IsOptional() @IsString() @MaxLength(120)   channelKey?:  string;
+  @IsOptional() @IsString() @MaxLength(60)    username?:    string;
+  @IsOptional() @IsString() @MaxLength(40)    tgChatId?:    string;
+  @IsOptional() @IsString() @MaxLength(200)   title?:       string;
+  @IsOptional() @IsUUID()                     botId?:       string | null;
+  @IsOptional() @IsBoolean()                  isMine?:      boolean;
+  @IsOptional() @IsIn(['hot', 'warm', 'cold']) pollTier?:   PollTier;
 }
 
 @Controller('tracking')
@@ -39,6 +52,16 @@ export class TrackingController {
 
   @Post('channels')
   add(@Body() dto: AddChannelDto) { return this.service.addChannel(dto.username); }
+
+  /**
+   * Create a channel from a full config (for private channels and any case
+   * where the operator already has the bot/chat-id mapping). The discovery
+   * flow above takes a single @username and resolves the rest via polling.
+   */
+  @Post('channels/full')
+  createFull(@Body() dto: CreateFullChannelDto) {
+    return this.service.createFullChannel(dto);
+  }
 
   @Get('channels/:id')
   one(@Param('id', new ParseUUIDPipe()) id: string) { return this.service.getChannel(id); }
