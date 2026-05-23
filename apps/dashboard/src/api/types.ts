@@ -81,3 +81,16 @@ export interface RecommendResponse {
   targetThemes:    string[];
   warning?:        string;
 }
+
+export interface Bot {
+  id:               string;
+  bot_id:           string;
+  username:         string | null;
+  first_name:       string | null;
+  platform:         string;
+  token_env:        string;
+  active:           boolean;
+  last_verified_at: string | null;
+  verify_error:     string | null;
+  created_at:       string;
+}
