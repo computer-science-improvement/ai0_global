@@ -1,8 +1,20 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query, UseGuards,
+} from '@nestjs/common';
+import { IsArray, IsBoolean, IsIn, IsOptional, IsString, IsUUID, MaxLength } from 'class-validator';
 import { TrackingService } from './tracking.service';
 import { TrackingAuthGuard } from './tracking-auth.guard';
 import { AddChannelDto } from './dto/add-channel.dto';
 import { PollTier } from '../types';
+
+class PatchChannelDto {
+  @IsOptional() @IsBoolean()       isMine?:     boolean;
+  @IsOptional() @IsUUID()           botId?:      string | null;
+  @IsOptional() @IsString() @MaxLength(120) channelKey?: string | null;
+  @IsOptional() @IsIn(['public', 'private']) kind?: 'public' | 'private' | null;
+  @IsOptional() @IsIn(['hot', 'warm', 'cold']) pollTier?: PollTier;
+  @IsOptional() @IsArray() @IsString({ each: true }) themes?: string[];
+}
 
 @Controller('tracking')
 @UseGuards(TrackingAuthGuard)
@@ -14,10 +26,15 @@ export class TrackingController {
     @Query('filter') filter: 'mine' | 'all' | 'external' = 'all',
     @Query('q') q?: string,
     @Query('tier') tier?: PollTier,
+    @Query('bot') bot?: string,
     @Query('page') page = '1',
     @Query('pageSize') pageSize = '50',
   ) {
-    return this.service.listChannels(filter, q, tier, parseInt(page, 10), parseInt(pageSize, 10));
+    return this.service.listChannels(
+      filter, q, tier,
+      parseInt(page, 10), parseInt(pageSize, 10),
+      bot,
+    );
   }
 
   @Post('channels')
@@ -25,6 +42,14 @@ export class TrackingController {
 
   @Get('channels/:id')
   one(@Param('id', new ParseUUIDPipe()) id: string) { return this.service.getChannel(id); }
+
+  @Patch('channels/:id')
+  patch(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() patch: PatchChannelDto,
+  ) {
+    return this.service.patchChannel(id, patch);
+  }
 
   @Delete('channels/:id')
   remove(@Param('id', new ParseUUIDPipe()) id: string) { return this.service.deleteChannel(id); }

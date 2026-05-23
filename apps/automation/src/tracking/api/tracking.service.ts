@@ -5,11 +5,12 @@ import { TrackedPostsRepository } from '../repositories/tracked-posts.repository
 import { TrackedEdgesRepository } from '../repositories/tracked-edges.repository';
 import { TrackingQueueService } from '../tracking-queue.service';
 import { RoiAnalyzerService } from '../processors/roi-analyzer.service';
-import { TrackedChannelDto, ChannelStrategyRef } from './dto/tracked-channel.dto';
+import { TrackedChannelDto, ChannelStrategyRef, ChannelBotRef } from './dto/tracked-channel.dto';
 import { TrackedPostDto } from './dto/tracked-post.dto';
 import { GraphDto } from './dto/graph.dto';
 import { PollTier } from '../types';
 import { ConfigCacheService } from '../../config/config-cache.service';
+import { ConfigEventsPublisher } from '../../config/config-events.publisher';
 
 function edgeColorTier(count: number): 'green' | 'orange' | 'red' {
   if (count >= 10) return 'red';
@@ -29,13 +30,15 @@ export class TrackingService {
     private readonly queue:       TrackingQueueService,
     private readonly roiAnalyzer: RoiAnalyzerService,
     private readonly configCache: ConfigCacheService,
+    private readonly configEvents: ConfigEventsPublisher,
   ) {}
 
   async listChannels(filter: 'mine' | 'all' | 'external', q: string | undefined,
-                     tier: PollTier | undefined, page: number, pageSize: number) {
+                     tier: PollTier | undefined, page: number, pageSize: number,
+                     botId?: string) {
     const isMine = filter === 'mine' ? true : filter === 'external' ? false : undefined;
     const offset = (page - 1) * pageSize;
-    const res = await this.channels.list({ is_mine: isMine, tier, q, limit: pageSize, offset });
+    const res = await this.channels.list({ is_mine: isMine, tier, q, bot_id: botId, limit: pageSize, offset });
     return {
       items: res.items.map((c) => this.toDto(c, this.strategiesForChannel(c.id))),
       total: res.total,
@@ -46,6 +49,24 @@ export class TrackingService {
     const c = await this.channels.getById(id);
     if (!c) throw new NotFoundException(`Channel ${id} not found`);
     return this.toDto(c, this.strategiesForChannel(c.id));
+  }
+
+  /** Patch editable config fields; publishes a 'channel' event so the
+   *  config cache picks up the change without restart. */
+  async patchChannel(id: string, patch: {
+    isMine?:     boolean;
+    botId?:      string | null;
+    channelKey?: string | null;
+    kind?:       'public' | 'private' | null;
+    pollTier?:   PollTier;
+    themes?:     string[];
+  }): Promise<TrackedChannelDto> {
+    const exists = await this.channels.getById(id);
+    if (!exists) throw new NotFoundException(`Channel ${id} not found`);
+    await this.channels.patch(id, patch);
+    await this.configEvents.publish('channel', id);
+    const updated = await this.channels.getById(id);
+    return this.toDto(updated!, this.strategiesForChannel(id));
   }
 
   /**
@@ -177,11 +198,23 @@ export class TrackingService {
   }
 
   private toDto(c: TrackedChannel, strategies: ChannelStrategyRef[] = []): TrackedChannelDto {
+    let bot: ChannelBotRef | null = null;
+    if (c.botId) {
+      const row = this.configCache.getBotById(c.botId);
+      if (row) {
+        bot = { id: row.id, bot_id: row.bot_id, username: row.username, active: row.active };
+      }
+    }
     return {
       id: c.id, username: c.username, title: c.title, about: c.about,
       subsCount: c.subsCount, isMine: c.isMine, isClosed: c.isClosed,
       pollTier: c.pollTier, addedAt: c.addedAt.toISOString(),
       lastPolledAt: c.lastPolledAt ? c.lastPolledAt.toISOString() : null,
+      channelKey:   c.channelKey,
+      kind:         c.kind,
+      botId:        c.botId,
+      bot,
+      themes:       c.themes,
       strategies,
     };
   }

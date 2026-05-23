@@ -16,6 +16,14 @@ export interface TrackedChannel {
   subsCount:      number | null;
   addedAt:        Date;
   lastPolledAt:   Date | null;
+  /** Channel-key (e.g. "@motivation_local" or "-1001234"). Phase 5a column. */
+  channelKey:     string | null;
+  /** "public" | "private" | null — derived at import time. */
+  kind:           string | null;
+  /** UUID of `my_bots` row publishing into this channel. Null when external. */
+  botId:          string | null;
+  /** Phase 4 themes assigned for recommendations / matching. */
+  themes:         string[];
 }
 
 export interface UpsertChannelInput {
@@ -116,6 +124,8 @@ export class TrackedChannelsRepository {
     is_mine?: boolean;
     tier?:    PollTier;
     q?:       string;
+    /** UUID of `my_bots` row. When set, return only channels with this bot. */
+    bot_id?:  string;
     limit:    number;
     offset:   number;
   }): Promise<{ items: TrackedChannel[]; total: number }> {
@@ -123,7 +133,8 @@ export class TrackedChannelsRepository {
     const args: unknown[] = [];
     if (filter.is_mine !== undefined) { args.push(filter.is_mine); where.push(`is_mine = $${args.length}`); }
     if (filter.tier)                  { args.push(filter.tier);    where.push(`poll_tier = $${args.length}`); }
-    if (filter.q)                     { args.push(`%${filter.q.toLowerCase()}%`); where.push(`LOWER(COALESCE(title,'') || ' ' || COALESCE(username,'')) LIKE $${args.length}`); }
+    if (filter.bot_id)                { args.push(filter.bot_id);  where.push(`bot_id = $${args.length}`); }
+    if (filter.q)                     { args.push(`%${filter.q.toLowerCase()}%`); where.push(`LOWER(COALESCE(title,'') || ' ' || COALESCE(username,'') || ' ' || COALESCE(channel_key,'')) LIKE $${args.length}`); }
     const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
 
     const totalR = await this.pool.query<{ count: string }>(
@@ -146,6 +157,36 @@ export class TrackedChannelsRepository {
 
   async softDelete(id: string): Promise<void> {
     await this.pool.query(`DELETE FROM tracked_channels WHERE id = $1`, [id]);
+  }
+
+  /**
+   * Patch any subset of editable config fields. Restricted to columns that
+   * make sense to mutate from the dashboard — chrome fields (title/about/
+   * subs_count/last_polled_at) come from the poller, not the user.
+   */
+  async patch(id: string, patch: {
+    isMine?:     boolean;
+    botId?:      string | null;
+    channelKey?: string | null;
+    kind?:       string | null;
+    pollTier?:   PollTier;
+    themes?:     string[];
+  }): Promise<boolean> {
+    const sets: string[] = [];
+    const args: unknown[] = [id];
+    let i = 2;
+    if (patch.isMine     !== undefined) { sets.push(`is_mine = $${i++}`);     args.push(patch.isMine); }
+    if (patch.botId      !== undefined) { sets.push(`bot_id = $${i++}`);      args.push(patch.botId); }
+    if (patch.channelKey !== undefined) { sets.push(`channel_key = $${i++}`); args.push(patch.channelKey); }
+    if (patch.kind       !== undefined) { sets.push(`kind = $${i++}`);        args.push(patch.kind); }
+    if (patch.pollTier   !== undefined) { sets.push(`poll_tier = $${i++}`);   args.push(patch.pollTier); }
+    if (patch.themes     !== undefined) { sets.push(`themes = $${i++}::text[]`); args.push(patch.themes); }
+    if (sets.length === 0) return true;
+    const { rowCount } = await this.pool.query(
+      `UPDATE tracked_channels SET ${sets.join(', ')} WHERE id = $1`,
+      args,
+    );
+    return (rowCount ?? 0) > 0;
   }
 
   async subsHistory(channelId: string, from: Date | null, to: Date | null):
@@ -189,6 +230,10 @@ export class TrackedChannelsRepository {
       subsCount:    r.subs_count !== null ? Number(r.subs_count) : null,
       addedAt:      r.added_at,
       lastPolledAt: r.last_polled_at,
+      channelKey:   r.channel_key ?? null,
+      kind:         r.kind ?? null,
+      botId:        r.bot_id ?? null,
+      themes:       Array.isArray(r.themes) ? r.themes : [],
     };
   }
 }

@@ -9,9 +9,23 @@ export interface TrackedChannelDto {
   pollTier: 'hot' | 'warm' | 'cold';
   addedAt: string;
   lastPolledAt: string | null;
+  /** Phase 5a config columns surfaced for the dashboard. */
+  channelKey:   string | null;
+  kind:         string | null;
+  botId:        string | null;
+  /** Denormalized bot identity (joined via my_bots). null when no bot bound. */
+  bot:          ChannelBotRef | null;
+  themes:       string[];
   /** Strategies that publish to this channel (primary binding) or forward
    *  into it from another channel. Empty array when none. */
   strategies?: ChannelStrategyRef[];
+}
+
+export interface ChannelBotRef {
+  id:       string;
+  bot_id:   string;
+  username: string | null;
+  active:   boolean;
 }
 
 export interface ChannelStrategyRef {
