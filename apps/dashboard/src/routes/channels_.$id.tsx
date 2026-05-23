@@ -16,7 +16,7 @@ import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 import type { Strategy, TrackedChannel } from '../api/types';
 
-export const Route = createFileRoute('/channels/$id')({ component: ChannelDetailPage });
+export const Route = createFileRoute('/channels_/$id')({ component: ChannelDetailPage });
 
 function ChannelDetailPage() {
   const { id } = Route.useParams();

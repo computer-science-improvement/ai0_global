@@ -17,7 +17,7 @@ import { Route as DiscoveryRouteImport } from './routes/discovery'
 import { Route as ChannelsRouteImport } from './routes/channels'
 import { Route as BotsRouteImport } from './routes/bots'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ChannelsIdRouteImport } from './routes/channels.$id'
+import { Route as ChannelsIdRouteImport } from './routes/channels_.$id'
 
 const StrategiesRoute = StrategiesRouteImport.update({
   id: '/strategies',
@@ -60,15 +60,15 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChannelsIdRoute = ChannelsIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => ChannelsRoute,
+  id: '/channels_/$id',
+  path: '/channels/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bots': typeof BotsRoute
-  '/channels': typeof ChannelsRouteWithChildren
+  '/channels': typeof ChannelsRoute
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
@@ -79,7 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bots': typeof BotsRoute
-  '/channels': typeof ChannelsRouteWithChildren
+  '/channels': typeof ChannelsRoute
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
@@ -91,13 +91,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bots': typeof BotsRoute
-  '/channels': typeof ChannelsRouteWithChildren
+  '/channels': typeof ChannelsRoute
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
   '/strategies': typeof StrategiesRoute
-  '/channels/$id': typeof ChannelsIdRoute
+  '/channels_/$id': typeof ChannelsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -132,18 +132,19 @@ export interface FileRouteTypes {
     | '/login'
     | '/recommendations'
     | '/strategies'
-    | '/channels/$id'
+    | '/channels_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BotsRoute: typeof BotsRoute
-  ChannelsRoute: typeof ChannelsRouteWithChildren
+  ChannelsRoute: typeof ChannelsRoute
   DiscoveryRoute: typeof DiscoveryRoute
   GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
   RecommendationsRoute: typeof RecommendationsRoute
   StrategiesRoute: typeof StrategiesRoute
+  ChannelsIdRoute: typeof ChannelsIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -204,37 +205,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/channels/$id': {
-      id: '/channels/$id'
-      path: '/$id'
+    '/channels_/$id': {
+      id: '/channels_/$id'
+      path: '/channels/$id'
       fullPath: '/channels/$id'
       preLoaderRoute: typeof ChannelsIdRouteImport
-      parentRoute: typeof ChannelsRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface ChannelsRouteChildren {
-  ChannelsIdRoute: typeof ChannelsIdRoute
-}
-
-const ChannelsRouteChildren: ChannelsRouteChildren = {
-  ChannelsIdRoute: ChannelsIdRoute,
-}
-
-const ChannelsRouteWithChildren = ChannelsRoute._addFileChildren(
-  ChannelsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BotsRoute: BotsRoute,
-  ChannelsRoute: ChannelsRouteWithChildren,
+  ChannelsRoute: ChannelsRoute,
   DiscoveryRoute: DiscoveryRoute,
   GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
   RecommendationsRoute: RecommendationsRoute,
   StrategiesRoute: StrategiesRoute,
+  ChannelsIdRoute: ChannelsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
