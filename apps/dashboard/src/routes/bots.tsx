@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { AddBotModal } from '../components/AddBotModal';
+import { Icon } from '../components/Icon';
 import {
   useBots, useDeleteBot, useToggleBotActive, useVerifyBot,
 } from '../api/bots';
@@ -17,65 +18,88 @@ function BotsPage() {
   return (
     <div>
       <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-        <h1 className="text-display-md" style={{ margin: 0 }}>Bots</h1>
-        <button onClick={() => setAddOpen(true)} className="btn-primary">+ Add bot</button>
+        <div>
+          <h1 className="text-display-md" style={{ margin: 0 }}>Bots</h1>
+          <p className="text-caption" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>
+            Telegram bots that publish on your behalf. Token values stay in <code style={{ color: 'var(--color-ink)' }}>.env</code>.
+          </p>
+        </div>
+        <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>
+          <Icon name="plus" size={14} /> Add bot
+        </button>
       </header>
 
-      {isLoading && <p style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
-      {error && <p style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
+      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
+      {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
 
       {data && data.length === 0 && (
-        <p style={{ color: 'var(--color-ink-muted)' }}>No bots configured yet.</p>
+        <div className="card" style={{ textAlign: 'center', padding: 48 }}>
+          <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+            No bots configured yet — add one to start publishing.
+          </p>
+        </div>
       )}
 
       {data && data.length > 0 && (
-        <div className="overflow-x-auto rounded-md border">
-          <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-left text-xs uppercase text-gray-500">
+        <div className="table-wrap">
+          <table className="table">
+            <thead>
               <tr>
-                <th className="px-3 py-2">Bot id</th>
-                <th className="px-3 py-2">Username</th>
-                <th className="px-3 py-2">Token env</th>
-                <th className="px-3 py-2">Status</th>
-                <th className="px-3 py-2">Last verified</th>
-                <th className="px-3 py-2">Actions</th>
+                <th>Bot id</th>
+                <th>Username</th>
+                <th>Token env</th>
+                <th>Status</th>
+                <th>Last verified</th>
+                <th style={{ width: 260, textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {data.map(b => (
-                <tr key={b.id} className="border-t hover:bg-gray-50">
-                  <td className="px-3 py-2 font-mono text-xs">{b.bot_id}</td>
-                  <td className="px-3 py-2">{b.username ?? '—'}</td>
-                  <td className="px-3 py-2 font-mono text-xs">{b.token_env}</td>
-                  <td className="px-3 py-2">
+                <tr key={b.id}>
+                  <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }}>{b.bot_id}</td>
+                  <td>{b.username ? `@${b.username}` : <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}</td>
+                  <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{b.token_env}</td>
+                  <td>
                     {b.verify_error
-                      ? <span title={b.verify_error} style={{ color: 'var(--color-danger)' }}>⚠ {b.verify_error.slice(0, 40)}</span>
+                      ? <span className="chip chip-danger" title={b.verify_error}>
+                          <Icon name="warning" size={12} style={{ marginRight: 4 }} />
+                          {b.verify_error.slice(0, 40)}
+                        </span>
                       : b.username
-                        ? <span style={{ color: 'var(--color-success, #16a34a)' }}>✓ verified</span>
-                        : <span style={{ color: 'var(--color-ink-muted)' }}>unverified</span>}
-                    {!b.active && <span style={{ marginLeft: 8, color: 'var(--color-ink-muted)' }}>(inactive)</span>}
+                        ? <span className="chip chip-success">
+                            <Icon name="check" size={12} style={{ marginRight: 4 }} />
+                            verified
+                          </span>
+                        : <span className="chip">unverified</span>}
+                    {!b.active && <span className="chip" style={{ marginLeft: 6 }}>inactive</span>}
                   </td>
-                  <td className="px-3 py-2 text-xs" style={{ color: 'var(--color-ink-muted)' }}>
+                  <td className="meta">
                     {b.last_verified_at ? new Date(b.last_verified_at).toLocaleString() : '—'}
                   </td>
-                  <td className="px-3 py-2">
-                    <button onClick={() => verify.mutate(b.id)} className="text-sm text-blue-600 hover:underline mr-3">
-                      Verify
-                    </button>
-                    <button
-                      onClick={() => toggle.mutate({ id: b.id, active: !b.active })}
-                      className="text-sm text-blue-600 hover:underline mr-3"
-                    >
-                      {b.active ? 'Deactivate' : 'Activate'}
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (confirm(`Delete bot ${b.bot_id}?`)) remove.mutate(b.id);
-                      }}
-                      className="text-sm text-red-600 hover:underline"
-                    >
-                      Delete
-                    </button>
+                  <td style={{ textAlign: 'right' }}>
+                    <div style={{ display: 'inline-flex', gap: 6 }}>
+                      <button onClick={() => verify.mutate(b.id)} className="btn-tiny" title="Re-run getMe">
+                        <Icon name="refresh" size={12} style={{ marginRight: 4 }} />
+                        Verify
+                      </button>
+                      <button
+                        onClick={() => toggle.mutate({ id: b.id, active: !b.active })}
+                        className="btn-tiny"
+                      >
+                        {b.active
+                          ? <><Icon name="pause" size={12} style={{ marginRight: 4 }} />Pause</>
+                          : <><Icon name="play"  size={12} style={{ marginRight: 4 }} />Activate</>}
+                      </button>
+                      <button
+                        onClick={() => {
+                          if (confirm(`Delete bot ${b.bot_id}?`)) remove.mutate(b.id);
+                        }}
+                        className="btn-tiny-danger"
+                      >
+                        <Icon name="trash" size={12} style={{ marginRight: 4 }} />
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

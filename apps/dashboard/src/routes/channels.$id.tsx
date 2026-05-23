@@ -10,17 +10,9 @@ import { fmtNumber, fmtDate } from '../lib/format';
 import { RoiPanel } from '../components/RoiPanel';
 import { EditThemesModal } from '../components/EditThemesModal';
 import { useChannelThemes } from '../api/discovery';
+import { Icon } from '../components/Icon';
 
 export const Route = createFileRoute('/channels/$id')({ component: ChannelDetailPage });
-
-const sectionLabel: React.CSSProperties = {
-  marginBottom: 8,
-  fontSize: 11,
-  fontWeight: 600,
-  textTransform: 'uppercase',
-  letterSpacing: '0.08em',
-  color: 'var(--color-ink-muted)',
-};
 
 function ChannelDetailPage() {
   const { id } = Route.useParams();
@@ -32,8 +24,8 @@ function ChannelDetailPage() {
   const topQ     = useQuery({ queryKey: ['top', id],     queryFn: () => trackingApi.topPosts(id, 'views', 5) });
   const themesQ  = useChannelThemes(id);
 
-  if (channelQ.isLoading) return <p style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
-  if (channelQ.error)     return <p style={{ color: 'var(--color-danger)' }}>{(channelQ.error as Error).message}</p>;
+  if (channelQ.isLoading) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
+  if (channelQ.error)     return <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(channelQ.error as Error).message}</p>;
   if (!channelQ.data)     return null;
 
   const c = channelQ.data;
@@ -41,24 +33,33 @@ function ChannelDetailPage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
       <header>
         <h1 className="text-display-md" style={{ margin: 0 }}>{c.title ?? c.username ?? id}</h1>
-        <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: 'var(--color-ink-muted)' }}>
-          {c.username && <span>@{c.username}</span>}
-          <span>·</span>
-          <span className="tabular-nums">{fmtNumber(c.subsCount)} subs</span>
-          <span>·</span>
-          <span>tier: {c.pollTier}</span>
-          <span>·</span>
-          <span>added {fmtDate(c.addedAt)}</span>
-          <span>·</span>
+        <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+          {c.username && <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{c.username}</span>}
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
+          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+            <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtNumber(c.subsCount)}</span>
+            <span style={{ color: 'var(--color-ink-muted)' }}> subs</span>
+          </span>
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
+          <span className={`chip ${c.pollTier === 'hot' ? 'chip-warning' : c.pollTier === 'cold' ? '' : 'chip-success'}`}>
+            {c.pollTier}
+          </span>
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>added {fmtDate(c.addedAt)}</span>
           <button
             onClick={() => setThemesOpen(true)}
-            className="text-blue-600 hover:underline"
-            style={{ fontSize: 14 }}
+            className="btn-tiny"
+            style={{ marginLeft: 'auto', gap: 6 }}
           >
-            Edit themes ({themesQ.data?.length ?? 0})
+            <Icon name="pencil" size={12} />
+            Themes ({themesQ.data?.length ?? 0})
           </button>
         </div>
-        {c.about && <p style={{ marginTop: 8, maxWidth: 640, fontSize: 14, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>{c.about}</p>}
+        {c.about && (
+          <p className="text-body" style={{ marginTop: 12, maxWidth: 720, color: 'var(--color-ink-muted)', lineHeight: 1.5 }}>
+            {c.about}
+          </p>
+        )}
       </header>
 
       {themesOpen && (
@@ -70,41 +71,50 @@ function ChannelDetailPage() {
         />
       )}
 
-      <section>
-        <h2 style={sectionLabel}>ROI estimate</h2>
+      <Section title="ROI estimate">
         <RoiPanel channelId={id} />
-      </section>
+      </Section>
 
-      <section>
-        <h2 style={sectionLabel}>Subscribers over time</h2>
+      <Section title="Subscribers over time">
         {subsQ.data && subsQ.data.points.length > 0
           ? <SubsHistoryChart points={subsQ.data.points} />
-          : <p style={{ fontSize: 14, color: 'var(--color-ink-muted)' }}>No history yet — wait for the next poll cycle.</p>}
-      </section>
+          : <Empty>No history yet — wait for the next poll cycle.</Empty>}
+      </Section>
 
-      <section>
-        <h2 style={sectionLabel}>Views per post (last 30)</h2>
+      <Section title="Views per post (last 30)">
         {postsQ.data && postsQ.data.items.length > 0
           ? <ViewsBarChart posts={postsQ.data.items} />
-          : <p style={{ fontSize: 14, color: 'var(--color-ink-muted)' }}>No posts yet.</p>}
-      </section>
+          : <Empty>No posts yet.</Empty>}
+      </Section>
 
-      <section>
-        <h2 style={sectionLabel}>Engagement rate</h2>
+      <Section title="Engagement rate">
         {postsQ.data && postsQ.data.items.length > 0
           ? <EngagementChart posts={postsQ.data.items} />
-          : <p style={{ fontSize: 14, color: 'var(--color-ink-muted)' }}>No data.</p>}
-      </section>
+          : <Empty>No data.</Empty>}
+      </Section>
 
-      <section>
-        <h2 style={sectionLabel}>Top 5 posts by views</h2>
+      <Section title="Top 5 posts by views">
         {topQ.data && <PostsList posts={topQ.data.items} />}
-      </section>
+      </Section>
 
-      <section>
-        <h2 style={sectionLabel}>Recent posts</h2>
+      <Section title="Recent posts">
         {postsQ.data && <PostsList posts={postsQ.data.items} />}
-      </section>
+      </Section>
     </div>
   );
+}
+
+/** Section heading uses .text-eyebrow (caption tier, ink-muted) — no uppercase
+ *  + weight-bump anti-pattern. Hierarchy comes from size + tracking. */
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section>
+      <h2 className="text-eyebrow" style={{ margin: 0, marginBottom: 10 }}>{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function Empty({ children }: { children: React.ReactNode }) {
+  return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{children}</p>;
 }

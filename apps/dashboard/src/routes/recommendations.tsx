@@ -4,6 +4,7 @@ import { BudgetInput } from '../components/BudgetInput';
 import { EditThemesModal } from '../components/EditThemesModal';
 import { RecommendationsTable } from '../components/RecommendationsTable';
 import { TargetChannelPicker } from '../components/TargetChannelPicker';
+import { Icon } from '../components/Icon';
 import { useChannelThemes, useRecommendations } from '../api/discovery';
 
 export const Route = createFileRoute('/recommendations')({
@@ -12,7 +13,7 @@ export const Route = createFileRoute('/recommendations')({
 
 function RecommendationsPage() {
   const [targetId, setTargetId] = useState<string | null>(null);
-  const [budget, setBudget] = useState<number>(50_000); // 500 UAH default
+  const [budget, setBudget]     = useState<number>(50_000); // 500 UAH default
   const [editOpen, setEditOpen] = useState(false);
 
   const { data: targetThemes } = useChannelThemes(targetId);
@@ -20,66 +21,74 @@ function RecommendationsPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-semibold" style={{ color: 'var(--color-ink)' }}>
-        Recommendations
-      </h1>
+      <header style={{ marginBottom: 24 }}>
+        <h1 className="text-display-md" style={{ margin: 0 }}>Recommendations</h1>
+        <p className="text-caption" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>
+          Channels worth buying ads on, sorted by theme overlap → ROI → price.
+        </p>
+      </header>
 
-      <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div>
-          <label className="mb-1 block text-xs font-medium uppercase" style={{ color: 'var(--color-ink-muted)' }}>
-            Target channel
-          </label>
-          <TargetChannelPicker value={targetId} onChange={setTargetId} />
-          {targetId && (
-            <button
-              onClick={() => setEditOpen(true)}
-              className="mt-2 text-xs text-blue-600 hover:underline"
-            >
-              Edit themes ({targetThemes?.length ?? 0})
-            </button>
-          )}
+      <div className="card" style={{ marginBottom: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 20, alignItems: 'end' }}>
+          <div>
+            <label className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>
+              Target channel
+            </label>
+            <TargetChannelPicker value={targetId} onChange={setTargetId} />
+            {targetId && (
+              <button
+                onClick={() => setEditOpen(true)}
+                className="link-accent text-micro"
+                style={{ marginTop: 8, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              >
+                Edit themes ({targetThemes?.length ?? 0})
+              </button>
+            )}
+          </div>
+          <div>
+            <label className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>
+              Budget
+            </label>
+            <BudgetInput value={budget} onChange={setBudget} />
+          </div>
+          <div>
+            <label className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>
+              Sort
+            </label>
+            <p className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+              theme match → ROI → price
+            </p>
+          </div>
         </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium uppercase" style={{ color: 'var(--color-ink-muted)' }}>
-            Budget
-          </label>
-          <BudgetInput value={budget} onChange={setBudget} />
-        </div>
-        <div className="flex items-end">
-          <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>
-            Sorted by theme match → ROI → price.
-          </span>
-        </div>
+
+        {targetThemes && targetThemes.length > 0 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center', marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--color-hairline-soft)' }}>
+            <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+              Target themes:
+            </span>
+            {targetThemes.map(t => (
+              <span key={t} className="chip is-active">{t}</span>
+            ))}
+          </div>
+        )}
       </div>
 
-      {targetThemes && targetThemes.length > 0 && (
-        <div className="mb-4 flex flex-wrap gap-1">
-          <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>
-            Target themes:
-          </span>
-          {targetThemes.map(t => (
-            <span
-              key={t}
-              className="rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-900"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      )}
-
       {recs.isLoading && (
-        <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
+        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
           Computing recommendations…
         </p>
       )}
       {recs.error && (
-        <p className="text-sm text-red-600">Failed to load recommendations.</p>
+        <div className="callout-danger">
+          <Icon name="warning" size={16} />
+          Failed to load recommendations.
+        </div>
       )}
       {recs.data?.warning && (
-        <p className="mb-4 rounded-md border-l-4 border-yellow-400 bg-yellow-50 p-3 text-sm">
+        <div className="callout-warning" style={{ marginBottom: 16 }}>
+          <Icon name="info" size={16} />
           {recs.data.warning}
-        </p>
+        </div>
       )}
 
       {recs.data && (

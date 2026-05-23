@@ -6,6 +6,7 @@ import { GraphCanvas } from '../components/GraphCanvas';
 import { GraphFilters } from '../components/GraphFilters';
 import { ChannelDialog } from '../components/ChannelDialog';
 import { EdgePanel } from '../components/EdgePanel';
+import { SegmentedTabs } from '../components/SegmentedTabs';
 import type { GraphEdge } from '../api/types';
 import type { LayoutDirection } from '../lib/graph-layout';
 
@@ -32,18 +33,30 @@ function GraphPage() {
 
   return (
     <div>
-      <h1 className="text-display-md" style={{ marginBottom: 12 }}>Channel graph</h1>
+      <h1 className="text-display-md" style={{ margin: 0, marginBottom: 6 }}>Channel graph</h1>
+      <p className="text-caption" style={{ color: 'var(--color-ink-muted)', margin: 0, marginBottom: 16 }}>
+        Cross-references between channels. Drag nodes to rearrange.
+      </p>
       <GraphFilters {...filters} onChange={(patch) => setFilters((f) => ({ ...f, ...patch }))} />
 
-      {q.isLoading && <p style={{ color: 'var(--color-ink-muted)' }}>Loading graph…</p>}
-      {q.error && <p style={{ color: 'var(--color-danger)' }}>{(q.error as Error).message}</p>}
+      {q.isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading graph…</p>}
+      {q.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(q.error as Error).message}</p>}
       {q.data && (
         <>
-          <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>
-            <p style={{ fontSize: 12, color: 'var(--color-ink-muted)' }}>
-              {q.data.nodes.length} nodes · {q.data.edges.length} edges · tree layout
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+            <p className="text-caption" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+              <span style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }}>{q.data.nodes.length}</span> nodes ·{' '}
+              <span style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }}>{q.data.edges.length}</span> edges · tree layout
             </p>
-            <LayoutDirectionToggle value={direction} onChange={setDirection} />
+            <SegmentedTabs<LayoutDirection>
+              value={direction}
+              onChange={setDirection}
+              size="sm"
+              options={[
+                { key: 'TB', label: 'Top → Down' },
+                { key: 'LR', label: 'Left → Right' },
+              ]}
+            />
           </div>
           <GraphCanvas
             data={q.data}
@@ -55,37 +68,6 @@ function GraphPage() {
       )}
       {openChannel && <ChannelDialog channelId={openChannel} onClose={() => setOpenChannel(null)} />}
       {openEdge    && <EdgePanel sourceId={openEdge.sourceId} targetUsername={openEdge.targetUsername} onClose={() => setOpenEdge(null)} />}
-    </div>
-  );
-}
-
-/** Segmented control: tree direction (top-down vs left-right). */
-function LayoutDirectionToggle({ value, onChange }: { value: LayoutDirection; onChange: (v: LayoutDirection) => void }) {
-  const opts: Array<{ key: LayoutDirection; label: string }> = [
-    { key: 'TB', label: 'Top → Down' },
-    { key: 'LR', label: 'Left → Right' },
-  ];
-  return (
-    <div
-      className="flex p-1 text-[12px]"
-      style={{
-        background: 'var(--color-surface-1)',
-        borderRadius: 'var(--radius-pill)',
-      }}
-    >
-      {opts.map((o) => (
-        <button
-          key={o.key}
-          onClick={() => onChange(o.key)}
-          className="rounded-full px-3 py-1 transition-colors"
-          style={{
-            background: value === o.key ? 'var(--color-surface-2)' : 'transparent',
-            color:      value === o.key ? 'var(--color-ink)'        : 'var(--color-ink-muted)',
-          }}
-        >
-          {o.label}
-        </button>
-      ))}
     </div>
   );
 }

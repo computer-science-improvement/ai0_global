@@ -5,6 +5,8 @@ import { trackingApi } from '../api/tracking';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
 import { AddChannelModal } from '../components/AddChannelModal';
+import { SegmentedTabs } from '../components/SegmentedTabs';
+import { Icon } from '../components/Icon';
 
 const PAGE_SIZE = 50;
 
@@ -18,6 +20,12 @@ export const Route = createFileRoute('/channels')({
   }),
   component: ChannelsPage,
 });
+
+const FILTERS = [
+  { key: 'all',      label: 'All'      },
+  { key: 'mine',     label: 'Mine'     },
+  { key: 'external', label: 'External' },
+] as const;
 
 function ChannelsPage() {
   const { filter, page, q } = Route.useSearch();
@@ -34,52 +42,33 @@ function ChannelsPage() {
 
   return (
     <div>
-      <div style={{ marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{
-            display: 'flex',
-            background: 'var(--color-surface-1)',
-            borderRadius: 'var(--radius-pill)',
-            padding: 4,
-            fontSize: 14,
-            gap: 2,
-          }}>
-            {(['all', 'mine', 'external'] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setSearch({ filter: f, page: 1 })}
-                style={{
-                  borderRadius: 'var(--radius-pill)',
-                  padding: '4px 14px',
-                  fontSize: 14,
-                  cursor: 'pointer',
-                  border: 'none',
-                  background: filter === f ? 'var(--color-surface-2)' : 'transparent',
-                  color: filter === f ? 'var(--color-ink)' : 'var(--color-ink-muted)',
-                  transition: 'background 0.15s, color 0.15s',
-                }}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-          <input
-            value={q}
-            onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
-            placeholder="Search…"
-            className="input-field"
-          />
-        </div>
-        <button onClick={() => setModalOpen(true)} className="btn-primary">
-          + Add channel
+      <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+        <h1 className="text-display-md" style={{ margin: 0 }}>Channels</h1>
+        <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
+          <Icon name="plus" size={14} /> Add channel
         </button>
+      </header>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
+        <SegmentedTabs
+          value={filter}
+          options={FILTERS}
+          onChange={(f) => setSearch({ filter: f, page: 1 })}
+        />
+        <input
+          value={q}
+          onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
+          placeholder="Search…"
+          className="input-field"
+          style={{ flex: 1, minWidth: 220, maxWidth: 360 }}
+        />
       </div>
 
-      {isLoading && <p style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
-      {error && <p style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
+      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
+      {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
       {data && (
         <>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {data.items.map((c) => <ChannelRow key={c.id} c={c} />)}
           </div>
           <Pagination page={page} pageSize={PAGE_SIZE} total={data.total} onPage={(p) => setSearch({ page: p })} />
