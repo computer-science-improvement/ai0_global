@@ -1,4 +1,5 @@
 import { NestFactory }             from '@nestjs/core';
+import { ValidationPipe }          from '@nestjs/common';
 import { WinstonModule }           from 'nest-winston';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as winston                from 'winston';
@@ -28,6 +29,17 @@ async function bootstrap() {
 
   app.use(cookieParser());
   app.enableCors({ origin: ['http://localhost:5173'], credentials: true });
+
+  // Enforce class-validator decorators on every @Body() DTO. `whitelist`
+  // strips unknown fields, `forbidNonWhitelisted` rejects them outright,
+  // and `transform` runs class-transformer so plain JSON arrives as DTO
+  // instances downstream.
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist:             true,
+    forbidNonWhitelisted:  true,
+    transform:             true,
+    transformOptions:      { enableImplicitConversion: true },
+  }));
 
   const swaggerCfg = new DocumentBuilder()
     .setTitle('ai0_global automation API')
