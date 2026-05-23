@@ -11,6 +11,7 @@ import { MyBotsRepository } from './my-bots.repository';
 import { TrackedChannelsConfigRepository } from './tracked-channels.repository';
 import { StrategyBindingsRepository } from './strategy-bindings.repository';
 import { StrategyRunsRepository } from './strategy-runs.repository';
+import { StrategyPreviewService } from './strategy-preview.service';
 import { ForwardRoutesRepository } from './forward-routes.repository';
 import { TelegramGetMeClient } from './telegram-getme.client';
 import { MyBotsController } from './api/my-bots.controller';
@@ -30,6 +31,7 @@ import { AuthModule } from '../auth/auth.module';
     TrackedChannelsConfigRepository,
     StrategyBindingsRepository,
     StrategyRunsRepository,
+    StrategyPreviewService,
     ForwardRoutesRepository,
     TelegramGetMeClient,
   ],
