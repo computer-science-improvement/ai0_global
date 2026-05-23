@@ -54,9 +54,12 @@ export class ChannelConfigService implements OnApplicationBootstrap {
     }
 
     const stats = await this.importer.importIfNeeded(nodeEnv);
-    if (!stats.skipped) {
-      await this.cache.reload();
-    }
+    // Always reload — NestJS doesn't guarantee that ConfigCacheService's
+    // onApplicationBootstrap (which also does an initial hydrate) ran first.
+    // Without this explicit reload, we may log stale counts and downstream
+    // boot consumers (Scheduler etc.) might race with empty caches.
+    void stats;
+    await this.cache.reload();
 
     const bots = this.cache.getAllBots();
     const channels = this.cache.getAllChannels();
