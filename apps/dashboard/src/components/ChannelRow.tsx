@@ -40,8 +40,11 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
           <div style={{ minWidth: 0, flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
               <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
-                {c.title ?? c.username ?? c.channelKey ?? '(no title)'}
+                {c.title ?? c.channelKey ?? (c.username ? `@${c.username}` : '(no title)')}
               </span>
+              {c.kind && (
+                <span className="chip" title={`Kind: ${c.kind} channel`}>{c.kind}</span>
+              )}
               {c.isMine   && <span className="chip chip-success" title={CHANNEL_FLAG_HELP.mine}>mine</span>}
               {c.isClosed && <span className="chip" title={CHANNEL_FLAG_HELP.closed}>closed</span>}
               {c.bot && (
@@ -55,11 +58,24 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
                 </span>
               )}
             </div>
-            {(c.username || c.channelKey) && (
-              <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-                {c.username ? `@${c.username}` : c.channelKey}
-              </div>
-            )}
+            {/* Meta line: @username for public, channelKey or chat-id for private.
+                For private channels the username field is meaningless (Telegram doesn't
+                know them by that handle); show channelKey instead, falling back to
+                the numeric chat id when even that is absent. */}
+            {(() => {
+              const meta = c.kind === 'private'
+                ? (c.channelKey ?? c.tgChatId)
+                : (c.username ? `@${c.username}` : c.channelKey);
+              return meta ? (
+                <div
+                  className="text-micro"
+                  style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}
+                  title={c.kind === 'private' ? `chat id: ${c.tgChatId ?? '—'}` : undefined}
+                >
+                  {meta}
+                </div>
+              ) : null;
+            })()}
           </div>
           <div style={{ display: 'flex', flexShrink: 0, alignItems: 'center', gap: 14 }}>
             <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>

@@ -69,9 +69,18 @@ function ChannelDetailPage() {
           title={c.title ?? c.username ?? id}
         />
         <div style={{ flex: 1, minWidth: 0 }}>
-        <h1 className="text-display-md" style={{ margin: 0 }}>{c.title ?? c.username ?? id}</h1>
+        <h1 className="text-display-md" style={{ margin: 0 }}>
+          {c.title ?? c.channelKey ?? (c.username ? `@${c.username}` : id)}
+        </h1>
         <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-          {c.username && <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{c.username}</span>}
+          {c.kind === 'private' && c.tgChatId && (
+            <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>
+              {c.tgChatId}
+            </span>
+          )}
+          {c.kind !== 'private' && c.username && (
+            <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{c.username}</span>
+          )}
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
             <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtNumber(c.subsCount)}</span>
