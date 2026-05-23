@@ -16,12 +16,13 @@ import { ForwardRoutesRepository } from './forward-routes.repository';
 import { TelegramGetMeClient } from './telegram-getme.client';
 import { MyBotsController } from './api/my-bots.controller';
 import { StrategiesController } from './api/strategies.controller';
+import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
 
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule],
-  controllers: [MyBotsController, StrategiesController],
+  controllers: [MyBotsController, StrategiesController, ForwardRoutesController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
