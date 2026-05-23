@@ -1,197 +1,158 @@
+// apps/automation/src/config/json-importer.service.ts
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { Pool } from 'pg';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
-import { DB_POOL } from '../database/database.tokens';
+import { Pool } from 'pg';
+import { DB_POOL } from '../database/database.module';
 import { MyBotsRepository } from './my-bots.repository';
 import { TrackedChannelsConfigRepository } from './tracked-channels.repository';
 import { StrategyBindingsRepository } from './strategy-bindings.repository';
 import { ForwardRoutesRepository } from './forward-routes.repository';
 
-type AppEnv = 'local-development' | 'dev-stage' | 'production';
-
-interface BotJson {
-  platform: string;
-  tokenEnv: string;
-}
-
-interface ForwardRouteJson {
-  topic:       string;
-  channelId:   string;
-  description: string;
-}
-
-interface ChannelJson {
-  platform:           string;
-  chatId:             string;
-  botId:              string | string[];
-  semanticDedupHours?: number;
-  forwardRoutes?:     ForwardRouteJson[];
-}
-
-interface StrategyJson {
-  id:                string;
-  type:              string;
-  channelId:         string;
-  schedule?:         string;
-  postDelayMinutes?: number;
-  params?:           Record<string, unknown>;
-}
-
-interface ChannelsFile {
-  bots:        Record<string, BotJson>;
-  channels:    Record<string, ChannelJson>;
-  strategies?: StrategyJson[];
+interface RawJsonConfig {
+  bots?: Record<string, { platform?: string; tokenEnv: string }>;
+  channels?: Record<string, {
+    platform?: string;
+    chatId?:   string;
+    botId?:    string;
+    forwardRoutes?: Array<{ topic: string; channelId: string; description: string }>;
+  }>;
+  strategies?: Array<{
+    id:        string;
+    type:      string;
+    channelId: string;
+    schedule:  string;
+    params?:   Record<string, unknown>;
+  }>;
 }
 
 @Injectable()
 export class JsonImporterService {
   private readonly logger = new Logger(JsonImporterService.name);
+  private readonly configDir = join(__dirname, '..', '..', 'config');
 
   constructor(
     @Inject(DB_POOL) private readonly pool: Pool,
     private readonly bots:     MyBotsRepository,
     private readonly channels: TrackedChannelsConfigRepository,
     private readonly bindings: StrategyBindingsRepository,
-    private readonly routes:   ForwardRoutesRepository,
+    private readonly forwards: ForwardRoutesRepository,
   ) {}
 
-  async importIfNeeded(env: AppEnv): Promise<void> {
+  /** Idempotent. Reads channels.<env>.json once per env, writes once to DB. */
+  async importIfNeeded(env: 'local-development' | 'dev-stage' | 'production'): Promise<{
+    skipped: boolean; bots: number; channels: number; strategies: number; forwards: number;
+  }> {
     const sentinel = `config_imported_${env}`;
-
-    const sentinelRow = await this.pool.query<{ version: string }>(
-      `SELECT version FROM schema_migrations WHERE version = $1`,
-      [sentinel],
-    );
-    if (sentinelRow.rowCount && sentinelRow.rowCount > 0) {
-      this.logger.log(`Config already imported for env=${env} — skipping`);
-      return;
+    if (await this.hasMigration(sentinel)) {
+      this.logger.debug(`Import skipped — sentinel ${sentinel} present`);
+      return { skipped: true, bots: 0, channels: 0, strategies: 0, forwards: 0 };
     }
 
-    const path = this.resolveConfigPath(env);
-    if (!path) {
-      this.logger.warn(`No config file resolved for env=${env} — skipping import`);
-      return;
+    const file = this.resolveFile(env);
+    if (!file || !existsSync(file)) {
+      this.logger.warn(`No JSON file found for env=${env}, skipping import`);
+      await this.markMigration(sentinel);
+      return { skipped: true, bots: 0, channels: 0, strategies: 0, forwards: 0 };
     }
 
-    let cfg: ChannelsFile;
-    try {
-      cfg = JSON.parse(readFileSync(path, 'utf-8')) as ChannelsFile;
-    } catch (e: any) {
-      throw new Error(`Failed to read/parse config file ${path}: ${e?.message ?? String(e)}`);
-    }
+    const raw = JSON.parse(readFileSync(file, 'utf-8')) as RawJsonConfig;
 
-    this.logger.log(
-      `Importing config from ${path}: ` +
-      `${Object.keys(cfg.bots ?? {}).length} bot(s), ` +
-      `${Object.keys(cfg.channels ?? {}).length} channel(s), ` +
-      `${(cfg.strategies ?? []).length} strategy(ies)`,
-    );
+    let botsCount = 0, chCount = 0, sCount = 0, fwCount = 0;
 
     // 1. Bots
-    const botIdMap = new Map<string, string>();   // bot-key (e.g. "ai0_local_test_bot") → uuid
-    for (const [botKey, bot] of Object.entries(cfg.bots ?? {})) {
-      const existing = await this.bots.findByBotId(botKey);
-      if (existing) {
-        botIdMap.set(botKey, existing.id);
-        continue;
+    for (const [botId, b] of Object.entries(raw.bots ?? {})) {
+      const existing = await this.bots.findByBotId(botId);
+      if (!existing) {
+        await this.bots.insert({ bot_id: botId, token_env: b.tokenEnv, platform: b.platform ?? 'telegram' });
+        botsCount++;
       }
-      const id = await this.bots.insert({
-        botId:    botKey,
-        platform: bot.platform ?? 'telegram',
-        tokenEnv: bot.tokenEnv,
-        active:   true,
-      });
-      botIdMap.set(botKey, id);
     }
 
-    // 2. Channels — must come before forward_routes / strategies (they reference channels)
-    const channelIdMap = new Map<string, string>();   // channel-key (e.g. "@pdr_local") → uuid
-    for (const [channelKey, ch] of Object.entries(cfg.channels ?? {})) {
-      const firstBot = Array.isArray(ch.botId) ? ch.botId[0] : ch.botId;
-      const botUuid  = firstBot ? botIdMap.get(firstBot) ?? null : null;
-      const kind     = this.computeKind(channelKey);
-
+    // 2. Channels (need bot ids resolved)
+    const channelKeyToId = new Map<string, string>();
+    for (const [channelKey, ch] of Object.entries(raw.channels ?? {})) {
+      const botRow = ch.botId ? await this.bots.findByBotId(ch.botId) : null;
+      const isPrivate = (ch.chatId ?? channelKey).startsWith('-');
       const id = await this.channels.upsertByKey({
-        channelKey,
-        kind,
-        botId:    botUuid,
-        tgChatId: typeof ch.chatId === 'string' && /^-?\d+$/.test(ch.chatId) ? ch.chatId : null,
-        username: channelKey.startsWith('@') ? channelKey.slice(1) : null,
-        isMine:   true,
+        channel_key: channelKey,
+        username:    isPrivate ? null : channelKey.replace(/^@/, ''),
+        tg_chat_id:  isPrivate ? (ch.chatId ?? channelKey) : null,
+        kind:        isPrivate ? 'private' : 'public',
+        bot_id:      botRow?.id ?? null,
+        is_mine:     true,
       });
-      channelIdMap.set(channelKey, id);
+      channelKeyToId.set(channelKey, id);
+      chCount++;
     }
 
-    // 3. Forward routes — channels exist now
-    for (const [channelKey, ch] of Object.entries(cfg.channels ?? {})) {
-      const sourceId = channelIdMap.get(channelKey);
+    // 3. Forward routes (need both source + target resolved as channel ids)
+    for (const [channelKey, ch] of Object.entries(raw.channels ?? {})) {
+      const sourceId = channelKeyToId.get(channelKey);
       if (!sourceId) continue;
       for (const route of ch.forwardRoutes ?? []) {
-        const targetId = channelIdMap.get(route.channelId);
+        const targetId = channelKeyToId.get(route.channelId);
         if (!targetId) {
-          this.logger.warn(
-            `Forward route target "${route.channelId}" from "${channelKey}" not found — skipping`,
-          );
+          this.logger.warn(`Forward route ${channelKey}→${route.channelId} skipped — target not in channels map`);
           continue;
         }
-        await this.routes.insertIfMissing({
-          sourceChannelId: sourceId,
-          targetChannelId: targetId,
-          topic:           route.topic,
-          description:     route.description,
+        const inserted = await this.forwards.insertIfMissing({
+          source_channel_id: sourceId,
+          target_channel_id: targetId,
+          topic:             route.topic,
+          description:       route.description,
         });
+        if (inserted) fwCount++;
       }
     }
 
     // 4. Strategies
-    for (const s of cfg.strategies ?? []) {
-      const channelUuid = channelIdMap.get(s.channelId);
-      if (!channelUuid) {
-        this.logger.warn(
-          `Strategy "${s.id}" references unknown channel "${s.channelId}" — skipping`,
-        );
+    for (const s of raw.strategies ?? []) {
+      const channelId = channelKeyToId.get(s.channelId);
+      if (!channelId) {
+        this.logger.warn(`Strategy ${s.id} skipped — channel ${s.channelId} not in channels map`);
         continue;
       }
-      const params: Record<string, unknown> = { ...(s.params ?? {}) };
-      if (s.postDelayMinutes !== undefined) params.postDelayMinutes = s.postDelayMinutes;
-      await this.bindings.insertIfMissing({
-        extId:     s.id,
-        type:      s.type,
-        channelId: channelUuid,
-        schedule:  s.schedule ?? '0 8-23/2 * * *',
-        params,
-        enabled:   true,
+      const inserted = await this.bindings.insertIfMissing({
+        ext_id:     s.id,
+        type:       s.type,
+        channel_id: channelId,
+        schedule:   s.schedule,
+        params:     s.params ?? {},
+        enabled:    true,
       });
+      if (inserted) sCount++;
     }
 
-    await this.pool.query(
-      `INSERT INTO schema_migrations (version) VALUES ($1) ON CONFLICT (version) DO NOTHING`,
-      [sentinel],
+    await this.markMigration(sentinel);
+    this.logger.log(
+      `Imported channels.${env}.json → bots=${botsCount} channels=${chCount} strategies=${sCount} forwards=${fwCount}`,
     );
-    this.logger.log(`Config import complete for env=${env}`);
+
+    return { skipped: false, bots: botsCount, channels: chCount, strategies: sCount, forwards: fwCount };
   }
 
-  private resolveConfigPath(env: AppEnv): string | null {
-    const configDir = join(__dirname, '..', '..', 'config');
+  private resolveFile(env: string): string | null {
     if (env === 'local-development') {
-      const local = join(configDir, 'channels.local.json');
+      const local = join(this.configDir, 'channels.local.json');
       if (existsSync(local)) return local;
-      const dev = join(configDir, 'channels-dev.json');
-      if (existsSync(dev)) return dev;
-      return null;
+      return join(this.configDir, 'channels-dev.json');
     }
-    if (env === 'dev-stage') {
-      const p = join(configDir, 'channels-dev.json');
-      return existsSync(p) ? p : null;
-    }
-    const p = join(configDir, 'channels.json');
-    return existsSync(p) ? p : null;
+    if (env === 'dev-stage') return join(this.configDir, 'channels-dev.json');
+    return join(this.configDir, 'channels.json');
   }
 
-  private computeKind(channelKey: string): string {
-    // Channel keys in channels.<env>.json are typically `@username` for Telegram.
-    if (channelKey.startsWith('@')) return 'telegram';
-    return 'unknown';
+  private async hasMigration(version: string): Promise<boolean> {
+    const { rows } = await this.pool.query(
+      `SELECT 1 FROM schema_migrations WHERE version = $1`, [version],
+    );
+    return rows.length > 0;
+  }
+
+  private async markMigration(version: string): Promise<void> {
+    await this.pool.query(
+      `INSERT INTO schema_migrations (version) VALUES ($1) ON CONFLICT DO NOTHING`,
+      [version],
+    );
   }
 }

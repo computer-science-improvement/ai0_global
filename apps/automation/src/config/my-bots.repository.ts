@@ -1,130 +1,94 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+// apps/automation/src/config/my-bots.repository.ts
+import { Inject, Injectable } from '@nestjs/common';
 import { Pool } from 'pg';
-import { DB_POOL } from '../database/database.tokens';
+import { DB_POOL } from '../database/database.module';
 
 export interface MyBotRow {
-  id:               string;
-  botId:            string;
-  username:         string | null;
-  firstName:        string | null;
-  platform:         string;
-  tokenEnv:         string;
-  active:           boolean;
-  lastVerifiedAt:   Date | null;
-  verifyError:      string | null;
-  createdAt:        Date;
+  id:                string;
+  bot_id:            string;
+  username:          string | null;
+  first_name:        string | null;
+  platform:          string;
+  token_env:         string;
+  active:            boolean;
+  last_verified_at:  Date | null;
+  verify_error:      string | null;
+  created_at:        Date;
 }
 
 export interface MyBotInsertInput {
-  botId:      string;
-  username?:  string | null;
-  firstName?: string | null;
-  platform?:  string;
-  tokenEnv:   string;
-  active?:    boolean;
+  bot_id:    string;
+  token_env: string;
+  platform?: string;
 }
 
 @Injectable()
 export class MyBotsRepository {
-  private readonly logger = new Logger(MyBotsRepository.name);
-
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
   async list(): Promise<MyBotRow[]> {
-    const r = await this.pool.query<any>(
-      `SELECT * FROM my_bots ORDER BY created_at ASC`,
+    const { rows } = await this.pool.query<MyBotRow>(
+      `SELECT * FROM my_bots ORDER BY created_at`,
     );
-    return r.rows.map((row) => this.toEntity(row));
+    return rows;
   }
 
   async findById(id: string): Promise<MyBotRow | null> {
-    const r = await this.pool.query<any>(
+    const { rows } = await this.pool.query<MyBotRow>(
       `SELECT * FROM my_bots WHERE id = $1`, [id],
     );
-    return r.rows[0] ? this.toEntity(r.rows[0]) : null;
+    return rows[0] ?? null;
   }
 
   async findByBotId(botId: string): Promise<MyBotRow | null> {
-    const r = await this.pool.query<any>(
+    const { rows } = await this.pool.query<MyBotRow>(
       `SELECT * FROM my_bots WHERE bot_id = $1`, [botId],
     );
-    return r.rows[0] ? this.toEntity(r.rows[0]) : null;
+    return rows[0] ?? null;
   }
 
-  async insert(input: MyBotInsertInput): Promise<string> {
-    const r = await this.pool.query<{ id: string }>(
-      `INSERT INTO my_bots
-         (bot_id, username, first_name, platform, token_env, active)
-       VALUES ($1, $2, $3, COALESCE($4, 'telegram'), $5, COALESCE($6, true))
-       RETURNING id`,
-      [
-        input.botId,
-        input.username ?? null,
-        input.firstName ?? null,
-        input.platform ?? null,
-        input.tokenEnv,
-        input.active ?? null,
-      ],
+  async insert(input: MyBotInsertInput): Promise<MyBotRow> {
+    const { rows } = await this.pool.query<MyBotRow>(
+      `INSERT INTO my_bots (bot_id, token_env, platform)
+       VALUES ($1, $2, COALESCE($3, 'telegram'))
+       RETURNING *`,
+      [input.bot_id, input.token_env, input.platform ?? null],
     );
-    return r.rows[0].id;
+    return rows[0];
   }
 
-  async markVerified(
-    id: string,
-    meta: { username?: string | null; firstName?: string | null },
-  ): Promise<void> {
+  async markVerified(id: string, meta: { username: string; first_name: string }): Promise<void> {
     await this.pool.query(
       `UPDATE my_bots
-       SET username         = COALESCE($2, username),
-           first_name       = COALESCE($3, first_name),
-           last_verified_at = now(),
-           verify_error     = NULL
+         SET username         = $2::text,
+             first_name       = $3::text,
+             last_verified_at = now(),
+             verify_error     = NULL
        WHERE id = $1`,
-      [id, meta.username ?? null, meta.firstName ?? null],
+      [id, meta.username, meta.first_name],
     );
   }
 
   async markVerifyError(id: string, error: string): Promise<void> {
     await this.pool.query(
-      `UPDATE my_bots
-       SET verify_error     = $2,
-           last_verified_at = now()
-       WHERE id = $1`,
+      `UPDATE my_bots SET verify_error = $2::text, last_verified_at = now() WHERE id = $1`,
       [id, error],
     );
   }
 
   async setActive(id: string, active: boolean): Promise<void> {
-    await this.pool.query(
-      `UPDATE my_bots SET active = $2 WHERE id = $1`,
-      [id, active],
-    );
+    await this.pool.query(`UPDATE my_bots SET active = $2 WHERE id = $1`, [id, active]);
   }
 
-  async delete(id: string): Promise<void> {
-    await this.pool.query(`DELETE FROM my_bots WHERE id = $1`, [id]);
+  async delete(id: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(`DELETE FROM my_bots WHERE id = $1`, [id]);
+    return (rowCount ?? 0) > 0;
   }
 
   async countChannelsBound(id: string): Promise<number> {
-    const r = await this.pool.query<{ count: string }>(
-      `SELECT COUNT(*)::text AS count FROM tracked_channels WHERE bot_id = $1`,
-      [id],
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*)::text FROM tracked_channels WHERE bot_id = $1`, [id],
     );
-    return parseInt(r.rows[0].count, 10);
-  }
-
-  private toEntity(r: any): MyBotRow {
-    return {
-      id:             r.id,
-      botId:          r.bot_id,
-      username:       r.username,
-      firstName:      r.first_name,
-      platform:       r.platform,
-      tokenEnv:       r.token_env,
-      active:         r.active,
-      lastVerifiedAt: r.last_verified_at,
-      verifyError:    r.verify_error,
-      createdAt:      r.created_at,
-    };
+    return parseInt(rows[0].count, 10);
   }
 }

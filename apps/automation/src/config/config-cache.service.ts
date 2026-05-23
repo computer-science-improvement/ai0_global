@@ -1,168 +1,98 @@
-import {
-  Inject,
-  Injectable,
-  Logger,
-  OnApplicationBootstrap,
-  OnModuleDestroy,
-} from '@nestjs/common';
-import type IORedis from 'ioredis';
+// apps/automation/src/config/config-cache.service.ts
+import { Inject, Injectable, Logger, OnApplicationBootstrap, OnModuleDestroy } from '@nestjs/common';
+import { Redis } from 'ioredis';
 import { REDIS_CLIENT } from '../tracking/redis.provider';
-import { CONFIG_CHANGED_CHANNEL } from './config-events.types';
 import { MyBotsRepository, MyBotRow } from './my-bots.repository';
-import {
-  TrackedChannelsConfigRepository,
-  TrackedChannelConfigRow,
-} from './tracked-channels.repository';
-import {
-  StrategyBindingsRepository,
-  StrategyBindingRow,
-} from './strategy-bindings.repository';
-import {
-  ForwardRoutesRepository,
-  ForwardRouteRow,
-} from './forward-routes.repository';
+import { TrackedChannelsConfigRepository, TrackedChannelConfigRow } from './tracked-channels.repository';
+import { StrategyBindingsRepository, StrategyBindingRow } from './strategy-bindings.repository';
+import { ForwardRoutesRepository, ForwardRouteRow } from './forward-routes.repository';
+import { CONFIG_CHANGED_CHANNEL, ConfigChangedEvent } from './config-events.types';
 
 @Injectable()
-export class ConfigCacheService
-  implements OnApplicationBootstrap, OnModuleDestroy
-{
+export class ConfigCacheService implements OnApplicationBootstrap, OnModuleDestroy {
   private readonly logger = new Logger(ConfigCacheService.name);
 
-  private bots:        MyBotRow[]                    = [];
-  private botsById     = new Map<string, MyBotRow>();
-  private botsByBotId  = new Map<string, MyBotRow>();
+  // Maps keyed by id (UUID) AND/OR by channel_key for fast lookup.
+  private botsById:        Map<string, MyBotRow> = new Map();
+  private botsByBotId:     Map<string, MyBotRow> = new Map();
+  private channelsById:    Map<string, TrackedChannelConfigRow> = new Map();
+  private channelsByKey:   Map<string, TrackedChannelConfigRow> = new Map();
+  private bindings:        StrategyBindingRow[] = [];
+  private forwardRoutes:   ForwardRouteRow[] = [];
 
-  private channels:        TrackedChannelConfigRow[]            = [];
-  private channelsById     = new Map<string, TrackedChannelConfigRow>();
-  private channelsByKey    = new Map<string, TrackedChannelConfigRow>();
-
-  private bindings:        StrategyBindingRow[]                 = [];
-  private bindingsById     = new Map<string, StrategyBindingRow>();
-  private bindingsByExtId  = new Map<string, StrategyBindingRow>();
-
-  private routes:          ForwardRouteRow[]                    = [];
-  private routesBySource   = new Map<string, ForwardRouteRow[]>();
-
-  private subscriber: IORedis | null = null;
+  private subscriber: Redis | null = null;
   private reloadTimer: NodeJS.Timeout | null = null;
-  private readonly RELOAD_DEBOUNCE_MS = 500;
 
   constructor(
-    @Inject(REDIS_CLIENT) private readonly redis: IORedis,
+    @Inject(REDIS_CLIENT) private readonly redis: Redis,
     private readonly botsRepo:     MyBotsRepository,
     private readonly channelsRepo: TrackedChannelsConfigRepository,
     private readonly bindingsRepo: StrategyBindingsRepository,
-    private readonly routesRepo:   ForwardRoutesRepository,
+    private readonly forwardsRepo: ForwardRoutesRepository,
   ) {}
 
   async onApplicationBootstrap(): Promise<void> {
     await this.reload();
-
-    // ioredis disallows commands on a subscribed connection — duplicate it
-    // so the rest of the app's redis usage (publish, queues, etc.) keeps
-    // working on the original client.
+    // Subscriber must be a separate connection — duplicate the main client.
     this.subscriber = this.redis.duplicate();
-    this.subscriber.on('error', (e) => {
-      this.logger.warn(`config subscriber error: ${e.message}`);
-    });
-
     await this.subscriber.subscribe(CONFIG_CHANGED_CHANNEL);
     this.subscriber.on('message', (channel, message) => {
       if (channel !== CONFIG_CHANGED_CHANNEL) return;
-      this.logger.log(`received ${CONFIG_CHANGED_CHANNEL}: ${message}`);
+      let event: ConfigChangedEvent;
+      try { event = JSON.parse(message); }
+      catch { return; }
+      this.logger.debug(`config:changed received: ${event.kind} ${event.id ?? ''}`);
       this.scheduleReload();
     });
-    this.logger.log(`subscribed to ${CONFIG_CHANGED_CHANNEL}`);
+    this.logger.log('ConfigCacheService bootstrapped (subscribed to config:changed)');
   }
 
   async onModuleDestroy(): Promise<void> {
-    if (this.reloadTimer) {
-      clearTimeout(this.reloadTimer);
-      this.reloadTimer = null;
-    }
     if (this.subscriber) {
-      try {
-        await this.subscriber.unsubscribe(CONFIG_CHANGED_CHANNEL);
-        await this.subscriber.quit();
-      } catch (e: any) {
-        this.logger.warn(`subscriber teardown error: ${e?.message ?? String(e)}`);
-      }
-      this.subscriber = null;
+      try { await this.subscriber.quit(); } catch { /* ignore */ }
     }
+    if (this.reloadTimer) clearTimeout(this.reloadTimer);
   }
 
+  /** Debounced — coalesces bursts of mutations into one reload. */
   private scheduleReload(): void {
     if (this.reloadTimer) clearTimeout(this.reloadTimer);
-    this.reloadTimer = setTimeout(() => {
-      this.reloadTimer = null;
-      void this.reload().catch((e) =>
-        this.logger.warn(`reload failed: ${e?.message ?? String(e)}`),
-      );
-    }, this.RELOAD_DEBOUNCE_MS);
+    this.reloadTimer = setTimeout(() => { void this.reload(); }, 500);
   }
 
   async reload(): Promise<void> {
-    const [bots, channels, bindings, routes] = await Promise.all([
+    const [bots, channels, bindings, forwards] = await Promise.all([
       this.botsRepo.list(),
       this.channelsRepo.list(),
       this.bindingsRepo.list(),
-      this.routesRepo.list(),
+      this.forwardsRepo.list(),
     ]);
-
-    this.bots         = bots;
-    this.botsById     = new Map(bots.map((b) => [b.id, b]));
-    this.botsByBotId  = new Map(bots.map((b) => [b.botId, b]));
-
-    this.channels        = channels;
-    this.channelsById    = new Map(channels.map((c) => [c.id, c]));
-    this.channelsByKey   = new Map(
-      channels.filter((c) => c.channelKey !== null).map((c) => [c.channelKey as string, c]),
-    );
-
-    this.bindings        = bindings;
-    this.bindingsById    = new Map(bindings.map((b) => [b.id, b]));
-    this.bindingsByExtId = new Map(bindings.map((b) => [b.extId, b]));
-
-    this.routes          = routes;
-    this.routesBySource  = new Map();
-    for (const r of routes) {
-      const list = this.routesBySource.get(r.sourceChannelId) ?? [];
-      list.push(r);
-      this.routesBySource.set(r.sourceChannelId, list);
-    }
-
-    this.logger.log(
-      `cache reloaded: ${bots.length} bot(s), ${channels.length} channel(s), ` +
-      `${bindings.length} binding(s), ${routes.length} route(s)`,
+    this.botsById = new Map(bots.map(b => [b.id, b]));
+    this.botsByBotId = new Map(bots.map(b => [b.bot_id, b]));
+    this.channelsById = new Map(channels.map(c => [c.id, c]));
+    this.channelsByKey = new Map(channels.filter(c => c.channel_key).map(c => [c.channel_key!, c]));
+    this.bindings = bindings;
+    this.forwardRoutes = forwards;
+    this.logger.debug(
+      `Cache reloaded: ${bots.length} bots, ${channels.length} channels, ${bindings.length} bindings, ${forwards.length} forward routes`,
     );
   }
 
-  // ── Bots ─────────────────────────────────────────────────────────────────
-  listBots(): MyBotRow[] { return this.bots; }
+  // ── Getters ─────────────────────────────────────────────────────────────
+
+  getAllBots(): MyBotRow[] { return [...this.botsById.values()]; }
   getBotById(id: string): MyBotRow | null { return this.botsById.get(id) ?? null; }
   getBotByBotId(botId: string): MyBotRow | null { return this.botsByBotId.get(botId) ?? null; }
 
-  // ── Channels ─────────────────────────────────────────────────────────────
-  listChannels(): TrackedChannelConfigRow[] { return this.channels; }
-  getChannelById(id: string): TrackedChannelConfigRow | null {
-    return this.channelsById.get(id) ?? null;
-  }
-  getChannelByKey(key: string): TrackedChannelConfigRow | null {
-    return this.channelsByKey.get(key) ?? null;
-  }
+  getAllChannels(): TrackedChannelConfigRow[] { return [...this.channelsById.values()]; }
+  getChannelById(id: string): TrackedChannelConfigRow | null { return this.channelsById.get(id) ?? null; }
+  getChannelByKey(key: string): TrackedChannelConfigRow | null { return this.channelsByKey.get(key) ?? null; }
 
-  // ── Strategy bindings ────────────────────────────────────────────────────
-  listBindings(): StrategyBindingRow[] { return this.bindings; }
-  getBindingById(id: string): StrategyBindingRow | null {
-    return this.bindingsById.get(id) ?? null;
-  }
-  getBindingByExtId(extId: string): StrategyBindingRow | null {
-    return this.bindingsByExtId.get(extId) ?? null;
-  }
+  getBindings(): StrategyBindingRow[] { return [...this.bindings]; }
+  getForwardRoutes(): ForwardRouteRow[] { return [...this.forwardRoutes]; }
 
-  // ── Forward routes ───────────────────────────────────────────────────────
-  listForwardRoutes(): ForwardRouteRow[] { return this.routes; }
+  /** Forward routes whose source is the given channel id. */
   getForwardRoutesForSource(sourceChannelId: string): ForwardRouteRow[] {
-    return this.routesBySource.get(sourceChannelId) ?? [];
+    return this.forwardRoutes.filter(r => r.source_channel_id === sourceChannelId);
   }
 }
