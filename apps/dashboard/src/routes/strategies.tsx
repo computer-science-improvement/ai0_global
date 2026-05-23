@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { AddStrategyModal } from '../components/AddStrategyModal';
+import { EditStrategyModal } from '../components/EditStrategyModal';
 import {
   useStrategies, usePatchStrategy, useDeleteStrategy, useStrategyRuns, useStrategyPreview,
 } from '../api/strategies';
@@ -15,6 +16,7 @@ function StrategiesPage() {
   const patch  = usePatchStrategy();
   const remove = useDeleteStrategy();
   const [addOpen, setAddOpen] = useState(false);
+  const [editing, setEditing] = useState<Strategy | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
@@ -68,6 +70,7 @@ function StrategiesPage() {
                       s={s}
                       open={isOpen}
                       onToggleOpen={() => setExpanded(isOpen ? null : s.id)}
+                      onEdit={() => setEditing(s)}
                       onToggle={() => patch.mutate({ id: s.id, patch: { enabled: !s.enabled } })}
                       onDelete={() => {
                         if (confirm(`Delete strategy ${s.ext_id}?`)) remove.mutate(s.id);
@@ -89,12 +92,19 @@ function StrategiesPage() {
       )}
 
       <AddStrategyModal open={addOpen} onClose={() => setAddOpen(false)} />
+      {editing && (
+        <EditStrategyModal
+          strategy={editing}
+          open={!!editing}
+          onClose={() => setEditing(null)}
+        />
+      )}
     </div>
   );
 }
 
-function StrategyRow({ s, open, onToggleOpen, onToggle, onDelete }: {
-  s: Strategy; open: boolean; onToggleOpen: () => void; onToggle: () => void; onDelete: () => void;
+function StrategyRow({ s, open, onToggleOpen, onEdit, onToggle, onDelete }: {
+  s: Strategy; open: boolean; onToggleOpen: () => void; onEdit: () => void; onToggle: () => void; onDelete: () => void;
 }) {
   return (
     <tr style={{ cursor: 'pointer' }} onClick={onToggleOpen}>
@@ -125,6 +135,10 @@ function StrategyRow({ s, open, onToggleOpen, onToggle, onDelete }: {
       </td>
       <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
         <div style={{ display: 'inline-flex', gap: 6 }}>
+          <button onClick={onEdit} className="btn-tiny" title="Edit schedule, params, channel…">
+            <Icon name="pencil" size={12} style={{ marginRight: 4 }} />
+            Edit
+          </button>
           <button onClick={onToggle} className="btn-tiny">
             {s.enabled
               ? <><Icon name="pause" size={12} style={{ marginRight: 4 }} />Pause</>

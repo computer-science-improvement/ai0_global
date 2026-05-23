@@ -9,6 +9,8 @@ import { PostsList } from '../components/PostsList';
 import { fmtNumber, fmtDate } from '../lib/format';
 import { RoiPanel } from '../components/RoiPanel';
 import { EditThemesModal } from '../components/EditThemesModal';
+import { EditChannelModal } from '../components/EditChannelModal';
+import { ForwardRoutesPanel } from '../components/ForwardRoutesPanel';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 
@@ -17,6 +19,7 @@ export const Route = createFileRoute('/channels/$id')({ component: ChannelDetail
 function ChannelDetailPage() {
   const { id } = Route.useParams();
   const [themesOpen, setThemesOpen] = useState(false);
+  const [editOpen,   setEditOpen]   = useState(false);
 
   const channelQ = useQuery({ queryKey: ['channel', id], queryFn: () => trackingApi.getChannel(id) });
   const subsQ    = useQuery({ queryKey: ['subs', id],    queryFn: () => trackingApi.subsHistory(id) });
@@ -46,15 +49,28 @@ function ChannelDetailPage() {
           </span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>added {fmtDate(c.addedAt)}</span>
-          <button
-            onClick={() => setThemesOpen(true)}
-            className="btn-tiny"
-            style={{ marginLeft: 'auto', gap: 6 }}
-          >
-            <Icon name="pencil" size={12} />
-            Themes ({themesQ.data?.length ?? 0})
-          </button>
+          <div style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
+            <button onClick={() => setThemesOpen(true)} className="btn-tiny">
+              <Icon name="pencil" size={12} style={{ marginRight: 4 }} />
+              Themes ({themesQ.data?.length ?? 0})
+            </button>
+            {c.isMine && (
+              <button onClick={() => setEditOpen(true)} className="btn-tiny">
+                <Icon name="pencil" size={12} style={{ marginRight: 4 }} />
+                Config
+              </button>
+            )}
+          </div>
         </div>
+        {c.bot && (
+          <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span className="text-eyebrow">Bot:</span>
+            <span className="chip" style={{ opacity: c.bot.active ? 1 : 0.6 }}>
+              <Icon name="bots" size={11} style={{ marginRight: 4 }} />
+              {c.bot.username ?? c.bot.bot_id}{!c.bot.active && ' · inactive'}
+            </span>
+          </div>
+        )}
         {c.about && (
           <p className="text-body" style={{ marginTop: 12, maxWidth: 720, color: 'var(--color-ink-muted)', lineHeight: 1.5 }}>
             {c.about}
@@ -69,6 +85,15 @@ function ChannelDetailPage() {
           open={themesOpen}
           onClose={() => setThemesOpen(false)}
         />
+      )}
+      {editOpen && (
+        <EditChannelModal channel={c} open={editOpen} onClose={() => setEditOpen(false)} />
+      )}
+
+      {c.isMine && (
+        <Section title="Forward routes">
+          <ForwardRoutesPanel sourceChannelId={id} />
+        </Section>
       )}
 
       <Section title="ROI estimate">

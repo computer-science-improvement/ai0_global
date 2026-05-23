@@ -9,7 +9,19 @@ export interface TrackedChannel {
   pollTier: 'hot' | 'warm' | 'cold';
   addedAt: string;
   lastPolledAt: string | null;
+  channelKey?:  string | null;
+  kind?:        string | null;
+  botId?:       string | null;
+  bot?:         ChannelBotRef | null;
+  themes?:      string[];
   strategies?: ChannelStrategyRef[];
+}
+
+export interface ChannelBotRef {
+  id:       string;
+  bot_id:   string;
+  username: string | null;
+  active:   boolean;
 }
 
 export interface ChannelStrategyRef {

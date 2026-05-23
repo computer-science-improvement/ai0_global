@@ -1,13 +1,26 @@
 import { api } from './client';
 import type { TrackedChannel, TrackedPost, SubsHistoryPoint, PageResp, GraphResponse, RoiResponse } from './types';
 
+export interface PatchChannelInput {
+  isMine?:     boolean;
+  botId?:      string | null;
+  channelKey?: string | null;
+  kind?:       'public' | 'private' | null;
+  pollTier?:   'hot' | 'warm' | 'cold';
+  themes?:     string[];
+}
+
 export const trackingApi = {
-  listChannels: (q: { filter?: string; q?: string; tier?: string; page?: number; pageSize?: number }) => {
+  listChannels: (q: { filter?: string; q?: string; tier?: string; bot?: string; page?: number; pageSize?: number }) => {
     const params = new URLSearchParams();
     for (const [k, v] of Object.entries(q)) if (v) params.set(k, String(v));
     return api<PageResp<TrackedChannel>>(`/tracking/channels?${params}`);
   },
   getChannel:    (id: string) => api<TrackedChannel>(`/tracking/channels/${id}`),
+  patchChannel:  (id: string, patch: PatchChannelInput) =>
+    api<TrackedChannel>(`/tracking/channels/${id}`, {
+      method: 'PATCH', body: JSON.stringify(patch),
+    }),
   addChannel:    (username: string) =>
     api<{ id: string; status: 'queued' | 'already_tracked' }>(`/tracking/channels`, {
       method: 'POST', body: JSON.stringify({ username }),

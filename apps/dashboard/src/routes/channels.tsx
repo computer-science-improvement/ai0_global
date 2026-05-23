@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
+import { useBots } from '../api/bots';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
 import { AddChannelModal } from '../components/AddChannelModal';
@@ -10,13 +11,14 @@ import { Icon } from '../components/Icon';
 
 const PAGE_SIZE = 50;
 
-interface Search { filter: 'mine' | 'all' | 'external'; page: number; q: string; }
+interface Search { filter: 'mine' | 'all' | 'external'; page: number; q: string; bot?: string; }
 
 export const Route = createFileRoute('/channels')({
   validateSearch: (s: Record<string, unknown>): Search => ({
     filter: (s.filter as Search['filter']) ?? 'all',
     page:   Math.max(1, Number(s.page) || 1),
     q:      String(s.q ?? ''),
+    bot:    s.bot ? String(s.bot) : undefined,
   }),
   component: ChannelsPage,
 });
@@ -28,17 +30,20 @@ const FILTERS = [
 ] as const;
 
 function ChannelsPage() {
-  const { filter, page, q } = Route.useSearch();
+  const { filter, page, q, bot } = Route.useSearch();
   const navigate = Route.useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
+  const { data: bots } = useBots();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['channels', filter, page, q],
-    queryFn:  () => trackingApi.listChannels({ filter, q: q || undefined, page, pageSize: PAGE_SIZE }),
+    queryKey: ['channels', filter, page, q, bot],
+    queryFn:  () => trackingApi.listChannels({ filter, q: q || undefined, bot, page, pageSize: PAGE_SIZE }),
   });
 
   const setSearch = (patch: Partial<Search>) =>
     navigate({ search: (old: Search) => ({ ...old, ...patch }) });
+
+  const botFilter = bot ? bots?.find(b => b.id === bot) : null;
 
   return (
     <div>
@@ -62,6 +67,18 @@ function ChannelsPage() {
           className="input-field"
           style={{ flex: 1, minWidth: 220, maxWidth: 360 }}
         />
+        {botFilter && (
+          <span
+            className="chip is-active"
+            style={{ cursor: 'pointer', gap: 6 }}
+            onClick={() => setSearch({ bot: undefined, page: 1 })}
+            title="Clear bot filter"
+          >
+            <Icon name="bots" size={11} />
+            bot: {botFilter.username ?? botFilter.bot_id}
+            <Icon name="x" size={11} style={{ marginLeft: 2 }} />
+          </span>
+        )}
       </div>
 
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
