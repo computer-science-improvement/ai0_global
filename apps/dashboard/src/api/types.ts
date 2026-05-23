@@ -94,3 +94,40 @@ export interface Bot {
   verify_error:     string | null;
   created_at:       string;
 }
+
+// ─── Phase 5c: Strategies ──────────────────────────────────────────────────
+
+export interface Strategy {
+  id:           string;
+  ext_id:       string;
+  type:         string;
+  channel_id:   string;
+  /** Denormalized channel_key (e.g. "@motivation_local") for UI display. */
+  channel_key:  string | null;
+  schedule:     string;
+  params:       Record<string, unknown>;
+  enabled:      boolean;
+  notes:        string | null;
+  /** ISO timestamp of the next scheduled fire, or null if cron invalid / disabled. */
+  next_run_at:  string | null;
+  last_run:     StrategyRunSummary | null;
+}
+
+export interface StrategyRunSummary {
+  status:       'running' | 'ok' | 'error' | 'skipped';
+  started_at:   string;
+  finished_at:  string | null;
+  duration_ms:  number | null;
+  error:        string | null;
+}
+
+export interface StrategyRun {
+  id:           string;
+  strategy_id:  string;
+  ext_id:       string;
+  started_at:   string;
+  finished_at:  string | null;
+  status:       'running' | 'ok' | 'error' | 'skipped';
+  error:        string | null;
+  duration_ms:  number | null;
+}

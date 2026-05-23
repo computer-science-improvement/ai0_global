@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StrategiesRouteImport } from './routes/strategies'
 import { Route as RecommendationsRouteImport } from './routes/recommendations'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as GraphRouteImport } from './routes/graph'
@@ -18,6 +19,11 @@ import { Route as BotsRouteImport } from './routes/bots'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChannelsIdRouteImport } from './routes/channels.$id'
 
+const StrategiesRoute = StrategiesRouteImport.update({
+  id: '/strategies',
+  path: '/strategies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecommendationsRoute = RecommendationsRouteImport.update({
   id: '/recommendations',
   path: '/recommendations',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/strategies': typeof StrategiesRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/strategies': typeof StrategiesRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/strategies': typeof StrategiesRoute
   '/channels/$id': typeof ChannelsIdRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/strategies'
     | '/channels/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/strategies'
     | '/channels/$id'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/strategies'
     | '/channels/$id'
   fileRoutesById: FileRoutesById
 }
@@ -131,10 +143,18 @@ export interface RootRouteChildren {
   GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
   RecommendationsRoute: typeof RecommendationsRoute
+  StrategiesRoute: typeof StrategiesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/strategies': {
+      id: '/strategies'
+      path: '/strategies'
+      fullPath: '/strategies'
+      preLoaderRoute: typeof StrategiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/recommendations': {
       id: '/recommendations'
       path: '/recommendations'
@@ -214,6 +234,7 @@ const rootRouteChildren: RootRouteChildren = {
   GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
   RecommendationsRoute: RecommendationsRoute,
+  StrategiesRoute: StrategiesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
