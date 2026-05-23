@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { TeleAdsCategory, TeleAdsClient } from '../teleads/teleads.client';
+import { TeleAdsIngestionWorker } from '../teleads/teleads-ingestion.worker';
 import { ChannelThemesRepository } from '../repositories/channel-themes.repository';
 import { RecommendationsService } from '../recommendations/recommendations.service';
 import { RecommendRequestDto } from './dto/recommendations.dto';
@@ -29,7 +30,17 @@ export class DiscoveryController {
     private readonly teleads: TeleAdsClient,
     private readonly themes: ChannelThemesRepository,
     private readonly recs: RecommendationsService,
+    private readonly ingestion: TeleAdsIngestionWorker,
   ) {}
+
+  /**
+   * Manual trigger for the TeleAds ingestion job. Useful for first-time data
+   * load (the cron only fires at 04:00 UTC). Auth-guarded — only operators.
+   */
+  @Post('admin/ingest-teleads')
+  async triggerIngest(): Promise<{ inserted: number; updated: number; total: number; durationMs: number }> {
+    return this.ingestion.ingest();
+  }
 
   @Get('themes')
   async themesList(): Promise<{ themes: { slug: string; title: string }[] }> {
