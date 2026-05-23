@@ -23,6 +23,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 import { Pool, PoolClient } from 'pg';
+import { Redis } from 'ioredis';
 
 /**
  * Minimal .env loader — sidesteps adding `dotenv` for one CLI script.
@@ -123,6 +124,38 @@ function makePool(): Pool {
   const password = process.env.POSTGRES_PASSWORD ?? 'changeme';
   console.log(`DB: ${user}@${host}:${port}/${database}`);
   return new Pool({ host, port, database, user, password, max: 4 });
+}
+
+/**
+ * After a successful import, publish a config:changed event so any running
+ * automation service reloads its cache + scheduler reconciles cron jobs
+ * within ~500ms. Best-effort: if Redis is down or unreachable, we log a
+ * warning and move on — the data is already committed.
+ *
+ * The matching subscriber lives in ConfigCacheService + SchedulerService;
+ * both listen for `kind: 'all' | 'strategy' | 'channel' | 'bot' | 'forward-route'`.
+ */
+async function publishConfigChanged(): Promise<void> {
+  const url = process.env.REDIS_URL ?? 'redis://localhost:6379';
+  const redis = new Redis(url, {
+    // Don't hang the CLI if Redis is unreachable — fail fast.
+    connectTimeout: 1500,
+    maxRetriesPerRequest: 1,
+    lazyConnect: true,
+  });
+  try {
+    await redis.connect();
+    const payload = JSON.stringify({ kind: 'all' });
+    await redis.publish('config:changed', payload);
+    console.log(`Published config:changed → all (running automation will reload)`);
+  } catch (err: any) {
+    console.warn(
+      `Could not publish config:changed (${err.message}). ` +
+      `Restart automation manually to pick up new rows.`,
+    );
+  } finally {
+    try { redis.disconnect(); } catch { /* ignore */ }
+  }
 }
 
 async function importTx(
@@ -255,6 +288,11 @@ async function main() {
     console.log(`\nDone. Inserted: ` +
       `bots=${counts.bots}, channels=${counts.channels}, ` +
       `forwards=${counts.forwards}, strategies=${counts.strategies}`);
+
+    // Anything new on disk → notify any running automation service.
+    const anythingChanged = counts.bots + counts.channels + counts.strategies + counts.forwards > 0;
+    if (anythingChanged) await publishConfigChanged();
+
     if (counts.strategies > 0 && !strategiesEnabled) {
       console.log(
         `\nNOTE: strategies were imported as PAUSED. Enable them from ` +
