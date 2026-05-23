@@ -32,10 +32,12 @@ export class ConfigCacheService implements OnApplicationBootstrap, OnModuleDestr
   ) {}
 
   async onApplicationBootstrap(): Promise<void> {
-    await this.reload();
-    // Subscriber must be a separate connection — duplicate the main client.
+    // Subscribe FIRST so we don't miss events arriving while reload() is in
+    // flight. The subscriber must be a separate connection — duplicate the
+    // main client. Any events that arrive before reload() finishes will fire
+    // `scheduleReload()`, which is debounced and ends up coalescing with the
+    // initial load.
     this.subscriber = this.redis.duplicate();
-    await this.subscriber.subscribe(CONFIG_CHANGED_CHANNEL);
     this.subscriber.on('message', (channel, message) => {
       if (channel !== CONFIG_CHANGED_CHANNEL) return;
       let event: ConfigChangedEvent;
@@ -44,6 +46,8 @@ export class ConfigCacheService implements OnApplicationBootstrap, OnModuleDestr
       this.logger.debug(`config:changed received: ${event.kind} ${event.id ?? ''}`);
       this.scheduleReload();
     });
+    await this.subscriber.subscribe(CONFIG_CHANGED_CHANNEL);
+    await this.reload();
     this.logger.log('ConfigCacheService bootstrapped (subscribed to config:changed)');
   }
 
@@ -67,12 +71,21 @@ export class ConfigCacheService implements OnApplicationBootstrap, OnModuleDestr
       this.bindingsRepo.list(),
       this.forwardsRepo.list(),
     ]);
-    this.botsById = new Map(bots.map(b => [b.id, b]));
-    this.botsByBotId = new Map(bots.map(b => [b.bot_id, b]));
-    this.channelsById = new Map(channels.map(c => [c.id, c]));
-    this.channelsByKey = new Map(channels.filter(c => c.channel_key).map(c => [c.channel_key!, c]));
-    this.bindings = bindings;
-    this.forwardRoutes = forwards;
+    // Build the new maps in locals first; only assign to `this.*` once every
+    // structure is ready. Without this, two interleaved reloads (or a getter
+    // reading mid-assignment) can observe a torn cache where botsById is from
+    // the new snapshot but channelsByKey is still from the old one.
+    const nextBotsById      = new Map(bots.map(b => [b.id, b]));
+    const nextBotsByBotId   = new Map(bots.map(b => [b.bot_id, b]));
+    const nextChannelsById  = new Map(channels.map(c => [c.id, c]));
+    const nextChannelsByKey = new Map(channels.filter(c => c.channel_key).map(c => [c.channel_key!, c]));
+
+    this.botsById       = nextBotsById;
+    this.botsByBotId    = nextBotsByBotId;
+    this.channelsById   = nextChannelsById;
+    this.channelsByKey  = nextChannelsByKey;
+    this.bindings       = bindings;
+    this.forwardRoutes  = forwards;
     this.logger.debug(
       `Cache reloaded: ${bots.length} bots, ${channels.length} channels, ${bindings.length} bindings, ${forwards.length} forward routes`,
     );
