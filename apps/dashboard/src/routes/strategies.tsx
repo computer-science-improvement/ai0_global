@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { AddStrategyModal } from '../components/AddStrategyModal';
 import {
-  useStrategies, usePatchStrategy, useDeleteStrategy, useStrategyRuns,
+  useStrategies, usePatchStrategy, useDeleteStrategy, useStrategyRuns, useStrategyPreview,
 } from '../api/strategies';
-import type { Strategy, StrategyRunSummary } from '../api/types';
+import type { Strategy, StrategyRunSummary, PreviewItem } from '../api/types';
 
 export const Route = createFileRoute('/strategies')({ component: StrategiesPage });
 
@@ -74,9 +74,9 @@ function StrategiesPage() {
                       }}
                     />
                     {isOpen && (
-                      <tr key={s.id + '-runs'}>
+                      <tr key={s.id + '-details'}>
                         <td colSpan={9} style={{ padding: 0, background: 'var(--color-canvas)' }}>
-                          <RunsPanel strategyId={s.id} />
+                          <ExpandedDetails strategy={s} />
                         </td>
                       </tr>
                     )}
@@ -159,6 +159,151 @@ function LastRunCell({ last }: { last: StrategyRunSummary | null }) {
       <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
         {ago}{meta && ` · ${meta}`}
       </span>
+    </div>
+  );
+}
+
+/**
+ * Expanded panel under a strategy row. Three sections side-by-side:
+ *  • Channels — primary + forward targets this strategy publishes into
+ *  • Preview  — what content the next fire would draw from (Phase D, separate component)
+ *  • Runs     — last 20 execution rows
+ */
+function ExpandedDetails({ strategy }: { strategy: Strategy }) {
+  return (
+    <div style={{ padding: '14px 24px 18px', background: 'var(--color-canvas)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        <ChannelsPanel strategy={strategy} />
+        <PreviewPanel strategyId={strategy.id} />
+      </div>
+      <RunsPanel strategyId={strategy.id} />
+    </div>
+  );
+}
+
+function ChannelsPanel({ strategy }: { strategy: Strategy }) {
+  return (
+    <div className="card" style={{ padding: 16 }}>
+      <div className="text-eyebrow" style={{ marginBottom: 10 }}>Channels reached</div>
+      {strategy.channels.length === 0 && (
+        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+          No channels resolved — primary binding may be misconfigured.
+        </p>
+      )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {strategy.channels.map(c => (
+          <div
+            key={c.id}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '8px 12px',
+              background: 'var(--color-surface-2)',
+              borderRadius: 'var(--radius-md)',
+            }}
+          >
+            <span
+              className={c.role === 'primary' ? 'chip chip-success' : 'chip'}
+              style={{ minWidth: 64, justifyContent: 'center' }}
+            >
+              {c.role}
+            </span>
+            <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+              {c.title ?? c.channel_key ?? c.id}
+            </span>
+            {c.channel_key && c.channel_key !== c.title && (
+              <span className="text-micro" style={{ color: 'var(--color-ink-muted)', marginLeft: 'auto' }}>
+                {c.channel_key}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PreviewPanel({ strategyId }: { strategyId: string }) {
+  const { data, isLoading, error } = useStrategyPreview(strategyId);
+
+  return (
+    <div className="card" style={{ padding: 16 }}>
+      <div className="text-eyebrow" style={{ marginBottom: 10 }}>Next-up preview</div>
+      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>Loading…</p>}
+      {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: 0 }}>{(error as Error).message}</p>}
+      {data && data.kind === 'unsupported' && (
+        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+          {data.message ?? 'No preview available for this strategy type.'}
+        </p>
+      )}
+      {data && data.kind !== 'unsupported' && data.items.length === 0 && (
+        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+          {data.message ?? 'No sample data found.'}
+        </p>
+      )}
+      {data && data.items.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {data.items.slice(0, 3).map((it, i) => (
+            <PreviewItemCard key={i} item={it} />
+          ))}
+          {data.message && (
+            <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>
+              {data.message}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PreviewItemCard({ item }: { item: PreviewItem }) {
+  return (
+    <div
+      style={{
+        display: 'flex', gap: 10,
+        padding: 10,
+        background: 'var(--color-surface-2)',
+        borderRadius: 'var(--radius-md)',
+      }}
+    >
+      {item.imageUrl && (
+        <img
+          src={item.imageUrl}
+          alt={item.imageAlt ?? ''}
+          style={{
+            width: 64, height: 64, objectFit: 'cover',
+            borderRadius: 'var(--radius-sm)',
+            flexShrink: 0,
+          }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+        />
+      )}
+      <div style={{ minWidth: 0, flex: 1 }}>
+        {item.title && (
+          <div className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
+            {item.title}
+          </div>
+        )}
+        {item.text && (
+          <p className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: '4px 0 0',
+            display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          } as React.CSSProperties}>
+            {item.text}
+          </p>
+        )}
+        {(item.source || item.url) && (
+          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
+            {item.source}
+            {item.url && (
+              <>
+                {item.source ? ' · ' : ''}
+                <a href={item.url} className="link-accent" target="_blank" rel="noopener noreferrer">link</a>
+              </>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

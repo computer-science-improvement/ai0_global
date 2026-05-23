@@ -1,7 +1,7 @@
 // apps/dashboard/src/api/strategies.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
-import type { Strategy, StrategyRun } from './types';
+import type { Strategy, StrategyRun, StrategyPreview } from './types';
 
 export function useStrategyRuns(strategyId: string | null) {
   return useQuery({
@@ -9,6 +9,15 @@ export function useStrategyRuns(strategyId: string | null) {
     queryFn:  () => api<StrategyRun[]>(`/api/strategies/${strategyId}/runs`),
     enabled:  !!strategyId,
     refetchInterval: 10_000,
+  });
+}
+
+export function useStrategyPreview(strategyId: string | null) {
+  return useQuery({
+    queryKey: ['strategy-preview', strategyId],
+    queryFn:  () => api<StrategyPreview>(`/api/strategies/${strategyId}/preview`),
+    enabled:  !!strategyId,
+    staleTime: 60_000,
   });
 }
 

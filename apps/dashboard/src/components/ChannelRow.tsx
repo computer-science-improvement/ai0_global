@@ -2,55 +2,73 @@ import { Link } from '@tanstack/react-router';
 import { fmtNumber, fmtRelative } from '../lib/format';
 import type { TrackedChannel } from '../api/types';
 
-const TIER_STYLE: Record<TrackedChannel['pollTier'], { bg: string; text: string }> = {
-  hot:  { bg: 'rgba(255, 122, 61, 0.16)',  text: 'var(--color-grad-orange)' },
-  warm: { bg: 'rgba(245, 158, 11, 0.16)',  text: 'var(--color-warning)' },
-  cold: { bg: 'rgba(0, 153, 255, 0.16)',   text: 'var(--color-accent)' },
-};
-
 export function ChannelRow({ c }: { c: TrackedChannel }) {
-  const tier = TIER_STYLE[c.pollTier];
+  const strategies = c.strategies ?? [];
   return (
-    <Link to={'/channels/$id' as any} params={{ id: c.id } as any}
-      className="flex items-center justify-between transition-colors"
+    <Link
+      to={'/channels/$id' as any}
+      params={{ id: c.id } as any}
       style={{
+        display: 'block',
         background: 'var(--color-surface-1)',
         borderRadius: 'var(--radius-lg)',
         padding: '14px 18px',
+        textDecoration: 'none',
+        color: 'inherit',
+        transition: 'background 0.12s ease',
       }}
       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--color-surface-2)'; }}
       onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--color-surface-1)'; }}
     >
-      <div className="min-w-0">
-        <div className="flex items-center gap-2">
-          <span className="text-[15px] font-medium tracking-[-0.18px]" style={{ color: 'var(--color-ink)' }}>
-            {c.title ?? c.username ?? '(no title)'}
-          </span>
-          {c.isMine && (
-            <span className="rounded-full px-2 py-0.5 text-[10px]" style={{ background: 'var(--color-surface-2)', color: 'var(--color-success)' }}>
-              mine
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
+              {c.title ?? c.username ?? '(no title)'}
             </span>
-          )}
-          {c.isClosed && (
-            <span className="rounded-full px-2 py-0.5 text-[10px]" style={{ background: 'var(--color-surface-2)', color: 'var(--color-ink-muted)' }}>
-              closed
-            </span>
+            {c.isMine   && <span className="chip chip-success">mine</span>}
+            {c.isClosed && <span className="chip">closed</span>}
+          </div>
+          {c.username && (
+            <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+              @{c.username}
+            </div>
           )}
         </div>
-        {c.username && (
-          <div className="text-[12px] tracking-[-0.12px]" style={{ color: 'var(--color-ink-muted)' }}>
-            @{c.username}
-          </div>
-        )}
+        <div style={{ display: 'flex', flexShrink: 0, alignItems: 'center', gap: 18 }}>
+          <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
+            {fmtNumber(c.subsCount)}
+          </span>
+          <PollTierChip tier={c.pollTier} />
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{fmtRelative(c.lastPolledAt)}</span>
+        </div>
       </div>
-      <div className="flex shrink-0 items-center gap-5 text-[13px]">
-        <span className="tabular-nums" style={{ color: 'var(--color-ink)' }}>{fmtNumber(c.subsCount)}</span>
-        <span className="rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider"
-              style={{ background: tier.bg, color: tier.text }}>
-          {c.pollTier}
-        </span>
-        <span style={{ color: 'var(--color-ink-muted)' }}>{fmtRelative(c.lastPolledAt)}</span>
-      </div>
+
+      {strategies.length > 0 && (
+        <div style={{
+          marginTop: 10, paddingTop: 10,
+          borderTop: '1px solid var(--color-hairline-soft)',
+          display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
+        }}>
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>strategies:</span>
+          {strategies.map(s => (
+            <span
+              key={s.id}
+              className={s.enabled ? 'chip is-active' : 'chip'}
+              title={`${s.ext_id} · ${s.role}${s.enabled ? '' : ' · paused'}`}
+              style={{ opacity: s.enabled ? 1 : 0.6 }}
+            >
+              {s.type}
+              {s.role === 'forward' && <span style={{ marginLeft: 4, color: 'var(--color-ink-dim)' }}>↩</span>}
+            </span>
+          ))}
+        </div>
+      )}
     </Link>
   );
+}
+
+function PollTierChip({ tier }: { tier: TrackedChannel['pollTier'] }) {
+  const cls = tier === 'hot' ? 'chip chip-warning' : tier === 'warm' ? 'chip chip-success' : 'chip';
+  return <span className={cls}>{tier}</span>;
 }

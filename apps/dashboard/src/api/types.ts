@@ -9,6 +9,15 @@ export interface TrackedChannel {
   pollTier: 'hot' | 'warm' | 'cold';
   addedAt: string;
   lastPolledAt: string | null;
+  strategies?: ChannelStrategyRef[];
+}
+
+export interface ChannelStrategyRef {
+  id:      string;
+  ext_id:  string;
+  type:    string;
+  enabled: boolean;
+  role:    'primary' | 'forward';
 }
 
 export interface TrackedPost {
@@ -104,6 +113,8 @@ export interface Strategy {
   channel_id:   string;
   /** Denormalized channel_key (e.g. "@motivation_local") for UI display. */
   channel_key:  string | null;
+  /** All channels this strategy reaches: primary + forward targets. */
+  channels:     StrategyChannelRef[];
   schedule:     string;
   params:       Record<string, unknown>;
   enabled:      boolean;
@@ -111,6 +122,13 @@ export interface Strategy {
   /** ISO timestamp of the next scheduled fire, or null if cron invalid / disabled. */
   next_run_at:  string | null;
   last_run:     StrategyRunSummary | null;
+}
+
+export interface StrategyChannelRef {
+  id:          string;
+  channel_key: string | null;
+  title:       string | null;
+  role:        'primary' | 'forward';
 }
 
 export interface StrategyRunSummary {
@@ -130,4 +148,26 @@ export interface StrategyRun {
   status:       'running' | 'ok' | 'error' | 'skipped';
   error:        string | null;
   duration_ms:  number | null;
+}
+
+// ─── Strategy preview (sample of what the strategy would publish) ──────────
+
+export interface PreviewItem {
+  title?:       string;
+  text?:        string;
+  imageUrl?:    string;
+  imageAlt?:    string;
+  source?:      string;
+  url?:         string;
+  publishedAt?: string;
+}
+
+export interface StrategyPreview {
+  /** db-row = sampled row from a Postgres table feeding this strategy.
+   *  dedup-recent = last N items the dedup layer marked as posted.
+   *  live-fetch = strategy fetches at runtime (e.g. NASA APOD); preview unavailable.
+   *  unsupported = strategy type unknown or has no preview source wired. */
+  kind:    'db-row' | 'dedup-recent' | 'live-fetch' | 'unsupported';
+  message?: string;
+  items:   PreviewItem[];
 }
