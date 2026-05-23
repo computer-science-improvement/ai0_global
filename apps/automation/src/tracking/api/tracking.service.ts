@@ -5,10 +5,11 @@ import { TrackedPostsRepository } from '../repositories/tracked-posts.repository
 import { TrackedEdgesRepository } from '../repositories/tracked-edges.repository';
 import { TrackingQueueService } from '../tracking-queue.service';
 import { RoiAnalyzerService } from '../processors/roi-analyzer.service';
-import { TrackedChannelDto } from './dto/tracked-channel.dto';
+import { TrackedChannelDto, ChannelStrategyRef } from './dto/tracked-channel.dto';
 import { TrackedPostDto } from './dto/tracked-post.dto';
 import { GraphDto } from './dto/graph.dto';
 import { PollTier } from '../types';
+import { ConfigCacheService } from '../../config/config-cache.service';
 
 function edgeColorTier(count: number): 'green' | 'orange' | 'red' {
   if (count >= 10) return 'red';
@@ -27,6 +28,7 @@ export class TrackingService {
     private readonly edges:       TrackedEdgesRepository,
     private readonly queue:       TrackingQueueService,
     private readonly roiAnalyzer: RoiAnalyzerService,
+    private readonly configCache: ConfigCacheService,
   ) {}
 
   async listChannels(filter: 'mine' | 'all' | 'external', q: string | undefined,
@@ -34,13 +36,42 @@ export class TrackingService {
     const isMine = filter === 'mine' ? true : filter === 'external' ? false : undefined;
     const offset = (page - 1) * pageSize;
     const res = await this.channels.list({ is_mine: isMine, tier, q, limit: pageSize, offset });
-    return { items: res.items.map((c) => this.toDto(c)), total: res.total };
+    return {
+      items: res.items.map((c) => this.toDto(c, this.strategiesForChannel(c.id))),
+      total: res.total,
+    };
   }
 
   async getChannel(id: string): Promise<TrackedChannelDto> {
     const c = await this.channels.getById(id);
     if (!c) throw new NotFoundException(`Channel ${id} not found`);
-    return this.toDto(c);
+    return this.toDto(c, this.strategiesForChannel(c.id));
+  }
+
+  /**
+   * Returns strategies that publish into the given channel — primary bindings
+   * plus any strategy whose primary channel forwards into this one. Reads
+   * from the in-memory config cache, so this is O(bindings + forwards) per
+   * channel with no DB hit.
+   */
+  private strategiesForChannel(channelId: string): ChannelStrategyRef[] {
+    const bindings = this.configCache.getBindings();
+    const forwards = this.configCache.getForwardRoutes();
+
+    // Source channels whose forwards point into us.
+    const forwardSourceIds = new Set(
+      forwards.filter(f => f.target_channel_id === channelId).map(f => f.source_channel_id),
+    );
+
+    const refs: ChannelStrategyRef[] = [];
+    for (const b of bindings) {
+      if (b.channel_id === channelId) {
+        refs.push({ id: b.id, ext_id: b.ext_id, type: b.type, enabled: b.enabled, role: 'primary' });
+      } else if (forwardSourceIds.has(b.channel_id)) {
+        refs.push({ id: b.id, ext_id: b.ext_id, type: b.type, enabled: b.enabled, role: 'forward' });
+      }
+    }
+    return refs;
   }
 
   async addChannel(username: string): Promise<{ id: string; status: 'queued' | 'already_tracked' }> {
@@ -145,12 +176,13 @@ export class TrackingService {
     };
   }
 
-  private toDto(c: TrackedChannel): TrackedChannelDto {
+  private toDto(c: TrackedChannel, strategies: ChannelStrategyRef[] = []): TrackedChannelDto {
     return {
       id: c.id, username: c.username, title: c.title, about: c.about,
       subsCount: c.subsCount, isMine: c.isMine, isClosed: c.isClosed,
       pollTier: c.pollTier, addedAt: c.addedAt.toISOString(),
       lastPolledAt: c.lastPolledAt ? c.lastPolledAt.toISOString() : null,
+      strategies,
     };
   }
 }

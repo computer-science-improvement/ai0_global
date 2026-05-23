@@ -7,6 +7,7 @@ import { CronJob } from 'cron';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { StrategyBindingsRepository } from '../strategy-bindings.repository';
 import { StrategyRunsRepository } from '../strategy-runs.repository';
+import { StrategyPreviewService } from '../strategy-preview.service';
 import { ConfigCacheService } from '../config-cache.service';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { CreateStrategyDto, PatchStrategyDto } from './dto/strategies.dto';
@@ -44,6 +45,7 @@ export class StrategiesController {
   constructor(
     private readonly repo:      StrategyBindingsRepository,
     private readonly runsRepo:  StrategyRunsRepository,
+    private readonly preview:   StrategyPreviewService,
     private readonly cache:     ConfigCacheService,
     private readonly publisher: ConfigEventsPublisher,
   ) {}
@@ -63,12 +65,35 @@ export class StrategiesController {
     return rows.map(r => {
       const channel = this.cache.getChannelById(r.channel_id);
       const last    = latestByStrategy.get(r.id);
+      // Channels this strategy actually reaches: primary binding + forward
+      // route targets that originate from the primary channel.
+      const forwards = this.cache.getForwardRoutesForSource(r.channel_id);
+      const channels: Array<{ id: string; channel_key: string | null; title: string | null; role: 'primary' | 'forward' }> = [];
+      if (channel) {
+        channels.push({
+          id:          channel.id,
+          channel_key: channel.channel_key,
+          title:       channel.title,
+          role:        'primary',
+        });
+      }
+      for (const f of forwards) {
+        const t = this.cache.getChannelById(f.target_channel_id);
+        if (!t) continue;
+        channels.push({
+          id:          t.id,
+          channel_key: t.channel_key,
+          title:       t.title,
+          role:        'forward',
+        });
+      }
       return {
         id:           r.id,
         ext_id:       r.ext_id,
         type:         r.type,
         channel_id:   r.channel_id,
         channel_key:  channel?.channel_key ?? null,
+        channels,
         schedule:     r.schedule,
         params:       r.params,
         enabled:      r.enabled,
@@ -89,6 +114,19 @@ export class StrategiesController {
   @Get(':id/runs')
   async runs(@Param('id') id: string) {
     return this.runsRepo.recent(id, 20);
+  }
+
+  /**
+   * Sample of what this strategy would publish next — the next un-posted
+   * DB row for table-backed strategies, the recent dedup log for feed-driven
+   * ones, or a "live-fetch" marker for pure-API types. Best-effort: failures
+   * surface as `kind: 'unsupported'` rather than 500.
+   */
+  @Get(':id/preview')
+  async previewStrategy(@Param('id') id: string) {
+    const result = await this.preview.previewById(id);
+    if (!result) throw new NotFoundException(`Strategy ${id} not found`);
+    return result;
   }
 
   @Post()
