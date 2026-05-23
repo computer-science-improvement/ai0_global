@@ -20,18 +20,22 @@ interface Props {
 export function EditChannelModal({ channel, open, onClose }: Props) {
   const qc        = useQueryClient();
   const { data: bots } = useBots();
+  const [title,      setTitle]      = useState<string>(channel.title ?? '');
   const [botId,      setBotId]      = useState<string | null>(channel.botId ?? null);
   const [isMine,     setIsMine]     = useState<boolean>(channel.isMine);
   const [pollTier,   setPollTier]   = useState<'hot' | 'warm' | 'cold'>(channel.pollTier);
   const [channelKey, setChannelKey] = useState<string>(channel.channelKey ?? '');
+  const [tgChatId,   setTgChatId]   = useState<string>((channel as any).tgChatId ?? '');
   const [kind,       setKind]       = useState<'public' | 'private' | ''>((channel.kind as any) ?? '');
 
   useEffect(() => {
     if (open) {
+      setTitle(channel.title ?? '');
       setBotId(channel.botId ?? null);
       setIsMine(channel.isMine);
       setPollTier(channel.pollTier);
       setChannelKey(channel.channelKey ?? '');
+      setTgChatId((channel as any).tgChatId ?? '');
       setKind((channel.kind as any) ?? '');
     }
   }, [open, channel]);
@@ -47,6 +51,8 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
 
   const submit = () => {
     save.mutate({
+      title:      title.trim() || null,
+      tgChatId:   tgChatId.trim() || null,
       botId:      botId,
       isMine,
       pollTier,
@@ -62,6 +68,16 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
       title="Edit channel"
       subtitle={channel.title ?? channel.username ?? channel.id}
     >
+      <Field label="Name" hint="display title shown across the dashboard">
+        <input
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          placeholder="Channel display name"
+          className="input-field"
+          style={{ width: '100%' }}
+        />
+      </Field>
+
       <Field label="Bot">
         <select
           value={botId ?? ''}
@@ -78,13 +94,23 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
         </select>
       </Field>
 
-      <Field label="Channel key" hint="@username or -100… numeric id">
+      <Field label="Channel key" hint="@username (public) or -100… numeric id (private)">
         <input
           value={channelKey}
           onChange={e => setChannelKey(e.target.value)}
           placeholder="@my_channel"
           className="input-field"
           style={{ width: '100%' }}
+        />
+      </Field>
+
+      <Field label="Chat id" hint="numeric -100… id; required for private channels">
+        <input
+          value={tgChatId}
+          onChange={e => setTgChatId(e.target.value)}
+          placeholder="-1003984251759"
+          className="input-field"
+          style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
         />
       </Field>
 

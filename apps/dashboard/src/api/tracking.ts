@@ -2,12 +2,25 @@ import { api } from './client';
 import type { TrackedChannel, TrackedPost, SubsHistoryPoint, PageResp, GraphResponse, RoiResponse } from './types';
 
 export interface PatchChannelInput {
+  title?:      string | null;
   isMine?:     boolean;
   botId?:      string | null;
   channelKey?: string | null;
+  tgChatId?:   string | null;
   kind?:       'public' | 'private' | null;
   pollTier?:   'hot' | 'warm' | 'cold';
   themes?:     string[];
+}
+
+export interface CreateFullChannelInput {
+  kind:         'public' | 'private';
+  channelKey?:  string;
+  username?:    string;
+  tgChatId?:    string;
+  title?:       string;
+  botId?:       string | null;
+  isMine?:      boolean;
+  pollTier?:    'hot' | 'warm' | 'cold';
 }
 
 export const trackingApi = {
@@ -24,6 +37,10 @@ export const trackingApi = {
   addChannel:    (username: string) =>
     api<{ id: string; status: 'queued' | 'already_tracked' }>(`/tracking/channels`, {
       method: 'POST', body: JSON.stringify({ username }),
+    }),
+  createFullChannel: (input: CreateFullChannelInput) =>
+    api<TrackedChannel>(`/tracking/channels/full`, {
+      method: 'POST', body: JSON.stringify(input),
     }),
   deleteChannel: (id: string) => api<void>(`/tracking/channels/${id}`, { method: 'DELETE' }),
   listPosts:     (id: string, limit = 50, offset = 0) =>

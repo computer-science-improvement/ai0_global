@@ -11,6 +11,8 @@ export interface TrackedChannel {
   lastPolledAt: string | null;
   channelKey?:  string | null;
   kind?:        string | null;
+  /** Numeric Telegram chat id (-100…). Required for private channels. */
+  tgChatId?:    string | null;
   botId?:       string | null;
   bot?:         ChannelBotRef | null;
   themes?:      string[];
