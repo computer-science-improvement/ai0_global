@@ -3,6 +3,13 @@ import { ConfigService } from '@nestjs/config';
 import IORedis from 'ioredis';
 import { REDIS } from './tracking.tokens';
 
+/**
+ * Cross-module alias for the Redis client DI token. Other modules
+ * (e.g. ConfigModule) import this instead of reaching into tracking's
+ * internal tokens file.
+ */
+export const REDIS_CLIENT = REDIS;
+
 export const RedisProvider: Provider = {
   provide: REDIS,
   inject:  [ConfigService],

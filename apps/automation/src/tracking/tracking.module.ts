@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '../auth/auth.module';
-import { RedisProvider } from './redis.provider';
+import { RedisProvider, REDIS_CLIENT } from './redis.provider';
 import { TrackingQueueService } from './tracking-queue.service';
 import { TrackingMtprotoClient } from './mtproto/tracking-mtproto.client';
 import { TrackedChannelsRepository } from './repositories/tracked-channels.repository';
@@ -38,5 +38,6 @@ import { RoiAnalyzerService } from './processors/roi-analyzer.service';
     TrackingAuthGuard,
     RoiAnalyzerService,
   ],
+  exports: [REDIS_CLIENT],
 })
 export class TrackingModule {}
