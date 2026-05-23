@@ -1,3 +1,9 @@
+// Dark-canvas rewrite. Uses .table recipe (surface-1 wrapper, hairline-soft
+// dividers, surface-2 row hover). Chips use .chip / .chip.is-active instead
+// of the previous bg-blue-100/text-blue-900 light-theme pair. External
+// links use .link-accent (single chromatic accent), not text-blue-600.
+// font-mono dropped — global tabular-nums already aligns numeric cells.
+
 import type { RecommendationItem } from '../api/types';
 
 interface Props {
@@ -8,86 +14,89 @@ interface Props {
 export function RecommendationsTable({ items, targetThemes }: Props) {
   if (items.length === 0) {
     return (
-      <p className="rounded-md border border-dashed p-6 text-center text-sm text-gray-500">
-        No matches for this target / budget.
-      </p>
+      <div className="card" style={{
+        textAlign: 'center', padding: 32,
+        background: 'var(--color-surface-1)',
+        border: '1px dashed var(--color-hairline)',
+      }}>
+        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+          No matches for this target / budget.
+        </p>
+      </div>
     );
   }
 
   const targetSet = new Set(targetThemes);
 
   return (
-    <div className="overflow-x-auto rounded-md border">
-      <table className="w-full text-sm">
-        <thead className="bg-gray-50 text-left text-xs uppercase text-gray-500">
+    <div className="table-wrap">
+      <table className="table">
+        <thead>
           <tr>
-            <th className="px-3 py-2">#</th>
-            <th className="px-3 py-2">Channel</th>
-            <th className="px-3 py-2">Themes</th>
-            <th className="px-3 py-2 text-right">Score</th>
-            <th className="px-3 py-2 text-right">Price (UAH)</th>
-            <th className="px-3 py-2 text-right">Subs/ad</th>
-            <th className="px-3 py-2 text-right">F/M</th>
-            <th className="px-3 py-2"></th>
+            <th style={{ width: 40 }}>#</th>
+            <th>Channel</th>
+            <th>Themes</th>
+            <th className="num">Score</th>
+            <th className="num">Price (UAH)</th>
+            <th className="num">Subs/ad</th>
+            <th className="num">F/M</th>
+            <th style={{ width: 60 }}></th>
           </tr>
         </thead>
         <tbody>
           {items.map((r, idx) => (
-            <tr key={r.id} className="border-t hover:bg-gray-50">
-              <td className="px-3 py-2 font-mono text-xs text-gray-500">{idx + 1}</td>
-              <td className="px-3 py-2">
-                <div className="flex items-center gap-2">
-                  {r.avatarUrl && (
-                    <img src={r.avatarUrl} alt="" className="h-7 w-7 rounded-full object-cover" />
-                  )}
-                  <div>
-                    <div className="font-medium">{r.title}</div>
+            <tr key={r.id}>
+              <td className="meta num" style={{ textAlign: 'left', width: 40 }}>{idx + 1}</td>
+              <td>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  {r.avatarUrl
+                    ? <img src={r.avatarUrl} alt="" style={{ width: 32, height: 32, borderRadius: 9999, objectFit: 'cover' }} />
+                    : <div style={{ width: 32, height: 32, borderRadius: 9999, background: 'var(--color-surface-2)' }} />}
+                  <div style={{ minWidth: 0 }}>
+                    <div className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{r.title}</div>
                     <a
                       href={r.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-xs text-blue-600 hover:underline"
+                      className="link-accent text-micro"
                     >
                       @{r.slug}
                     </a>
                   </div>
                 </div>
               </td>
-              <td className="px-3 py-2">
-                <div className="flex flex-wrap gap-1">
+              <td>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                   {r.themes.slice(0, 5).map(t => (
-                    <span
-                      key={t}
-                      className={`rounded px-2 py-0.5 text-xs ${
-                        targetSet.has(t)
-                          ? 'bg-blue-100 font-semibold text-blue-900'
-                          : 'bg-gray-100 text-gray-700'
-                      }`}
-                    >
+                    <span key={t} className={targetSet.has(t) ? 'chip is-active' : 'chip'}>
                       {t}
                     </span>
                   ))}
                   {r.themes.length > 5 && (
-                    <span className="text-xs text-gray-400">+{r.themes.length - 5}</span>
+                    <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+                      +{r.themes.length - 5}
+                    </span>
                   )}
                 </div>
               </td>
-              <td className="px-3 py-2 text-right font-mono">{(r.score * 100).toFixed(0)}%</td>
-              <td className="px-3 py-2 text-right font-mono">{(r.priceMin / 100).toFixed(0)}</td>
-              <td className="px-3 py-2 text-right font-mono">
+              <td className="num">{(r.score * 100).toFixed(0)}%</td>
+              <td className="num">{(r.priceMin / 100).toFixed(0)}</td>
+              <td className="num">
                 {r.estimatedSubsPerAd == null
-                  ? '—'
+                  ? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>
                   : (r.estimatedSubsPerAd > 0 ? '+' : '') + r.estimatedSubsPerAd}
               </td>
-              <td className="px-3 py-2 text-right font-mono">
-                {r.sexRatio == null ? '—' : `${r.sexRatio}/${100 - r.sexRatio}`}
+              <td className="num">
+                {r.sexRatio == null
+                  ? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>
+                  : `${r.sexRatio}/${100 - r.sexRatio}`}
               </td>
-              <td className="px-3 py-2 text-right">
+              <td className="num">
                 <a
                   href={r.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-blue-600 hover:underline"
+                  className="link-accent text-body-sm"
                 >
                   Open ↗
                 </a>

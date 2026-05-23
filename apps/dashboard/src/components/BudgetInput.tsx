@@ -8,7 +8,7 @@ interface Props {
 export function BudgetInput({ value, onChange }: Props) {
   const uah = value / 100;
   return (
-    <div className="flex items-center gap-2">
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <input
         type="number"
         min={1}
@@ -18,9 +18,10 @@ export function BudgetInput({ value, onChange }: Props) {
           const n = parseFloat(e.target.value);
           onChange(Number.isFinite(n) ? Math.round(n * 100) : 0);
         }}
-        className="w-32 rounded-md border px-3 py-2 text-right text-sm"
+        className="input-field"
+        style={{ width: 128, textAlign: 'right' }}
       />
-      <span className="text-sm text-gray-600">UAH</span>
+      <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>UAH</span>
     </div>
   );
 }
