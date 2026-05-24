@@ -75,10 +75,31 @@ export class TrackingMtprotoClient implements OnModuleInit {
 
   isEnabled(): boolean { return this.ready; }
 
+  /**
+   * Convert the caller's address into something gramjs's getEntity accepts.
+   *   - private chat ids (`-1003984251759`) → numeric (gramjs handles the
+   *     bot-API ↔ MTProto id translation internally when given a number;
+   *     given a string starting with '-100' it tries to resolve as a
+   *     username and fails)
+   *   - @usernames and bare usernames → passed through as strings
+   *
+   * Returns null when the address looks like a too-large numeric id that
+   * doesn't fit in a JS Number (channel ids are ~1e12, safely under 2^53).
+   */
+  private toAddress(usernameOrId: string): string | number | null {
+    if (usernameOrId.startsWith('-')) {
+      const n = Number(usernameOrId);
+      return Number.isSafeInteger(n) ? n : null;
+    }
+    return usernameOrId;
+  }
+
   async getFullChannel(usernameOrId: string): Promise<FullChannelResult | null> {
     if (!this.ready || !this.client) return null;
+    const address = this.toAddress(usernameOrId);
+    if (address === null) return null;
     try {
-      const entity = await this.client.getEntity(usernameOrId);
+      const entity = await this.client.getEntity(address as any);
       const full = await this.client.invoke(new Api.channels.GetFullChannel({ channel: entity as any }));
       const fc   = (full as any).fullChat;
       const ch   = (full as any).chats?.find((c: any) => String(c.id) === String((entity as any).id));
@@ -97,8 +118,10 @@ export class TrackingMtprotoClient implements OnModuleInit {
 
   async getHistory(usernameOrId: string, offsetId: number, limit = 50): Promise<RawMessage[]> {
     if (!this.ready || !this.client) return [];
+    const address = this.toAddress(usernameOrId);
+    if (address === null) return [];
     try {
-      const entity = await this.client.getEntity(usernameOrId);
+      const entity = await this.client.getEntity(address as any);
       const res    = await this.client.invoke(
         new Api.messages.GetHistory({ peer: entity as any, limit, minId: offsetId, offsetId: 0 }),
       );
