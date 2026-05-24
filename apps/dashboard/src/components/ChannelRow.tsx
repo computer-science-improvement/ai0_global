@@ -6,7 +6,7 @@ import { EditChannelModal } from './EditChannelModal';
 import { ChannelAvatar } from './ChannelAvatar';
 import {
   POLL_TIER_HELP, CHANNEL_FLAG_HELP, STRATEGY_ROLE_HELP,
-  STRATEGY_STATUS_HELP, describeStrategy,
+  STRATEGY_STATUS_HELP, describeStrategy, channelTgId,
 } from '../lib/labels';
 import type { TrackedChannel } from '../api/types';
 
@@ -58,21 +58,18 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
                 </span>
               )}
             </div>
-            {/* Meta line: @username for public, channelKey or chat-id for private.
-                For private channels the username field is meaningless (Telegram doesn't
-                know them by that handle); show channelKey instead, falling back to
-                the numeric chat id when even that is absent. */}
+            {/* Meta line — the *real* Telegram id (chat-id for private,
+                @username for public). Never the local channelKey alias when
+                a real id is available, and never the internal UUID. */}
             {(() => {
-              const meta = c.kind === 'private'
-                ? (c.channelKey ?? c.tgChatId)
-                : (c.username ? `@${c.username}` : c.channelKey);
-              return meta ? (
+              const tg = channelTgId(c);
+              return tg ? (
                 <div
                   className="text-micro"
                   style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}
-                  title={c.kind === 'private' ? `chat id: ${c.tgChatId ?? '—'}` : undefined}
+                  title={c.kind === 'private' ? 'Numeric Telegram chat id' : 'Public Telegram @username'}
                 >
-                  {meta}
+                  {tg}
                 </div>
               ) : null;
             })()}

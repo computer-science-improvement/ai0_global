@@ -160,3 +160,54 @@ export const SOURCE_KIND_LABEL: Record<StrategyTypeMeta['source'], string> = {
   api:   'live API',
   multi: 'multi-source',
 };
+
+// ─── Channel labels ────────────────────────────────────────────────────
+//
+// Where the UI needs a friendly identifier for a channel — dropdown
+// options, breadcrumbs, target-channel labels — these helpers return
+// strings that are readable (never a UUID) and unambiguous (the chat id
+// or @handle is included so two same-titled channels are distinguishable).
+
+interface ChannelLike {
+  id:           string;
+  title?:       string | null;
+  username?:    string | null;
+  channelKey?:  string | null;
+  tgChatId?:    string | null;
+  kind?:        string | null;
+}
+
+/** "Best" display name. Title → @username → channelKey → tgChatId. */
+export function channelDisplayName(c: ChannelLike): string {
+  return (
+    c.title?.trim()
+    || (c.username ? `@${c.username}` : null)
+    || c.channelKey
+    || c.tgChatId
+    || '(unnamed channel)'
+  );
+}
+
+/**
+ * Real Telegram identifier — the address publishers use to reach the
+ * channel. For private channels that's the numeric chat id; for public
+ * channels it's the @username (or channelKey when @username is missing).
+ * Null when the channel has neither yet.
+ */
+export function channelTgId(c: ChannelLike): string | null {
+  if (c.kind === 'private') return c.tgChatId ?? null;
+  if (c.username)           return `@${c.username}`;
+  return c.channelKey ?? null;
+}
+
+/**
+ * Dropdown-style label: "Title — @username" or "Title — -100…", with the
+ * tg id omitted when it would duplicate the title. Never returns the
+ * UUID.
+ */
+export function channelOptionLabel(c: ChannelLike): string {
+  const name = channelDisplayName(c);
+  const tg   = channelTgId(c);
+  if (!tg || tg === name) return name;
+  return `${name} — ${tg}`;
+}

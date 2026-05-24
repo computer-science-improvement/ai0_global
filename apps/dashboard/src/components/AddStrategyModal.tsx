@@ -12,7 +12,7 @@ import { trackingApi } from '../api/tracking';
 import { useCreateStrategy } from '../api/strategies';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
-import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL } from '../lib/labels';
+import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
 
 const COMMON_SCHEDULES: Array<{ label: string; expr: string }> = [
   { label: 'Every hour (top of hour)',       expr: '0 * * * *' },
@@ -95,10 +95,7 @@ export function AddStrategyModal({ open, onClose }: Props) {
             {channelsQ.isLoading ? 'Loading…' : 'Pick a channel'}
           </option>
           {channelsQ.data?.items.map(c => (
-            <option key={c.id} value={c.id}>
-              {c.title ?? c.username ?? c.id}
-              {c.username ? ` (@${c.username})` : ''}
-            </option>
+            <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>
           ))}
         </select>
       </Field>

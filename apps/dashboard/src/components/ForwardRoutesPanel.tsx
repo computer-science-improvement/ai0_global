@@ -12,6 +12,7 @@ import {
   useForwardRoutes, useCreateForwardRoute, useDeleteForwardRoute,
 } from '../api/forward-routes';
 import { Icon } from './Icon';
+import { channelOptionLabel } from '../lib/labels';
 
 interface Props { sourceChannelId: string; }
 
@@ -138,10 +139,7 @@ function AddForwardForm({ sourceChannelId, onDone }: { sourceChannelId: string; 
           {channels.data?.items
             .filter(c => c.id !== sourceChannelId)
             .map(c => (
-              <option key={c.id} value={c.id}>
-                {c.title ?? c.username ?? c.id}
-                {c.channelKey ? ` (${c.channelKey})` : ''}
-              </option>
+              <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>
             ))}
         </select>
       </label>

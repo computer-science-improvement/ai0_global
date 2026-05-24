@@ -10,7 +10,7 @@ import { trackingApi } from '../api/tracking';
 import { usePatchStrategy } from '../api/strategies';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
-import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL } from '../lib/labels';
+import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
 import type { Strategy } from '../api/types';
 
 const COMMON_SCHEDULES: Array<{ label: string; expr: string }> = [
@@ -121,10 +121,7 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
           style={{ width: '100%' }}
         >
           {channels.data?.items.map(c => (
-            <option key={c.id} value={c.id}>
-              {c.title ?? c.username ?? c.id}
-              {c.username ? ` (@${c.username})` : ''}
-            </option>
+            <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>
           ))}
         </select>
       </Field>
