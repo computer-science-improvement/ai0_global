@@ -370,7 +370,7 @@ function StrategyTableRow({
             onDone={onDone}
           />
         ) : (
-          <span title="Cron schedule. Inherited from a forward route — edit it from the source channel's strategy on /strategies.">
+          <span title="Cron schedule (UTC unless TZ is configured). Inherited from a forward route — open the source channel's detail page to edit this schedule inline.">
             {s.schedule}
             <span className="text-micro" style={{ marginLeft: 6, color: 'var(--color-ink-dim)' }}>
               (forwarded — edit on source)

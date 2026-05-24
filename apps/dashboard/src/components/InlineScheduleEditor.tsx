@@ -25,22 +25,26 @@ export function InlineScheduleEditor({
   const [draft, setDraft] = useState(current);
   const patch = usePatchStrategy();
 
-  // Reset on both transitions:
-  //   - on open  → draft starts from the live cron
-  //   - on close → any prior error/state is cleared so re-opening is clean
-  // `patch` is a stable object reference from useMutation; omitting it from
-  // the dep array is intentional and well-known for TanStack Query v5.
+  // Reset only on isEditing transitions, never on `current` updates:
+  //   - background refetch ticks (useStrategies has a 30s refetchInterval)
+  //     can change `current` mid-edit — re-running the effect on that change
+  //     would wipe the user's in-progress draft, so `current` is deliberately
+  //     omitted from the dep array.
+  //   - on each open/close, draft re-syncs to the latest `current` snapshot
+  //     and any prior mutation error is cleared.
+  // `patch` is a stable object reference from useMutation; omitting it is
+  // well-known for TanStack Query v5.
   useEffect(() => {
     setDraft(current);
     patch.reset();
-  }, [isEditing, current]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isEditing]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!isEditing) {
     return (
       <button
         type="button"
         onClick={onStartEdit}
-        title="Click to edit schedule"
+        title={`Click to edit schedule (UTC unless TZ is configured) — current: ${current}`}
         style={{
           display: 'inline-flex',
           alignItems: 'center',
