@@ -45,8 +45,14 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
               {c.kind && (
                 <span className="chip" title={`Kind: ${c.kind} channel`}>{c.kind}</span>
               )}
-              {c.isMine   && <span className="chip chip-success" title={CHANNEL_FLAG_HELP.mine}>mine</span>}
-              {c.isClosed && <span className="chip" title={CHANNEL_FLAG_HELP.closed}>closed</span>}
+              {c.isMine        && <span className="chip chip-success" title={CHANNEL_FLAG_HELP.mine}>mine</span>}
+              {c.isClosed      && <span className="chip" title={CHANNEL_FLAG_HELP.closed}>closed</span>}
+              {c.publishPaused && (
+                <span className="chip chip-warning" title={CHANNEL_FLAG_HELP.publishPaused}>
+                  <Icon name="pause" size={11} style={{ marginRight: 4 }} />
+                  paused
+                </span>
+              )}
               {c.bot && (
                 <span
                   className="chip"

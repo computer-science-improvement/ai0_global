@@ -2,14 +2,15 @@ import { api } from './client';
 import type { TrackedChannel, TrackedPost, SubsHistoryPoint, PageResp, GraphResponse, RoiResponse } from './types';
 
 export interface PatchChannelInput {
-  title?:      string | null;
-  isMine?:     boolean;
-  botId?:      string | null;
-  channelKey?: string | null;
-  tgChatId?:   string | null;
-  kind?:       'public' | 'private' | null;
-  pollTier?:   'hot' | 'warm' | 'cold';
-  themes?:     string[];
+  title?:         string | null;
+  isMine?:        boolean;
+  botId?:         string | null;
+  channelKey?:    string | null;
+  tgChatId?:      string | null;
+  kind?:          'public' | 'private' | null;
+  pollTier?:      'hot' | 'warm' | 'cold';
+  themes?:        string[];
+  publishPaused?: boolean;
 }
 
 export interface CreateFullChannelInput {

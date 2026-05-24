@@ -49,6 +49,8 @@ export const CHANNEL_KIND_HELP: Record<'public' | 'private', string> = {
 export const CHANNEL_FLAG_HELP = {
   mine:   'One of your own channels. Strategies publish here; can be edited.',
   closed: 'Channel was unreachable on the last poll — likely banned, private, or renamed. Polling backs off.',
+  publishPaused:
+    'Per-channel kill switch. Strategies + forward routes are blocked from publishing into this channel. Strategy schedules continue to fire (they’re just skipped at publish-time and recorded as skipped, not error). Toggle off to resume.',
 } as const;
 
 // ─── Bot status ────────────────────────────────────────────────────────

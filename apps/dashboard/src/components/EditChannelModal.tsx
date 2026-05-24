@@ -20,13 +20,14 @@ interface Props {
 export function EditChannelModal({ channel, open, onClose }: Props) {
   const qc        = useQueryClient();
   const { data: bots } = useBots();
-  const [title,      setTitle]      = useState<string>(channel.title ?? '');
-  const [botId,      setBotId]      = useState<string | null>(channel.botId ?? null);
-  const [isMine,     setIsMine]     = useState<boolean>(channel.isMine);
-  const [pollTier,   setPollTier]   = useState<'hot' | 'warm' | 'cold'>(channel.pollTier);
-  const [channelKey, setChannelKey] = useState<string>(channel.channelKey ?? '');
-  const [tgChatId,   setTgChatId]   = useState<string>((channel as any).tgChatId ?? '');
-  const [kind,       setKind]       = useState<'public' | 'private' | ''>((channel.kind as any) ?? '');
+  const [title,         setTitle]         = useState<string>(channel.title ?? '');
+  const [botId,         setBotId]         = useState<string | null>(channel.botId ?? null);
+  const [isMine,        setIsMine]        = useState<boolean>(channel.isMine);
+  const [pollTier,      setPollTier]      = useState<'hot' | 'warm' | 'cold'>(channel.pollTier);
+  const [channelKey,    setChannelKey]    = useState<string>(channel.channelKey ?? '');
+  const [tgChatId,      setTgChatId]      = useState<string>((channel as any).tgChatId ?? '');
+  const [kind,          setKind]          = useState<'public' | 'private' | ''>((channel.kind as any) ?? '');
+  const [publishPaused, setPublishPaused] = useState<boolean>(channel.publishPaused ?? false);
 
   useEffect(() => {
     if (open) {
@@ -37,6 +38,7 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
       setChannelKey(channel.channelKey ?? '');
       setTgChatId((channel as any).tgChatId ?? '');
       setKind((channel.kind as any) ?? '');
+      setPublishPaused(channel.publishPaused ?? false);
     }
   }, [open, channel]);
 
@@ -51,9 +53,10 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
 
   const submit = () => {
     save.mutate({
-      title:      title.trim() || null,
-      tgChatId:   tgChatId.trim() || null,
-      botId:      botId,
+      title:         title.trim() || null,
+      tgChatId:      tgChatId.trim() || null,
+      publishPaused,
+      botId:         botId,
       isMine,
       pollTier,
       channelKey: channelKey.trim() || null,
@@ -142,6 +145,20 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
             </button>
           ))}
         </div>
+      </Field>
+
+      <Field label="Publishing">
+        <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={publishPaused}
+            onChange={e => setPublishPaused(e.target.checked)}
+            style={{ accentColor: 'var(--color-accent)' }}
+          />
+          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+            Pause publishing — strategies & forwards into this channel are blocked at publish time
+          </span>
+        </label>
       </Field>
 
       <Field label="Ownership">

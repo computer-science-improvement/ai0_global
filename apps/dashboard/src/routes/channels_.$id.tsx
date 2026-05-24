@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
 import { useStrategies } from '../api/strategies';
@@ -16,7 +16,7 @@ import { ChannelAvatar } from '../components/ChannelAvatar';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 import {
-  POLL_TIER_HELP, CHANNEL_KIND_HELP, STRATEGY_STATUS_HELP,
+  POLL_TIER_HELP, CHANNEL_KIND_HELP, CHANNEL_FLAG_HELP, STRATEGY_STATUS_HELP,
   STRATEGY_ROLE_HELP, RUN_STATUS_HELP, BOT_STATUS_HELP,
   describeStrategy, SOURCE_KIND_LABEL,
 } from '../lib/labels';
@@ -28,6 +28,15 @@ function ChannelDetailPage() {
   const { id } = Route.useParams();
   const [themesOpen, setThemesOpen] = useState(false);
   const [editOpen,   setEditOpen]   = useState(false);
+  const qc = useQueryClient();
+
+  const togglePause = useMutation({
+    mutationFn: (next: boolean) => trackingApi.patchChannel(id, { publishPaused: next }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['channels'] });
+      qc.invalidateQueries({ queryKey: ['channel', id] });
+    },
+  });
 
   const channelQ    = useQuery({ queryKey: ['channel', id], queryFn: () => trackingApi.getChannel(id) });
   const subsQ       = useQuery({ queryKey: ['subs', id],    queryFn: () => trackingApi.subsHistory(id) });
@@ -96,6 +105,17 @@ function ChannelDetailPage() {
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>added {fmtDate(c.addedAt)}</span>
           <div style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
+            {c.isMine && (
+              <button
+                onClick={() => togglePause.mutate(!c.publishPaused)}
+                disabled={togglePause.isPending}
+                className={c.publishPaused ? 'btn-primary' : 'btn-tiny'}
+                title={CHANNEL_FLAG_HELP.publishPaused}
+              >
+                <Icon name={c.publishPaused ? 'play' : 'pause'} size={12} style={{ marginRight: 4 }} />
+                {c.publishPaused ? 'Resume publishing' : 'Pause publishing'}
+              </button>
+            )}
             <button onClick={() => setThemesOpen(true)} className="btn-tiny">
               <Icon name="pencil" size={12} style={{ marginRight: 4 }} />
               Themes ({themesQ.data?.length ?? 0})

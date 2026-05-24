@@ -9,14 +9,16 @@ export interface TrackedChannel {
   pollTier: 'hot' | 'warm' | 'cold';
   addedAt: string;
   lastPolledAt: string | null;
-  channelKey?:  string | null;
-  kind?:        string | null;
+  channelKey?:   string | null;
+  kind?:         string | null;
   /** Numeric Telegram chat id (-100…). Required for private channels. */
-  tgChatId?:    string | null;
-  botId?:       string | null;
-  bot?:         ChannelBotRef | null;
-  themes?:      string[];
-  strategies?: ChannelStrategyRef[];
+  tgChatId?:     string | null;
+  botId?:        string | null;
+  bot?:          ChannelBotRef | null;
+  themes?:       string[];
+  /** Per-channel publishing kill switch. When true, all publishes are blocked. */
+  publishPaused?: boolean;
+  strategies?:   ChannelStrategyRef[];
 }
 
 export interface ChannelBotRef {
