@@ -6,7 +6,7 @@
 // Kept here as a single source of truth so both call-sites stay in sync
 // on the preset list and look identical.
 
-export const COMMON_SCHEDULES: Array<{ label: string; expr: string }> = [
+export const COMMON_SCHEDULES: ReadonlyArray<{ readonly label: string; readonly expr: string }> = [
   { label: 'Every hour (top of hour)', expr: '0 * * * *' },
   { label: 'Every 30 minutes',         expr: '*/30 * * * *' },
   { label: 'Daily at 09:00',           expr: '0 9 * * *' },
@@ -19,7 +19,7 @@ interface Props {
   value:    string;
   onChange: (next: string) => void;
   disabled?: boolean;
-  /** Render the preset chips inline vs hidden. Inline editor uses compact layout. */
+  /** Tighter top margin between input and chips (6 px instead of 8 px). */
   compact?:  boolean;
   /** Optional input id for label-for wiring in the modal. */
   inputId?:  string;
