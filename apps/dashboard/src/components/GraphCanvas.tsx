@@ -6,6 +6,7 @@ import ReactFlow, {
 import type { Node, Edge, EdgeMouseHandler, NodeMouseHandler, NodeChange } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { ChannelNode } from './ChannelNode';
+import { ExternalNode } from './ExternalNode';
 import { layoutGraph, type LayoutDirection } from '../lib/graph-layout';
 import type { GraphResponse } from '../api/types';
 
@@ -15,7 +16,17 @@ const TIER_HEX: Record<'green'|'orange'|'red', string> = {
   red:    '#ef4444',
 };
 
-const nodeTypes = { channel: ChannelNode };
+const nodeTypes = { channel: ChannelNode, external: ExternalNode };
+
+/**
+ * Stable id for the ghost node representing a non-tracked external target.
+ * Multiple posts pointing at the same external URL (e.g. two channels both
+ * mention teleads.com.ua) collapse onto a single node — fewer chart-junk
+ * duplicates, edge weights aggregate visually via fan-in.
+ */
+function externalId(kind: string, target: string): string {
+  return `external:${kind}:${target.toLowerCase()}`;
+}
 
 interface Props {
   data: GraphResponse;
@@ -52,18 +63,43 @@ export function GraphCanvas({ data, direction = 'TB', onNodeClick, onEdgeClick }
       targetPosition: targetPos,
       draggable: true,
     }));
-    const rawEdges: Edge[] = data.edges
-      .filter((e) => e.target)
-      .map((e, i) => ({
-        id: `${e.source}-${e.target_username}-${i}`,
+
+    // Collect external targets (web / instagram / tg_user) — edges that
+    // reference something we don't track as a channel. Each unique
+    // (kind, target_username) gets one ghost node; edges fan into it.
+    const externalsSeen = new Set<string>();
+    const externalNodes: Node[] = [];
+    for (const e of data.edges) {
+      if (e.target) continue; // resolved targets handled by rawNodes already
+      const id = externalId(e.kind, e.target_username);
+      if (externalsSeen.has(id)) continue;
+      externalsSeen.add(id);
+      externalNodes.push({
+        id,
+        type: 'external',
+        data: { target: e.target_username, kind: e.kind, horizontal },
+        position: { x: 0, y: 0 },
+        sourcePosition: sourcePos,
+        targetPosition: targetPos,
+        draggable: true,
+      });
+    }
+
+    const rawEdges: Edge[] = data.edges.map((e, i) => {
+      const targetId = e.target ?? externalId(e.kind, e.target_username);
+      return {
+        id: `${e.source}-${e.target_username}-${e.kind}-${i}`,
         source: e.source,
-        target: e.target!,
+        target: targetId,
         type: 'smoothstep',
         animated: e.colorTier === 'red',
         label: `${e.count}`,
         style: {
           stroke: TIER_HEX[e.colorTier],
           strokeWidth: Math.min(1 + Math.log2(e.count + 1), 6),
+          // Dashed line for external-target edges so the kind reads at a glance
+          // even before hovering — matches the ghost node's dashed border.
+          ...(e.target ? {} : { strokeDasharray: '4 3' }),
         },
         labelBgStyle: { fill: '#1c1c1c', fillOpacity: 0.85 },
         labelStyle:   { fill: TIER_HEX[e.colorTier], fontSize: 11, fontWeight: 600 },
@@ -73,8 +109,11 @@ export function GraphCanvas({ data, direction = 'TB', onNodeClick, onEdgeClick }
           width: 18, height: 18,
         },
         data: e,
-      }));
-    return { initialNodes: layoutGraph(rawNodes, rawEdges, direction), edges: rawEdges };
+      };
+    });
+
+    const allNodes = [...rawNodes, ...externalNodes];
+    return { initialNodes: layoutGraph(allNodes, rawEdges, direction), edges: rawEdges };
   }, [data, direction]);
 
   // Mutable copy that drag deltas apply to. Reset whenever the auto-layout
