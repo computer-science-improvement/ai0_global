@@ -146,15 +146,33 @@ export class TrackedPostsRepository {
     return { avgViews, engagementRate: rate, postsCount: row.posts ?? 0 };
   }
 
-  async listByAdRefTarget(channelId: string, targetUsername: string): Promise<TrackedPost[]> {
+  async listByAdRefTarget(channelId: string, target: string): Promise<TrackedPost[]> {
+    // ad_refs stores different shapes by kind:
+    //   tg_channel / tg_user → { kind, username }
+    //   web                  → { kind: 'web',       domain }
+    //   instagram            → { kind: 'instagram', handle }
+    //
+    // The GraphCanvas passes whatever value lives in tracked_ad_edges.
+    // target_username for the clicked edge — which is the username for
+    // tg_*, the domain for web, the handle for instagram. So we need an
+    // ORed match across all three keys to find the originating posts.
+    //
+    // jsonb_array_elements + EXISTS is faster than three @> probes on a
+    // wide ad_refs array. The CASE-INSENSITIVE compare matches the
+    // .toLowerCase() the service does before calling us.
     const r = await this.pool.query<any>(
       `SELECT * FROM tracked_posts
        WHERE channel_id = $1
          AND ad_refs IS NOT NULL
-         AND ad_refs @> $2::jsonb
+         AND EXISTS (
+           SELECT 1 FROM jsonb_array_elements(ad_refs) AS r
+           WHERE LOWER(r->>'username') = $2
+              OR LOWER(r->>'domain')   = $2
+              OR LOWER(r->>'handle')   = $2
+         )
        ORDER BY posted_at DESC
        LIMIT 100`,
-      [channelId, JSON.stringify([{ username: targetUsername }])],
+      [channelId, target.toLowerCase()],
     );
     return r.rows.map((row: any) => this.toEntity(row));
   }
