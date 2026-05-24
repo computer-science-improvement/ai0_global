@@ -33,12 +33,21 @@ export class PollMetaWorker implements OnModuleInit {
     const meta = await this.mtproto.getFullChannel(target);
     if (!meta) { this.logger.debug(`getFullChannel returned null for ${target}`); return; }
 
-    await this.channels.upsertByUsername({
-      username:  meta.username ?? channel.username ?? undefined as any,
-      tgChatId:  meta.tgChatId,
-      title:     meta.title,
-      about:     meta.about,
-      subsCount: meta.subsCount,
+    // Update the existing channel row directly by id. The previous version
+    // called upsertByUsername, which for private channels (meta.username =
+    // null) bypassed the WHERE username IS NOT NULL partial unique index and
+    // inserted a brand-new orphan row each poll cycle — title set,
+    // channel_key null, is_mine false. patch() targets the row we already
+    // loaded, no insert path possible.
+    //
+    // tg_chat_id intentionally NOT updated here. The id we stored
+    // (-1003984251759 — Bot API format) and the id MTProto returns
+    // (3984251759 — raw channel id) describe the same channel but in
+    // different namespaces. Overwriting our Bot-API-format id with the
+    // MTProto raw id would break publishing.
+    await this.channels.patch(channel.id, {
+      title: meta.title ?? null,
+      about: meta.about ?? null,
     });
     await this.channels.markPolled(channel.id, meta.subsCount, new Date());
     this.logger.debug(`poll-meta ok: ${target} subs=${meta.subsCount}`);

@@ -168,6 +168,7 @@ export class TrackedChannelsRepository {
    */
   async patch(id: string, patch: {
     title?:         string | null;
+    about?:         string | null;
     isMine?:        boolean;
     botId?:         string | null;
     channelKey?:    string | null;
@@ -189,6 +190,7 @@ export class TrackedChannelsRepository {
     if (patch.pollTier      !== undefined) { sets.push(`poll_tier = $${i++}`);      args.push(patch.pollTier); }
     if (patch.themes        !== undefined) { sets.push(`themes = $${i++}::text[]`); args.push(patch.themes); }
     if (patch.publishPaused !== undefined) { sets.push(`publish_paused = $${i++}`); args.push(patch.publishPaused); }
+    if (patch.about         !== undefined) { sets.push(`about = $${i++}`);          args.push(patch.about); }
     if (sets.length === 0) return true;
     const { rowCount } = await this.pool.query(
       `UPDATE tracked_channels SET ${sets.join(', ')} WHERE id = $1`,
