@@ -13,6 +13,7 @@ import { EditThemesModal } from '../components/EditThemesModal';
 import { EditChannelModal } from '../components/EditChannelModal';
 import { ForwardRoutesPanel } from '../components/ForwardRoutesPanel';
 import { ChannelAvatar } from '../components/ChannelAvatar';
+import { InlineScheduleEditor } from '../components/InlineScheduleEditor';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 import {
@@ -280,6 +281,10 @@ function Stat({ label, help, children }: { label: string; help?: string; childre
 function StrategiesPanel({
   primary, forwards, isLoading,
 }: { primary: Strategy[]; forwards: Strategy[]; isLoading: boolean }) {
+  // One row open at a time. null = none. Parent state lives here so opening
+  // row B implicitly closes row A.
+  const [editingId, setEditingId] = useState<string | null>(null);
+
   if (isLoading) {
     return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
   }
@@ -305,15 +310,41 @@ function StrategiesPanel({
           </tr>
         </thead>
         <tbody>
-          {primary.map(s => <StrategyTableRow key={s.id} s={s} role="primary" />)}
-          {forwards.map(s => <StrategyTableRow key={s.id} s={s} role="forward" />)}
+          {primary.map(s => (
+            <StrategyTableRow
+              key={s.id}
+              s={s}
+              role="primary"
+              isEditing={editingId === s.id}
+              onStartEdit={() => setEditingId(s.id)}
+              onDone={() => setEditingId(null)}
+            />
+          ))}
+          {forwards.map(s => (
+            <StrategyTableRow
+              key={s.id}
+              s={s}
+              role="forward"
+              isEditing={false}
+              onStartEdit={() => {}}
+              onDone={() => {}}
+            />
+          ))}
         </tbody>
       </table>
     </div>
   );
 }
 
-function StrategyTableRow({ s, role }: { s: Strategy; role: 'primary' | 'forward' }) {
+function StrategyTableRow({
+  s, role, isEditing, onStartEdit, onDone,
+}: {
+  s: Strategy;
+  role: 'primary' | 'forward';
+  isEditing: boolean;
+  onStartEdit: () => void;
+  onDone: () => void;
+}) {
   const meta = describeStrategy(s.type);
   const typeTooltip = meta
     ? `${meta.title} (${SOURCE_KIND_LABEL[meta.source]})\n\n${meta.description}`
@@ -329,7 +360,24 @@ function StrategyTableRow({ s, role }: { s: Strategy; role: 'primary' | 'forward
         )}
       </td>
       <td><span className="chip" title={typeTooltip}>{s.type}</span></td>
-      <td style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }} title="Cron schedule. UTC unless TZ is configured.">{s.schedule}</td>
+      <td style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>
+        {role === 'primary' ? (
+          <InlineScheduleEditor
+            strategyId={s.id}
+            current={s.schedule}
+            isEditing={isEditing}
+            onStartEdit={onStartEdit}
+            onDone={onDone}
+          />
+        ) : (
+          <span title="Cron schedule. Inherited from a forward route — edit it from the source channel's strategy on /strategies.">
+            {s.schedule}
+            <span className="text-micro" style={{ marginLeft: 6, color: 'var(--color-ink-dim)' }}>
+              (forwarded — edit on source)
+            </span>
+          </span>
+        )}
+      </td>
       <td>
         {s.enabled && s.next_run_at
           ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }} title={new Date(s.next_run_at).toLocaleString()}>
