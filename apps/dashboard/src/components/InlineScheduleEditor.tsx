@@ -66,7 +66,7 @@ export function InlineScheduleEditor({
   }
 
   const trimmed = draft.trim();
-  const dirty   = trimmed !== current && trimmed.length > 0;
+  const dirty   = trimmed !== current.trim() && trimmed.length > 0;
 
   const save = async () => {
     if (!dirty) return;
