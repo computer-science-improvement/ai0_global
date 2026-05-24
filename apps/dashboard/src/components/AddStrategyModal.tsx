@@ -13,15 +13,7 @@ import { useCreateStrategy } from '../api/strategies';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
 import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
-
-const COMMON_SCHEDULES: Array<{ label: string; expr: string }> = [
-  { label: 'Every hour (top of hour)',       expr: '0 * * * *' },
-  { label: 'Every 30 minutes',               expr: '*/30 * * * *' },
-  { label: 'Daily at 09:00',                 expr: '0 9 * * *' },
-  { label: 'Daily at 18:00',                 expr: '0 18 * * *' },
-  { label: 'Weekdays at 09:00',              expr: '0 9 * * 1-5' },
-  { label: 'Every 4 hours',                  expr: '0 */4 * * *' },
-];
+import { SchedulePicker } from './SchedulePicker';
 
 interface Props { open: boolean; onClose: () => void; }
 
@@ -101,26 +93,7 @@ export function AddStrategyModal({ open, onClose }: Props) {
       </Field>
 
       <Field label="Schedule (cron)">
-        <input
-          value={schedule}
-          onChange={e => setSchedule(e.target.value)}
-          placeholder="0 9 * * *"
-          className="input-field"
-          style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
-        />
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
-          {COMMON_SCHEDULES.map(s => (
-            <button
-              key={s.expr}
-              type="button"
-              onClick={() => setSchedule(s.expr)}
-              className={schedule === s.expr ? 'chip is-active' : 'chip'}
-              style={{ cursor: 'pointer', border: 'none' }}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
+        <SchedulePicker value={schedule} onChange={setSchedule} />
       </Field>
 
       <div className="callout-warning" style={{ marginBottom: 16 }}>
