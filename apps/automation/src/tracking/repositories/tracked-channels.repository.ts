@@ -24,6 +24,8 @@ export interface TrackedChannel {
   botId:          string | null;
   /** Phase 4 themes assigned for recommendations / matching. */
   themes:         string[];
+  /** Per-channel publishing kill switch. When true, publisher refuses to send. */
+  publishPaused:  boolean;
 }
 
 export interface UpsertChannelInput {
@@ -165,26 +167,28 @@ export class TrackedChannelsRepository {
    * subs_count/last_polled_at) come from the poller, not the user.
    */
   async patch(id: string, patch: {
-    title?:      string | null;
-    isMine?:     boolean;
-    botId?:      string | null;
-    channelKey?: string | null;
-    tgChatId?:   string | null;
-    kind?:       string | null;
-    pollTier?:   PollTier;
-    themes?:     string[];
+    title?:         string | null;
+    isMine?:        boolean;
+    botId?:         string | null;
+    channelKey?:    string | null;
+    tgChatId?:      string | null;
+    kind?:          string | null;
+    pollTier?:      PollTier;
+    themes?:        string[];
+    publishPaused?: boolean;
   }): Promise<boolean> {
     const sets: string[] = [];
     const args: unknown[] = [id];
     let i = 2;
-    if (patch.title      !== undefined) { sets.push(`title = $${i++}`);       args.push(patch.title); }
-    if (patch.isMine     !== undefined) { sets.push(`is_mine = $${i++}`);     args.push(patch.isMine); }
-    if (patch.botId      !== undefined) { sets.push(`bot_id = $${i++}`);      args.push(patch.botId); }
-    if (patch.channelKey !== undefined) { sets.push(`channel_key = $${i++}`); args.push(patch.channelKey); }
-    if (patch.tgChatId   !== undefined) { sets.push(`tg_chat_id = $${i++}`);  args.push(patch.tgChatId); }
-    if (patch.kind       !== undefined) { sets.push(`kind = $${i++}`);        args.push(patch.kind); }
-    if (patch.pollTier   !== undefined) { sets.push(`poll_tier = $${i++}`);   args.push(patch.pollTier); }
-    if (patch.themes     !== undefined) { sets.push(`themes = $${i++}::text[]`); args.push(patch.themes); }
+    if (patch.title         !== undefined) { sets.push(`title = $${i++}`);          args.push(patch.title); }
+    if (patch.isMine        !== undefined) { sets.push(`is_mine = $${i++}`);        args.push(patch.isMine); }
+    if (patch.botId         !== undefined) { sets.push(`bot_id = $${i++}`);         args.push(patch.botId); }
+    if (patch.channelKey    !== undefined) { sets.push(`channel_key = $${i++}`);    args.push(patch.channelKey); }
+    if (patch.tgChatId      !== undefined) { sets.push(`tg_chat_id = $${i++}`);     args.push(patch.tgChatId); }
+    if (patch.kind          !== undefined) { sets.push(`kind = $${i++}`);           args.push(patch.kind); }
+    if (patch.pollTier      !== undefined) { sets.push(`poll_tier = $${i++}`);      args.push(patch.pollTier); }
+    if (patch.themes        !== undefined) { sets.push(`themes = $${i++}::text[]`); args.push(patch.themes); }
+    if (patch.publishPaused !== undefined) { sets.push(`publish_paused = $${i++}`); args.push(patch.publishPaused); }
     if (sets.length === 0) return true;
     const { rowCount } = await this.pool.query(
       `UPDATE tracked_channels SET ${sets.join(', ')} WHERE id = $1`,
@@ -273,6 +277,7 @@ export class TrackedChannelsRepository {
       kind:         r.kind ?? null,
       botId:        r.bot_id ?? null,
       themes:       Array.isArray(r.themes) ? r.themes : [],
+      publishPaused: !!r.publish_paused,
     };
   }
 }

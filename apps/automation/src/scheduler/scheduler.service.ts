@@ -8,6 +8,7 @@ import { ContentStrategyRunner }   from '../common/content-strategy/content-stra
 import { ContentStrategyRegistry } from '../common/content-strategy/content-strategy.registry';
 import { CONFIG_CHANGED_CHANNEL, ConfigChangedEvent } from '../config/config-events.types';
 import { REDIS_CLIENT } from '../tracking/redis.provider';
+import { isChannelPausedError } from '../publishers/errors';
 
 interface JobMeta { extId: string; uuid: string; }
 
@@ -197,11 +198,23 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
           );
         }
       } catch (err: any) {
-        this.logger.error(`${name} failed: ${err.message}`);
-        if (runId) {
-          await this.runsRepo.finishError(runId, err.message ?? String(err)).catch(e =>
-            this.logger.warn(`run-log finishError failed for ${name}: ${e.message}`),
-          );
+        // A paused channel is an expected "do nothing" — record as
+        // 'skipped' rather than 'error' so the run log stays clean and the
+        // last-run chip on /strategies shows yellow not red.
+        if (isChannelPausedError(err)) {
+          this.logger.log(`${name} skipped: ${err.message}`);
+          if (runId) {
+            await this.runsRepo.finishSkipped(runId, err.message).catch(e =>
+              this.logger.warn(`run-log finishSkipped failed for ${name}: ${e.message}`),
+            );
+          }
+        } else {
+          this.logger.error(`${name} failed: ${err.message}`);
+          if (runId) {
+            await this.runsRepo.finishError(runId, err.message ?? String(err)).catch(e =>
+              this.logger.warn(`run-log finishError failed for ${name}: ${e.message}`),
+            );
+          }
         }
       } finally {
         this.inFlight.delete(name);

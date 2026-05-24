@@ -8,14 +8,15 @@ import { AddChannelDto } from './dto/add-channel.dto';
 import { PollTier } from '../types';
 
 class PatchChannelDto {
-  @IsOptional() @IsString() @MaxLength(200)   title?:      string | null;
-  @IsOptional() @IsBoolean()                  isMine?:     boolean;
-  @IsOptional() @IsUUID()                     botId?:      string | null;
-  @IsOptional() @IsString() @MaxLength(120)   channelKey?: string | null;
-  @IsOptional() @IsString() @MaxLength(40)    tgChatId?:   string | null;
-  @IsOptional() @IsIn(['public', 'private'])  kind?: 'public' | 'private' | null;
-  @IsOptional() @IsIn(['hot', 'warm', 'cold']) pollTier?:  PollTier;
+  @IsOptional() @IsString() @MaxLength(200)   title?:         string | null;
+  @IsOptional() @IsBoolean()                  isMine?:        boolean;
+  @IsOptional() @IsUUID()                     botId?:         string | null;
+  @IsOptional() @IsString() @MaxLength(120)   channelKey?:    string | null;
+  @IsOptional() @IsString() @MaxLength(40)    tgChatId?:      string | null;
+  @IsOptional() @IsIn(['public', 'private'])  kind?:          'public' | 'private' | null;
+  @IsOptional() @IsIn(['hot', 'warm', 'cold']) pollTier?:     PollTier;
   @IsOptional() @IsArray() @IsString({ each: true }) themes?: string[];
+  @IsOptional() @IsBoolean()                  publishPaused?: boolean;
 }
 
 class CreateFullChannelDto {

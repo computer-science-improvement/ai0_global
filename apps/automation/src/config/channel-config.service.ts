@@ -132,6 +132,20 @@ export class ChannelConfigService implements OnApplicationBootstrap {
   }
 
   /**
+   * Per-channel publishing kill switch (tracked_channels.publish_paused).
+   * Independent of strategy_bindings.enabled — pausing a channel stops
+   * every strategy and every forward into it without touching the
+   * binding's enabled state. Returns true when the channel exists and
+   * is paused; false in every other case (channel missing → no
+   * restriction signalled, the publisher will fail naturally elsewhere).
+   */
+  isPublishPausedFor(channelKey: string): boolean {
+    const ch = this.cache.getChannelByKey(channelKey)
+            ?? this.cache.getChannelById(channelKey);
+    return !!ch?.publish_paused;
+  }
+
+  /**
    * Returns the semantic-dedup window in hours. Currently a global env-driven
    * value (SEMANTIC_DEDUP_HOURS, default 8). The optional `channelKey` arg is
    * accepted for backward compatibility with callers but ignored — per-channel

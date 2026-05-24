@@ -15,6 +15,9 @@ export interface TrackedChannelDto {
   tgChatId:     string | null;
   kind:         string | null;
   botId:        string | null;
+  /** Per-channel publishing kill switch. When true, all strategies + forwards
+   *  into this channel are blocked at publish time. */
+  publishPaused: boolean;
   /** Denormalized bot identity (joined via my_bots). null when no bot bound. */
   bot:          ChannelBotRef | null;
   themes:       string[];

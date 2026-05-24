@@ -54,12 +54,15 @@ export class TrackingService {
   /** Patch editable config fields; publishes a 'channel' event so the
    *  config cache picks up the change without restart. */
   async patchChannel(id: string, patch: {
-    isMine?:     boolean;
-    botId?:      string | null;
-    channelKey?: string | null;
-    kind?:       'public' | 'private' | null;
-    pollTier?:   PollTier;
-    themes?:     string[];
+    title?:         string | null;
+    isMine?:        boolean;
+    botId?:         string | null;
+    channelKey?:    string | null;
+    tgChatId?:      string | null;
+    kind?:          'public' | 'private' | null;
+    pollTier?:      PollTier;
+    themes?:        string[];
+    publishPaused?: boolean;
   }): Promise<TrackedChannelDto> {
     const exists = await this.channels.getById(id);
     if (!exists) throw new NotFoundException(`Channel ${id} not found`);
@@ -267,12 +270,13 @@ export class TrackingService {
       subsCount: c.subsCount, isMine: c.isMine, isClosed: c.isClosed,
       pollTier: c.pollTier, addedAt: c.addedAt.toISOString(),
       lastPolledAt: c.lastPolledAt ? c.lastPolledAt.toISOString() : null,
-      channelKey:   c.channelKey,
-      tgChatId:     c.tgChatId,
-      kind:         c.kind,
-      botId:        c.botId,
+      channelKey:    c.channelKey,
+      tgChatId:      c.tgChatId,
+      kind:          c.kind,
+      botId:         c.botId,
       bot,
-      themes:       c.themes,
+      themes:        c.themes,
+      publishPaused: c.publishPaused,
       strategies,
     };
   }

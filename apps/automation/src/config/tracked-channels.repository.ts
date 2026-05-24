@@ -4,15 +4,17 @@ import { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
 
 export interface TrackedChannelConfigRow {
-  id:           string;
-  channel_key:  string | null;
-  username:     string | null;
-  tg_chat_id:   string | null;       // bigint → string from pg
-  title:        string | null;
-  kind:         'public' | 'private' | null;
-  bot_id:       string | null;
-  is_mine:      boolean;
-  themes:       string[];
+  id:              string;
+  channel_key:     string | null;
+  username:        string | null;
+  tg_chat_id:      string | null;       // bigint → string from pg
+  title:           string | null;
+  kind:            'public' | 'private' | null;
+  bot_id:          string | null;
+  is_mine:         boolean;
+  themes:          string[];
+  /** Per-channel kill switch. When true, publisher refuses to send. */
+  publish_paused:  boolean;
 }
 
 export interface TrackedChannelUpsertInput {
@@ -31,7 +33,7 @@ export class TrackedChannelsConfigRepository {
   async list(): Promise<TrackedChannelConfigRow[]> {
     const { rows } = await this.pool.query<TrackedChannelConfigRow>(
       `SELECT id, channel_key, username, tg_chat_id::text AS tg_chat_id,
-              title, kind, bot_id, is_mine, themes
+              title, kind, bot_id, is_mine, themes, publish_paused
        FROM tracked_channels
        ORDER BY added_at`,
     );
@@ -41,7 +43,7 @@ export class TrackedChannelsConfigRepository {
   async findByChannelKey(channelKey: string): Promise<TrackedChannelConfigRow | null> {
     const { rows } = await this.pool.query<TrackedChannelConfigRow>(
       `SELECT id, channel_key, username, tg_chat_id::text AS tg_chat_id,
-              title, kind, bot_id, is_mine, themes
+              title, kind, bot_id, is_mine, themes, publish_paused
        FROM tracked_channels WHERE channel_key = $1`,
       [channelKey],
     );

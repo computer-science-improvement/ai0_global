@@ -56,6 +56,23 @@ export class StrategyRunsRepository {
     );
   }
 
+  /**
+   * Transition an in-flight run to 'skipped'. Distinct from a new
+   * 'skipped' insert (recordSkipped) which is used when the strategy
+   * was guarded out by the inFlight check before start() ran.
+   */
+  async finishSkipped(runId: string, reason: string): Promise<void> {
+    await this.pool.query(
+      `UPDATE strategy_runs
+         SET finished_at = now(),
+             status      = 'skipped',
+             error       = $2,
+             duration_ms = EXTRACT(EPOCH FROM (now() - started_at)) * 1000
+       WHERE id = $1`,
+      [runId, reason.slice(0, 1000)],
+    );
+  }
+
   /** Record a tick that was skipped because the previous one was still running. */
   async recordSkipped(strategyId: string, extId: string, reason: string): Promise<void> {
     await this.pool.query(

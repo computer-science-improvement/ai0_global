@@ -3,6 +3,7 @@ import axios from 'axios';
 import FormData from 'form-data';
 import { PostPayload } from '../common/types';
 import { BasePublisher, PublishTarget } from './base.publisher';
+import { ChannelPausedError } from './errors';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { PostingThrottleService } from './posting-throttle.service';
 import { StructuredLoggerService } from '../common/logging/structured-logger.service';
@@ -54,6 +55,13 @@ export class TelegramPublisher extends BasePublisher {
   }
 
   async publish(payload: PostPayload, target: PublishTarget): Promise<string> {
+    // Per-channel kill switch — bail before any side effect (publication log,
+    // throttle record, network call). Strategy runner treats this distinct
+    // error as a 'skipped' outcome, not 'error'.
+    if (this.channelConfig.isPublishPausedFor(target.id)) {
+      this.logger.log(`publish(${target.id}) skipped: channel publish_paused=true`);
+      throw new ChannelPausedError(target.id);
+    }
     try {
       this.guardText(payload.text);
     } catch (err: any) {
@@ -220,6 +228,16 @@ export class TelegramPublisher extends BasePublisher {
     if (sourceChannelId === targetChannelId) {
       throw new Error(`forward(): source and target are the same channel (${sourceChannelId})`);
     }
+    // Target paused → log + return the original message id without forwarding.
+    // We can't usefully return null (callers assume Promise<string>), but
+    // returning the source message id is harmless because forwards aren't
+    // tracked in published_posts anyway. The strategy keeps running.
+    if (this.channelConfig.isPublishPausedFor(targetChannelId)) {
+      this.logger.log(
+        `forward(${sourceChannelId} → ${targetChannelId}) skipped: target publish_paused=true`,
+      );
+      return String(messageId);
+    }
 
     const source = this.channelConfig.resolveChannel(sourceChannelId);
     const target = this.channelConfig.resolveChannel(targetChannelId);
@@ -244,6 +262,10 @@ export class TelegramPublisher extends BasePublisher {
   }
 
   async publishPrompt(payload: PromptPayload, target: PublishTarget): Promise<string> {
+    if (this.channelConfig.isPublishPausedFor(target.id)) {
+      this.logger.log(`publishPrompt(${target.id}) skipped: channel publish_paused=true`);
+      throw new ChannelPausedError(target.id);
+    }
     this.guardText(payload.caption);
     const { chatId, botToken } = this.channelConfig.resolveChannel(target.id);
     const base = `https://api.telegram.org/bot${botToken}`;
