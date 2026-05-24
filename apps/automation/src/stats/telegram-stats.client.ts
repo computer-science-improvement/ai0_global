@@ -40,19 +40,48 @@ export class TelegramStatsClient implements OnModuleInit {
   ) {}
 
   /**
-   * Returns true when the channel's resolved chatId is a numeric private ID
-   * (`-100…`). MTProto can't resolve those by username, and the user account
-   * behind the session generally isn't a member of test/dev private channels.
-   * Used to silently skip stats lookups instead of spamming "No user has X as
-   * username" warnings.
+   * Resolve a channel reference into the address gramjs accepts:
+   *   - public  → '@username' string (gramjs looks up by handle)
+   *   - private → numeric -100… chat id as a number (gramjs handles
+   *               the bot-API ↔ MTProto id translation internally)
+   *
+   * For private channels the MTProto session must be a member, otherwise
+   * getEntity will throw ChannelPrivate. We track that in `skipUntil` so
+   * we don't spam the API on every poll for channels we already know we
+   * can't access.
    */
-  private isPrivateChannel(channelKey: string): boolean {
+  private resolveAddress(channelKey: string): string | number | null {
     try {
       const { chatId } = this.channelConfig.resolveChannel(channelKey);
-      return chatId.startsWith('-');
+      if (chatId.startsWith('-')) {
+        const n = Number(chatId);
+        return Number.isSafeInteger(n) ? n : null;
+      }
+      return chatId; // '@username'
     } catch {
-      // Unknown channel — treat as private to be safe (no network call).
-      return true;
+      return null;
+    }
+  }
+
+  /**
+   * Per-channel back-off so a channel the session isn't a member of doesn't
+   * generate a warning on every single poll. After the first
+   * ChannelPrivate / ChatAdminRequired the channel is skipped silently for
+   * one hour, then we try again — so joining the channel self-recovers
+   * without a process restart.
+   */
+  private readonly skipUntil = new Map<string, number>();
+  private static readonly SKIP_BACKOFF_MS = 60 * 60_000;
+
+  private shouldSkip(channelKey: string): boolean {
+    const until = this.skipUntil.get(channelKey);
+    return until !== undefined && until > Date.now();
+  }
+
+  private rememberInaccessible(channelKey: string, err: unknown): void {
+    const msg = (err as Error)?.message ?? '';
+    if (/ChannelPrivate|ChatAdminRequired|ChannelInvalid|Cannot find any entity/i.test(msg)) {
+      this.skipUntil.set(channelKey, Date.now() + TelegramStatsClient.SKIP_BACKOFF_MS);
     }
   }
 
@@ -90,12 +119,11 @@ export class TelegramStatsClient implements OnModuleInit {
 
   async getChannelInfo(channelId: string): Promise<ChannelInfo | null> {
     if (!this.client || !this.ready) return null;
-    if (this.isPrivateChannel(channelId)) {
-      this.logger.debug(`getChannelInfo(${channelId}) skipped: private channel`);
-      return null;
-    }
+    if (this.shouldSkip(channelId)) return null;
+    const address = this.resolveAddress(channelId);
+    if (address === null) return null;
     try {
-      const entity = await this.client.getEntity(channelId);
+      const entity = await this.client.getEntity(address as any);
       const full = await this.client.invoke(
         new Api.channels.GetFullChannel({ channel: entity as any }),
       );
@@ -112,6 +140,7 @@ export class TelegramStatsClient implements OnModuleInit {
           : null,
       };
     } catch (err: any) {
+      this.rememberInaccessible(channelId, err);
       this.logger.warn(`getChannelInfo(${channelId}) failed: ${err.message}`);
       return null;
     }
@@ -119,12 +148,11 @@ export class TelegramStatsClient implements OnModuleInit {
 
   async getPostMetrics(channelId: string, messageId: number): Promise<PostMetrics | null> {
     if (!this.client || !this.ready) return null;
-    if (this.isPrivateChannel(channelId)) {
-      this.logger.debug(`getPostMetrics(${channelId}#${messageId}) skipped: private channel`);
-      return null;
-    }
+    if (this.shouldSkip(channelId)) return null;
+    const address = this.resolveAddress(channelId);
+    if (address === null) return null;
     try {
-      const entity = await this.client.getEntity(channelId);
+      const entity = await this.client.getEntity(address as any);
       const result: any = await this.client.invoke(
         new Api.channels.GetMessages({
           channel: entity as any,
@@ -152,6 +180,7 @@ export class TelegramStatsClient implements OnModuleInit {
         reactionsTotal,
       };
     } catch (err: any) {
+      this.rememberInaccessible(channelId, err);
       this.logger.warn(`getPostMetrics(${channelId}#${messageId}) failed: ${err.message}`);
       return null;
     }
