@@ -25,14 +25,14 @@ export function InlineScheduleEditor({
   const [draft, setDraft] = useState(current);
   const patch = usePatchStrategy();
 
-  // When parent toggles us into edit mode, reset the draft to the live
-  // value. When parent flips us out (because another row was opened), drop
-  // any local mutation error state so reopening starts clean.
+  // Reset on both transitions:
+  //   - on open  → draft starts from the live cron
+  //   - on close → any prior error/state is cleared so re-opening is clean
+  // `patch` is a stable object reference from useMutation; omitting it from
+  // the dep array is intentional and well-known for TanStack Query v5.
   useEffect(() => {
-    if (isEditing) {
-      setDraft(current);
-      patch.reset();
-    }
+    setDraft(current);
+    patch.reset();
   }, [isEditing, current]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!isEditing) {
@@ -41,7 +41,6 @@ export function InlineScheduleEditor({
         type="button"
         onClick={onStartEdit}
         title="Click to edit schedule"
-        className="inline-edit-trigger"
         style={{
           display: 'inline-flex',
           alignItems: 'center',
