@@ -23,9 +23,11 @@ interface Props {
   compact?:  boolean;
   /** Optional input id for label-for wiring in the modal. */
   inputId?:  string;
+  /** Placeholder shown when the input is empty (e.g. for create forms). */
+  placeholder?: string;
 }
 
-export function SchedulePicker({ value, onChange, disabled, compact, inputId }: Props) {
+export function SchedulePicker({ value, onChange, disabled, compact, inputId, placeholder }: Props) {
   return (
     <>
       <input
@@ -33,6 +35,7 @@ export function SchedulePicker({ value, onChange, disabled, compact, inputId }: 
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
+        placeholder={placeholder}
         className="input-field"
         style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
       />

@@ -93,7 +93,7 @@ export function AddStrategyModal({ open, onClose }: Props) {
       </Field>
 
       <Field label="Schedule (cron)">
-        <SchedulePicker value={schedule} onChange={setSchedule} />
+        <SchedulePicker value={schedule} onChange={setSchedule} placeholder="0 9 * * *" />
       </Field>
 
       <div className="callout-warning" style={{ marginBottom: 16 }}>
