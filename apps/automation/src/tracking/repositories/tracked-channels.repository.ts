@@ -60,6 +60,42 @@ export class TrackedChannelsRepository {
     return r.rows[0] ? this.toEntity(r.rows[0]) : null;
   }
 
+  async getByChannelKey(channelKey: string): Promise<TrackedChannel | null> {
+    const r = await this.pool.query<any>(
+      `SELECT * FROM tracked_channels WHERE channel_key = $1`, [channelKey],
+    );
+    return r.rows[0] ? this.toEntity(r.rows[0]) : null;
+  }
+
+  /**
+   * Upsert a private-channel row from invite-link metadata. The row is
+   * keyed by `channel_key = 'invite:<hash>'` so subsequent posts that
+   * mention the same invite link reuse it. tg_chat_id is left null until
+   * the session joins the channel (at which point poll-meta picks up the
+   * real id via checkChatInvite's ChatInviteAlready branch). is_mine
+   * stays false — these are discovered external channels.
+   */
+  async upsertInviteChannel(input: {
+    hash:      string;
+    title:     string | null;
+    subsCount: number | null;
+    tgChatId:  string | null;
+  }): Promise<string> {
+    const key = `invite:${input.hash}`;
+    const r = await this.pool.query<{ id: string }>(
+      `INSERT INTO tracked_channels
+         (channel_key, kind, is_mine, is_closed, poll_tier, title, subs_count, tg_chat_id)
+       VALUES ($1, 'private', FALSE, FALSE, 'cold', $2, $3, $4)
+       ON CONFLICT (channel_key) WHERE channel_key IS NOT NULL DO UPDATE SET
+         title      = COALESCE(EXCLUDED.title,      tracked_channels.title),
+         subs_count = COALESCE(EXCLUDED.subs_count, tracked_channels.subs_count),
+         tg_chat_id = COALESCE(EXCLUDED.tg_chat_id, tracked_channels.tg_chat_id)
+       RETURNING id`,
+      [key, input.title, input.subsCount, input.tgChatId],
+    );
+    return r.rows[0].id;
+  }
+
   async upsertByUsername(input: UpsertChannelInput & { username: string }): Promise<string> {
     const r = await this.pool.query<{ id: string }>(
       `INSERT INTO tracked_channels

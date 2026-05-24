@@ -13,17 +13,26 @@ export interface ExtractInput {
   forwardFromUsername?: string | null;
 }
 
-const TME_RE       = /^https?:\/\/t\.me\/([A-Za-z0-9_]+)(?:\/(\d+))?/i;
-const INSTA_RE     = /^https?:\/\/(?:www\.)?instagram\.com\/([A-Za-z0-9_.]+)/i;
-const GENERIC_RE   = /^https?:\/\/(?:www\.)?([A-Za-z0-9.\-]+)/i;
-const MENTION_RE   = /^@?([A-Za-z0-9_]+)$/;
+// t.me/+<hash> or t.me/joinchat/<hash> — private-channel invite link. The
+// hash is opaque base64-ish; we just stash it and let MTProto resolve.
+// Checked BEFORE TME_RE because t.me/+EfjMN-… doesn't match the public-
+// username pattern (which requires [A-Za-z0-9_]).
+const TME_INVITE_RE = /^https?:\/\/t\.me\/(?:\+|joinchat\/)([A-Za-z0-9_\-]+)/i;
+const TME_RE        = /^https?:\/\/t\.me\/([A-Za-z0-9_]+)(?:\/(\d+))?/i;
+const INSTA_RE      = /^https?:\/\/(?:www\.)?instagram\.com\/([A-Za-z0-9_.]+)/i;
+const GENERIC_RE    = /^https?:\/\/(?:www\.)?([A-Za-z0-9.\-]+)/i;
+const MENTION_RE    = /^@?([A-Za-z0-9_]+)$/;
 
 export function extractAdRefs(input: ExtractInput): AdRef[] {
   const refs: AdRef[] = [];
   const seen = new Set<string>();
 
   const push = (ref: AdRef) => {
-    const key = `${ref.kind}:${(ref as any).username ?? (ref as any).domain}`.toLowerCase();
+    const dedupValue =
+      (ref as any).username ??
+      (ref as any).domain   ??
+      (ref as any).hash;
+    const key = `${ref.kind}:${String(dedupValue ?? '').toLowerCase()}`;
     if (seen.has(key)) return;
     seen.add(key);
     refs.push(ref);
@@ -44,6 +53,11 @@ export function extractAdRefs(input: ExtractInput): AdRef[] {
     }
 
     if (e.type === 'url' || e.type === 'text_url') {
+      // Invite links first — t.me/+<hash> wouldn't match TME_RE's word-only
+      // segment anyway, but joinchat/<hash> would partially. Explicit first.
+      const inv = TME_INVITE_RE.exec(url);
+      if (inv) { push({ kind: 'tg_invite', hash: inv[1] }); continue; }
+
       const tme = TME_RE.exec(url);
       if (tme) {
         const ref: AdRef = { kind: 'tg_channel', username: tme[1].toLowerCase() };

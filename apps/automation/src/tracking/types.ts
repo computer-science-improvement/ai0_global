@@ -4,6 +4,7 @@
 export type AdRef =
   | { kind: 'tg_channel'; username: string; target_post_id?: number; forward?: boolean }
   | { kind: 'tg_user';    username: string; forward?: boolean }
+  | { kind: 'tg_invite';  hash: string }
   | { kind: 'instagram';  username: string }
   | { kind: 'web';        domain: string };
 
@@ -18,6 +19,16 @@ export const TRACKING_QUEUES = {
 export type PollMetaJob          = { channelId: string };
 export type PollPostsJob         = { channelId: string };
 export type RefreshMetricsJob    = { postId: string };
-export type ResolveDiscoveryJob  = { username: string; sourceChannelId: string };
+/**
+ * Discovery payload. For @username paths `username` is set; for
+ * t.me/+invite paths `inviteHash` is set (and `username` is the literal
+ * 'invite:<hash>' placeholder used for dedup). The worker branches on
+ * which field is present.
+ */
+export type ResolveDiscoveryJob  = {
+  username:         string;
+  sourceChannelId:  string;
+  inviteHash?:      string;
+};
 
 export type PollTier = 'hot' | 'warm' | 'cold';

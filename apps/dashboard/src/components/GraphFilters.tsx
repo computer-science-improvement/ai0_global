@@ -3,7 +3,7 @@ interface Props {
   onChange: (patch: Partial<{ from: string; to: string; minWeight: number; kinds: string[]; includeMine: boolean }>) => void;
 }
 
-const ALL_KINDS = ['tg_channel', 'tg_user', 'instagram', 'web'];
+const ALL_KINDS = ['tg_channel', 'tg_invite', 'tg_user', 'instagram', 'web'];
 
 export function GraphFilters({ from, to, minWeight, kinds, includeMine, onChange }: Props) {
   const toggleKind = (k: string) => {

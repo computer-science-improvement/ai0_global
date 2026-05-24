@@ -68,6 +68,27 @@ export class PollPostsWorker implements OnModuleInit {
           if (!existing) {
             await this.queue.addResolveDiscovery({ username: ref.username, sourceChannelId: channel.id });
           }
+        } else if (ref.kind === 'tg_invite') {
+          // Private-channel invite link. The hash becomes the target_username
+          // for the edge (uniqueness is the same as a regular @username); a
+          // separate resolve-discovery job calls checkChatInvite() to create
+          // the corresponding tracked_channels row keyed by 'invite:<hash>'.
+          const inviteKey = `invite:${ref.hash}`;
+          const existing  = await this.channels.getByChannelKey(inviteKey);
+          await this.edges.upsertSeen({
+            sourceChannelId: channel.id,
+            targetUsername:  ref.hash,
+            targetKind:      'tg_invite',
+            targetChannelId: existing?.id ?? null,
+            seenAt:          m.date,
+          });
+          if (!existing) {
+            await this.queue.addResolveDiscovery({
+              username:        ref.hash, // used by linkResolvedTarget
+              sourceChannelId: channel.id,
+              inviteHash:      ref.hash,
+            });
+          }
         } else if (ref.kind === 'instagram' || ref.kind === 'web') {
           await this.edges.upsertSeen({
             sourceChannelId: channel.id,

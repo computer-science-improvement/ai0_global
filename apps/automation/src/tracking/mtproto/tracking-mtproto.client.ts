@@ -33,6 +33,21 @@ export interface ResolveResult {
   isClosed:  boolean;
 }
 
+/** Channel-shaped peek of an invite link via messages.checkChatInvite.
+ *  Does NOT require the session to be a member of the channel. */
+export interface InviteCheckResult {
+  /** When the session is already a member, this is the real -100… chat
+   *  id; when not joined yet (the common case), it's null and the channel
+   *  is identified only by the hash. */
+  tgChatId:   string | null;
+  title:      string | null;
+  subsCount:  number | null;
+  /** True for channels (broadcast / megagroup), false for basic groups. */
+  isChannel:  boolean;
+  /** True when MTProto returned ChatInviteAlready — we already joined. */
+  alreadyJoined: boolean;
+}
+
 const FLOOD_WAIT_RE = /A wait of (\d+) seconds is required/;
 
 @Injectable()
@@ -132,6 +147,65 @@ export class TrackingMtprotoClient implements OnModuleInit {
     } catch (err: any) {
       this.handleApiError('getHistory', err);
       return [];
+    }
+  }
+
+  /**
+   * Peek a private channel via its invite-link hash, WITHOUT joining.
+   * Telegram's messages.checkChatInvite returns one of three shapes:
+   *
+   *   - ChatInvite          — not joined; carries title / photo / participants
+   *                           but no resolvable chat id
+   *   - ChatInviteAlready   — already a member; wraps the actual Chat object
+   *                           with the real -100… id
+   *   - ChatInvitePeek      — peek granted for a limited time (rare)
+   *
+   * We normalize all three into InviteCheckResult. Hash is the part after
+   * `t.me/+` (or `t.me/joinchat/`). FLOOD_WAIT is re-thrown so BullMQ
+   * delays the job rather than losing it.
+   */
+  async checkInvite(hash: string): Promise<InviteCheckResult | null> {
+    if (!this.ready || !this.client) return null;
+    try {
+      const res: any = await this.client.invoke(
+        new Api.messages.CheckChatInvite({ hash }),
+      );
+      const cls = res?.className;
+
+      if (cls === 'ChatInvite') {
+        // Not joined — channel is identified only by the hash for now.
+        // photo / participantsCount / title come from the preview.
+        return {
+          tgChatId:      null,
+          title:         res.title ?? null,
+          subsCount:     typeof res.participantsCount === 'number' ? res.participantsCount : null,
+          isChannel:     !!res.channel || !!res.broadcast || !!res.megagroup,
+          alreadyJoined: false,
+        };
+      }
+
+      if (cls === 'ChatInviteAlready' || cls === 'ChatInvitePeek') {
+        // Already a member (or peek granted) — res.chat is the Chat object.
+        const chat: any = res.chat ?? {};
+        return {
+          tgChatId:      chat.id ? String(chat.id) : null,
+          title:         chat.title ?? null,
+          subsCount:     typeof chat.participantsCount === 'number' ? chat.participantsCount : null,
+          isChannel:     !!chat.broadcast || !!chat.megagroup || chat.className === 'Channel',
+          alreadyJoined: cls === 'ChatInviteAlready',
+        };
+      }
+
+      this.logger.warn(`checkInvite: unexpected response className ${cls}`);
+      return null;
+    } catch (err: any) {
+      const msg = err.errorMessage ?? err.message ?? '';
+      if (/INVITE_HASH_(INVALID|EXPIRED|EMPTY)/.test(msg)) {
+        this.logger.debug(`checkInvite: ${hash} ${msg}`);
+        return null;
+      }
+      this.handleApiError('checkInvite', err);
+      return null;
     }
   }
 

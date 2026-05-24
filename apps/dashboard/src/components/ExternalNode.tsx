@@ -21,7 +21,8 @@ const KIND_GLYPH: Record<string, string> = {
   web:       '🔗',
   instagram: '📷',
   tg_user:   '👤',
-  tg_channel: '#',  // shouldn't appear here since those resolve, but fallback
+  tg_invite: '🔒',  // invite-link channel, unresolved
+  tg_channel: '#',   // shouldn't appear here since those resolve, but fallback
 };
 
 export function ExternalNode({ data }: { data: ExternalNodeData }) {

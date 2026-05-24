@@ -75,3 +75,30 @@ test('extractAdRefs: lowercases tg usernames', () => {
   });
   assert.equal((refs[0] as any).username, 'foochannel');
 });
+
+test('extractAdRefs: parses t.me/+<hash> invite link', () => {
+  const refs = extractAdRefs({
+    text: 'Приєднуйся https://t.me/+EfjMN-0iNnpjOGUy',
+    entities: [{ type: 'url', offset: 11, length: 30 }],
+  });
+  assert.deepEqual(refs, [{ kind: 'tg_invite', hash: 'EfjMN-0iNnpjOGUy' }]);
+});
+
+test('extractAdRefs: parses legacy t.me/joinchat/<hash> invite', () => {
+  const refs = extractAdRefs({
+    text: 'old https://t.me/joinchat/AAAABBBBCCCC',
+    entities: [{ type: 'url', offset: 4, length: 34 }],
+  });
+  assert.deepEqual(refs, [{ kind: 'tg_invite', hash: 'AAAABBBBCCCC' }]);
+});
+
+test('extractAdRefs: invite link does not also count as web (dedup)', () => {
+  // The same URL shouldn't produce both tg_invite + web — the explicit
+  // tg_invite branch should match first and `continue` past GENERIC_RE.
+  const refs = extractAdRefs({
+    text: 'https://t.me/+abcd1234',
+    entities: [{ type: 'url', offset: 0, length: 22 }],
+  });
+  assert.equal(refs.length, 1);
+  assert.equal(refs[0].kind, 'tg_invite');
+});

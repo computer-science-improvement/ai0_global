@@ -5,7 +5,7 @@ import { DB_POOL } from '../../database/database.tokens';
 export interface AdEdgeUpsert {
   sourceChannelId: string;
   targetUsername:  string;
-  targetKind:      'tg_channel' | 'tg_user' | 'instagram' | 'web';
+  targetKind:      'tg_channel' | 'tg_user' | 'tg_invite' | 'instagram' | 'web';
   targetChannelId?: string | null;
   seenAt:          Date;
 }

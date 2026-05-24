@@ -27,6 +27,14 @@ export class PollMetaWorker implements OnModuleInit {
     const channel = await this.channels.getById(job.data.channelId);
     if (!channel) { this.logger.debug(`channel ${job.data.channelId} disappeared`); return; }
 
+    // Invite-link discovered channels — we don't have a chat id to
+    // pass to getFullChannel, but checkChatInvite does the same job
+    // without requiring membership. Re-poll refreshes title + subs.
+    if (channel.channelKey?.startsWith('invite:')) {
+      await this.refreshInvite(channel.id, channel.channelKey.slice('invite:'.length));
+      return;
+    }
+
     const target = channel.tgChatId ?? channel.username;
     if (!target) { this.logger.warn(`channel ${channel.id} has neither tgChatId nor username`); return; }
 
@@ -51,5 +59,33 @@ export class PollMetaWorker implements OnModuleInit {
     });
     await this.channels.markPolled(channel.id, meta.subsCount, new Date());
     this.logger.debug(`poll-meta ok: ${target} subs=${meta.subsCount}`);
+  }
+
+  /**
+   * Refresh an invite-link discovered channel. Calls checkChatInvite to
+   * get fresh title + participants_count; if the session has joined since
+   * the original peek, we'll also pick up the real chat id and start
+   * polling posts on the next cycle.
+   */
+  private async refreshInvite(channelId: string, hash: string): Promise<void> {
+    const info = await this.mtproto.checkInvite(hash);
+    if (!info) {
+      this.logger.debug(`poll-meta invite ${hash.slice(0, 8)}… unresolved`);
+      // Still mark polled so the tier rotation moves on — otherwise this
+      // channel hogs every batch with "never-polled-first" priority.
+      await this.channels.markPolled(channelId, null, new Date());
+      return;
+    }
+    await this.channels.upsertInviteChannel({
+      hash,
+      title:     info.title,
+      subsCount: info.subsCount,
+      tgChatId:  info.tgChatId,
+    });
+    await this.channels.markPolled(channelId, info.subsCount, new Date());
+    this.logger.debug(
+      `poll-meta invite ${hash.slice(0, 8)}… subs=${info.subsCount} ` +
+      `${info.alreadyJoined ? '(joined)' : '(peeked)'}`,
+    );
   }
 }
