@@ -75,11 +75,25 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
             })()}
           </div>
           <div style={{ display: 'flex', flexShrink: 0, alignItems: 'center', gap: 14 }}>
-            <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
+            <span
+              className="text-body-sm"
+              style={{ color: c.subsCount == null ? 'var(--color-ink-dim)' : 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}
+              title={c.subsCount == null
+                ? 'Subscriber count unknown. Public channels populate on the next poll; private channels return null from Telegram’s getChat unless the bot is admin.'
+                : `${c.subsCount.toLocaleString()} subscribers`}
+            >
               {fmtNumber(c.subsCount)}
             </span>
             <PollTierChip tier={c.pollTier} />
-            <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{fmtRelative(c.lastPolledAt)}</span>
+            <span
+              className="text-body-sm"
+              style={{ color: 'var(--color-ink-muted)' }}
+              title={c.lastPolledAt
+                ? `Last polled: ${new Date(c.lastPolledAt).toLocaleString()}`
+                : 'Never polled — the tracker hasn’t fetched stats for this channel yet.'}
+            >
+              {fmtRelative(c.lastPolledAt)}
+            </span>
             {c.isMine && (
               <button
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setEditing(true); }}
