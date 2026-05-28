@@ -6,63 +6,84 @@
 
 ## Goal
 
-Switch the recipe content source from TheMealDB's live API to our own Postgres `recipes` table, seeded from the new **pre-translated Ukrainian** epicure dataset. Posting becomes fully deterministic — **zero Claude calls** — because the data already arrives in Ukrainian.
+Switch the recipe content source from TheMealDB's live API to our own Postgres `recipes` table, seeded from the **English** epicure dataset. The `recipes` strategy translates each recipe to Ukrainian via Claude **lazily at post time** and **caches the translation back into the DB**, so each recipe is translated at most once (a publish retry never re-pays for translation).
 
 ## Context (current state)
 
 - **Existing `recipes` strategy** (`apps/automation/src/strategies/recipes/recipes.strategy.ts`) fetches a random recipe from TheMealDB (`MealDbFetcher`) and uses Claude to produce a Ukrainian description. It **ignores the `recipes` table** entirely.
 - **`recipes` table** (`database/init.sql`): `id, title, slug, url, description, ingredients TEXT, instructions TEXT, image_url, category, tags TEXT[], post_text, posted JSONB, created_at`. Unique index on `slug`. `posted` is a JSONB map like `{TELEGRAM: "<ts>"}`.
 - **Existing recipes loader** (`apps/pipeline/src/loaders/recipes.js`) loads `data/normalized/recipes/recipes.json` into `recipes` with `ON CONFLICT (slug) DO NOTHING`.
-- **New source data:** `apps/pipeline/src/raw-data/raw-data/recipes-ua/recipes_*.json` — produced by a separate translation agent (in progress; `translation_state.json` tracks position). Same epicure schema as the English `recipes/` chunks, but every text field is Ukrainian.
+- **Source data:** `apps/pipeline/src/raw-data/raw-data/recipes/recipes_*.json` — 26 chunks, **English**, epicure schema. (The `recipes-ua/` pre-translation experiment is abandoned; translation happens in-strategy via Claude.)
 - **Publisher:** `TelegramPublisher.publishPrompt({ imageBuffer, caption, replyText? }, target)` sends a photo+caption, then an optional reply with `replyText`. Requires `imageBuffer: Buffer`. This is the exact mechanism the recipe post needs.
 
-### Source recipe shape (recipes-ua, Ukrainian)
+### Source recipe shape (recipes/, English)
 
 ```json
 {
-  "recipe_name": "Класичний Пом Анна (Pommes Anna)",
+  "recipe_name": "Classic Pommes Anna",
   "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_...jpg",
-  "dish_type": "основна страва",
-  "flavor_profile": "солоний",
-  "cuisine_type": "Французька",
-  "hero_ingredient": "Картопля",
-  "number_of_servings": 4,
-  "visual_description": "Золотисто-коричнева картопля Пом Анна ...",
-  "ingredients": [ { "name": "Картопля сорту Юкон Голд", "quantity": "1 кг" }, ... ],
-  "instructions": [ "Розтопіть вершкове масло ...", ... ]
+  "dish_type": "main",
+  "flavor_profile": "savory",
+  "cuisine_type": "French",
+  "hero_ingredient": "Potato",
+  "visual_description": "A golden-brown Pommes Anna ...",
+  "ingredients": [ { "name": "Yukon Gold potatoes", "quantity": "1 kg" }, ... ],
+  "instructions": [ "Melt butter in a small saucepan ...", ... ]
 }
 ```
 
 ## Decisions (locked during brainstorming)
 
 1. **Replace** the existing `recipes` strategy to read from the DB (keep the type name `recipes`; channel bindings unchanged). TheMealDB fetcher is retired.
-2. **Source = `recipes-ua/`** (Ukrainian). No translation needed.
+2. **Source = English `recipes/`.** Translation is done by Claude, not pre-supplied.
 3. **Load all** recipes, dedup on `slug`.
-4. **Zero Claude** at post time — deterministic formatting.
-5. **Post layout** = photo + caption (title + meta + ingredients) **then a follow-up reply** with the full numbered instructions.
+4. **Lazy translation at post time, cached to the DB.** One Claude call the first time a recipe is posted; the result is stored in new `*_uk` columns and reused on retry.
+5. **Store structured translated fields:** `title_uk`, `ingredients_uk`, `instructions_uk` (+ `translated_at`).
+6. **Post layout** = photo + caption (title + meta + ingredients, all Ukrainian) **then a follow-up reply** with the full numbered Ukrainian instructions.
 
 ## Architecture / data flow
 
 ```
-raw-data/recipes-ua/recipes_*.json   (Ukrainian, epicure schema, growing as translation runs)
-        │  NEW parser: parsers/recipes-epicure.js  (map + slug-dedup)
+raw-data/recipes/recipes_*.json   (English, epicure schema)
+        │  NEW parser: parsers/recipes-epicure.js  (map + slug-dedup, keeps English text)
         ▼
-data/normalized/recipes/recipes.json
+data/normalized/recipes/recipes.json   (English structured)
         │  loader: loaders/recipes.js  (+ --fresh TRUNCATE option; ON CONFLICT(slug) DO NOTHING)
         ▼
-Postgres: recipes table
-        │  recipes strategy execute():  getNext() → format → download image → publishPrompt → markPosted
+Postgres: recipes table  (English source cols + empty *_uk cols)
+        │
+        │  recipes strategy execute():
+        │    getNext() → if title_uk IS NULL: Claude translate → saveTranslation()
+        │    → render caption+reply from *_uk → download image → publishPrompt → markPosted
         ▼
-Telegram: photo+caption (ingredients) + reply (instructions)   |   recipes.posted = {TELEGRAM: ts}
+Telegram: photo+caption (UA ingredients) + reply (UA instructions)   |   recipes.posted = {TELEGRAM: ts}
 ```
 
 ## Components
 
-### 1. Parser — `apps/pipeline/src/parsers/recipes-epicure.js` (NEW)
+### 1. Migration — `database/migrations/008_recipes_translation.sql` (NEW)
 
-- Read every `recipes-ua/recipes_*.json` chunk (ignore `index.json`, `translation_state.json`).
+```sql
+ALTER TABLE recipes
+  ADD COLUMN IF NOT EXISTS title_uk        TEXT,
+  ADD COLUMN IF NOT EXISTS ingredients_uk  TEXT,
+  ADD COLUMN IF NOT EXISTS instructions_uk TEXT,
+  ADD COLUMN IF NOT EXISTS translated_at   TIMESTAMPTZ;
+
+CREATE INDEX IF NOT EXISTS idx_recipes_untranslated
+  ON recipes (created_at) WHERE title_uk IS NULL;
+
+INSERT INTO schema_migrations (version) VALUES ('008_recipes_translation')
+  ON CONFLICT (version) DO NOTHING;
+```
+
+Also mirror the four columns into the `recipes` table definition in `database/init.sql` so fresh installs match.
+
+### 2. Parser — `apps/pipeline/src/parsers/recipes-epicure.js` (NEW)
+
+- Read every `recipes/recipes_*.json` chunk (ignore `index.json`).
 - Flatten each chunk's `recipes[]`.
-- Map each recipe to the normalized shape (no schema change — reuses existing columns):
+- Map each recipe to the normalized shape (English; reuses existing source columns):
 
   | normalized field | source |
   |---|---|
@@ -77,87 +98,109 @@ Telegram: photo+caption (ingredients) + reply (instructions)   |   recipes.poste
   | `tags` | `[dish_type, flavor_profile, cuisine_type, hero_ingredient]` — lowercased, de-duped, non-empty |
   | `post_text` | `null` |
 
-- **Dedup within the dataset:** drop exact duplicates keyed by `recipe_name + image_url`; genuine name-collisions keep distinct slugs (hash suffix). The slug is the cross-run dedup key at load time too.
+- **Dedup within the dataset:** drop exact duplicates keyed by `recipe_name + image_url`; genuine name-collisions keep distinct slugs (hash suffix). `slug` is the cross-run dedup key at load time too.
 - Skip malformed entries (missing `recipe_name` or `image_url`) and report a count.
 - Write `data/normalized/recipes/recipes.json` (overwrites the old foodcourt file — source change is wholesale, confirmed).
-- Pure, synchronous mapping functions exported for unit testing: `mapRecipe(raw)`, `slugify(name)`, `buildIngredientsText(arr)`, `buildInstructionsText(arr)`.
-- npm script: `parse:recipes` (mirrors existing parser script conventions).
+- Pure, exported, unit-testable functions: `mapRecipe(raw)`, `slugify(name)`, `buildIngredientsText(arr)`, `buildInstructionsText(arr)`.
+- npm script: `parse:recipes`.
 
-### 2. Loader — `apps/pipeline/src/loaders/recipes.js` (EXTEND, don't duplicate)
+### 3. Loader — `apps/pipeline/src/loaders/recipes.js` (EXTEND, don't duplicate)
 
-- The existing loader already inserts the normalized shape with `ON CONFLICT (slug) DO NOTHING` — reuse it (DRY).
-- Add a `--fresh` flag (and `LOAD_FRESH=1` env equivalent) that runs `TRUNCATE recipes RESTART IDENTITY` before loading. This satisfies "clear the table" for the one-time cutover.
-- Add npm script `load:recipes:fresh` = clear + load; keep `load:recipes` as the incremental (idempotent) load used while translation is still running.
-- **Idempotency:** because translation is in progress, `load:recipes` can be re-run as new chunks land; `ON CONFLICT (slug)` skips already-loaded recipes.
+- Reuse the existing loader (it already inserts the normalized shape with `ON CONFLICT (slug) DO NOTHING`).
+- Add a `--fresh` flag (and `LOAD_FRESH=1` env) that runs `TRUNCATE recipes RESTART IDENTITY` before loading — the one-time clear/cutover.
+- npm scripts: `load:recipes:fresh` (clear + load) and existing `load:recipes` (incremental, idempotent).
+- The `*_uk` columns are **not** written by the loader — they start NULL and are filled by the strategy.
 
-### 3. Repository — `apps/automation/src/strategies/recipes/recipes.repository.ts` (NEW)
+### 4. Translation prompt — `apps/automation/src/common/ai/prompts/recipe-translate.prompts.ts` (NEW)
 
-Mirror `PromptsRepository`. Inject the pg `DB_POOL`.
+- A system prompt that localizes an English recipe into the Ukrainian recipes-channel voice (compose with `RECIPES_CHANNEL_SKILL` tone), returning **strict JSON**:
+  ```json
+  { "title_uk": "...", "ingredients_uk": "<lines>", "instructions_uk": "<numbered lines>" }
+  ```
+  - `ingredients_uk`: one `"<назва> — <кількість>"` per line, units converted naturally (kg→кг, g→г, ml→мл).
+  - `instructions_uk`: numbered steps, faithful to the English, natural Ukrainian.
+- `buildRecipeTranslateUserMessage(row)` assembles the English `title`, `ingredients`, `instructions`, `category` into the user turn.
+- May emit `SKIP_POST` if the recipe is unusable (mirrors existing prompt convention).
 
-- `getNext(): Promise<RecipeRow | null>` —
+### 5. Repository — `apps/automation/src/strategies/recipes/recipes.repository.ts` (NEW)
+
+Mirror `PromptsRepository`. Inject `DB_POOL`.
+
+- `getNext(): Promise<RecipeRow | null>`
   ```sql
-  SELECT id, title, image_url, category, tags, ingredients, instructions
+  SELECT id, title, image_url, category, ingredients, instructions,
+         title_uk, ingredients_uk, instructions_uk
   FROM recipes
   WHERE NOT (posted ? 'TELEGRAM')
   ORDER BY created_at
   LIMIT 1
   ```
-  (Deterministic oldest-first ordering; predictable for tests.)
-- `markPosted(id: string): Promise<void>` —
+- `saveTranslation(id, { titleUk, ingredientsUk, instructionsUk }): Promise<void>`
+  ```sql
+  UPDATE recipes
+  SET title_uk = $2, ingredients_uk = $3, instructions_uk = $4, translated_at = now()
+  WHERE id = $1
+  ```
+- `markPosted(id): Promise<void>`
   ```sql
   UPDATE recipes
   SET posted = posted || jsonb_build_object('TELEGRAM', to_jsonb(now()))
   WHERE id = $1
   ```
 
-`RecipeRow` type: `{ id, title, image_url, category, tags: string[], ingredients: string|null, instructions: string|null }`.
+`RecipeRow`: `{ id, title, image_url, category, ingredients, instructions, title_uk, ingredients_uk, instructions_uk }` (the `*_uk` fields are `string | null`).
 
-### 4. Strategy — `apps/automation/src/strategies/recipes/recipes.strategy.ts` (REWRITE)
+### 6. Strategy — `apps/automation/src/strategies/recipes/recipes.strategy.ts` (REWRITE)
 
 - Keep `readonly type = 'recipes'` and `onModuleInit() → registry.register(this)`.
-- Implement a custom `execute(channelId, params)` (same pattern as `Ai0PromptsStrategy`), **not** the fetch/generate pipeline — so it can mark the DB row posted and control the photo+reply layout.
-- Steps:
-  1. `row = await this.repo.getNext()`. If `null` → log "no unposted recipes" and return (run recorded as ok/skipped by the scheduler).
-  2. Build **caption** (≤ 1024 visible chars):
-     - `header = <b>${title}</b>`
-     - `meta = 🍽️ ${category}` (servings dropped — see "servings note" below)
-     - `📝 Інгредієнти:` + ingredient lines (already a text block in `row.ingredients`), trimmed to fit 1024 via the existing `fitIngredients`-style budget helper.
-  3. Build **replyText** = `👨‍🍳 Приготування:\n` + `row.instructions` (Telegram message limit 4096; if instructions exceed it, truncate on a step boundary and append `…`).
-  4. Download `row.image_url` → `Buffer` (reuse the image-download helper the `ai0-prompts` strategy uses; on download failure, log and **skip without marking posted** so it's retried next run).
-  5. `await this.publisher.publishPrompt({ imageBuffer, caption, replyText }, { id: channelId })`.
-  6. `await this.repo.markPosted(row.id)`.
-- `getSkills()` returns `[]` (no AI involved) — or is removed if the interface allows; keep returning `[]` for interface compatibility.
-- Remove the `ClaudeAgent`, `PostValidator`, `MealDbFetcher` dependencies.
+- Implement custom `execute(channelId, params)` (same pattern as `Ai0PromptsStrategy`):
+  1. `row = await this.repo.getNext()`. If `null` → log "no unposted recipes" and return.
+  2. **Translate if needed:** if `row.title_uk` is null:
+     - If `!this.claude.available` → log + return (don't mark posted; retried next run).
+     - Call Claude with the translation prompt; parse JSON `{ title_uk, ingredients_uk, instructions_uk }`.
+     - If `SKIP_POST` / invalid JSON → log + return without marking posted (retried later). (Persistent bad rows are rare; acceptable to retry — no infinite cost loop because translation is the only Claude call and getNext is oldest-first; if a row is permanently bad it will block the queue — see "Risk" below.)
+     - `await this.repo.saveTranslation(row.id, …)` and use the parsed values for this run.
+     - Else (already translated) use the stored `*_uk` values.
+  3. Build **caption** (≤ 1024 visible chars): `<b>${title_uk}</b>` + `🍽️ ${category}` + `📝 Інгредієнти:` + ingredient lines from `ingredients_uk`, trimmed to fit 1024 via a `fitText` budget helper.
+  4. Build **replyText** = `👨‍🍳 Приготування:\n` + `instructions_uk` (truncate on a step boundary + `…` if > 4096).
+  5. Download `row.image_url` → `Buffer` (reuse the `ai0-prompts` image-download helper). On failure → log + return without marking posted (retried; translation already cached so no re-pay).
+  6. `await this.publisher.publishPrompt({ imageBuffer, caption, replyText }, { id: channelId })`.
+  7. `await this.repo.markPosted(row.id)`.
+- Keep `ClaudeAgent` + `PostValidator` deps (used for translation). Remove `MealDbFetcher`.
+- `getSkills()` returns `[RECIPES_CHANNEL_SKILL]` (tone reference for translation) — or `[]` if not consumed; keep for interface compatibility.
 
-**Servings note:** the current `recipes` table has no `servings` column and the parser maps it into neither a column nor tags. Decision: **drop servings from the post** (meta = `🍽️ ${category}`). If we later want it, it can ride in `tags` or a migration — out of scope here.
+### 7. Retire TheMealDB
 
-### 5. Retire TheMealDB
+- Delete `apps/automation/src/workflows/recipes/fetchers/mealdb.fetcher.ts` (verify no other importers first).
+- Drop `MealDbFetcher` from the recipes module providers; keep `workflows/recipes/types.ts` only if still imported elsewhere.
 
-- Delete `apps/automation/src/workflows/recipes/fetchers/mealdb.fetcher.ts` and the now-unused `workflows/recipes/types.ts` (verify no other importers first; if shared, leave the types and only drop the fetcher).
-- Remove `MealDbFetcher` from the recipes module providers.
+### 8. "Recheck existing loaders" — audit deliverable
 
-### 6. "Recheck existing loaders" — audit deliverable
+Read-only audit of all 8 loaders (`recipes, prompts, daytoday, facts, pdr, tg-posts, treatfield, assets`): confirm each runs, targets the documented table, and dedups via its stated conflict key. Fix only clear bugs found; report findings in the plan's final notes.
 
-A read-only audit of all 8 loaders (`recipes, prompts, daytoday, facts, pdr, tg-posts, treatfield, assets`): for each, confirm it (a) runs, (b) targets the documented table, (c) dedups via its stated conflict key. Fix only clear bugs found; report findings in the plan's final notes. No behavior changes beyond fixes.
+## Error handling & risks
 
-## Error handling
+- **Parser:** skip + count malformed recipes; never throw on one bad entry.
+- **Loader:** batched insert + `ON CONFLICT DO NOTHING`; `--fresh` truncate guarded so a failed/empty normalized file never leaves the table empty (truncate only after confirming the normalized file is non-empty).
+- **Strategy:** translation/image/publish failures return **without marking posted** → retried next cron. `ChannelPausedError` is already handled by the scheduler as `skipped`.
+- **Risk — poison row:** because `getNext` is oldest-first and a permanently-untranslatable row never gets marked posted, it could block the queue (re-translated every run = recurring cost). Mitigation: on `SKIP_POST`/invalid JSON, write a sentinel so it's skipped — store `title_uk = ''` (empty) + `translated_at = now()` and treat empty `title_uk` as "skip this row" in `getNext` (`WHERE NOT (posted ? 'TELEGRAM') AND title_uk IS DISTINCT FROM ''`). This caps translation to one attempt per row.
 
-- Parser: skip + count malformed recipes; never throw on a single bad entry.
-- Loader: batched insert (existing `lib/loader.js`), `ON CONFLICT DO NOTHING`; `--fresh` truncate wrapped so a failed load doesn't leave the table empty (truncate + load in one transaction, or truncate only after the normalized file is confirmed non-empty).
-- Strategy: image download failure → skip this run without marking posted (auto-retry next cron). Publish failure → propagates to the scheduler (recorded as `error`); the row stays unposted. `ChannelPausedError` from the publisher is already handled by the scheduler as `skipped`.
+## Testing (cost-safe — Claude/Telegram mocked, no network)
 
-## Testing (cost-safe — no Claude, no Telegram, no network)
-
-- **Parser unit tests** (`parsers/recipes-epicure.test.js` via the repo's node:test convention): mapping, slugify, slug-collision hash suffix, ingredient/instruction text building, malformed-entry skipping, dataset dedup. Fixtures only.
-- **Loader test:** against local Postgres with a tiny fixture + `LOAD_LIMIT`; assert row count and that re-running is idempotent (no duplicate slugs). Verify `--fresh` truncates.
-- **Repository test:** `getNext` returns oldest unposted; `markPosted` flips it so the next `getNext` skips it. Local Postgres.
-- **Strategy unit test:** mock `RecipesRepository` + `TelegramPublisher`; assert caption ≤ 1024, reply carries instructions, `publishPrompt` called once, `markPosted` called with the row id, and that an image-download failure skips `markPosted`.
-- **Standing cost rule:** the `recipes` strategy remains **unbound / automation not running** during local development, so no live publishes occur. Tests never hit real Claude/Telegram.
+- **Parser unit tests:** mapping, slugify, slug-collision hash suffix, ingredient/instruction text building, malformed-entry skipping, dataset dedup. Fixtures only.
+- **Loader test:** local Postgres + tiny fixture + `LOAD_LIMIT`; assert row count, idempotent re-run (no dup slugs), `--fresh` truncates.
+- **Migration test:** apply `008` to local DB; assert the four columns + partial index exist.
+- **Repository test:** `getNext` oldest-unposted; `saveTranslation` populates `*_uk` + `translated_at`; `markPosted` flips `posted`; poison-sentinel row (`title_uk = ''`) is skipped by `getNext`.
+- **Strategy unit test (mocked Claude + publisher):**
+  - untranslated row → Claude called once, `saveTranslation` called, caption ≤ 1024, reply carries instructions, `publishPrompt` called once, `markPosted` called.
+  - **already-translated row → Claude NOT called** (cache reuse).
+  - image-download failure → no `markPosted`.
+  - `SKIP_POST` → sentinel saved, no publish, no `markPosted`.
+- **Standing cost rule:** the `recipes` strategy stays **unbound / automation not running** during local development; tests never hit real Claude/Telegram.
 
 ## Out of scope
 
 - Prompt imports (separate spec).
-- A `servings` column / migration.
-- Any change to the `recipes` table schema (none needed).
-- Translating recipes (done by the separate agent).
+- A `servings` column (dropped from the post; no column today).
+- Translating recipes outside the strategy (no batch step).
 - Dashboard UI for browsing recipes.
