@@ -65,10 +65,20 @@ test('SKIP_POST: writes empty sentinel, no publish, no markPosted', async () => 
   assert.equal(calls.posted.length, 0);
 });
 
-test('image download failure: no markPosted (retry next run)', async () => {
+test('image download failure: translation cached, no markPosted (retry next run)', async () => {
   const { s, calls } = build();
   (s as any).downloadImage = async () => { throw new Error('net'); };
   await s.execute('@chan', {});
+  assert.equal(calls.save.length, 1);   // translation persisted so retry doesn't re-pay Claude
+  assert.equal(calls.published.length, 0);
+  assert.equal(calls.posted.length, 0);
+});
+
+test('claude unavailable: no Claude call, no sentinel, no publish', async () => {
+  const { s, calls } = build({ claude: { available: false, chat: async () => '' } });
+  await s.execute('@chan', {});
+  assert.equal(calls.chat, 0);
+  assert.equal(calls.save.length, 0);   // no sentinel — retry when Claude is back
   assert.equal(calls.published.length, 0);
   assert.equal(calls.posted.length, 0);
 });

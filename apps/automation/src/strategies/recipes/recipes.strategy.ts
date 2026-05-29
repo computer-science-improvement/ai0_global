@@ -123,11 +123,17 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     };
 
     if (!raw || raw.trim() === 'SKIP_POST') return fail('empty or SKIP_POST');
-    if (!this.validator.check(raw, 'recipes')) return fail('validator rejected');
+
+    // Strip code fences BEFORE validating. The validator blacklists preamble
+    // phrases ("here is a", …) meant for free-text posts; running it on the
+    // raw response could wrongly sentinel a valid translation that Claude
+    // wrapped in ```json … ```. We validate the stripped JSON text instead.
+    const stripped = raw.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+    if (!this.validator.check(stripped, 'recipes')) return fail('validator rejected');
 
     let parsed: { title_uk?: string; ingredients_uk?: string; instructions_uk?: string };
     try {
-      parsed = JSON.parse(raw.replace(/```json\s*/g, '').replace(/```\s*/g, ''));
+      parsed = JSON.parse(stripped);
     } catch {
       return fail('invalid JSON');
     }
