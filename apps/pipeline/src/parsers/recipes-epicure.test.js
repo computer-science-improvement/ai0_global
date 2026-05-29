@@ -39,6 +39,7 @@ test('mapRecipe maps all fields onto the normalized shape', () => {
   assert.equal(r.category, 'French');
   assert.deepEqual(r.tags, ['main', 'savory', 'french', 'potato']);
   assert.equal(r.post_text, null);
+  assert.deepEqual(r.raw, RAW); // full source object preserved losslessly
 });
 
 test('normalizeAll drops malformed entries and exact dupes, uniquifies slug collisions', () => {

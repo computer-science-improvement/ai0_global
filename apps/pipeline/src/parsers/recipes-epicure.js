@@ -54,6 +54,7 @@ export function mapRecipe(raw) {
     category:     raw.cuisine_type ?? null,
     tags:         [...new Set(tags)],
     post_text:    null,
+    raw,
   };
 }
 

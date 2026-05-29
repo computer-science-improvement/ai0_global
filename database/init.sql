@@ -131,6 +131,7 @@ create table if not exists recipes (
   ingredients_uk  TEXT,
   instructions_uk TEXT,
   translated_at   TIMESTAMPTZ,
+  raw          jsonb,
   created_at   timestamptz not null default now()
 );
 
