@@ -11,7 +11,7 @@ function makeRow(over = {}) {
 }
 
 function build(overrides = {}) {
-  const calls = { chat: 0, save: [], posted: [], published: [] as any[] };
+  const calls = { chat: 0, save: [] as any[], posted: [] as string[], published: [] as any[] };
   const claude = { available: true, chat: async () => { calls.chat++; return JSON.stringify({
     title_uk: 'Пом Анна', ingredients_uk: 'Картопля — 1 кг', instructions_uk: '1. Розтопіть масло.',
   }); }, ...((overrides as any).claude ?? {}) };

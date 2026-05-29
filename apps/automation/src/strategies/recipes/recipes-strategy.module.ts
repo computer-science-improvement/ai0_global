@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { RecipesStrategy } from './recipes.strategy';
-import { MealDbFetcher }   from '../../workflows/recipes/fetchers/mealdb.fetcher';
+import { RecipesStrategy }   from './recipes.strategy';
+import { RecipesRepository } from './recipes.repository';
 
 @Module({
-  providers: [RecipesStrategy, MealDbFetcher],
+  providers: [RecipesStrategy, RecipesRepository],
   exports:   [RecipesStrategy],
 })
 export class RecipesStrategyModule {}
