@@ -204,3 +204,26 @@ Read-only audit of all 8 loaders (`recipes, prompts, daytoday, facts, pdr, tg-po
 - A `servings` column (dropped from the post; no column today).
 - Translating recipes outside the strategy (no batch step).
 - Dashboard UI for browsing recipes.
+
+---
+
+## Loader audit (2026-05-26)
+
+All 8 loaders parse (`node --check`) and their `ON CONFLICT` keys map to a real
+unique constraint. No bugs found; no fixes required.
+
+| Loader | Table | Conflict key | Backing unique constraint | Result |
+|---|---|---|---|---|
+| assets.js | assets | (data_source, title) | idx_assets_unique | PASS |
+| daytoday.js | on_this_day | (month, day, slug) | idx_on_this_day_unique | PASS |
+| daytoday.js | articles | (slug) | articles_slug_key (inline `slug … unique`) | PASS |
+| daytoday.js | jokes | (content_hash) | idx_jokes_hash | PASS |
+| facts.js | facts | (content_hash) | idx_facts_hash | PASS |
+| pdr.js | pdr_questions | (question_id) | idx_pdr_questions_qid | PASS |
+| prompts.js | prompts | (id) | prompts PK (id TEXT PRIMARY KEY) | PASS |
+| recipes.js | recipes | (slug) | idx_recipes_slug | PASS |
+| tg-posts.js | tg_posts | (content_hash) | idx_tg_posts_content_hash | PASS |
+| treatfield.js | articles | (slug) | articles_slug_key | PASS |
+
+Note: input paths under `data/normalized/**` depend on the corresponding parser
+having run; that's data availability, not a loader defect.
