@@ -27,6 +27,7 @@
     "load:treatfield:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/treatfield.js",
     "load:recipes": "node --env-file=../../.env src/loaders/recipes.js",
     "load:recipes:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/recipes.js",
+    "load:recipes:fresh": "LOAD_FRESH=1 node --env-file=../../.env src/loaders/recipes.js",
     "load:facts": "node --env-file=../../.env src/loaders/facts.js",
     "load:facts:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/facts.js",
     "load:pdr": "node --env-file=../../.env src/loaders/pdr.js",

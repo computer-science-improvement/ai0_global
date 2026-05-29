@@ -74,6 +74,12 @@ async function main() {
     return;
   }
 
+  const FRESH = process.env.LOAD_FRESH === '1' || process.argv.includes('--fresh');
+  if (FRESH) {
+    console.log('Fresh load: TRUNCATE recipes');
+    await pool.query('TRUNCATE recipes RESTART IDENTITY');
+  }
+
   console.log(`Loading ${rows.length} recipes`);
   const { inserted, skipped } = await loadRows('recipes', rows, { columns: COLUMNS, conflictTarget: CONFLICT });
   console.log(`Recipes — inserted: ${inserted}, skipped: ${skipped}`);
