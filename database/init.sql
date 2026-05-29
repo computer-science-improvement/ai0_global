@@ -127,12 +127,17 @@ create table if not exists recipes (
   tags         text[] not null default '{}',
   post_text    text,
   posted       jsonb not null default '{}',
+  title_uk        TEXT,
+  ingredients_uk  TEXT,
+  instructions_uk TEXT,
+  translated_at   TIMESTAMPTZ,
   created_at   timestamptz not null default now()
 );
 
 create unique index if not exists idx_recipes_slug     on recipes (slug);
 create index if not exists idx_recipes_category        on recipes (category);
 create index if not exists idx_recipes_posted          on recipes using gin (posted);
+CREATE INDEX idx_recipes_untranslated ON recipes (created_at) WHERE title_uk IS NULL;
 
 -- ─── Infrastructure: posted_news (dedup tracking) ──────────────────────────
 
