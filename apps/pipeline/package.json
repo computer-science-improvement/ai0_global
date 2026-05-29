@@ -8,6 +8,8 @@
     "init-db": "node --env-file=../../.env src/init-db.js",
     "init-db:reset": "node --env-file=../../.env src/init-db.js --reset",
     "parse": "node src/run-parsers.js",
+    "test": "node --test",
+    "parse:recipes": "node src/parsers/recipes-epicure.js",
     "parse:academy": "node src/parsers/academy.openai.js",
     "parse:academy:resources": "node src/parsers/academy.openai.resources.js",
     "parse:md": "node src/parsers/prompts-md.js",
