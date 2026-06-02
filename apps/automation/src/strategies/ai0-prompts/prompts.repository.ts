@@ -20,6 +20,7 @@ export class PromptsRepository {
       `SELECT id, prompt_source, category, status, posted
        FROM prompts
        WHERE category = $1
+         AND provider = 'prompthero'
          AND status IS NULL
          AND NOT (posted ? 'TELEGRAM')
        LIMIT 1`,
