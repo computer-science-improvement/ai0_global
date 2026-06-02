@@ -38,12 +38,19 @@ create table if not exists prompts (
   scraped_at    timestamptz,
   page_url      text,
   status        text,
+  provider      text not null default 'prompthero',
+  title         text,
+  prompt_text   text,
+  source        text,
+  media_url     text,
+  media_type    text,
   created_at    timestamptz not null default now()
 );
 
 create index if not exists idx_prompts_category on prompts (category);
 create index if not exists idx_prompts_posted   on prompts using gin (posted);
 create index if not exists idx_prompts_status   on prompts (status);
+create index if not exists idx_prompts_provider on prompts (provider);
 
 -- ─── Content: on_this_day (on-this-day strategy) ───────────────────────────
 
