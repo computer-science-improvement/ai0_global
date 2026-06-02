@@ -11,7 +11,7 @@ function row(over = {}) {
 }
 
 function build(over = {}) {
-  const calls = { photo: [] as any[], video: [] as any[], posted: [] as string[] };
+  const calls = { photo: [] as any[], video: [] as any[], posted: [] as string[], errored: [] as string[] };
   const registry = { register() {} };
   const publisher = {
     publishPrompt: async (p: any) => { calls.photo.push(p); return '10'; },
@@ -20,7 +20,7 @@ function build(over = {}) {
   const repo = {
     getNext: async () => ('row' in (over as any) ? (over as any).row : row()),
     markPosted: async (id: string) => { calls.posted.push(id); },
-    markError:  async () => {},
+    markError:  async (id: string) => { calls.errored.push(id); },
   };
   const notifier = { notifyPublished: async () => {} };
   const publications = { insert: async () => {} };
@@ -62,11 +62,29 @@ test('caption HTML-escapes the prompt', async () => {
   assert.match(calls.photo[0].caption, /a &lt; b &amp; c &gt; d/);
 });
 
-test('image download failure → no markPosted', async () => {
+test('image download failure (transient) → no markPosted, no markError', async () => {
   const { s, calls } = build();
   (s as any).downloadImage = async () => { throw new Error('net'); };
   await s.execute('@chan', {});
   assert.equal(calls.posted.length, 0);
+  assert.equal(calls.errored.length, 0);
+});
+
+test('media gone (404) → markError, not retried', async () => {
+  const { s, calls } = build();
+  (s as any).downloadImage = async () => { const e: any = new Error('Request failed'); e.response = { status: 404 }; throw e; };
+  await s.execute('@chan', {});
+  assert.equal(calls.posted.length, 0);
+  assert.deepEqual(calls.errored, ['m1']);
+});
+
+test('overflow with null title+category → caption still passes the 20-char floor', async () => {
+  const long = 'Y'.repeat(1200);
+  const { s, calls } = build({ row: row({ title: null, category: null, prompt_text: long }) });
+  await s.execute('@chan', {});
+  assert.equal(calls.photo.length, 1);
+  assert.ok(calls.photo[0].caption.replace(/<[^>]*>/g, '').trim().length >= 20);
+  assert.ok(calls.photo[0].replyText.includes(long.slice(0, 50)));
 });
 
 test('no rows → no-op', async () => {

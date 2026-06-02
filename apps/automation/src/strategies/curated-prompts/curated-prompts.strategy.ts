@@ -73,8 +73,19 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
       });
       this.logger.debug(`Published curated prompt ${row.id} to ${channelId}`);
     } catch (err: any) {
-      this.logger.error(`Publish failed (${row.id}): ${err.message}`);
-      // no markPosted — retried next run
+      // Permanently-gone media (deleted GitHub asset) → mark ERROR so the row
+      // is skipped forever instead of retried every tick. Transient failures
+      // (network, Telegram 5xx, paused channel) are NOT marked → retried next
+      // run. text-too-short from guardText is also permanent for this row.
+      const status   = err?.response?.status;
+      const tooShort = typeof err?.message === 'string' && err.message.includes('text too short');
+      if (status === 404 || status === 410 || tooShort) {
+        this.logger.warn(`Curated prompt ${row.id} unpostable (${status ?? err.message}) — marking ERROR`);
+        try { await this.repo.markError(row.id); } catch { /* best-effort */ }
+      } else {
+        this.logger.error(`Publish failed (${row.id}): ${err.message}`);
+        // no markPosted — retried next run
+      }
     }
   }
 
@@ -90,8 +101,11 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
 
     if (full.length <= CAPTION_MAX) return { caption: full };
 
-    // Overflow: short caption + prompt in the reply.
-    const caption = [title, tag].filter(Boolean).join('\n\n') || '\u{1F4AC} Prompt';
+    // Overflow: short caption + prompt in the reply. Always append a hint line
+    // so the caption is meaningful AND safely above guardText's 20-char floor
+    // even when title and category are both absent.
+    const hint = '\u{1F4AC} Повний промпт — у відповіді нижче ⬇️';
+    const caption = [title, tag, hint].filter(Boolean).join('\n\n');
     let reply = [promptBlock, src].filter(Boolean).join('\n\n');
     if (reply.length > REPLY_MAX) reply = reply.slice(0, REPLY_MAX - 1) + '…';
     return { caption, replyText: reply };
