@@ -22,6 +22,7 @@
     "load:prompts:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/prompts.js",
     "load:daytoday": "node --env-file=../../.env src/loaders/daytoday.js",
     "load:daytoday:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/daytoday.js",
+    "scrape:prompts-github": "node src/tools/scrape-prompts-github.js",
     "scrape:treatfield": "node src/tools/additional-data/scripts/scrape-treatfield-articles.js",
     "load:treatfield": "node --env-file=../../.env src/loaders/treatfield.js",
     "load:treatfield:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/treatfield.js",
