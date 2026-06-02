@@ -261,6 +261,33 @@ export class TelegramPublisher extends BasePublisher {
     return newMessageId;
   }
 
+  async publishVideo(
+    payload: { videoUrl: string; caption: string; replyText?: string },
+    target: PublishTarget,
+  ): Promise<string> {
+    if (this.channelConfig.isPublishPausedFor(target.id)) {
+      this.logger.log(`publishVideo(${target.id}) skipped: channel publish_paused=true`);
+      throw new ChannelPausedError(target.id);
+    }
+    this.guardText(payload.caption);
+    const { chatId, botToken } = this.channelConfig.resolveChannel(target.id);
+    const base = `https://api.telegram.org/bot${botToken}`;
+
+    const res = await axios.post(
+      `${base}/sendVideo`,
+      { chat_id: chatId, video: payload.videoUrl, caption: payload.caption, parse_mode: 'HTML' },
+      { timeout: 60000 },
+    );
+    const messageId = String(res.data.result.message_id);
+    this.throttle.recordPublish(target.id);
+    this.logger.log(`Video sent to ${chatId}, message_id: ${messageId}`);
+
+    if (payload.replyText) {
+      await this.sendReply(base, chatId, payload.replyText, messageId);
+    }
+    return messageId;
+  }
+
   async publishPrompt(payload: PromptPayload, target: PublishTarget): Promise<string> {
     if (this.channelConfig.isPublishPausedFor(target.id)) {
       this.logger.log(`publishPrompt(${target.id}) skipped: channel publish_paused=true`);
