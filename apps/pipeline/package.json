@@ -20,6 +20,8 @@
     "load:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/assets.js",
     "load:prompts": "node --env-file=../../.env src/loaders/prompts.js",
     "load:prompts:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/prompts.js",
+    "load:prompts-github": "node --env-file=../../.env src/loaders/prompts-github.js",
+    "load:prompts-github:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/prompts-github.js",
     "load:daytoday": "node --env-file=../../.env src/loaders/daytoday.js",
     "load:daytoday:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/daytoday.js",
     "scrape:prompts-github": "node src/tools/scrape-prompts-github.js",
