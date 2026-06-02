@@ -10,6 +10,7 @@ import { SchedulerModule }      from './scheduler/scheduler.module';
 import { OnThisDayStrategyModule }   from './strategies/on-this-day/on-this-day-strategy.module';
 import { Ai0NewsStrategyModule }     from './strategies/ai0-news/ai0-news-strategy.module';
 import { Ai0PromptsStrategyModule }  from './strategies/ai0-prompts/ai0-prompts-strategy.module';
+import { CuratedPromptsStrategyModule } from './strategies/curated-prompts/curated-prompts-strategy.module';
 import { GameChannelStrategyModule } from './strategies/game-channel/game-channel-strategy.module';
 import { QuotesStrategyModule }      from './strategies/quotes/quotes-strategy.module';
 import { RecipesStrategyModule }     from './strategies/recipes/recipes-strategy.module';
@@ -41,6 +42,7 @@ import { DiscoveryModule }      from './discovery/discovery.module';
     OnThisDayStrategyModule,
     Ai0NewsStrategyModule,
     Ai0PromptsStrategyModule,
+    CuratedPromptsStrategyModule,
     GameChannelStrategyModule,
     QuotesStrategyModule,
     RecipesStrategyModule,
