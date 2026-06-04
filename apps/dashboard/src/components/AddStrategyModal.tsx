@@ -61,18 +61,18 @@ export function AddStrategyModal({ open, onClose }: Props) {
         />
       </Field>
 
-      <Field label="Type" hint="must match a registered content-strategy in automation">
-        <input
+      <Field label="Type" hint="pick a registered content-strategy">
+        <select
           value={type}
           onChange={e => setType(e.target.value)}
-          placeholder="quotes"
-          list="strategy-type-suggestions"
           className="input-field"
           style={{ width: '100%' }}
-        />
-        <datalist id="strategy-type-suggestions">
-          {Object.keys(STRATEGY_DESCRIPTIONS).map(k => <option key={k} value={k} />)}
-        </datalist>
+        >
+          <option value="" disabled>Pick a strategy type</option>
+          {Object.entries(STRATEGY_DESCRIPTIONS).map(([key, meta]) => (
+            <option key={key} value={key}>{meta.title} ({key})</option>
+          ))}
+        </select>
         <TypeDescription type={type} />
       </Field>
 

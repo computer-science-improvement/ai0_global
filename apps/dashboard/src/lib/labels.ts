@@ -120,8 +120,8 @@ export const STRATEGY_DESCRIPTIONS: Record<string, StrategyTypeMeta> = {
   },
   'recipes': {
     title:       'Recipes',
-    source:      'api',
-    description: 'Random recipe fetched from MealDB at fire time. Translated + reformatted via Claude for the Ukrainian audience.',
+    source:      'db',
+    description: 'Posts the next unpublished recipe from the `recipes` table. Translated to Ukrainian via Claude once and cached on the row; photo caption (title + cuisine + ingredients) plus a reply with full instructions.',
   },
   'movies': {
     title:       'Movies',
@@ -147,6 +147,11 @@ export const STRATEGY_DESCRIPTIONS: Record<string, StrategyTypeMeta> = {
     title:       'Game channel',
     source:      'multi',
     description: 'Mixes giveaways (GamerPower), deals (Epic / Steam) and news per a fair-mix rotation. `params.sources` picks which sub-feeds are active. Dedup tracked per channel.',
+  },
+  'curated-prompts': {
+    title:       'Curated AI prompts',
+    source:      'db',
+    description: 'Posts curated GitHub-sourced AI prompts (nanobanana images, seedance videos) verbatim from the `prompts` table. `params.provider` (nanobanana/seedance) and/or `params.mediaType` (image/video) pick the subset. Image → photo, video → native video.',
   },
 };
 
