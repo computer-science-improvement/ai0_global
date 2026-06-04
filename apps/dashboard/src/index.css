@@ -188,6 +188,17 @@ a:hover { opacity: 0.85; }
 }
 .btn-tiny-danger:hover { background: var(--color-danger-soft); }
 
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink-muted);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn-ghost:hover { background: var(--color-surface-3); color: var(--color-ink); }
+
 /* Circular 36-40px icon button — for collapse, refresh, etc. */
 .btn-icon {
   display: inline-flex; align-items: center; justify-content: center;
