@@ -9,19 +9,34 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TelegraphRouteImport } from './routes/telegraph'
 import { Route as StrategiesRouteImport } from './routes/strategies'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as RecommendationsRouteImport } from './routes/recommendations'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as GraphRouteImport } from './routes/graph'
 import { Route as DiscoveryRouteImport } from './routes/discovery'
 import { Route as ChannelsRouteImport } from './routes/channels'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BotsRouteImport } from './routes/bots'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConnectionsPlatformRouteImport } from './routes/connections.$platform'
 import { Route as ChannelsIdRouteImport } from './routes/channels_.$id'
 
+const TelegraphRoute = TelegraphRouteImport.update({
+  id: '/telegraph',
+  path: '/telegraph',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StrategiesRoute = StrategiesRouteImport.update({
   id: '/strategies',
   path: '/strategies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecommendationsRoute = RecommendationsRouteImport.update({
@@ -49,14 +64,29 @@ const ChannelsRoute = ChannelsRouteImport.update({
   path: '/channels',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BotsRoute = BotsRouteImport.update({
   id: '/bots',
   path: '/bots',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectionsPlatformRoute = ConnectionsPlatformRouteImport.update({
+  id: '/connections/$platform',
+  path: '/connections/$platform',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChannelsIdRoute = ChannelsIdRouteImport.update({
@@ -67,93 +97,142 @@ const ChannelsIdRoute = ChannelsIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/bots': typeof BotsRoute
+  '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
+  '/telegraph': typeof TelegraphRoute
   '/channels/$id': typeof ChannelsIdRoute
+  '/connections/$platform': typeof ConnectionsPlatformRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/bots': typeof BotsRoute
+  '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
+  '/telegraph': typeof TelegraphRoute
   '/channels/$id': typeof ChannelsIdRoute
+  '/connections/$platform': typeof ConnectionsPlatformRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/bots': typeof BotsRoute
+  '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
+  '/telegraph': typeof TelegraphRoute
   '/channels_/$id': typeof ChannelsIdRoute
+  '/connections/$platform': typeof ConnectionsPlatformRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analytics'
     | '/bots'
+    | '/calendar'
     | '/channels'
     | '/discovery'
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/settings'
     | '/strategies'
+    | '/telegraph'
     | '/channels/$id'
+    | '/connections/$platform'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/analytics'
     | '/bots'
+    | '/calendar'
     | '/channels'
     | '/discovery'
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/settings'
     | '/strategies'
+    | '/telegraph'
     | '/channels/$id'
+    | '/connections/$platform'
   id:
     | '__root__'
     | '/'
+    | '/analytics'
     | '/bots'
+    | '/calendar'
     | '/channels'
     | '/discovery'
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/settings'
     | '/strategies'
+    | '/telegraph'
     | '/channels_/$id'
+    | '/connections/$platform'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   BotsRoute: typeof BotsRoute
+  CalendarRoute: typeof CalendarRoute
   ChannelsRoute: typeof ChannelsRoute
   DiscoveryRoute: typeof DiscoveryRoute
   GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
   RecommendationsRoute: typeof RecommendationsRoute
+  SettingsRoute: typeof SettingsRoute
   StrategiesRoute: typeof StrategiesRoute
+  TelegraphRoute: typeof TelegraphRoute
   ChannelsIdRoute: typeof ChannelsIdRoute
+  ConnectionsPlatformRoute: typeof ConnectionsPlatformRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/telegraph': {
+      id: '/telegraph'
+      path: '/telegraph'
+      fullPath: '/telegraph'
+      preLoaderRoute: typeof TelegraphRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/strategies': {
       id: '/strategies'
       path: '/strategies'
       fullPath: '/strategies'
       preLoaderRoute: typeof StrategiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recommendations': {
@@ -191,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChannelsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bots': {
       id: '/bots'
       path: '/bots'
@@ -198,11 +284,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BotsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connections/$platform': {
+      id: '/connections/$platform'
+      path: '/connections/$platform'
+      fullPath: '/connections/$platform'
+      preLoaderRoute: typeof ConnectionsPlatformRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/channels_/$id': {
@@ -217,14 +317,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   BotsRoute: BotsRoute,
+  CalendarRoute: CalendarRoute,
   ChannelsRoute: ChannelsRoute,
   DiscoveryRoute: DiscoveryRoute,
   GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
   RecommendationsRoute: RecommendationsRoute,
+  SettingsRoute: SettingsRoute,
   StrategiesRoute: StrategiesRoute,
+  TelegraphRoute: TelegraphRoute,
   ChannelsIdRoute: ChannelsIdRoute,
+  ConnectionsPlatformRoute: ConnectionsPlatformRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
