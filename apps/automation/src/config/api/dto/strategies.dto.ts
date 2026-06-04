@@ -5,14 +5,15 @@ import {
 } from 'class-validator';
 
 /**
- * Create input. `ext_id` is the logical name users see — alphanumeric +
- * `-`/`_` so it round-trips into config-file JSON if we ever export it back.
+ * Create input. `ext_id` is the logical name users see — alphanumeric,
+ * `-`/`_`, and `:` (the conventional `type:slug` separator used by every
+ * existing binding, e.g. `recipes:local`). Stays JSON-config-safe.
  * `channel_id` is the internal UUID (resolved via the channels picker on
  * the frontend, not the channelKey).
  */
 export class CreateStrategyDto {
   @IsString()
-  @Matches(/^[a-z0-9_-]+$/i, { message: 'ext_id must be alphanumeric + - + _' })
+  @Matches(/^[a-z0-9_:-]+$/i, { message: 'ext_id must be alphanumeric, plus - _ :' })
   @MaxLength(80)
   ext_id!: string;
 
