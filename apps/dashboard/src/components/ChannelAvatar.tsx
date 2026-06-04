@@ -24,7 +24,7 @@ const PALETTE: ReadonlyArray<{ bg: string; fg: string }> = [
   { bg: 'rgba(212, 77, 240, 0.20)',  fg: '#e29bf3' },  // magenta
   { bg: 'rgba(255, 122, 61, 0.18)',  fg: '#ffae87' },  // orange
   { bg: 'rgba(255, 85, 119, 0.18)',  fg: '#ff99ad' },  // coral
-  { bg: 'rgba(0, 153, 255, 0.20)',   fg: '#7ac6ff' },  // accent blue
+  { bg: 'rgba(45, 212, 191, 0.18)',  fg: '#5eead4' },  // teal
   { bg: 'rgba(34, 197, 94, 0.18)',   fg: '#86d99f' },  // green
 ];
 
