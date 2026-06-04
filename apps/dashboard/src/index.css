@@ -8,50 +8,60 @@
  * ========================================================================= */
 
 @theme {
-  --color-canvas:        #090909;
-  --color-surface-1:     #141414;
-  --color-surface-2:     #1c1c1c;
-  --color-surface-3:     #242424;  /* hover lift above surface-2 — for table rows */
-  --color-hairline:      #262626;
-  --color-hairline-soft: #1a1a1a;
-  --color-ink:           #ffffff;
-  --color-ink-muted:     #999999;
-  --color-ink-dim:       #6e6e6e;  /* tertiary text — meta within meta */
-  --color-accent:        #0099ff;
+  /* ── Supabase-dark surfaces ─────────────────────────────────────── */
+  --color-canvas:        #1b1b1b;
+  --color-surface-1:     #202020;  /* sidebar / alt bands */
+  --color-surface-2:     #242424;  /* cards, panels */
+  --color-surface-3:     #2a2a2a;  /* nested chrome / active nav / row hover */
+  --color-hairline:      #2e2e2e;
+  --color-hairline-soft: #262626;
+  --color-hairline-strong: #3a3a3a;
 
-  /* Brand gradient family — sparingly, only on spotlight cards. */
-  --color-grad-violet:   #6a4cf5;
-  --color-grad-magenta:  #d44df0;
-  --color-grad-orange:   #ff7a3d;
-  --color-grad-coral:    #ff5577;
+  /* ── Ink ladder ─────────────────────────────────────────────────── */
+  --color-ink:           #ededed;
+  --color-ink-muted:     #a0a0a0;
+  --color-ink-dim:       #6f6f6f;
 
-  /* Semantic — solid (text/glyph) + soft (tinted surface). */
-  --color-success:       #22c55e;
-  --color-success-soft:  rgba(34, 197, 94, 0.14);
-  --color-warning:       #f59e0b;
-  --color-warning-soft:  rgba(245, 158, 11, 0.14);
-  --color-danger:        #ef4444;
-  --color-danger-soft:   rgba(239, 68, 68, 0.14);
+  /* ── Single emerald accent ──────────────────────────────────────── */
+  --color-accent:        #3ecf8e;
+  --color-accent-deep:   #24b47e;  /* pressed */
+  --color-on-accent:     #10231a;  /* near-black text ON emerald */
 
-  /* Radii — Framer's signature: pill + 20px cards + 30px atmospheric tiles. */
+  /* ── Semantic status (functional, not decorative) ──────────────── */
+  --color-success:       #3ecf8e;
+  --color-success-soft:  rgba(62, 207, 142, 0.14);
+  --color-warning:       #ffb224;
+  --color-warning-soft:  rgba(255, 178, 36, 0.14);
+  --color-danger:        #e5704b;
+  --color-danger-soft:   rgba(229, 112, 75, 0.14);
+
+  /* ── Radii — square-ish; 6px buttons ───────────────────────────── */
   --radius-xs:   4px;
   --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   15px;
-  --radius-xl:   20px;
-  --radius-2xl:  30px;
-  --radius-pill: 100px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-pill: 9999px;
 
-  /* Spacing — 5/10/15/20/30/40 scale per spec. */
+  /* ── Spacing (8px base) ─────────────────────────────────────────── */
   --space-hair: 1px;
-  --space-xxs:  4px;
-  --space-xs:   8px;
-  --space-sm:   12px;
-  --space-md:   15px;
-  --space-lg:   20px;
-  --space-xl:   30px;
-  --space-xxl:  40px;
-  --space-section: 96px;
+  --space-xxs:  2px;
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   12px;
+  --space-lg:   16px;
+  --space-xl:   24px;
+  --space-xxl:  32px;
+  --space-section: 64px;
+}
+
+/* Gradient tokens retained (Framer spotlight cards) — minimal definitions so
+   any remaining references don't break; mapped onto the emerald family. */
+@theme {
+  --color-grad-violet:   #3ecf8e;
+  --color-grad-magenta:  #3ecf8e;
+  --color-grad-orange:   #ffb224;
+  --color-grad-coral:    #e5704b;
 }
 
 :root { color-scheme: dark; }
@@ -108,7 +118,7 @@ a:hover { opacity: 0.85; }
 }
 
 ::selection {
-  background: rgba(0, 153, 255, 0.30);
+  background: var(--color-success-soft);
   color: var(--color-ink);
 }
 
@@ -118,50 +128,50 @@ a:hover { opacity: 0.85; }
 
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center;
-  background: var(--color-ink); color: var(--color-canvas);
-  border-radius: var(--radius-pill);
+  background: var(--color-accent); color: var(--color-on-accent);
+  border-radius: var(--radius-sm);
   font-size: 14px; font-weight: 500; line-height: 1; letter-spacing: -0.14px;
   padding: 10px 16px;
   border: none;
   cursor: pointer;
-  transition: transform 0.12s ease, opacity 0.12s ease;
+  transition: transform 0.12s ease, background 0.12s ease;
 }
-.btn-primary:hover    { opacity: 0.90; }
+.btn-primary:hover    { background: var(--color-accent-deep); }
 .btn-primary:active   { transform: scale(0.97); }
 .btn-primary:disabled { opacity: 0.40; cursor: not-allowed; }
 
 .btn-secondary {
   display: inline-flex; align-items: center; justify-content: center;
-  background: var(--color-surface-1); color: var(--color-ink);
-  border-radius: var(--radius-pill);
+  background: var(--color-surface-2); color: var(--color-ink);
+  border-radius: var(--radius-sm);
   font-size: 14px; font-weight: 500; line-height: 1; letter-spacing: -0.14px;
   padding: 10px 16px;
-  border: none;
+  border: 1px solid var(--color-hairline-strong);
   cursor: pointer;
   transition: background 0.12s ease, transform 0.12s ease;
 }
-.btn-secondary:hover  { background: var(--color-surface-2); }
+.btn-secondary:hover  { background: var(--color-surface-3); }
 .btn-secondary:active { transform: scale(0.97); }
 .btn-secondary:disabled { opacity: 0.40; cursor: not-allowed; }
 
 /* Smaller pill — for inline row actions. */
 .btn-tiny {
   display: inline-flex; align-items: center; justify-content: center;
-  background: var(--color-surface-1); color: var(--color-ink);
-  border-radius: var(--radius-pill);
+  background: var(--color-surface-2); color: var(--color-ink);
+  border-radius: var(--radius-sm);
   font-size: 12px; font-weight: 500; line-height: 1; letter-spacing: -0.12px;
   padding: 6px 12px;
-  border: none;
+  border: 1px solid var(--color-hairline);
   cursor: pointer;
   transition: background 0.12s ease;
 }
-.btn-tiny:hover    { background: var(--color-surface-2); }
+.btn-tiny:hover    { background: var(--color-surface-3); }
 .btn-tiny:disabled { opacity: 0.40; cursor: not-allowed; }
 
 .btn-translucent {
   display: inline-flex; align-items: center;
   background: var(--color-surface-2); color: var(--color-ink);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-md);
   font-size: 12px; font-weight: 500; padding: 8px 14px;
   border: none; cursor: pointer;
 }
@@ -169,11 +179,11 @@ a:hover { opacity: 0.85; }
 /* Danger flavor of btn-tiny — for Delete actions. Uses soft surface, danger ink. */
 .btn-tiny-danger {
   display: inline-flex; align-items: center; justify-content: center;
-  background: transparent; color: var(--color-danger);
-  border-radius: var(--radius-pill);
+  background: var(--color-surface-2); color: var(--color-danger);
+  border-radius: var(--radius-sm);
   font-size: 12px; font-weight: 500; line-height: 1; letter-spacing: -0.12px;
   padding: 6px 12px;
-  border: none; cursor: pointer;
+  border: 1px solid var(--color-danger); cursor: pointer;
   transition: background 0.12s ease;
 }
 .btn-tiny-danger:hover { background: var(--color-danger-soft); }
@@ -194,8 +204,9 @@ a:hover { opacity: 0.85; }
  * ------------------------------------------------------------------------- */
 
 .card {
-  background: var(--color-surface-1);
-  border-radius: var(--radius-xl);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
   padding: 20px;
 }
 .card-featured {
@@ -212,20 +223,20 @@ a:hover { opacity: 0.85; }
  * ------------------------------------------------------------------------- */
 
 .input-field {
-  background: var(--color-surface-1);
+  background: var(--color-canvas);
   color: var(--color-ink);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   font-size: 15px; line-height: 1.30; letter-spacing: -0.15px;
   padding: 10px 14px;
-  border: 1px solid transparent;
-  transition: box-shadow 0.12s ease, background 0.12s ease;
+  border: 1px solid var(--color-hairline);
+  transition: border-color 0.12s ease, background 0.12s ease;
 }
 .input-field::placeholder { color: var(--color-ink-dim); }
 .input-field:hover { background: var(--color-surface-2); }
 .input-field:focus {
   outline: none;
-  background: var(--color-surface-1);
-  box-shadow: 0 0 0 1px rgba(0, 153, 255, 0.45);
+  background: var(--color-canvas);
+  border-color: var(--color-accent);
 }
 
 /* ----------------------------------------------------------------------------
@@ -298,15 +309,15 @@ a:hover { opacity: 0.85; }
 .chip {
   display: inline-flex; align-items: center;
   padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-1);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
   color: var(--color-ink-muted);
   font-size: 12px; font-weight: 500; line-height: 1.40; letter-spacing: -0.12px;
 }
 .chip.is-active {
   background: var(--color-surface-2);
   color: var(--color-ink);
-  box-shadow: inset 0 0 0 1px rgba(0, 153, 255, 0.30);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
 }
 .chip-success {
   background: var(--color-success-soft);
@@ -352,7 +363,7 @@ a:hover { opacity: 0.85; }
 .table tbody tr {
   transition: background 0.12s ease;
 }
-.table tbody tr:hover td { background: var(--color-surface-2); }
+.table tbody tr:hover td { background: var(--color-surface-3); }
 .table tbody tr:first-child td { border-top: none; }
 .table .num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 .table .meta { color: var(--color-ink-muted); font-size: 12px; }
@@ -365,7 +376,7 @@ a:hover { opacity: 0.85; }
   display: flex; gap: 12px; align-items: flex-start;
   padding: 12px 16px;
   background: var(--color-warning-soft);
-  border-left: 3px solid var(--color-warning);
+  border: 1px solid var(--color-warning);
   border-radius: var(--radius-md);
   color: var(--color-ink);
   font-size: 14px;
@@ -429,5 +440,5 @@ a:hover { opacity: 0.85; }
 .wordmark .dot {
   width: 6px; height: 6px; border-radius: 9999px;
   background: var(--color-accent);
-  box-shadow: 0 0 12px rgba(0, 153, 255, 0.55);
+  box-shadow: 0 0 12px rgba(62, 207, 142, 0.55);
 }
