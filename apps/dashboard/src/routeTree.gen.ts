@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TrackedRouteImport } from './routes/tracked'
 import { Route as TelegraphRouteImport } from './routes/telegraph'
 import { Route as StrategiesRouteImport } from './routes/strategies'
 import { Route as SettingsRouteImport } from './routes/settings'
@@ -24,6 +25,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConnectionsPlatformRouteImport } from './routes/connections.$platform'
 import { Route as ChannelsIdRouteImport } from './routes/channels_.$id'
 
+const TrackedRoute = TrackedRouteImport.update({
+  id: '/tracked',
+  path: '/tracked',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TelegraphRoute = TelegraphRouteImport.update({
   id: '/telegraph',
   path: '/telegraph',
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
   '/telegraph': typeof TelegraphRoute
+  '/tracked': typeof TrackedRoute
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
 }
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
   '/telegraph': typeof TelegraphRoute
+  '/tracked': typeof TrackedRoute
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
 }
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
   '/telegraph': typeof TelegraphRoute
+  '/tracked': typeof TrackedRoute
   '/channels_/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
 }
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/strategies'
     | '/telegraph'
+    | '/tracked'
     | '/channels/$id'
     | '/connections/$platform'
   fileRoutesByTo: FileRoutesByTo
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/strategies'
     | '/telegraph'
+    | '/tracked'
     | '/channels/$id'
     | '/connections/$platform'
   id:
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/strategies'
     | '/telegraph'
+    | '/tracked'
     | '/channels_/$id'
     | '/connections/$platform'
   fileRoutesById: FileRoutesById
@@ -208,12 +220,20 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   StrategiesRoute: typeof StrategiesRoute
   TelegraphRoute: typeof TelegraphRoute
+  TrackedRoute: typeof TrackedRoute
   ChannelsIdRoute: typeof ChannelsIdRoute
   ConnectionsPlatformRoute: typeof ConnectionsPlatformRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tracked': {
+      id: '/tracked'
+      path: '/tracked'
+      fullPath: '/tracked'
+      preLoaderRoute: typeof TrackedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/telegraph': {
       id: '/telegraph'
       path: '/telegraph'
@@ -328,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   StrategiesRoute: StrategiesRoute,
   TelegraphRoute: TelegraphRoute,
+  TrackedRoute: TrackedRoute,
   ChannelsIdRoute: ChannelsIdRoute,
   ConnectionsPlatformRoute: ConnectionsPlatformRoute,
 }

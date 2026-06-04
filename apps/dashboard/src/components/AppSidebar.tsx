@@ -19,6 +19,7 @@ const GROUPS: NavGroup[] = [
   ]},
   { title: 'Інтелідженс', items: [
     { to: '/discovery',       label: 'Discovery',     icon: 'discovery' },
+    { to: '/tracked',         label: 'Відстежувані',  icon: 'channels' },
     { to: '/graph',           label: 'Граф',          icon: 'graph' },
     { to: '/recommendations', label: 'Рекомендації',  icon: 'recommendations' },
   ]},
