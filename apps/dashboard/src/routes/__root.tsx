@@ -1,7 +1,7 @@
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import { AuthProvider, useAuthCtx } from '../auth/auth-context';
-import { Layout } from '../components/Layout';
+import { AppShell } from '../components/AppShell';
 
 function RootShell() {
   const { me, loading } = useAuthCtx();
@@ -13,7 +13,7 @@ function RootShell() {
     }
     return <Outlet />;
   }
-  return <Layout />;
+  return <AppShell />;
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
