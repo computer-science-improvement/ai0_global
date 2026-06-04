@@ -15,7 +15,7 @@ interface Search { filter: 'mine' | 'all' | 'external'; page: number; q: string;
 
 export const Route = createFileRoute('/channels')({
   validateSearch: (s: Record<string, unknown>): Search => ({
-    filter: (s.filter as Search['filter']) ?? 'all',
+    filter: (s.filter as Search['filter']) ?? 'mine',
     page:   Math.max(1, Number(s.page) || 1),
     q:      String(s.q ?? ''),
     bot:    s.bot ? String(s.bot) : undefined,
