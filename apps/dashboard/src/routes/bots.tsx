@@ -19,7 +19,7 @@ function BotsPage() {
 
   /** Click on a non-action cell → open channels page filtered by this bot. */
   const viewChannels = (botId: string) => {
-    navigate({ to: '/channels' as any, search: { filter: 'all', page: 1, q: '', bot: botId } as any });
+    navigate({ to: '/channels' as any, search: { filter: 'mine', page: 1, q: '', bot: botId } as any });
   };
 
   return (

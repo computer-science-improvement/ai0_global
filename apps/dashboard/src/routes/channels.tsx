@@ -6,7 +6,6 @@ import { useBots } from '../api/bots';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
 import { AddChannelModal } from '../components/AddChannelModal';
-import { SegmentedTabs } from '../components/SegmentedTabs';
 import { Icon } from '../components/Icon';
 
 const PAGE_SIZE = 50;
@@ -23,21 +22,20 @@ export const Route = createFileRoute('/channels')({
   component: ChannelsPage,
 });
 
-const FILTERS = [
-  { key: 'all',      label: 'All'      },
-  { key: 'mine',     label: 'Mine'     },
-  { key: 'external', label: 'External' },
-] as const;
+// «Мої канали» lists owned (is_mine) channels only — the publish targets.
+// Tracked / competitor channels live under Intelligence (Discovery / Граф),
+// so this page has no all/external tabs.
+const FILTER = 'mine' as const;
 
 function ChannelsPage() {
-  const { filter, page, q, bot } = Route.useSearch();
+  const { page, q, bot } = Route.useSearch();
   const navigate = Route.useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const { data: bots } = useBots();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['channels', filter, page, q, bot],
-    queryFn:  () => trackingApi.listChannels({ filter, q: q || undefined, bot, page, pageSize: PAGE_SIZE }),
+    queryKey: ['channels', FILTER, page, q, bot],
+    queryFn:  () => trackingApi.listChannels({ filter: FILTER, q: q || undefined, bot, page, pageSize: PAGE_SIZE }),
   });
 
   const setSearch = (patch: Partial<Search>) =>
@@ -48,18 +46,13 @@ function ChannelsPage() {
   return (
     <div>
       <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-        <h1 className="text-display-md" style={{ margin: 0 }}>Channels</h1>
+        <h1 className="text-display-md" style={{ margin: 0 }}>Мої канали</h1>
         <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
           <Icon name="plus" size={14} /> Add channel
         </button>
       </header>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
-        <SegmentedTabs
-          value={filter}
-          options={FILTERS}
-          onChange={(f) => setSearch({ filter: f, page: 1 })}
-        />
         <input
           value={q}
           onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
