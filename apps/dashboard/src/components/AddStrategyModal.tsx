@@ -39,7 +39,7 @@ export function AddStrategyModal({ open, onClose }: Props) {
         type:       type.trim(),
         channel_id: channelId,
         schedule:   schedule.trim(),
-        enabled:    true,
+        enabled:    false, // new strategies start paused — enable explicitly when ready to publish
         params:     {},
       });
       setExtId(''); setType(''); setChannelId(''); setSchedule('0 9 * * *');

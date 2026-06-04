@@ -147,7 +147,7 @@ export class StrategiesController {
       channel_id: body.channel_id,
       schedule:   body.schedule,
       params:     body.params ?? {},
-      enabled:    body.enabled ?? true,
+      enabled:    body.enabled ?? false, // default paused — never auto-publish a freshly created strategy
     });
     await this.publisher.publish('strategy', row.id);
     return row;
