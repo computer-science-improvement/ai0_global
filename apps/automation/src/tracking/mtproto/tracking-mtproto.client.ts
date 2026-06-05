@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
+import { LogLevel }            from 'telegram/extensions/Logger';
 
 export interface FullChannelResult {
   tgChatId:    string;
@@ -76,6 +77,9 @@ export class TrackingMtprotoClient implements OnModuleInit {
     }
 
     this.client = new TelegramClient(new StringSession(session), apiId, apiHash, { connectionRetries: 2 });
+    // GramJS prints raw `RPCError: 400: CHANNEL_INVALID` stack blocks via its own
+    // logger; our handleApiError already logs concise messages, so silence GramJS.
+    try { this.client.setLogLevel(LogLevel.NONE); } catch { /* ignore logger API mismatch */ }
     try {
       await this.client.connect();
       this.ready = true;
@@ -151,6 +155,12 @@ export class TrackingMtprotoClient implements OnModuleInit {
         .filter((m) => m.className === 'Message')
         .map((m) => this.toRawMessage(m));
     } catch (err: any) {
+      const notSub = err?.errorMessage === 'CHANNEL_INVALID'
+        || /could not find the input entity/i.test(String(err?.message ?? ''));
+      if (notSub) {
+        this.logger.debug(`getHistory: ${usernameOrId} not reachable by session (not subscribed)`);
+        return [];
+      }
       this.handleApiError('getHistory', err);
       return [];
     }

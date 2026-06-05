@@ -27,6 +27,7 @@ export class PollPostsWorker implements OnModuleInit {
   private async handle(job: Job<PollPostsJob>): Promise<void> {
     const channel = await this.channels.getById(job.data.channelId);
     if (!channel) return;
+    if (channel.trackingStatus === 'not_subscribed') return; // session can't read it — poll-meta re-checks for recovery
     const target = channel.tgChatId ?? channel.username;
     if (!target) return;
 
